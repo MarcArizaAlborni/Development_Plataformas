@@ -16,6 +16,7 @@
     <borderless value="false"/>
     <resizable value="false"/>
     <fullscreen_window value="false"/>
+    <screen_size> value="1 </screen_size>
   </window>
 
   <file_system>
