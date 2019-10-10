@@ -5,7 +5,19 @@
 #include "j1Render.h"
 #include "p2Point.h"
 
+struct Input_player {
 
+	bool A_active;
+	bool D_active;
+	bool Space_active;
+	/*bool E_active;
+	bool Q_active;
+	bool R_active;*/
+
+
+
+
+};
 enum CurrentState {
 
 	idle,
@@ -37,7 +49,7 @@ public:
 
 	bool Start();
 
-	
+	Input_player PlayerInput;
 
 	bool PreUpdate();
 	
