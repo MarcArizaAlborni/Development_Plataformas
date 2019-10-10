@@ -33,7 +33,7 @@ j1Player::j1Player(){
  bool j1Player::Awake(pugi::xml_node config) {
 
 
-
+	 return 0;
  }
 
 
@@ -61,7 +61,7 @@ j1Player::j1Player(){
 
  bool j1Player::Update() {
 
-	 switch (CurrentState)
+	 /*switch (CurrentState)
 	 {
 	 case idle:
 	 
@@ -71,7 +71,7 @@ j1Player::j1Player(){
 
 	 default:
 		 break;
-	 }
+	 }*/
 
 
 	 return 0;
@@ -90,6 +90,6 @@ j1Player::j1Player(){
  bool j1Player::CleanUp() {
 
 
-
+	 return 0;
 
  }
