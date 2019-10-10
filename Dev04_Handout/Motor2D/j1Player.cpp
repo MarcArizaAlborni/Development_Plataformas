@@ -48,9 +48,9 @@ j1Player::j1Player(){
 
  bool j1Player::PreUpdate() {
 
-	 PlayerInput.A_active = App->input->GetKey[SDL_SCANCODE_A] == KEY_REPEAT;
-	 PlayerInput.D_active = App->input->GetKey[SDL_SCANCODE_D] == KEY_REPEAT;
-	 PlayerInput.Space_active = App->input->GetKey[SDL_SCANCODE_SPACE] == KEY_REPEAT;
+	 PlayerInput.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
+	 PlayerInput.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
+	 PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_REPEAT;
 
 
 
