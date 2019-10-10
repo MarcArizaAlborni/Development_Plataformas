@@ -10,11 +10,11 @@
 j1FadeToBlack::j1FadeToBlack()
 {
 
-	int width = App->win->GetWidth();
+	/*int width = App->win->GetWidth();
 	int height = App->win->GetHeight();
 	int scale = App->win->GetScale();
 
-	screen = { 0, 0, width * scale, height * scale };
+	screen = { 0, 0, width * scale, height * scale };*/
 }
 
 j1FadeToBlack::~j1FadeToBlack()
