@@ -8,14 +8,7 @@
 #include "SDL/include/SDL_timer.h"
 
 j1FadeToBlack::j1FadeToBlack()
-{
-
-	/*int width = App->win->GetWidth();
-	int height = App->win->GetHeight();
-	int scale = App->win->GetScale();
-
-	screen = { 0, 0, width * scale, height * scale };*/
-}
+{}
 
 j1FadeToBlack::~j1FadeToBlack()
 {}
@@ -27,6 +20,11 @@ bool j1FadeToBlack::Start()
 	SDL_SetRenderDrawBlendMode(App->render->renderer, SDL_BLENDMODE_BLEND);
 	return true;
 
+	int width = App->win->GetWidth();
+	int height = App->win->GetHeight();
+	int scale = App->win->GetScale();
+
+	screen = { 0, 0, width * scale, height * scale };
 }
 
 // Update: draw background

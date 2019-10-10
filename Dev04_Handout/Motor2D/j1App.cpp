@@ -7,9 +7,10 @@
 #include "j1Input.h"
 #include "j1Render.h"
 #include "j1Textures.h"
-#include "j1Audio.h"
+#include "j1Player.h"
 #include "j1Scene.h"
 #include "j1Map.h"
+#include "j1Audio.h"
 #include "j1FadeToBlack.h"
 #include "j1App.h"
 
@@ -23,10 +24,12 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	win = new j1Window();
 	render = new j1Render();
 	tex = new j1Textures();
-	audio = new j1Audio();
+	player = new j1Player();
 	scene = new j1Scene();
 	map = new j1Map();
 	fade = new j1FadeToBlack();
+	audio = new j1Audio();
+
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -36,6 +39,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(map);
 	AddModule(scene);
+	AddModule(player);
 	AddModule(fade);
 
 	// render last to swap buffer

@@ -6,47 +6,36 @@
 #include "p2Point.h"
 
 
-j1Player::j1Player(){
-
-	
-	
+j1Player::j1Player()
+{
 
 }
 
 
- j1Player::~j1Player() {
-
-
-
-}
-
-
-
- bool j1Player::Init() {
-
-
-
-	 return 0;
+ j1Player::~j1Player()
+ {
+ 
  }
 
 
- bool j1Player::Awake(pugi::xml_node config) {
+ bool j1Player::Awake(pugi::xml_node config)
+ {
 
-
-	 return 0;
+	 return true;
  }
 
 
 
- bool j1Player::Start() {
+ bool j1Player::Start() 
+ {
 
 	 CurrentPosition = {0,0 };
 
-
-	 return 0;
+	 return true;
  }
 
- bool j1Player::PreUpdate() {
+ bool j1Player::PreUpdate() 
+ {
 
 	 //AGAFAR INPUTS I TAL, HE MIRAT I CREC QUE FERHO AIXI ES MILLOR QUE TOT JUNT 
 	 PlayerInput.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
@@ -59,27 +48,27 @@ j1Player::j1Player(){
 	 PlayerState = idle;
 
 
-	 if (PlayerInput.A_active) {
-
+	 if (PlayerInput.A_active) 
+	 {
 		PlayerState = move_left;
 	 }
 
-	 if (PlayerInput.D_active) {
+	 if (PlayerInput.D_active) 
+	 {
 		 PlayerState = move_right;
 	 }
 
-	 if (PlayerInput.Space_active) {
-
+	 if (PlayerInput.Space_active)
+	 {
 		 PlayerState = jump;
-
 	 }
-	
 
-	 return 0;
+	 return true;
  }
 
 
- bool j1Player::Update() {
+ bool j1Player::Update()
+ {
 
 	 //APLICACIO DELS DIFFERENTS PLAYER STATES
 	 switch (PlayerState)
@@ -110,22 +99,21 @@ j1Player::j1Player(){
 	 }
 
 
-	 return 0;
+	 return true;
  }
 
- bool j1Player::PostUpdate() {
+ bool j1Player::PostUpdate()
+ {
 
 
-
-	 return 0;
-
+	 return true;
  }
 
 
 
- bool j1Player::CleanUp() {
+ bool j1Player::CleanUp()
+ {
 
 
-	 return 0;
-
+	 return true;
  }
