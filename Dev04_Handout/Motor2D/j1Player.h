@@ -50,7 +50,7 @@ public:
 	bool Start();
 
 	Input_player PlayerInput;
-
+	CurrentState PlayerState;
 	bool PreUpdate();
 	
 	bool Update();

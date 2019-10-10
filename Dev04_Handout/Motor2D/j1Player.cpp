@@ -52,27 +52,57 @@ j1Player::j1Player(){
 	 PlayerInput.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
 	 PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_REPEAT;
 
+	PlayerState = idle;
 
+
+	 if (PlayerInput.A_active) {
+
+		PlayerState = move_left;
+	 }
+
+	 if (PlayerInput.D_active) {
+		 PlayerState = move_right;
+	 }
+
+	 if (PlayerInput.Space_active) {
+
+		 PlayerState = jump;
+
+	 }
+	
 
 	 return 0;
-
-
  }
 
 
  bool j1Player::Update() {
 
-	 /*switch (CurrentState)
+	 switch (PlayerState)
 	 {
 	 case idle:
 	 
 
 		 break;
 
+	 case move_left:
+
+		 break;
+
+
+	 case move_right:
+
+		 break;
+
+
+	 case jump:
+
+		 break;
+
+
 
 	 default:
 		 break;
-	 }*/
+	 }
 
 
 	 return 0;
