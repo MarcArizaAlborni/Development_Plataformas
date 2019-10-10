@@ -34,7 +34,7 @@ private:
 	
 	int floor_Level = 0; //Ni idea del valor nomes poso algo per posarho
 	float speed_char = 2;  //Ni idea del valor nomes poso algo per posarho
-	SDL_Rect Player_Rect;
+	
 public:
 
 	j1Player();
@@ -49,8 +49,7 @@ public:
 
 	bool Start();
 
-	Input_player PlayerInput;
-	CurrentState PlayerState;
+	
 	bool PreUpdate();
 	
 	bool Update();
@@ -59,6 +58,12 @@ public:
 
 	// Called before quitting
 	bool CleanUp();
+
+	//INPUT COSES
+	Input_player PlayerInput;
+	CurrentState PlayerState;
+	SDL_Rect Player_Rect;
+	iPoint CurrentPosition;
 
 
 };
