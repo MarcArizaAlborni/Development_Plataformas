@@ -1,6 +1,7 @@
 #include <math.h>
 #include "p2Log.h"
 #include "j1App.h"
+#include "j1Window.h"
 #include "j1FadeToBlack.h"
 #include "j1Render.h"
 #include "SDL/include/SDL_render.h"
@@ -8,8 +9,12 @@
 
 j1FadeToBlack::j1FadeToBlack()
 {
-	
-	screen = { 0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE };
+
+	int width = App->win->GetWidth();
+	int height = App->win->GetHeight();
+	int scale = App->win->GetScale();
+
+	screen = { 0, 0, width * scale, height * scale };
 }
 
 j1FadeToBlack::~j1FadeToBlack()
@@ -21,6 +26,7 @@ bool j1FadeToBlack::Start()
 	LOG("Preparing Fade Screen");
 	SDL_SetRenderDrawBlendMode(App->render->renderer, SDL_BLENDMODE_BLEND);
 	return true;
+
 }
 
 // Update: draw background
