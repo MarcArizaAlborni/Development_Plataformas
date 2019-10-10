@@ -104,15 +104,12 @@ public:
 	// TODO 8: Create a method that translates x,y coordinates from map positions to world positions
 	inline uint GetPosX(uint x)
 	{
-		TileSet* id;
-
-		return x * id->tile_width;
+		return x * 32;
 	}
 
 	inline uint GetPosY(uint y)
 	{
-		TileSet* id;
-		return y * id->tile_height;
+		return y * 32;
 	}
 
 

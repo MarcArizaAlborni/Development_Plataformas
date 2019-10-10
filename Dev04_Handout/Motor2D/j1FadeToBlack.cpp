@@ -1,20 +1,15 @@
 #include <math.h>
 #include "p2Log.h"
-#include "j1Window.h"
 #include "j1App.h"
 #include "j1FadeToBlack.h"
 #include "j1Render.h"
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_timer.h"
 
-j1FadeToBlack::j1FadeToBlack() 
+j1FadeToBlack::j1FadeToBlack()
 {
-
-	uint width = App->win->GetWidth();
-
-	uint height = App->win->GetHeight();
-
-	screen = { 0, 0, width * App->win->GetWindowSize(width, height), height * SCREEN_SIZE };
+	
+	screen = { 0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE };
 }
 
 j1FadeToBlack::~j1FadeToBlack()

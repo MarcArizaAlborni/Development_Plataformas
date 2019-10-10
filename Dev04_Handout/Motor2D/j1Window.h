@@ -37,18 +37,6 @@ public:
 	//The surface contained by the window
 	SDL_Surface* screen_surface;
 
-	//Get The width
-	uint GetWidth() const {
-
-		return width;
-	}
-
-	//Get The height
-	uint GetHeight() const {
-
-		return height;
-	}
-
 private:
 	p2SString	title;
 	uint		width;
