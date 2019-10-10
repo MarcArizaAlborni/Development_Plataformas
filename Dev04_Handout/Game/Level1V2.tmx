@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="1">
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32" tilecount="768" columns="32">
-  <image source="tiles/generic_platformer_tiles.png" width="1024" height="768"/>
+  <image source="../../../1000 IQ programming EXERCICES/TILED ARXIUS/tiles/generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
  <layer id="1" name="BackgroundLVL1" width="40" height="30">
   <data>
