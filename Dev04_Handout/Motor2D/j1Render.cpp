@@ -48,6 +48,7 @@ bool j1Render::Awake(pugi::xml_node& config)
 		camera.y = 0;
 	}
 
+
 	return ret;
 }
 
@@ -57,6 +58,15 @@ bool j1Render::Start()
 	LOG("render start");
 	// back background
 	SDL_RenderGetViewport(renderer, &viewport);
+	
+	/*SDL_Rect Player_Rect;
+	Player_Rect.w = 32;
+	Player_Rect.h = 64;
+	Player_Rect.x = 50;
+	Player_Rect.y = 50;
+	SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+	SDL_RenderFillRect(renderer, &Player_Rect);
+	SDL_RenderPresent(renderer);*/
 	return true;
 }
 

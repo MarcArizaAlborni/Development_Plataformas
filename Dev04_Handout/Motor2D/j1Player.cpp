@@ -40,7 +40,7 @@ j1Player::j1Player(){
 
  bool j1Player::Start() {
 
-	 CurrentPosition = { 0.0f,0.0f };
+	 CurrentPosition = {0,0 };
 
 
 	 return 0;
