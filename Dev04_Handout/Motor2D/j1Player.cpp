@@ -40,7 +40,7 @@ j1Player::j1Player(){
 
  bool j1Player::Start() {
 
-
+	 CurrentPosition = { 0.0f,0.0f };
 
 
 	 return 0;
@@ -48,11 +48,15 @@ j1Player::j1Player(){
 
  bool j1Player::PreUpdate() {
 
+	 //AGAFAR INPUTS I TAL, HE MIRAT I CREC QUE FERHO AIXI ES MILLOR QUE TOT JUNT 
 	 PlayerInput.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
 	 PlayerInput.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
 	 PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_REPEAT;
 
-	PlayerState = idle;
+	
+
+	//ROTACIO DELS PLAYER STATES 
+	 PlayerState = idle;
 
 
 	 if (PlayerInput.A_active) {
@@ -77,6 +81,7 @@ j1Player::j1Player(){
 
  bool j1Player::Update() {
 
+	 //APLICACIO DELS DIFFERENTS PLAYER STATES
 	 switch (PlayerState)
 	 {
 	 case idle:
