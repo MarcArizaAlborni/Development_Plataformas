@@ -6,8 +6,7 @@ class j1Collision : public j1Module
 {
 public:
 
-	j1Collision()
-	{}
+	j1Collision();
 
 	// Destructor
 	virtual ~j1Collision();

@@ -96,9 +96,6 @@
     <ClInclude Include="j1Map.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClInclude>
     <ClInclude Include="j1FadeToBlack.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
@@ -107,6 +104,9 @@
     </ClInclude>
     <ClInclude Include="j1Collision.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Animation.h">
+      <Filter>Programacio 2 ===========</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

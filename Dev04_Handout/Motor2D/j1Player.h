@@ -1,9 +1,13 @@
 #pragma once
-
+#include "p2Animation.h"
 #include "j1Module.h"
 #include "j1Input.h"
 #include "j1Render.h"
 #include "p2Point.h"
+
+
+struct SDL_Texture;
+struct p2Animation;
 
 struct Input_player
 {
@@ -20,10 +24,10 @@ struct Input_player
 enum CurrentState 
 {
 
-	idle,
-	jump, 
-	move_left,
-	move_right
+	IdleState,
+	JumpState, 
+	LeftState,
+	RightState
 
 };
 
@@ -56,10 +60,15 @@ public:
 	bool CleanUp();
 
 	//INPUT COSES
-	Input_player PlayerInput;
-	CurrentState PlayerState;
-	SDL_Rect *Player_Rect;
-	iPoint CurrentPosition;
+	Input_player		PlayerInput;
+	CurrentState		PlayerState;
+	SDL_Rect*			Player_Rect;
+	iPoint				CurrentPosition;
+	SDL_Texture*		Graphics;
+	//For printing the animation in each moment
+	Animation*			CurrentAnimation;
 
+	// ANIMATION
+	Animation			idle;
 
 };

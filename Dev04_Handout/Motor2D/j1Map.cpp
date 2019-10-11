@@ -36,9 +36,9 @@ void j1Map::Draw()
 	MapLayer* layer = data.maplayers.start->data;
 	TileSet* tileset = data.tilesets.start->data;
 
-	for (int y = 0; y < layer->height; ++y)
+	for (uint y = 0; y < layer->height; ++y)
 	{
-		for (int x = 0; x < layer->width; ++x)
+		for (uint x = 0; x < layer->width; ++x)
 		{
 			uint gid = layer->tile_ids[layer->Get(x,y)];
 			SDL_Rect rect = tileset->GetTileRectId(gid);

@@ -4,7 +4,6 @@
 j1Collision::j1Collision()
 {
 
-
 }
 
 j1Collision::~j1Collision()

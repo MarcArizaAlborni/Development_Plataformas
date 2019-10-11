@@ -1,10 +1,12 @@
 
+#ifndef __ANIMATION_H__
+#define __ANIMATION_H__
+
 #include "SDL/include/SDL_rect.h"
 
 #define MAX_FRAMES 60
 
-class Animation 
-
+class Animation
 {
 public:
 	bool loop = true;
@@ -35,15 +37,15 @@ public:
 		return frames[(int)current_frame];
 	}
 
-	bool Finished() const
+	bool FinishedAnimation() const
 	{
 		return loops > 0;
 	}
 
-	void Reset()
+	void ResetAnimation()
 	{
 		current_frame = 0;
 		loops = 0;
 	}
 };
-
+#endif
