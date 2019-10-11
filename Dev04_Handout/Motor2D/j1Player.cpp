@@ -83,13 +83,21 @@ j1Player::j1Player()
 
 	 if (PlayerState == LeftState) {
 
+		 if (!PlayerInput.A_active) {
 
+			 PlayerState = IdleState;
+			 LOG("LEFT TO IDLE");
+		 }
 
 	 }
 	 
 	 if (PlayerState == RightState) {
 
+		 if (!PlayerInput.D_active) {
 
+			 PlayerState = IdleState;
+			 LOG("RIGHT TO IDLE");
+		 }
 
 
 	 }
@@ -98,7 +106,7 @@ j1Player::j1Player()
 
 
 
-
+		 
 	 }
 	 return true ;
  }
@@ -135,10 +143,13 @@ j1Player::j1Player()
 	
 	}
 
-	SDL_Rect r = CurrentAnimation->GetCurrentFrame();
+	*Player_Rect = CurrentAnimation->GetCurrentFrame();
+	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, Player_Rect, 1.0f, true);
+
+	/*SDL_Rect r = CurrentAnimation->GetCurrentFrame();
 	LOG("SDL RECT OK");
 	
-	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, 1.0f, true);
+	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, 1.0f, true);*/
 	
 	 return true;
  }
