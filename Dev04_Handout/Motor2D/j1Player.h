@@ -71,4 +71,5 @@ public:
 	// ANIMATION
 	Animation			idle;
 
+	SDL_Rect pene;
 };

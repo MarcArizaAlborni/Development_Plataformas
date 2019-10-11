@@ -17,6 +17,8 @@ j1Player::j1Player()
 	idle.PushBack({ 0,0,17,26 });
 	idle.PushBack({ 0,0,17,26 });
 
+	pene = { 0, 0, 200, 200 };
+
 }
 
 
@@ -111,7 +113,7 @@ j1Player::j1Player()
 	 SDL_Rect r = CurrentAnimation->GetCurrentFrame();
 
 	 App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y , &r, 1.0f, true);
-
+	 App->render->DrawQuad(pene, 255, 255, 0);
  
 	 return true;
  }
