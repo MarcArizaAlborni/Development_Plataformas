@@ -57,16 +57,10 @@ bool j1Render::Start()
 {
 	LOG("render start");
 	// back background
+	//SDL_RenderClear(renderer);
 	SDL_RenderGetViewport(renderer, &viewport);
 	
-	/*SDL_Rect Player_Rect;
-	Player_Rect.w = 32;
-	Player_Rect.h = 64;
-	Player_Rect.x = 50;
-	Player_Rect.y = 50;
-	SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-	SDL_RenderFillRect(renderer, &Player_Rect);
-	SDL_RenderPresent(renderer);*/
+	
 	return true;
 }
 
@@ -79,13 +73,28 @@ bool j1Render::PreUpdate()
 
 bool j1Render::Update(float dt)
 {
+
+
+	SDL_Rect Player_Rect;
+	Player_Rect.w = 32;
+	Player_Rect.h = 64;
+	Player_Rect.x = 0;
+	Player_Rect.y = 0;
+
+	SDL_RenderDrawRect(renderer, &Player_Rect);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+	SDL_RenderFillRect(renderer, &Player_Rect);
 	return true;
 }
 
 bool j1Render::PostUpdate()
 {
-	SDL_SetRenderDrawColor(renderer, background.r, background.g, background.g, background.a);
+	SDL_SetRenderDrawColor(renderer, background.r, background.g, background.b, background.a);
 	SDL_RenderPresent(renderer);
+
+	
+
+	//SDL_RenderPresent(renderer);
 	return true;
 }
 

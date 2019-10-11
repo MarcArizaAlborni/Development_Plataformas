@@ -112,7 +112,8 @@ j1Player::j1Player()
 	 break;
 	}
 
-	SDL_Rect r = idle.GetCurrentFrame();
+	SDL_Rect r = CurrentAnimation->GetCurrentFrame();
+	LOG("SDL RECT OK");
 	
 	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, 1.0f, true);
 	
