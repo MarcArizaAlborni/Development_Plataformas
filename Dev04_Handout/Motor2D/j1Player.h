@@ -63,13 +63,13 @@ public:
 	Input_player		PlayerInput;
 	CurrentState		PlayerState;
 	SDL_Rect*			Player_Rect;
+	//ACTUALIZING POSITION 
 	iPoint				CurrentPosition;
-	SDL_Texture*		Graphics;
+
+	SDL_Texture*		Graphics = nullptr;
 	//For printing the animation in each moment
 	Animation*			CurrentAnimation;
 
 	// ANIMATION
 	Animation			idle;
-
-	SDL_Rect pene;
 };

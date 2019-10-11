@@ -12,19 +12,16 @@
 
 j1Player::j1Player() 
 {
-	Graphics = NULL;
-	CurrentAnimation = NULL;
-	idle.PushBack({ 0,0,17,26 });
-	idle.PushBack({ 0,0,17,26 });
 
-	pene = { 0, 0, 200, 200 };
+	idle.PushBack({ 0,0,17,26 });
+	idle.PushBack({ 0,0,17,26 });
+	
 
 }
 
 
  j1Player::~j1Player()
  {
- 
  }
 
 
@@ -38,8 +35,8 @@ j1Player::j1Player()
 
  bool j1Player::Start() 
  {
-
-	 CurrentPosition = { 100, 0};
+	
+	 CurrentPosition = { 0, 0};
 
 	 LOG("Loading player textures");
 
@@ -60,20 +57,25 @@ j1Player::j1Player()
 
 	//ROTACIO DELS PLAYER STATES 
 
-	 if (PlayerInput.A_active) 
+	 if (PlayerState == IdleState)
 	 {
-		PlayerState = LeftState;
-	 }
+		 
+		 if (PlayerInput.A_active)
+		 {
+			 PlayerState = LeftState;
+		 }
 
-	 if (PlayerInput.D_active) 
-	 {
-		 PlayerState = RightState;
-	 }
+		 if (PlayerInput.D_active)
+		 {
+			 PlayerState = RightState;
+		 }
 
-	 if (PlayerInput.Space_active)
-	 {
-		 PlayerState = JumpState;
+		 if (PlayerInput.Space_active)
+		 {
+			 PlayerState = JumpState;
+		 }
 	 }
+	 
 
 	 return true;
  }
@@ -81,41 +83,40 @@ j1Player::j1Player()
 
  bool j1Player::Update()
  {
+	bool ret = true;
+	//APLICACIO DELS DIFFERENTS PLAYER STATES
+	switch (PlayerState)
+	{
+	case IdleState:
+	 LOG("IDLE");
+	 CurrentAnimation = &idle;
+	 break;
+	
+	case LeftState:
+	
+	 break;
+	
+	
+	case RightState:
+	
+	 break;
+	
+	
+	case JumpState:
+	
+	 break;
+	
+	
+	
+	default:
+	 break;
+	}
 
-	 //APLICACIO DELS DIFFERENTS PLAYER STATES
-	 switch (PlayerState)
-	 {
-	 case IdleState:
-		 LOG("IDLE");
-		 CurrentAnimation = &idle;
-		 break;
-
-	 case LeftState:
-
-		 break;
-
-
-	 case RightState:
-
-		 break;
-
-
-	 case JumpState:
-
-		 break;
-
-
-
-	 default:
-		 break;
-	 }
-
-	 SDL_Rect r = CurrentAnimation->GetCurrentFrame();
-
-	 App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y , &r, 1.0f, true);
-	 App->render->DrawQuad(pene, 255, 255, 0);
- 
-	 return true;
+	SDL_Rect r = idle.GetCurrentFrame();
+	
+	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, 1.0f, true);
+	
+	 return ret;
  }
 
  bool j1Player::PostUpdate()
