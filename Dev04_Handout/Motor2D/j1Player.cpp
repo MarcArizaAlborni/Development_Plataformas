@@ -109,10 +109,10 @@ bool j1Player::PreUpdate()
 		 
 	 }
 	 return true ;
- }
+}
 
 
-bool j1Player::Update()
+bool j1Player::Update(float dt)
  {
 	bool ret = true;
 	//APLICACIO DELS DIFFERENTS PLAYER STATES
@@ -124,7 +124,7 @@ bool j1Player::Update()
 	 break;
 	
 	case LeftState:
-		Player_Rect->x -= 5;
+		Player_Rect->x -= 5; //AQUI PETA NO SE PERQUE
 		LOG("MOVING LEFT");
 	 break;
 	
@@ -138,18 +138,19 @@ bool j1Player::Update()
 	
 	case JumpState:
 	
+		
 		LOG("JUMPING");
 	 break;
 	
 	}
 
-	*Player_Rect = CurrentAnimation->GetCurrentFrame();
-	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, Player_Rect, 1.0f, true);
+	/**Player_Rect = CurrentAnimation->GetCurrentFrame();
+	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, Player_Rect, 1.0f, true);*/
 
-	/*SDL_Rect r = CurrentAnimation->GetCurrentFrame();
+	SDL_Rect r = CurrentAnimation->GetCurrentFrame();
 	LOG("SDL RECT OK");
 	
-	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, 1.0f, true);*/
+	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, 1.0f, true);
 	
 	 return true;
  }
