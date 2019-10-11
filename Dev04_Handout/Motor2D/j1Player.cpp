@@ -63,20 +63,43 @@ j1Player::j1Player()
 		 if (PlayerInput.A_active)
 		 {
 			 PlayerState = LeftState;
+			 LOG("IDLE TO LEFT");
 		 }
 
 		 if (PlayerInput.D_active)
 		 {
 			 PlayerState = RightState;
+			 LOG("IDLE TO RIGHT");
 		 }
 
 		 if (PlayerInput.Space_active)
 		 {
 			 PlayerState = JumpState;
+
+			 LOG("IDLE TO JUMP");
 		 }
 	 }
 	 
 
+	 if (PlayerState == LeftState) {
+
+
+
+	 }
+	 
+	 if (PlayerState == RightState) {
+
+
+
+
+	 }
+	 
+	 if (PlayerState == JumpState) {
+
+
+
+
+	 }
 	 return true;
  }
 
@@ -93,12 +116,14 @@ j1Player::j1Player()
 	 break;
 	
 	case LeftState:
-	
+		Player_Rect->x -= 5;
 	 break;
 	
 	
 	case RightState:
 	
+		Player_Rect->x += 5;
+
 	 break;
 	
 	
