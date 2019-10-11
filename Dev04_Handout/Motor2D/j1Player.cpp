@@ -117,18 +117,20 @@ j1Player::j1Player()
 	
 	case LeftState:
 		Player_Rect->x -= 5;
+		LOG("MOVING LEFT");
 	 break;
 	
 	
 	case RightState:
 	
 		Player_Rect->x += 5;
-
+		LOG("MOVING RIGHT");
 	 break;
 	
 	
 	case JumpState:
 	
+		LOG("JUMPING");
 	 break;
 	
 	
