@@ -100,7 +100,7 @@ j1Player::j1Player()
 
 
 	 }
-	 return true;
+	 return true ;
  }
 
 
@@ -133,10 +133,6 @@ j1Player::j1Player()
 		LOG("JUMPING");
 	 break;
 	
-	
-	
-	default:
-	 break;
 	}
 
 	SDL_Rect r = CurrentAnimation->GetCurrentFrame();
@@ -144,7 +140,7 @@ j1Player::j1Player()
 	
 	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, 1.0f, true);
 	
-	 return ret;
+	 return true;
  }
 
  bool j1Player::PostUpdate()
