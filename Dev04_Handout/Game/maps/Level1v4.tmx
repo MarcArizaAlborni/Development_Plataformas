@@ -3,7 +3,7 @@
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32" tilecount="768" columns="32">
   <image source="generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
- <layer id="7" name="BackgroundLVL1" width="100" height="30">
+ <layer id="7" name="BackgroundLVL1" width="100" height="30" visible="0">
   <data>
    <tile gid="180"/>
    <tile gid="180"/>
@@ -3393,7 +3393,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="135"/>
+   <tile gid="120"/>
    <tile gid="121"/>
    <tile gid="429"/>
    <tile gid="429"/>
@@ -3595,7 +3595,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="135"/>
+   <tile gid="120"/>
    <tile gid="137"/>
    <tile gid="137"/>
    <tile gid="137"/>
@@ -3894,7 +3894,7 @@
    <tile gid="61"/>
    <tile/>
    <tile/>
-   <tile gid="273"/>
+   <tile gid="120"/>
    <tile gid="137"/>
    <tile gid="123"/>
    <tile/>
@@ -5033,9 +5033,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="182"/>
    <tile/>
-   <tile gid="189"/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
