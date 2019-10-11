@@ -36,7 +36,7 @@ class j1Player : public j1Module
 private:
 	
 	int floor_Level = 0; //Ni idea del valor nomes poso algo per posarho
-	float speed_char = 2;  //Ni idea del valor nomes poso algo per posarho
+	float speed_char = 5;  //Ni idea del valor nomes poso algo per posarho
 	
 public:
 

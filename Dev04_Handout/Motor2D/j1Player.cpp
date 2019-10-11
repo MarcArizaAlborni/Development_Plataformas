@@ -36,7 +36,7 @@ j1Player::j1Player()
  bool  j1Player::Start() 
  {
 	
-	 CurrentPosition = { 0, 0};
+	 CurrentPosition = { 0, 400};
 
 	 LOG("Loading player textures");
 
@@ -81,9 +81,10 @@ bool j1Player::PreUpdate()
 	 }
 	 
 
-	 if (PlayerState == LeftState) {
-
-		 if (!PlayerInput.A_active) {
+	 if (PlayerState == LeftState) 
+	 {
+		 if (!PlayerInput.A_active) 
+		 {
 
 			 PlayerState = IdleState;
 			 LOG("LEFT TO IDLE");
@@ -91,10 +92,10 @@ bool j1Player::PreUpdate()
 
 	 }
 	 
-	 if (PlayerState == RightState) {
-
-		 if (!PlayerInput.D_active) {
-
+	 if (PlayerState == RightState) 
+	 {
+		 if (!PlayerInput.D_active) 
+		 {
 			 PlayerState = IdleState;
 			 LOG("RIGHT TO IDLE");
 		 }
@@ -102,8 +103,13 @@ bool j1Player::PreUpdate()
 
 	 }
 	 
-	 if (PlayerState == JumpState) {
-
+	 if (PlayerState == JumpState) 
+	 {
+		 if (!PlayerInput.Space_active)
+		 {
+			 PlayerState = IdleState;
+			 LOG("JUMP TO IDLE");
+		 }
 
 
 		 
@@ -119,28 +125,25 @@ bool j1Player::Update(float dt)
 	switch (PlayerState)
 	{
 	case IdleState:
-	 LOG("IDLE");
-	 CurrentAnimation = &idle;
-	 break;
+		LOG("IDLE");
+		CurrentAnimation = &idle;
+	break;
 	
 	case LeftState:
-		Player_Rect->x -= 5; //AQUI PETA NO SE PERQUE
 		LOG("MOVING LEFT");
-	 break;
-	
+		CurrentPosition.x -= speed_char;
+	break;
 	
 	case RightState:
-	
-		Player_Rect->x += 5;
 		LOG("MOVING RIGHT");
-	 break;
-	
+		CurrentPosition.x += speed_char;
+
+	break;
 	
 	case JumpState:
-	
-		
 		LOG("JUMPING");
-	 break;
+
+	break;
 	
 	}
 
@@ -148,10 +151,9 @@ bool j1Player::Update(float dt)
 	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, Player_Rect, 1.0f, true);*/
 
 	SDL_Rect r = CurrentAnimation->GetCurrentFrame();
-	LOG("SDL RECT OK");
 	
 	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, 1.0f, true);
-	
+
 	 return true;
  }
 
