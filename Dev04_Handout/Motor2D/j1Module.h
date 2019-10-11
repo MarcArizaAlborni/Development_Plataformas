@@ -14,7 +14,6 @@ class j1App;
 
 
 
-
 class j1Module
 {
 public:

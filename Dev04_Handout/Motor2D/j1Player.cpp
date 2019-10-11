@@ -33,7 +33,7 @@ j1Player::j1Player()
 
 
 
- bool j1Player::Start() 
+ bool  j1Player::Start() 
  {
 	
 	 CurrentPosition = { 0, 0};
@@ -47,7 +47,7 @@ j1Player::j1Player()
 	 return true;
  }
 
- bool j1Player::PreUpdate() 
+bool j1Player::PreUpdate() 
  {
 
 	 //AGAFAR INPUTS I TAL, HE MIRAT I CREC QUE FERHO AIXI ES MILLOR QUE TOT JUNT 
@@ -112,7 +112,7 @@ j1Player::j1Player()
  }
 
 
- bool j1Player::Update()
+bool j1Player::Update()
  {
 	bool ret = true;
 	//APLICACIO DELS DIFFERENTS PLAYER STATES

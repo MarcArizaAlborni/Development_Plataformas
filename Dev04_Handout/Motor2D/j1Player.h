@@ -45,18 +45,17 @@ public:
 	// Destructor
 	virtual ~j1Player();
 
-	// Called before render is available
+	
 	bool Awake(pugi::xml_node config);
 
-	// Called before the first frame
 	bool Start();
 	
-	// Called each loop iteration
+	
 	bool PreUpdate();	
 	bool Update();
 	bool PostUpdate();
 
-	// Called before quitting
+	
 	bool CleanUp();
 
 	//INPUT COSES
