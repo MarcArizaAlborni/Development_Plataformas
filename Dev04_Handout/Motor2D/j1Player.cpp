@@ -15,7 +15,7 @@ j1Player::j1Player()
 
 	idle.PushBack({ 0,0,17,26 });
 	idle.PushBack({ 0,0,17,26 });
-	
+	idle.speed = 3;
 
 }
 
@@ -147,8 +147,6 @@ bool j1Player::Update(float dt)
 	
 	}
 
-	/**Player_Rect = CurrentAnimation->GetCurrentFrame();
-	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, Player_Rect, 1.0f, true);*/
 
 	SDL_Rect r = CurrentAnimation->GetCurrentFrame();
 	
