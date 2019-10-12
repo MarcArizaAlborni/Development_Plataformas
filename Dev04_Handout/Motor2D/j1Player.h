@@ -35,8 +35,14 @@ class j1Player : public j1Module
 {
 private:
 	
-	int floor_Level = 0; //Ni idea del valor nomes poso algo per posarho
-	float speed_char = 5;  //Ni idea del valor nomes poso algo per posarho
+	enum Tranformation {
+		human,
+		slime
+	};
+
+	iPoint Inipos;
+	float Character_vel;  
+	float Gravity;
 	
 public:
 
@@ -45,17 +51,14 @@ public:
 	// Destructor
 	virtual ~j1Player();
 
-	
-	bool Awake(pugi::xml_node config);
+	bool j1Player::Awake(pugi::xml_node& conf);
 
 	bool Start();
-	
 	
 	bool PreUpdate();	
 	bool Update(float dt);
 	bool PostUpdate();
 
-	
 	bool CleanUp();
 
 	//INPUT COSES

@@ -2,6 +2,7 @@
 #ifndef __ANIMATION_H__
 #define __ANIMATION_H__
 
+#include "j1App.h"
 #include "SDL/include/SDL_rect.h"
 
 #define MAX_FRAMES 100
@@ -47,5 +48,6 @@ public:
 		current_frame = 0;
 		loops = 0;
 	}
+	
 };
 #endif

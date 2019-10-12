@@ -12,11 +12,7 @@
 
 j1Player::j1Player() 
 {
-
-	idle.PushBack({ 0,0,17,26 });
-	idle.PushBack({ 0,0,17,26 });
-	idle.speed = 3;
-
+	name.create("player");
 }
 
 
@@ -24,13 +20,21 @@ j1Player::j1Player()
  {
  }
 
-
- bool j1Player::Awake(pugi::xml_node config)
+ bool j1Player::Awake(pugi::xml_node& node)
  {
+	 bool ret = true;
 
-	 return true;
+	 pugi::xml_node player = node.child("player");
+
+	 Inipos.x = node.attribute("inipos_x").as_float();
+	 Inipos.y = node.attribute("inipos.y").as_float();
+	 Character_vel = node.attribute("velocity").as_float();
+	 Gravity = node.attribute("gravity").as_float();
+
+	 
+	
+	 return ret;
  }
-
 
 
  bool  j1Player::Start() 
@@ -131,12 +135,12 @@ bool j1Player::Update(float dt)
 	
 	case LeftState:
 		LOG("MOVING LEFT");
-		CurrentPosition.x -= speed_char;
+		CurrentPosition.x -= Character_vel;
 	break;
 	
 	case RightState:
 		LOG("MOVING RIGHT");
-		CurrentPosition.x += speed_char;
+		CurrentPosition.x += Character_vel;
 
 	break;
 	
@@ -162,8 +166,6 @@ bool j1Player::Update(float dt)
 	 return true;
  }
 
-
-
  bool j1Player::CleanUp()
  {
 
@@ -173,3 +175,4 @@ bool j1Player::Update(float dt)
 
 	 return true;
  }
+
