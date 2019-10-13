@@ -85,6 +85,8 @@ bool j1Player::PreUpdate()
 
 			 LOG("IDLE TO JUMP");
 		 }
+
+		 
 	 }
 	 
 
@@ -103,13 +105,7 @@ bool j1Player::PreUpdate()
 			 LOG("LEFT TO DASH LEFT");
 
 		 }
-
-		 if (PlayerInput.A_active) {
-
-			 PlayerState = IdleState;
-			 LOG("LEFT TO IDLE (LEFT + RIGHT AT THE SAME TIME)");
-		 }
-
+		 
 		 if (PlayerInput.Space_active) {
 
 			 PlayerState = JumpStateLeft;
@@ -117,12 +113,7 @@ bool j1Player::PreUpdate()
 
 		 }
 
-		 if (PlayerInput.U_active) {
-
-			 PlayerState = DashStateLeft;
-			 LOG("LEFT TO DASH LEFT");
-
-		 }
+		 
 	 }
 	 
 	 if (PlayerState == RightState) 
@@ -139,40 +130,134 @@ bool j1Player::PreUpdate()
 			 LOG("RIGHT TO DASH RIGHT");
 
 		 }
-
-		 if (PlayerInput.A_active) {
-
-			 PlayerState = IdleState;
-			 LOG("RIGHT TO IDLE (LEFT + RIGHT AT THE SAME TIME)");
-		 }
-
+		 
 		 if (PlayerInput.Space_active) {
 
 			 PlayerState = JumpStateRight;
 			 LOG("RIGHT TO JUMP RIGHT");
 		 }
 
-		 if (PlayerInput.U_active) {
-
-			 PlayerState = DashStateRight;
-			 LOG("RIGHT TO DASH LEFT");
-
-		 }
+		
 	 }
 	 
 	 if (PlayerState == JumpStateLeft) 
 	 {
-		 if (!PlayerInput.Space_active)
-		 {
-			 PlayerState = IdleState;
-			 LOG("JUMP TO IDLE");
+		 
+		 //PER QUAN ESTIGUIN LES ANIMACIONS FEM HO DE anim_finished-> PlayerState=idle; o  player.x pos == alguna cosa playerstate = idlestate
+		
+		 if (PlayerInput.Space_active && PlayerInput.A_active) {//AQUEST D'AQUI CREC QUE EL TREUREM I MIRARE COM FER EL SALT MILLOR 
+
+			 PlayerState = DoubleJumpStateLeft;
+			 LOG("JUMP LEFT TO DOUBLE JUMP LEFT");
+		 }
+		 
+		 if (PlayerInput.Space_active && PlayerInput.D_active) {//AQUEST D'AQUI CREC QUE EL TREUREM I MIRARE COM FER EL SALT MILLOR 
+
+			 PlayerState = DoubleJumpStateRight;
+			 LOG("JUMP LEFT TO DOUBLE JUMP RIGHT");
 		 }
 
+		 if (PlayerInput.Space_active) {
 
-		 
+			 PlayerState = DoubleJumpState;
+			 LOG("JUMP LEFT TO DOUBLE JUMP");
+		 }
+
+		 if (PlayerInput.U_active && PlayerInput.A_active) {
+
+			 PlayerState = DashStateLeft;
+		 }
+
+		 if (PlayerInput.U_active && PlayerInput.D_active) {
+
+			 PlayerState = DashStateRight;
+		 }
 	 }
 
+	 if (PlayerState == JumpStateRight)
+	 {
+		
+		 //PER QUAN ESTIGUIN LES ANIMACIONS FEM HO DE anim_finished-> PlayerState=idle; o  player.x pos == alguna cosa playerstate = idlestate
+
+		 if (PlayerInput.Space_active && PlayerInput.A_active) {//AQUEST D'AQUI CREC QUE EL TREUREM I MIRARE COM FER EL SALT MILLOR 
+
+			 PlayerState = DoubleJumpStateLeft;
+			 LOG("JUMP RIGHT TO DOUBLE JUMP LEFT");
+		 }
+
+		 if (PlayerInput.Space_active && PlayerInput.D_active) {//AQUEST D'AQUI CREC QUE EL TREUREM I MIRARE COM FER EL SALT MILLOR 
+
+			 PlayerState = DoubleJumpStateRight;
+			 LOG("JUMP RIGHT TO DOUBLE JUMP RIGHT");
+		 }
+
+		 if (PlayerInput.Space_active) {
+
+			 PlayerState = DoubleJumpState;
+			 LOG("JUMP RIGHT TO DOUBLE JUMP");
+
+		 }
+
+		 if (PlayerInput.U_active && PlayerInput.D_active) {
+
+			 PlayerState = DashStateLeft;
+			 LOG("DOUBLE JUMP RIGHT TO DASH LEFT");
+		 }
+
+		 if (PlayerInput.U_active && PlayerInput.A_active) {
+
+			 PlayerState = DashStateRight;
+			 LOG("DOUBLE JUMP RIGHT TO DASH RIGHT");
+		 }
+	 }
 	 
+
+	 if (PlayerState == DoubleJumpStateLeft) {
+
+
+		 //PER QUAN ESTIGUIN LES ANIMACIONS FEM HO DE anim_finished-> PlayerState=idle; o  player.x pos == alguna cosa playerstate = idlestate
+
+		 if (PlayerInput.U_active && PlayerInput.A_active) {
+
+			 PlayerState = DashStateLeft;
+			 LOG("DOUBLE JUMP RIGHT TO DASH LEFT");
+		 }
+
+		 if (PlayerInput.U_active && PlayerInput.D_active) {
+
+			 PlayerState = DashStateRight;
+			 LOG("DOUBLE JUMP RIGHT TO DASH RIGHT");
+		 }
+	 }
+
+	 if (PlayerState == DoubleJumpStateRight) {
+
+		 //PER QUAN ESTIGUIN LES ANIMACIONS FEM HO DE anim_finished-> PlayerState=idle; o  player.x pos == alguna cosa playerstate = idlestate
+
+		 if (PlayerInput.U_active && PlayerInput.D_active) {
+
+			 PlayerState = DashStateRight;
+			 LOG("DOUBLE JUMP RIGHT TO DASH RIGHT");
+		 }
+
+		 if (PlayerInput.U_active && PlayerInput.A_active) {
+
+			 PlayerState = DashStateLeft;
+			 LOG("DOUBLE JUMP RIGHT TO DASH LEFT");
+		 }
+	 }
+
+	 if (PlayerState == DashStateLeft) {
+
+		 //PER QUAN ESTIGUIN LES ANIMACIONS FALTA UN ON PUGIS SALTAR DESPRES DEL DASH SI ENCARA NO HO HAS FET
+		 //PER QUAN ESTIGUIN LES ANIMACIONS FEM HO DE anim_finished-> PlayerState=idle; o  player.x pos == alguna cosa playerstate = idlestate
+	 }
+
+	 if (PlayerState == DashStateRight) {
+
+		 //PER QUAN ESTIGUIN LES ANIMACIONS FALTA UN ON PUGIS SALTAR DESPRES DEL DASH SI ENCARA NO HO HAS FET
+		 //PER QUAN ESTIGUIN LES ANIMACIONS FEM HO DE anim_finished-> PlayerState=idle; o  player.x pos == alguna cosa playerstate = idlestate
+	 }
 
 	 return true ;
 }

@@ -33,6 +33,8 @@ enum CurrentState
 	LeftSlimeState,
 	RightSlimeState,
 	DoubleJumpState,
+	DoubleJumpStateLeft,
+	DoubleJumpStateRight,
 	DashStateLeft,
 	DashStateRight
 
