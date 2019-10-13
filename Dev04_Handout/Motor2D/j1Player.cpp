@@ -58,6 +58,9 @@ bool j1Player::PreUpdate()
 	 PlayerInput.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
 	 PlayerInput.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
 	 PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_REPEAT;
+	 PlayerInput.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_REPEAT;
+	 PlayerInput.U_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_REPEAT;
+	
 
 	//ROTACIO DELS PLAYER STATES 
 
@@ -94,6 +97,32 @@ bool j1Player::PreUpdate()
 			 LOG("LEFT TO IDLE");
 		 }
 
+		 if (PlayerInput.U_active) {
+
+			 PlayerState = DashStateLeft;
+			 LOG("LEFT TO DASH LEFT");
+
+		 }
+
+		 if (PlayerInput.A_active) {
+
+			 PlayerState = IdleState;
+			 LOG("LEFT TO IDLE (LEFT + RIGHT AT THE SAME TIME)");
+		 }
+
+		 if (PlayerInput.Space_active) {
+
+			 PlayerState = JumpStateLeft;
+			 LOG("LEFT TO JUMP LEFT");
+
+		 }
+
+		 if (PlayerInput.U_active) {
+
+			 PlayerState = DashStateLeft;
+			 LOG("LEFT TO DASH LEFT");
+
+		 }
 	 }
 	 
 	 if (PlayerState == RightState) 
@@ -104,10 +133,34 @@ bool j1Player::PreUpdate()
 			 LOG("RIGHT TO IDLE");
 		 }
 
+		 if (PlayerInput.U_active) {
 
+			 PlayerState = DashStateRight;
+			 LOG("RIGHT TO DASH RIGHT");
+
+		 }
+
+		 if (PlayerInput.A_active) {
+
+			 PlayerState = IdleState;
+			 LOG("RIGHT TO IDLE (LEFT + RIGHT AT THE SAME TIME)");
+		 }
+
+		 if (PlayerInput.Space_active) {
+
+			 PlayerState = JumpStateRight;
+			 LOG("RIGHT TO JUMP RIGHT");
+		 }
+
+		 if (PlayerInput.U_active) {
+
+			 PlayerState = DashStateRight;
+			 LOG("RIGHT TO DASH LEFT");
+
+		 }
 	 }
 	 
-	 if (PlayerState == JumpState) 
+	 if (PlayerState == JumpStateLeft) 
 	 {
 		 if (!PlayerInput.Space_active)
 		 {
@@ -118,6 +171,9 @@ bool j1Player::PreUpdate()
 
 		 
 	 }
+
+	 
+
 	 return true ;
 }
 

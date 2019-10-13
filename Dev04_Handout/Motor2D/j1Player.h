@@ -15,9 +15,9 @@ struct Input_player
 	bool A_active;
 	bool D_active;
 	bool Space_active;
-	/*bool E_active;
-	bool Q_active;
-	bool R_active;*/
+	bool U_active;
+	bool I_active;
+	
 
 
 };
@@ -25,9 +25,16 @@ enum CurrentState
 {
 
 	IdleState,
-	JumpState, 
+	JumpState,
+	JumpStateLeft, 
+	JumpStateRight,
 	LeftState,
-	RightState
+	RightState,
+	LeftSlimeState,
+	RightSlimeState,
+	DoubleJumpState,
+	DashStateLeft,
+	DashStateRight
 
 };
 
