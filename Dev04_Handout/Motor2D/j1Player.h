@@ -43,11 +43,7 @@ enum CurrentState
 class j1Player : public j1Module 
 {
 private:
-	
-	enum Tranformation {
-		human,
-		slime
-	};
+
 
 	iPoint Inipos;
 	float Character_vel;  
@@ -60,7 +56,7 @@ public:
 	// Destructor
 	virtual ~j1Player();
 
-	bool j1Player::Awake(pugi::xml_node& conf);
+	bool Awake(pugi::xml_node& conf);
 
 	bool Start();
 	
@@ -69,7 +65,6 @@ public:
 	bool PostUpdate();
 
 	bool CleanUp();
-
 	//INPUT COSES
 	Input_player		PlayerInput;
 	CurrentState		PlayerState;

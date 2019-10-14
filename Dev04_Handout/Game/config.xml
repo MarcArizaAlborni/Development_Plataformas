@@ -29,36 +29,11 @@
 
   <player  inipos_x="0.0f" inipos_y="500.0f" velocity="10" gravity="2" >
     <!--Animations-->
-    <animation type="human" name="idle" speed="1.0" loop="0">  
-      <frame x="0" y="0" w="0" z="0"/>
-      <frame x="0" y="0" w="0" z="0"/>
-      <frame x="0" y="0" w="0" z="0"/>
-    </animation>
-
-    <animation type="human" name="walking" speed="0" loop="0">
-      <frame x="0" y="0" w="0" z="0"/>
-      <frame x="0" y="0" w="0" z="0"/>
-      <frame x="0" y="0" w="0" z="0"/>
-    </animation>
-
-    <animation type="human" name="jumping" speed="0" loop="0">
-      <frame x="0" y="0" w="0" z="0"/>
-      <frame x="0" y="0" w="0" z="0"/>
-      <frame x="0" y="0" w="0" z="0"/>
-    </animation>
-
-    <animation type="human" name="transformation" speed="0" loop="0">
-      <frame x="0" y="0" w="0" z="0"/>
-      <frame x="0" y="0" w="0" z="0"/>
-      <frame x="0" y="0" w="0" z="0"/>
-    </animation>
-
-    <animation type="human" name="death" speed="0" loop="0">
-      <frame x="0" y="0" w="0" z="0"/>
-      <frame x="0" y="0" w="0" z="0"/>
-      <frame x="0" y="0" w="0" z="0"/>
-    </animation>
-    
+    <animation name="idle" speed="1.0" loop="false">  
+      <frame x="0" y="0" w="0" h="0"/>
+      <frame x="0" y="0" w="0" h="0"/>
+      <frame x="0" y="0" w="0" h="0"/>
+    </animation> 
     
     
   </player>
