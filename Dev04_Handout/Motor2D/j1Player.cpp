@@ -27,21 +27,18 @@ j1Player::j1Player()
 	 pugi::xml_node player = node.child("player");
 
 	 Inipos.x = node.attribute("inipos_x").as_float();
-	 Inipos.y = node.attribute("inipos.y").as_float();
+	 Inipos.y = node.attribute("inipos_y").as_float();
 	 Character_vel = node.attribute("velocity").as_float();
 	 Gravity = node.attribute("gravity").as_float();
-
 	 
-	
+	 CurrentPosition = { Inipos.x, Inipos.y };
+
 	 return ret;
  }
 
 
  bool  j1Player::Start() 
  {
-	
-	 CurrentPosition = { 0, 400};
-
 	 LOG("Loading player textures");
 
 	 Graphics = App->tex->Load("Sprites/Dude.png");
@@ -82,7 +79,6 @@ bool j1Player::PreUpdate()
 		 if (PlayerInput.Space_active)
 		 {
 			 PlayerState = JumpState;
-
 			 LOG("IDLE TO JUMP");
 		 }
 
@@ -293,9 +289,14 @@ bool j1Player::Update(float dt)
 	}
 
 
-	SDL_Rect r = CurrentAnimation->GetCurrentFrame();
+	//SDL_Rect r = CurrentAnimation->GetCurrentFrame();
 	
-	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, 1.0f, true);
+	//App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, 1.0f, true);
+
+
+	Player_Rect = { CurrentPosition.x, CurrentPosition.y, 50, 70 };
+
+	App->render->DrawQuad(Player_Rect, 255, 255, 0);
 
 	 return true;
  }
