@@ -298,6 +298,39 @@ bool j1Player::Update(float dt)
 
 	break;
 	
+
+	case JumpStateLeft:
+		LOG("JUMPING LEFT");
+		break;
+
+	case JumpStateRight:
+		LOG("JUMPING RIGHT");
+		break;
+
+
+	case DoubleJumpState:
+		LOG("DOUBLE JUMPING ");
+		break;
+
+
+	case DoubleJumpStateLeft:
+		LOG("DOUBLE JUMPING LEFT");
+		break;
+
+	case DoubleJumpStateRight:
+		LOG("DOUBLE JUMPING RIGHT");
+		break;
+
+
+	case DashStateLeft:
+		LOG("DASH LEFT");
+		break;
+
+	case DashStateRight:
+		LOG("DASH RIGHT");
+		break;
+
+
 	}
 
 
