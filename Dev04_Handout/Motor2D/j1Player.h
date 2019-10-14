@@ -73,7 +73,7 @@ public:
 	//INPUT COSES
 	Input_player		PlayerInput;
 	CurrentState		PlayerState;
-	SDL_Rect*			Player_Rect;
+	SDL_Rect			Player_Rect;
 	//ACTUALIZING POSITION 
 	iPoint				CurrentPosition;
 
