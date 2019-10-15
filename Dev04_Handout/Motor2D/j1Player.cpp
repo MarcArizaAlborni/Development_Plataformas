@@ -33,18 +33,6 @@ j1Player::j1Player()
 	 
 	 CurrentPosition = { Inipos.x, Inipos.y };
 
-	/* for (pugi::xml_node animations = node.child("animation"); animations && ret; animations.next_sibling("animation"))
-	 {
-		 
-		 idle.loop = animations.attribute("loop").as_bool();
-		 idle.speed = animations.attribute("speed").as_float();
-
-		 for (pugi::xml_node frame = node.child("frame"); frame && ret; frame.next_sibling("frame"))
-		 {
-			 idle.PushBack({ frame.attribute("x").as_int(), frame.attribute("y").as_int(), frame.attribute("w").as_int(), frame.attribute("h").as_int() });
-		 }
-		
-	 }*/
 	 return ret;
  }
 
