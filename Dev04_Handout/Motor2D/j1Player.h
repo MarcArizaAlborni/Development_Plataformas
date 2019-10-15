@@ -46,11 +46,12 @@ private:
 
 
 	iPoint Inipos;
-	float Character_vel;  
-	float Gravity;
+	float Character_vel; 
+	
 	
 public:
-
+	
+	float Gravity;
 	j1Player();
 
 	// Destructor
@@ -59,7 +60,7 @@ public:
 	bool Awake(pugi::xml_node& conf);
 
 	bool Start();
-	
+	float floor; //NOMES PER TESTING
 	bool PreUpdate();	
 	bool Update(float dt);
 	bool PostUpdate();
@@ -71,6 +72,7 @@ public:
 	SDL_Rect			Player_Rect;
 	//ACTUALIZING POSITION 
 	iPoint				CurrentPosition;
+	iPoint              StartPosition;
 
 	SDL_Texture*		Graphics = nullptr;
 	//For printing the animation in each moment
@@ -78,4 +80,15 @@ public:
 
 	// ANIMATION
 	Animation			idle;
+
+
+
+	//JUMP
+
+	float JumpSpeed = 2;
+	bool jumping = false;
+	float gravity2 = 0.2f;
+
+
+	
 };

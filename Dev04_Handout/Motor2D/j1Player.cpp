@@ -23,7 +23,7 @@ j1Player::j1Player()
  bool j1Player::Awake(pugi::xml_node& node)
  {
 	 bool ret = true;
-
+	 floor = 400.0f;
 	 pugi::xml_node player = node.child("player");
 
 	 Inipos.x = node.attribute("inipos_x").as_float();
@@ -88,8 +88,12 @@ bool j1Player::PreUpdate()
 			 LOG("IDLE TO RIGHT");
 		 }
 
-		 if (PlayerInput.Space_active)
+		 if (PlayerInput.Space_active && jumping == false)
 		 {
+			 
+			 jumping = true;
+				
+			 
 			 PlayerState = JumpState;
 			 LOG("IDLE TO JUMP");
 		 }
@@ -107,12 +111,7 @@ bool j1Player::PreUpdate()
 			 LOG("LEFT TO IDLE");
 		 }
 
-		 if (PlayerInput.U_active) {
-
-			 PlayerState = DashStateLeft;
-			 LOG("LEFT TO DASH LEFT");
-
-		 }
+		 
 		 
 		 if (PlayerInput.Space_active) {
 
@@ -131,13 +130,6 @@ bool j1Player::PreUpdate()
 			 PlayerState = IdleState;
 			 LOG("RIGHT TO IDLE");
 		 }
-
-		 if (PlayerInput.U_active) {
-
-			 PlayerState = DashStateRight;
-			 LOG("RIGHT TO DASH RIGHT");
-
-		 }
 		 
 		 if (PlayerInput.Space_active) {
 
@@ -147,126 +139,6 @@ bool j1Player::PreUpdate()
 
 		
 	 }
-	 
-	 if (PlayerState == JumpStateLeft) 
-	 {
-		 
-		 //PER QUAN ESTIGUIN LES ANIMACIONS FEM HO DE anim_finished-> PlayerState=idle; o  player.x pos == alguna cosa playerstate = idlestate
-		
-		 if (PlayerInput.Space_active && PlayerInput.A_active) {//AQUEST D'AQUI CREC QUE EL TREUREM I MIRARE COM FER EL SALT MILLOR 
-
-			 PlayerState = DoubleJumpStateLeft;
-			 LOG("JUMP LEFT TO DOUBLE JUMP LEFT");
-		 }
-		 
-		 if (PlayerInput.Space_active && PlayerInput.D_active) {//AQUEST D'AQUI CREC QUE EL TREUREM I MIRARE COM FER EL SALT MILLOR 
-
-			 PlayerState = DoubleJumpStateRight;
-			 LOG("JUMP LEFT TO DOUBLE JUMP RIGHT");
-		 }
-
-		 if (PlayerInput.Space_active) {
-
-			 PlayerState = DoubleJumpState;
-			 LOG("JUMP LEFT TO DOUBLE JUMP");
-		 }
-
-		 if (PlayerInput.U_active && PlayerInput.A_active) {
-
-			 PlayerState = DashStateLeft;
-		 }
-
-		 if (PlayerInput.U_active && PlayerInput.D_active) {
-
-			 PlayerState = DashStateRight;
-		 }
-	 }
-
-	 if (PlayerState == JumpStateRight)
-	 {
-		
-		 //PER QUAN ESTIGUIN LES ANIMACIONS FEM HO DE anim_finished-> PlayerState=idle; o  player.x pos == alguna cosa playerstate = idlestate
-
-		 if (PlayerInput.Space_active && PlayerInput.A_active) {//AQUEST D'AQUI CREC QUE EL TREUREM I MIRARE COM FER EL SALT MILLOR 
-
-			 PlayerState = DoubleJumpStateLeft;
-			 LOG("JUMP RIGHT TO DOUBLE JUMP LEFT");
-		 }
-
-		 if (PlayerInput.Space_active && PlayerInput.D_active) {//AQUEST D'AQUI CREC QUE EL TREUREM I MIRARE COM FER EL SALT MILLOR 
-
-			 PlayerState = DoubleJumpStateRight;
-			 LOG("JUMP RIGHT TO DOUBLE JUMP RIGHT");
-		 }
-
-		 if (PlayerInput.Space_active) {
-
-			 PlayerState = DoubleJumpState;
-			 LOG("JUMP RIGHT TO DOUBLE JUMP");
-
-		 }
-
-		 if (PlayerInput.U_active && PlayerInput.D_active) {
-
-			 PlayerState = DashStateLeft;
-			 LOG("DOUBLE JUMP RIGHT TO DASH LEFT");
-		 }
-
-		 if (PlayerInput.U_active && PlayerInput.A_active) {
-
-			 PlayerState = DashStateRight;
-			 LOG("DOUBLE JUMP RIGHT TO DASH RIGHT");
-		 }
-	 }
-	 
-
-	 if (PlayerState == DoubleJumpStateLeft) {
-
-
-		 //PER QUAN ESTIGUIN LES ANIMACIONS FEM HO DE anim_finished-> PlayerState=idle; o  player.x pos == alguna cosa playerstate = idlestate
-
-		 if (PlayerInput.U_active && PlayerInput.A_active) {
-
-			 PlayerState = DashStateLeft;
-			 LOG("DOUBLE JUMP RIGHT TO DASH LEFT");
-		 }
-
-		 if (PlayerInput.U_active && PlayerInput.D_active) {
-
-			 PlayerState = DashStateRight;
-			 LOG("DOUBLE JUMP RIGHT TO DASH RIGHT");
-		 }
-	 }
-
-	 if (PlayerState == DoubleJumpStateRight) {
-
-		 //PER QUAN ESTIGUIN LES ANIMACIONS FEM HO DE anim_finished-> PlayerState=idle; o  player.x pos == alguna cosa playerstate = idlestate
-
-		 if (PlayerInput.U_active && PlayerInput.D_active) {
-
-			 PlayerState = DashStateRight;
-			 LOG("DOUBLE JUMP RIGHT TO DASH RIGHT");
-		 }
-
-		 if (PlayerInput.U_active && PlayerInput.A_active) {
-
-			 PlayerState = DashStateLeft;
-			 LOG("DOUBLE JUMP RIGHT TO DASH LEFT");
-		 }
-	 }
-
-	 if (PlayerState == DashStateLeft) {
-
-		 //PER QUAN ESTIGUIN LES ANIMACIONS FALTA UN ON PUGIS SALTAR DESPRES DEL DASH SI ENCARA NO HO HAS FET
-		 //PER QUAN ESTIGUIN LES ANIMACIONS FEM HO DE anim_finished-> PlayerState=idle; o  player.x pos == alguna cosa playerstate = idlestate
-	 }
-
-	 if (PlayerState == DashStateRight) {
-
-		 //PER QUAN ESTIGUIN LES ANIMACIONS FALTA UN ON PUGIS SALTAR DESPRES DEL DASH SI ENCARA NO HO HAS FET
-		 //PER QUAN ESTIGUIN LES ANIMACIONS FEM HO DE anim_finished-> PlayerState=idle; o  player.x pos == alguna cosa playerstate = idlestate
-	 }
-
 	 return true ;
 }
 
@@ -285,49 +157,40 @@ bool j1Player::Update(float dt)
 	case LeftState:
 		LOG("MOVING LEFT");
 		CurrentPosition.x -= Character_vel;
+		CurrentPosition.y;
 	break;
 	
 	case RightState:
 		LOG("MOVING RIGHT");
 		CurrentPosition.x += Character_vel;
-
-	break;
+		break;
 	
 	case JumpState:
+		
 		LOG("JUMPING");
 
-	break;
-	
+		if (jumping) {
 
+			CurrentPosition.y -= JumpSpeed;
+			JumpSpeed -= gravity2;
+
+		}
+		
+		if (CurrentPosition.y < floor) {
+
+			JumpSpeed = 2;
+			jumping =false;
+		}
+		
+		break;
 	case JumpStateLeft:
-		LOG("JUMPING LEFT");
+		
+		
 		break;
 
+		
 	case JumpStateRight:
-		LOG("JUMPING RIGHT");
-		break;
-
-
-	case DoubleJumpState:
-		LOG("DOUBLE JUMPING ");
-		break;
-
-
-	case DoubleJumpStateLeft:
-		LOG("DOUBLE JUMPING LEFT");
-		break;
-
-	case DoubleJumpStateRight:
-		LOG("DOUBLE JUMPING RIGHT");
-		break;
-
-
-	case DashStateLeft:
-		LOG("DASH LEFT");
-		break;
-
-	case DashStateRight:
-		LOG("DASH RIGHT");
+		
 		break;
 
 
@@ -339,7 +202,7 @@ bool j1Player::Update(float dt)
 	//App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, 1.0f, true);
 
 
-	Player_Rect = { CurrentPosition.x, CurrentPosition.y, 50, 70 };
+	Player_Rect = { CurrentPosition.x, CurrentPosition.y, 50, 60 };
 
 	App->render->DrawQuad(Player_Rect, 255, 255, 0);
 
