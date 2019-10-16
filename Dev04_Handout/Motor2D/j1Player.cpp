@@ -56,9 +56,10 @@ bool j1Player::PreUpdate()
 	 //AGAFAR INPUTS I TAL, HE MIRAT I CREC QUE FERHO AIXI ES MILLOR QUE TOT JUNT 
 	 PlayerInput.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
 	 PlayerInput.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
-	 PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_DOWN;
+	 PlayerInput.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN;
 	 PlayerInput.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN;
 	 PlayerInput.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
+	 PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_DOWN;
 	
 
 	//ROTACIO DELS PLAYER STATES 
@@ -78,7 +79,7 @@ bool j1Player::PreUpdate()
 				 LOG("IDLE TO RIGHT");
 			 }
 
-			 if (PlayerInput.Space_active && jumping == false)
+			 if (PlayerInput.W_active && jumping == false)
 			 {
 
 				 jumping = true;

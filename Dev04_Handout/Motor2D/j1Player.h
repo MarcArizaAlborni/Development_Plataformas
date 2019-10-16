@@ -12,11 +12,12 @@ struct p2Animation;
 struct Input_player
 {
 
-	bool A_active;
-	bool D_active;
-	bool Space_active;
-	bool U_active;
-	bool I_active;
+	bool A_active; //LEFT
+	bool D_active;//RIGHT
+	bool Space_active;// ABILITY 1
+	bool U_active;//DASH ABILITY 2
+	bool I_active;//TRANSOFMRATION ABILITY 3
+	bool W_active; //JUMP
 	
 
 
