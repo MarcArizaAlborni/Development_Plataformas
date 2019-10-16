@@ -23,7 +23,7 @@ j1Player::j1Player()
  bool j1Player::Awake(pugi::xml_node& node)
  {
 	 bool ret = true;
-	 floor = 400.0f;
+	 floor = 800.0f;
 	 pugi::xml_node player = node.child("player");
 
 	 Inipos.x = node.attribute("inipos_x").as_float();
@@ -55,8 +55,8 @@ bool j1Player::PreUpdate()
 	 PlayerInput.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
 	 PlayerInput.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
 	 PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_DOWN;
-	 PlayerInput.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_REPEAT;
-	 PlayerInput.U_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_REPEAT;
+	 PlayerInput.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN;
+	 PlayerInput.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
 	
 
 	//ROTACIO DELS PLAYER STATES 
@@ -108,6 +108,11 @@ bool j1Player::PreUpdate()
 
 		 }
 
+		 if (PlayerInput.U_active) {
+
+			 PlayerState = DashStateLeft;
+			 LOG("LEFT TO DASH LEFT");
+		 }
 		 
 	 }
 	 
@@ -125,7 +130,11 @@ bool j1Player::PreUpdate()
 			 LOG("RIGHT TO JUMP RIGHT");
 		 }
 
-		
+		 if (PlayerInput.U_active) {
+
+			 PlayerState = DashStateRight;
+			 LOG("LEFT TO DASH RIGHT");
+		 }
 	 }
 	 return true ;
 }
@@ -152,8 +161,24 @@ bool j1Player::Update(float dt)
 		LOG("MOVING RIGHT");
 		CurrentPosition.x += Character_vel;
 		break;
-	
-	case JumpState:
+
+
+	case DashStateLeft:
+
+
+		CurrentPosition.x -= Character_vel;
+		LOG("DASHING LEFT");
+
+
+		break;
+
+	case DashStateRight:
+
+		CurrentPosition.x += Character_vel;
+		LOG("DASHING RIGHT");
+
+		break;
+	/*case JumpState:
 		
 		LOG("JUMPING");
 
@@ -164,7 +189,7 @@ bool j1Player::Update(float dt)
 
 		}
 		
-		if (CurrentPosition.y < floor) {
+		if (CurrentPosition.y > floor) {
 
 			JumpSpeed = 2;
 			jumping =false;
@@ -179,7 +204,7 @@ bool j1Player::Update(float dt)
 		
 	case JumpStateRight:
 		
-		break;
+		break;*/
 
 
 	}
