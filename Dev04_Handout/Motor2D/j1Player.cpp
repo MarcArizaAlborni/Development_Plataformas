@@ -30,6 +30,7 @@ j1Player::j1Player()
 	 Inipos.y = node.attribute("inipos_y").as_float();
 	 Character_vel = node.attribute("velocity").as_float();
 	 Gravity = node.attribute("gravity").as_float();
+	 DashDist = node.attribute("DashDistance").as_float();
 	 
 	 CurrentPosition = { Inipos.x, Inipos.y };
 
@@ -98,19 +99,11 @@ bool j1Player::PreUpdate()
 			 PlayerState = IdleState;
 			 LOG("LEFT TO IDLE");
 		 }
-
 		 
-		 
-		 if (PlayerInput.Space_active) {
-
-			 PlayerState = JumpStateLeft;
-			 LOG("LEFT TO JUMP LEFT");
-
-		 }
-
 		 if (PlayerInput.U_active) {
-
-			 PlayerState = DashStateLeft;
+			 DashActiveLeft = true;
+			 StartPosition.x = CurrentPosition.x;
+			 PlayerState = DashState;
 			 LOG("LEFT TO DASH LEFT");
 		 }
 		 
@@ -124,18 +117,17 @@ bool j1Player::PreUpdate()
 			 LOG("RIGHT TO IDLE");
 		 }
 		 
-		 if (PlayerInput.Space_active) {
-
-			 PlayerState = JumpStateRight;
-			 LOG("RIGHT TO JUMP RIGHT");
-		 }
+		
 
 		 if (PlayerInput.U_active) {
-
-			 PlayerState = DashStateRight;
+			 DashActiveRight = true;
+			 StartPosition.x = CurrentPosition.x;
+			 PlayerState = DashState;
 			 LOG("LEFT TO DASH RIGHT");
 		 }
 	 }
+
+	
 	 return true ;
 }
 
@@ -149,66 +141,49 @@ bool j1Player::Update(float dt)
 	case IdleState:
 		LOG("IDLE");
 		CurrentAnimation = &idle;
-	break;
-	
+		break;
+
 	case LeftState:
 		LOG("MOVING LEFT");
 		CurrentPosition.x -= Character_vel;
 		CurrentPosition.y;
-	break;
-	
+		break;
+
 	case RightState:
 		LOG("MOVING RIGHT");
 		CurrentPosition.x += Character_vel;
 		break;
 
 
-	case DashStateLeft:
+	//case DashStateLeft:
+
+	//	 //AIXO SEMPRE CAMBIA MAI ACABARA
+
+	//	Das();
+
+	//	//CurrentPosition.x -= Character_vel;
+	//	LOG("DASHING LEFT");
 
 
-		CurrentPosition.x -= Character_vel;
-		LOG("DASHING LEFT");
+	//	break;
+
+	//case DashStateRight:
+
+	//	DashFunction();
+	//	//CurrentPosition.x += Character_vel;
+	//	LOG("DASHING RIGHT");
+
+	//	break;
 
 
+	case DashState:
+
+		DashFunction();
+		LOG("DASH");
 		break;
-
-	case DashStateRight:
-
-		CurrentPosition.x += Character_vel;
-		LOG("DASHING RIGHT");
-
-		break;
-	/*case JumpState:
-		
-		LOG("JUMPING");
-
-		if (jumping) {
-
-			CurrentPosition.y -= JumpSpeed;
-			JumpSpeed -= gravity2;
-
-		}
-		
-		if (CurrentPosition.y > floor) {
-
-			JumpSpeed = 2;
-			jumping =false;
-		}
-		
-		break;
-	case JumpStateLeft:
-		
-		
-		break;
-
-		
-	case JumpStateRight:
-		
-		break;*/
-
-
 	}
 
+	
 
 	//SDL_Rect r = CurrentAnimation->GetCurrentFrame();
 	

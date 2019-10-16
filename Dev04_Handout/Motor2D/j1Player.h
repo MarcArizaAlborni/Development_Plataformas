@@ -26,17 +26,12 @@ enum CurrentState
 
 	IdleState,
 	JumpState,
-	JumpStateLeft, 
-	JumpStateRight,
 	LeftState,
 	RightState,
 	LeftSlimeState,
 	RightSlimeState,
-	DoubleJumpState,
-	DoubleJumpStateLeft,
-	DoubleJumpStateRight,
-	DashStateLeft,
-	DashStateRight
+	DashState,
+	
 
 };
 
@@ -88,7 +83,51 @@ public:
 	float JumpSpeed = 2;
 	bool jumping = false;
 	float gravity2 = 0.2f;
+	
+	
+	//DASH THINGS
+	float DashDist;
+	bool DashActiveLeft;
+	bool DashActiveRight;
+	
+	void DashFunction(){
+		
 
+		if (StartPosition.x - DashDist < CurrentPosition.x && DashActiveLeft== true) {
+
+			CurrentPosition.x -= Character_vel*2;
+			LOG("DASH FUNCTION LEFT");
+		}
+		else if (StartPosition.x + DashDist > CurrentPosition.x && DashActiveRight== true) {
+
+			CurrentPosition.x += Character_vel * 2;
+			LOG("DASH FUNCTION RIGHT");
+		}
+		else {
+			DashActiveLeft = false;
+			DashActiveRight = false;
+			PlayerState = IdleState;
+			LOG("DASH  TO IDLE");
+		}
+	}
+
+	/*void DashRight() {
+
+		
+		if (StartPosition.x + DashDist > CurrentPosition.x) {
+
+			CurrentPosition.x += Character_vel * 2;
+			LOG("DASH FUNCTION RIGHT");
+		}
+		else {
+
+			PlayerState = IdleState;
+			LOG("DASH RIGHT TO IDLE");
+			
+		}
+
+
+	}*/
 
 	
 };
