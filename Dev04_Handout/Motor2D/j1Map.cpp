@@ -33,22 +33,85 @@ void j1Map::Draw()
 
 	// TODO 5: Prepare the loop to iterate all the tiles in a layer
 	
-	MapLayer* layer = data.maplayers.start->data;
-	TileSet* tileset = data.tilesets.start->data;
+	MapLayer* layer = data.maplayers[0];
 
-	for (uint y = 0; y < layer->height; ++y)
-	{
-		for (uint x = 0; x < layer->width; ++x)
+	p2List_item<MapLayer*>* item = data.maplayers.start;
+
+	for (item; item != nullptr; item = item->next) {
+
+		uint* gid = item->data->tile_ids;
+		int i = 0;
+		for (uint y = 0; y < data.height; ++y)
 		{
-			uint gid = layer->tile_ids[layer->Get(x,y)];
-			SDL_Rect rect = tileset->GetTileRectId(gid);
-
-			App->render->Blit(tileset->texture, x*tileset->tile_width, y*tileset->tile_height, &rect);
-
+			for (uint x = 0; x < data.width; ++x)
+			{
+				// TODO 9: Complete the draw function
+				App->render->Blit(data.tilesets[0]->texture,
+				MapToWorld(x,y).x, MapToWorld(x,y).y,
+				data.tilesets[0]->GetTileRectId(gid[i]));
+				i++;
+			}
 		}
+		
 	}
-	// TODO 9: Complete the draw function
+	
 }
+
+iPoint j1Map::MapToWorld(int x, int y) const
+{
+	iPoint ret(0, 0);
+	// TODO 8(old): Create a method that translates x,y coordinates from map positions to world positions
+
+	if (data.type == MAPTYPE_ORTHOGONAL)
+	{
+		ret.x = x * data.tile_width;
+		ret.y = y * data.tile_height;
+	}
+
+	// TODO 1: Add isometric map to world coordinates
+	if (data.type == MAPTYPE_ISOMETRIC)
+	{
+		ret.x = (x - y) * (data.tile_width / 2);
+		ret.y = (x + y) * (data.tile_height / 2);
+	}
+	return ret;
+}
+
+
+iPoint j1Map::WorldToMap(int x, int y) const
+{
+	iPoint ret(0, 0);
+	// TODO 2: Add orthographic world to map coordinates
+
+	if (data.type == MAPTYPE_ORTHOGONAL)
+	{
+		ret.x = x / data.tile_width;
+		ret.y = y / data.tile_height;
+	}
+
+	// TODO 3: Add the case for isometric maps to WorldToMap
+
+	if (data.type == MAPTYPE_ISOMETRIC)
+	{
+		ret.x = ((x / data.tile_width) + (y / data.tile_height) / 4);
+		ret.y = ((y / data.tile_height) - (x / data.tile_width) / 4);
+	}
+	return ret;
+}
+
+SDL_Rect* TileSet::GetTileRectId(uint id) 
+{
+	SDL_Rect* rect = ReturnedRect;
+	// TODO 7(old): Create a method that receives a tile id and returns it's Rect
+
+	int new_id = id - firstgid;
+	rect->w = tile_width;
+	rect->h = tile_height;
+	rect->x = margin + ((spacing + tile_width) * (new_id % num_tiles_width));
+	rect->y = margin + ((spacing + tile_height) * (new_id / num_tiles_width));
+	return rect;
+}
+
 
 
 // Called before quitting
