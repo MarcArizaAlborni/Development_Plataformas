@@ -28,8 +28,7 @@ enum CurrentState
 	JumpState,
 	LeftState,
 	RightState,
-	LeftSlimeState,
-	RightSlimeState,
+	SlimeState,
 	DashState,
 	
 
@@ -111,23 +110,9 @@ public:
 		}
 	}
 
-	/*void DashRight() {
+	//SLIME
 
-		
-		if (StartPosition.x + DashDist > CurrentPosition.x) {
-
-			CurrentPosition.x += Character_vel * 2;
-			LOG("DASH FUNCTION RIGHT");
-		}
-		else {
-
-			PlayerState = IdleState;
-			LOG("DASH RIGHT TO IDLE");
-			
-		}
-
-
-	}*/
+	bool SlimeForm;
 
 	
 };

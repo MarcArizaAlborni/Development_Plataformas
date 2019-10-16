@@ -45,6 +45,7 @@ j1Player::j1Player()
 	 Graphics = App->tex->Load("Sprites/Dude.png");
 
 	 PlayerState = IdleState;
+	 SlimeForm = false;
 
 	 return true;
  }
@@ -64,70 +65,146 @@ bool j1Player::PreUpdate()
 
 	 if (PlayerState == IdleState)
 	 {
-		 
-		 if (PlayerInput.A_active)
-		 {
-			 PlayerState = LeftState;
-			 LOG("IDLE TO LEFT");
-		 }
+		 if (SlimeForm == false) {
+			 if (PlayerInput.A_active)
+			 {
+				 PlayerState = LeftState;
+				 LOG("IDLE TO LEFT");
+			 }
 
-		 if (PlayerInput.D_active)
-		 {
-			 PlayerState = RightState;
-			 LOG("IDLE TO RIGHT");
-		 }
+			 if (PlayerInput.D_active)
+			 {
+				 PlayerState = RightState;
+				 LOG("IDLE TO RIGHT");
+			 }
 
-		 if (PlayerInput.Space_active && jumping == false)
-		 {
-			 
-			 jumping = true;
-				
-			 
-			 PlayerState = JumpState;
-			 LOG("IDLE TO JUMP");
-		 }
+			 if (PlayerInput.Space_active && jumping == false)
+			 {
 
-		 
+				 jumping = true;
+
+
+				 PlayerState = JumpState;
+				 LOG("IDLE TO JUMP");
+			 }
+
+			 if (PlayerInput.I_active) {
+
+				 PlayerState = SlimeState;
+				 LOG("IDLE (HUMAN) TO SLIME");
+			 }
+		 }
+		 else {
+
+			 if (PlayerInput.A_active) {
+
+				 PlayerState = LeftState;
+				 LOG("IDLE TO LEFT (SLIME)");
+
+			 }
+
+			 if (PlayerInput.D_active) {
+
+				 PlayerState = RightState;
+				 LOG("IDLE TO RIGHT (SLIME)");
+			 }
+
+			 if (PlayerInput.I_active) {
+
+
+				 PlayerState = SlimeState;
+				 LOG("IDLE (SLIME TO SLIME)");
+
+			 }
+		 }
 	 }
 	 
 
-	 if (PlayerState == LeftState) 
+	 if (PlayerState == LeftState)
 	 {
-		 if (!PlayerInput.A_active) 
-		 {
+		 if (SlimeForm == false) {
+			 if (!PlayerInput.A_active)
+			 {
 
-			 PlayerState = IdleState;
-			 LOG("LEFT TO IDLE");
+				 PlayerState = IdleState;
+				 LOG("LEFT TO IDLE");
+			 }
+
+			 if (PlayerInput.U_active) {
+				 DashActiveLeft = true;
+				 StartPosition.x = CurrentPosition.x;
+				 PlayerState = DashState;
+				 LOG("LEFT TO DASH LEFT");
+			 }
+
 		 }
-		 
-		 if (PlayerInput.U_active) {
-			 DashActiveLeft = true;
-			 StartPosition.x = CurrentPosition.x;
-			 PlayerState = DashState;
-			 LOG("LEFT TO DASH LEFT");
+
+		 else {
+
+			  if (!PlayerInput.A_active)
+			 {
+
+				 PlayerState = IdleState;
+				 LOG("LEFT(SLIME) TO IDLE (SLIME)");
+			 }
+
+
 		 }
-		 
 	 }
-	 
 	 if (PlayerState == RightState) 
 	 {
-		 if (!PlayerInput.D_active) 
-		 {
-			 PlayerState = IdleState;
-			 LOG("RIGHT TO IDLE");
-		 }
-		 
-		
+		 if (SlimeForm == false) {
+			 if (!PlayerInput.D_active)
+			 {
+				 PlayerState = IdleState;
+				 LOG("RIGHT TO IDLE");
+			 }
 
-		 if (PlayerInput.U_active) {
-			 DashActiveRight = true;
-			 StartPosition.x = CurrentPosition.x;
-			 PlayerState = DashState;
-			 LOG("LEFT TO DASH RIGHT");
+
+
+			 if (PlayerInput.U_active) {
+				 DashActiveRight = true;
+				 StartPosition.x = CurrentPosition.x;
+				 PlayerState = DashState;
+				 LOG("LEFT TO DASH RIGHT");
+			 }
 		 }
+
+		 else {
+
+			 if (!PlayerInput.D_active)
+			 {
+				 PlayerState = IdleState;
+				 LOG("RIGHT (SLIME) TO IDLE (SLIME)");
+			 }
+
+		 }
+
 	 }
 
-	
+	 if (PlayerState == SlimeState) {
+		 SlimeForm;
+		 if (SlimeForm == false) { //HUMAN TO SLIME
+			 //CANVIAR SPRITE AL DE SLIME 
+			 //ANIMACIO DE TRANSFORMACIO
+			 SlimeForm = true;
+			 //if(animation  to slime transformation finished) -> playerstate= Idle 
+			 LOG("TRANSFORMING INTO SLIME");
+			 PlayerState = IdleState; // Aixo no funciona be per ara perque com que no hi han animacions canvia al instant
+			 
+		 }
+
+		 else if (SlimeForm == true) { // SLIME TO HUMAN
+
+			 //CANVIAR SPRITE AL NORMAL
+			 //ANIMACIO TRANSFORMACIO
+			 SlimeForm = false;
+			 //if(animation to human transformation finished) -> playerstate= Idle 
+			 LOG("TRANSFORMING INTO HUMAN");
+			 PlayerState = IdleState;
+		 }
+
+	}
 	 return true ;
 }
 
@@ -152,6 +229,7 @@ bool j1Player::Update(float dt)
 	case RightState:
 		LOG("MOVING RIGHT");
 		CurrentPosition.x += Character_vel;
+		CurrentPosition.y;
 		break;
 
 
