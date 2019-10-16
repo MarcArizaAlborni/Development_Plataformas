@@ -27,7 +27,9 @@ struct MapLayer
 // ----------------------------------------------------
 struct TileSet
 {
-
+	// TODO 7: Create a method that receives a tile id and returns it's Rect
+	SDL_Rect* ReturnedRect = new SDL_Rect;
+	SDL_Rect* GetTileRectId(uint tile_id);
 	p2SString			name;
 	int					firstgid;
 	int					margin;
@@ -42,19 +44,8 @@ struct TileSet
 	int					offset_x;
 	int					offset_y;
 
-	// TODO 7: Create a method that receives a tile id and returns it's Rect
+	
 
-	SDL_Rect GetTileRectId(uint tile_id) 
-	{
-		SDL_Rect rect;
-
-		uint new_id = tile_id - firstgid;
-		rect.w = tile_width;
-		rect.h = tile_height;
-		rect.x = margin + ((spacing + tile_width) * (new_id % num_tiles_width));
-		rect.y = margin + ((spacing + tile_height) * (new_id / num_tiles_width));
-		return rect;
-	}
 };
 
 enum MapTypes
@@ -102,16 +93,8 @@ public:
 	bool Load(const char* path);
 
 	// TODO 8: Create a method that translates x,y coordinates from map positions to world positions
-	inline uint GetPosX(uint x)
-	{
-		return x * 32;
-	}
-
-	inline uint GetPosY(uint y)
-	{
-		return y * 32;
-	}
-
+	iPoint MapToWorld(int x, int y) const;
+	iPoint WorldToMap(int x, int y) const;
 
 private:
 
