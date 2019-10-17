@@ -121,7 +121,7 @@ public:
 	void Jumping() {
 
 
-		if (StartPosition.y - MaxJump< CurrentPosition.y && Max_Reached==false ) {
+		if (StartPosition.y - MaxJump < CurrentPosition.y && Max_Reached == false ) {
 
 			CurrentPosition.y -= Jump_Pow;
 			Max_Reached = true;

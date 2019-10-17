@@ -163,6 +163,25 @@ bool j1Player::PreUpdate()
 
 
 		 }
+		 if (PlayerInput.W_active) {
+
+			 On_The_Ground();
+
+
+			 if (On_Ground == true) {
+
+				 StartPosition.y = CurrentPosition.y;
+				 PlayerState = JumpState;
+				 LOG("IDLE TO JUMP");
+			 }
+
+			 if (On_Ground == false) {
+
+				 LOG("JUMP NOT AVAILABLE");
+			 }
+
+
+		 }
 	 }
 	 if (PlayerState == RightState) 
 	 {
@@ -190,6 +209,26 @@ bool j1Player::PreUpdate()
 				 PlayerState = IdleState;
 				 LOG("RIGHT (SLIME) TO IDLE (SLIME)");
 			 }
+
+		 }
+
+		 if (PlayerInput.W_active) {
+
+			 On_The_Ground();
+
+
+			 if (On_Ground == true) {
+
+				 StartPosition.y = CurrentPosition.y;
+				 PlayerState = JumpState;
+				 LOG("IDLE TO JUMP");
+			 }
+
+			 if (On_Ground == false) {
+
+				 LOG("JUMP NOT AVAILABLE");
+			 }
+
 
 		 }
 
