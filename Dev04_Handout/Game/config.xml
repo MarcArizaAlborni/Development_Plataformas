@@ -27,7 +27,7 @@
     <folder>maps/</folder>
   </map>
 
-  <player  inipos_x="0.0f" inipos_y="500.0f" velocity="10" gravity="2" accelerationx ="2" accelerationy="15" DashDistance ="300">
+  <player  inipos_x="0.0f" inipos_y="500.0f" velocity="10" gravity="10" accelerationx ="2" accelerationy="15" DashDistance ="300">
     <!--Animations-->
     <animation name="idle" speed="1.0" loop="false">  
       <frame x="0" y="0" w="0" h="0"/>

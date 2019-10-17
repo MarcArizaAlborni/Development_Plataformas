@@ -41,12 +41,12 @@ private:
 
 
 	iPoint Inipos;
-	float Character_vel; 
+	
 	
 	
 public:
 	
-	float Gravity;
+	
 	j1Player();
 
 	// Destructor
@@ -55,7 +55,7 @@ public:
 	bool Awake(pugi::xml_node& conf);
 
 	bool Start();
-	float floor; //NOMES PER TESTING
+	float floor = CurrentPosition.y; //NOMES PER TESTING
 	bool PreUpdate();	
 	bool Update(float dt);
 	bool PostUpdate();
@@ -68,7 +68,7 @@ public:
 	//ACTUALIZING POSITION 
 	iPoint				CurrentPosition;
 	iPoint              StartPosition;
-
+	float Character_vel;
 	SDL_Texture*		Graphics = nullptr;
 	//For printing the animation in each moment
 	Animation*			CurrentAnimation;
@@ -80,11 +80,86 @@ public:
 
 	//JUMP
 
-	float JumpSpeed = 2;
-	bool jumping = false;
-	float gravity2 = 0.2f;
-	
-	
+	bool On_Ground;
+	float Jump_Pow = 200.0f;
+	float Gravity; //10
+	float character_velY;
+	float MaxJump= 500.0f;
+	uint On_Ground_Counter;
+	bool Jump_Ready;
+	uint temppos;
+	bool Max_Reached;
+	float FallingXSpeed = 10;
+
+
+	void On_The_Ground(){ //AIXO VA ALS IF DELS STATES
+
+		if (CurrentPosition.y == floor) {
+
+			On_Ground = true;
+
+
+		}
+		else if (CurrentPosition.y<= floor) {
+
+
+			On_Ground = false;
+
+
+		}
+		else { //AIXO AMB ELS COLLIDERS NO FARA FALTA PERO PER ARA EL DEIXO AQUI
+
+
+			CurrentPosition.y = floor;
+
+			On_Ground = true;
+
+			LOG("CHARACTER UNDER THE FLOOR");
+		}
+	}
+
+	void Jumping() {
+
+
+		if (StartPosition.y - MaxJump< CurrentPosition.y && Max_Reached==false ) {
+
+			CurrentPosition.y -= Jump_Pow;
+			Max_Reached = true;
+			LOG("JUMPING UP");
+		}
+
+		if (Max_Reached == true) {
+		
+			CurrentPosition.y += Gravity;
+			LOG("FALLING");
+			On_The_Ground();
+
+			if (PlayerInput.A_active) {
+
+				CurrentPosition.x -= FallingXSpeed;
+
+			}
+
+			if (PlayerInput.D_active) {
+
+				CurrentPosition.x += FallingXSpeed;
+
+			}
+
+			if (On_Ground == true) {
+				
+				LOG("JUMP TO IDLE");
+				PlayerState = IdleState;
+				Max_Reached = false;
+			}
+		}
+	}
+
+
+
+
+
+
 	//DASH THINGS
 	float DashDist;
 	bool DashActiveLeft;

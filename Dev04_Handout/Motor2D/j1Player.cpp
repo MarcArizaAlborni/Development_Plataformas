@@ -23,7 +23,7 @@ j1Player::j1Player()
  bool j1Player::Awake(pugi::xml_node& node)
  {
 	 bool ret = true;
-	 floor = 800.0f;
+	
 	 pugi::xml_node player = node.child("player");
 
 	 Inipos.x = node.attribute("inipos_x").as_float();
@@ -43,7 +43,7 @@ j1Player::j1Player()
 	 LOG("Loading player textures");
 
 	 Graphics = App->tex->Load("Sprites/Dude.png");
-
+	 floor = CurrentPosition.y;
 	 PlayerState = IdleState;
 	 SlimeForm = false;
 
@@ -79,20 +79,32 @@ bool j1Player::PreUpdate()
 				 LOG("IDLE TO RIGHT");
 			 }
 
-			 if (PlayerInput.W_active && jumping == false)
-			 {
-
-				 jumping = true;
-
-
-				 PlayerState = JumpState;
-				 LOG("IDLE TO JUMP");
-			 }
+			 
 
 			 if (PlayerInput.I_active) {
 
 				 PlayerState = SlimeState;
 				 LOG("IDLE (HUMAN) TO SLIME");
+			 }
+
+			 if (PlayerInput.W_active ) {
+
+				 On_The_Ground();
+				 
+
+				 if (On_Ground == true) {
+
+					 StartPosition.y = CurrentPosition.y;
+					 PlayerState = JumpState;
+					 LOG("IDLE TO JUMP");
+				 }
+				 
+				 if (On_Ground == false) {
+
+					 LOG("JUMP NOT AVAILABLE");
+				 }
+				
+				 
 			 }
 		 }
 		 else {
@@ -120,7 +132,7 @@ bool j1Player::PreUpdate()
 		 }
 	 }
 	 
-
+	 
 	 if (PlayerState == LeftState)
 	 {
 		 if (SlimeForm == false) {
@@ -232,29 +244,11 @@ bool j1Player::Update(float dt)
 		CurrentPosition.x += Character_vel;
 		CurrentPosition.y;
 		break;
-
-
-	//case DashStateLeft:
-
-	//	 //AIXO SEMPRE CAMBIA MAI ACABARA
-
-	//	Das();
-
-	//	//CurrentPosition.x -= Character_vel;
-	//	LOG("DASHING LEFT");
-
-
-	//	break;
-
-	//case DashStateRight:
-
-	//	DashFunction();
-	//	//CurrentPosition.x += Character_vel;
-	//	LOG("DASHING RIGHT");
-
-	//	break;
-
-
+	case JumpState:
+		
+		Jumping();
+		LOG("JUMP STATE ACTIVE");
+		break;
 	case DashState:
 
 		DashFunction();
