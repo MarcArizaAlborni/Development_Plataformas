@@ -150,7 +150,7 @@ bool j1Player::PreUpdate()
 				 LOG("LEFT TO DASH LEFT");
 			 }
 
-			 if (PlayerInput.W_active) {
+			 /*if (PlayerInput.W_active) {
 
 				 On_The_Ground();
 
@@ -168,7 +168,7 @@ bool j1Player::PreUpdate()
 				 }
 
 
-			 }
+			 }*/
 
 		 }
 
@@ -179,6 +179,27 @@ bool j1Player::PreUpdate()
 
 				 PlayerState = IdleState;
 				 LOG("LEFT(SLIME) TO IDLE (SLIME)");
+			 }
+
+
+		 }
+
+
+		 if (PlayerInput.W_active && SlimeForm==false) {
+
+			 On_The_Ground();
+
+
+			 if (On_Ground == true) {
+
+				 StartPosition.y = CurrentPosition.y;
+				 PlayerState = JumpState;
+				 LOG("LEFT TO JUMP");
+			 }
+
+			 if (On_Ground == false) {
+
+				 LOG("JUMP NOT AVAILABLE");
 			 }
 
 
@@ -203,7 +224,7 @@ bool j1Player::PreUpdate()
 				 LOG("LEFT TO DASH RIGHT");
 			 }
 
-			 if (PlayerInput.W_active) {
+			 /*if (PlayerInput.W_active) {
 
 				 On_The_Ground();
 
@@ -221,7 +242,7 @@ bool j1Player::PreUpdate()
 				 }
 
 
-			 }
+			 }*/
 		 }
 
 		 else {
@@ -231,6 +252,26 @@ bool j1Player::PreUpdate()
 				 PlayerState = IdleState;
 				 LOG("RIGHT (SLIME) TO IDLE (SLIME)");
 			 }
+
+		 }
+
+		 if (PlayerInput.W_active && SlimeForm == false) {
+
+			 On_The_Ground();
+
+
+			 if (On_Ground == true) {
+
+				 StartPosition.y = CurrentPosition.y;
+				 PlayerState = JumpState;
+				 LOG("LEFT TO JUMP");
+			 }
+
+			 if (On_Ground == false) {
+
+				 LOG("JUMP NOT AVAILABLE");
+			 }
+
 
 		 }
 

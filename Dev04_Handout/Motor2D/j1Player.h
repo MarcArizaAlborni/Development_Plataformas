@@ -90,6 +90,9 @@ public:
 	uint temppos;
 	bool Max_Reached;
 	float FallingXSpeed = 10;
+	bool FallingLeft;
+	bool FallingRight;
+
 
 
 	void On_The_Ground(){ //AIXO VA ALS IF DELS STATES
@@ -154,12 +157,13 @@ public:
 
 			if (PlayerInput.A_active) {
 
+				FallingLeft = true;
 				CurrentPosition.x -= FallingXSpeed;
 
 			}
 
 			if (PlayerInput.D_active) {
-
+				FallingRight = true;
 				CurrentPosition.x += FallingXSpeed;
 
 			}
