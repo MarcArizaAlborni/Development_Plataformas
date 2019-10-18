@@ -150,6 +150,26 @@ bool j1Player::PreUpdate()
 				 LOG("LEFT TO DASH LEFT");
 			 }
 
+			 if (PlayerInput.W_active) {
+
+				 On_The_Ground();
+
+
+				 if (On_Ground == true) {
+
+					 StartPosition.y = CurrentPosition.y;
+					 PlayerState = JumpState;
+					 LOG("LEFT TO JUMP");
+				 }
+
+				 if (On_Ground == false) {
+
+					 LOG("JUMP NOT AVAILABLE");
+				 }
+
+
+			 }
+
 		 }
 
 		 else {
@@ -163,25 +183,7 @@ bool j1Player::PreUpdate()
 
 
 		 }
-		 if (PlayerInput.W_active) {
-
-			 On_The_Ground();
-
-
-			 if (On_Ground == true) {
-
-				 StartPosition.y = CurrentPosition.y;
-				 PlayerState = JumpState;
-				 LOG("IDLE TO JUMP");
-			 }
-
-			 if (On_Ground == false) {
-
-				 LOG("JUMP NOT AVAILABLE");
-			 }
-
-
-		 }
+		
 	 }
 	 if (PlayerState == RightState) 
 	 {
@@ -200,6 +202,26 @@ bool j1Player::PreUpdate()
 				 PlayerState = DashState;
 				 LOG("LEFT TO DASH RIGHT");
 			 }
+
+			 if (PlayerInput.W_active) {
+
+				 On_The_Ground();
+
+
+				 if (On_Ground == true) {
+
+					 StartPosition.y = CurrentPosition.y;
+					 PlayerState = JumpState;
+					 LOG("RIGHT TO JUMP");
+				 }
+
+				 if (On_Ground == false) {
+
+					 LOG("JUMP NOT AVAILABLE");
+				 }
+
+
+			 }
 		 }
 
 		 else {
@@ -212,25 +234,7 @@ bool j1Player::PreUpdate()
 
 		 }
 
-		 if (PlayerInput.W_active) {
-
-			 On_The_Ground();
-
-
-			 if (On_Ground == true) {
-
-				 StartPosition.y = CurrentPosition.y;
-				 PlayerState = JumpState;
-				 LOG("IDLE TO JUMP");
-			 }
-
-			 if (On_Ground == false) {
-
-				 LOG("JUMP NOT AVAILABLE");
-			 }
-
-
-		 }
+		 
 
 	 }
 

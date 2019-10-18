@@ -81,10 +81,10 @@ public:
 	//JUMP
 
 	bool On_Ground;
-	float Jump_Pow = 200.0f;
+	float Jump_Pow = 20.0f;
 	float Gravity; //10
 	float character_velY;
-	float MaxJump= 500.0f;
+	float MaxJump= 200.0f;
 	uint On_Ground_Counter;
 	bool Jump_Ready;
 	uint temppos;
@@ -120,11 +120,29 @@ public:
 
 	void Jumping() {
 
+		temppos = CurrentPosition.y;
+		LOG("%f", temppos);
 
 		if (StartPosition.y - MaxJump < CurrentPosition.y && Max_Reached == false ) {
 
 			CurrentPosition.y -= Jump_Pow;
-			Max_Reached = true;
+
+			if (StartPosition.y - MaxJump >= CurrentPosition.y) {
+				Max_Reached = true;
+			}
+			
+			if (PlayerInput.A_active) {
+
+				CurrentPosition.x -= Character_vel;
+
+			}
+
+			if (PlayerInput.D_active) {
+
+				CurrentPosition.x += Character_vel;;
+
+			}
+
 			LOG("JUMPING UP");
 		}
 
