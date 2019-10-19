@@ -158,21 +158,35 @@ public:
 			if (PlayerInput.A_active) {
 
 				FallingLeft = true;
-				CurrentPosition.x -= FallingXSpeed;
-
+				FallingRight = false;
+				//CurrentPosition.x -= FallingXSpeed;
 			}
 
 			if (PlayerInput.D_active) {
 				FallingRight = true;
-				CurrentPosition.x += FallingXSpeed;
+				FallingLeft = true;
+				
+				//CurrentPosition.x += FallingXSpeed;
+			}
+
+			if (FallingLeft == true && FallingRight==false) { //AIXO D'AQUI NO SE SI FUNCIONA BE
+
+				CurrentPosition.x -= FallingXSpeed;
 
 			}
 
+			if (FallingRight == true && FallingLeft==false) { //AIXO D'AQUI NO SE SI FUNCIONA BE
+
+				CurrentPosition.x += FallingXSpeed;
+
+			}
 			if (On_Ground == true) {
 				
 				LOG("JUMP TO IDLE");
 				PlayerState = IdleState;
 				Max_Reached = false;
+				FallingLeft = false;
+				FallingRight = false;
 			}
 		}
 	}
