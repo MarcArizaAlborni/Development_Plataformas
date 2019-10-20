@@ -159,27 +159,27 @@ public:
 
 				FallingLeft = true;
 				FallingRight = false;
-				//CurrentPosition.x -= FallingXSpeed;
+				CurrentPosition.x -= FallingXSpeed;
 			}
 
 			if (PlayerInput.D_active) {
 				FallingRight = true;
 				FallingLeft = true;
 				
-				//CurrentPosition.x += FallingXSpeed;
-			}
-
-			if (FallingLeft == true && FallingRight==false) { //AIXO D'AQUI NO SE SI FUNCIONA BE
-
-				CurrentPosition.x -= FallingXSpeed;
-
-			}
-
-			if (FallingRight == true && FallingLeft==false) { //AIXO D'AQUI NO SE SI FUNCIONA BE
-
 				CurrentPosition.x += FallingXSpeed;
-
 			}
+
+			//if (FallingLeft == true && FallingRight==false) { //AIXO D'AQUI NO SE SI FUNCIONA BE
+
+			//	CurrentPosition.x -= FallingXSpeed;
+
+			//}
+
+			//if (FallingRight == true && FallingLeft==false) { //AIXO D'AQUI NO SE SI FUNCIONA BE
+
+			//	CurrentPosition.x += FallingXSpeed;
+
+			//}
 			if (On_Ground == true) {
 				
 				LOG("JUMP TO IDLE");
