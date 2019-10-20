@@ -169,17 +169,7 @@ public:
 				CurrentPosition.x += FallingXSpeed;
 			}
 
-			//if (FallingLeft == true && FallingRight==false) { //AIXO D'AQUI NO SE SI FUNCIONA BE
-
-			//	CurrentPosition.x -= FallingXSpeed;
-
-			//}
-
-			//if (FallingRight == true && FallingLeft==false) { //AIXO D'AQUI NO SE SI FUNCIONA BE
-
-			//	CurrentPosition.x += FallingXSpeed;
-
-			//}
+			
 			if (On_Ground == true) {
 				
 				LOG("JUMP TO IDLE");
