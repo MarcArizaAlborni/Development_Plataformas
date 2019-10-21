@@ -1,0 +1,104 @@
+void On_The_Ground(){ //AIXO VA ALS IF DELS STATES
+
+		if (CurrentPosition.y == floor) {
+
+			On_Ground = true;
+
+
+		}
+		else if (CurrentPosition.y<= floor) {
+
+
+			On_Ground = false;
+
+
+		}
+		else { //AIXO AMB ELS COLLIDERS NO FARA FALTA PERO PER ARA EL DEIXO AQUI
+
+
+			CurrentPosition.y = floor;
+
+			On_Ground = true;
+
+			LOG("CHARACTER UNDER THE FLOOR");
+		}
+	}
+
+	void Jumping() {
+
+		temppos = CurrentPosition.y;
+		LOG("%f", temppos);
+
+		if (StartPosition.y - MaxJump < CurrentPosition.y && Max_Reached == false) {
+
+			if (StartPosition.y - (MaxJump / 2) >= CurrentPosition.y) {
+
+				Max_ReachedSlow = true;
+			}
+
+
+
+			if (StartPosition.y - MaxJump / 2 < CurrentPosition.y && Max_ReachedSlow == true) {
+
+				CurrentPosition.y = -CurrentPosition.y + (CurrentPosition.y*0.3);
+
+			}
+			else {
+
+				CurrentPosition.y -= Jump_Pow;
+			}
+
+
+			if (StartPosition.y - MaxJump >= CurrentPosition.y) {
+				Max_Reached = true;
+				Max_ReachedSlow = false;
+			}
+
+			if (PlayerInput.A_active) {
+
+				CurrentPosition.x -= Character_vel;
+
+			}
+
+			if (PlayerInput.D_active) {
+
+				CurrentPosition.x += Character_vel;;
+
+			}
+
+			LOG("JUMPING UP");
+		}
+
+
+
+		if (Max_Reached == true) {
+
+			CurrentPosition.y += Gravity;
+			LOG("FALLING");
+			On_The_Ground();
+
+			if (PlayerInput.A_active) {
+
+				FallingLeft = true;
+				FallingRight = false;
+				CurrentPosition.x -= FallingXSpeed;
+			}
+
+			if (PlayerInput.D_active) {
+				FallingRight = true;
+				FallingLeft = true;
+
+				CurrentPosition.x += FallingXSpeed;
+			}
+
+
+			if (On_Ground == true) {
+
+				LOG("JUMP TO IDLE");
+				PlayerState = IdleState;
+				Max_Reached = false;
+				FallingLeft = false;
+				FallingRight = false;
+			}
+		}
+	}
