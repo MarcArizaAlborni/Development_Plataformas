@@ -134,15 +134,43 @@ public:
 				Max_Reached = true;
 			}
 			
-			if (PlayerInput.A_active) {
-
+			/*if (PlayerInput.A_active) {
+				FallingLeft = true;
 				CurrentPosition.x -= Character_vel;
 
 			}
 
 			if (PlayerInput.D_active) {
-
+				FallingRight = true;
 				CurrentPosition.x += Character_vel;;
+
+			}*/
+
+			if (PlayerInput.A_active && FallingRight != true) {
+
+
+				FallingLeft = true;
+				LOG("FALLING LEFT");
+
+			}
+
+			if (PlayerInput.D_active&&FallingLeft != true) {
+
+
+				FallingRight = true;
+				LOG("FALLING RIGHT");
+			}
+
+			if (FallingLeft == true) {
+
+				CurrentPosition.x -= Character_vel;
+
+			}
+
+			if (FallingRight == true) {
+
+				CurrentPosition.x += Character_vel;
+
 
 			}
 
@@ -155,18 +183,32 @@ public:
 			LOG("FALLING");
 			On_The_Ground();
 
-			if (PlayerInput.A_active) {
+			if (PlayerInput.A_active && FallingRight != true) {
+
 
 				FallingLeft = true;
-				FallingRight = false;
-				CurrentPosition.x -= FallingXSpeed;
+				LOG("FALLING LEFT");
+
 			}
 
-			if (PlayerInput.D_active) {
+			if (PlayerInput.D_active&&FallingLeft != true) {
+
+
 				FallingRight = true;
-				FallingLeft = true;
-				
-				CurrentPosition.x += FallingXSpeed;
+				LOG("FALLING RIGHT");
+			}
+
+			if (FallingLeft == true) {
+
+				CurrentPosition.x -= Character_vel;
+
+			}
+
+			if (FallingRight == true) {
+
+				CurrentPosition.x += Character_vel;
+
+
 			}
 
 			
