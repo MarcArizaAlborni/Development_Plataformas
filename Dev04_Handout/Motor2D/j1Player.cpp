@@ -52,256 +52,310 @@ j1Player::j1Player()
 
 bool j1Player::PreUpdate() 
  {
+	PlayerInput.F10_active = App->input->keyboard[SDL_SCANCODE_F10] == KEY_DOWN;
+	
+	if(PlayerInput.F10_active && GOD_MODE==false) {
+		LOG("GOD MODE ON");
+		GOD_MODE = true;
+	}
+	else if (PlayerInput.F10_active && GOD_MODE == true) {
 
+		LOG("GOD MODE OFF");
+		GOD_MODE = false;
+
+	}
+
+	if (GOD_MODE == false) {
+
+
+		PlayerInput.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
+		PlayerInput.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
+		PlayerInput.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN;
+		PlayerInput.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN;
+		PlayerInput.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
+		PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_DOWN;
+	}
+
+	else  {
+
+		PlayerInput.AG_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
+		PlayerInput.DG_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
+		PlayerInput.WG_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT;
+		PlayerInput.SG_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT;
+
+
+	}
 	 //AGAFAR INPUTS I TAL, HE MIRAT I CREC QUE FERHO AIXI ES MILLOR QUE TOT JUNT 
-	 PlayerInput.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
-	 PlayerInput.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
-	 PlayerInput.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN;
-	 PlayerInput.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN;
-	 PlayerInput.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
-	 PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_DOWN;
+	 
 	
 
 	//ROTACIO DELS PLAYER STATES 
+	if (GOD_MODE == false) {
+		if (PlayerState == IdleState)
+		{
+			if (SlimeForm == false) {
+				if (PlayerInput.A_active)
+				{
+					PlayerState = LeftState;
+					LOG("IDLE TO LEFT");
+				}
 
-	 if (PlayerState == IdleState)
-	 {
-		 if (SlimeForm == false) {
-			 if (PlayerInput.A_active)
-			 {
-				 PlayerState = LeftState;
-				 LOG("IDLE TO LEFT");
-			 }
+				if (PlayerInput.D_active)
+				{
+					PlayerState = RightState;
+					LOG("IDLE TO RIGHT");
+				}
 
-			 if (PlayerInput.D_active)
-			 {
-				 PlayerState = RightState;
-				 LOG("IDLE TO RIGHT");
-			 }
 
-			 
 
-			 if (PlayerInput.I_active) {
+				if (PlayerInput.I_active) {
 
-				 PlayerState = SlimeState;
-				 LOG("IDLE (HUMAN) TO SLIME");
-			 }
+					PlayerState = SlimeState;
+					LOG("IDLE (HUMAN) TO SLIME");
+				}
 
-			 if (PlayerInput.W_active ) {
+				if (PlayerInput.W_active) {
 
-				 On_The_Ground();
-				 
+					On_The_Ground();
 
-				 if (On_Ground == true) {
 
-					 StartPosition.y = CurrentPosition.y;
-					 PlayerState = JumpState;
-					 LOG("IDLE TO JUMP");
-				 }
-				 
-				 if (On_Ground == false) {
+					if (On_Ground == true) {
 
-					 LOG("JUMP NOT AVAILABLE");
-				 }
-				
-				 
-			 }
-		 }
-		 else {
+						StartPosition.y = CurrentPosition.y;
+						PlayerState = JumpState;
+						LOG("IDLE TO JUMP");
+					}
 
-			 if (PlayerInput.A_active) {
+					if (On_Ground == false) {
 
-				 PlayerState = LeftState;
-				 LOG("IDLE TO LEFT (SLIME)");
+						LOG("JUMP NOT AVAILABLE");
+					}
 
-			 }
 
-			 if (PlayerInput.D_active) {
+				}
+			}
+			else {
 
-				 PlayerState = RightState;
-				 LOG("IDLE TO RIGHT (SLIME)");
-			 }
+				if (PlayerInput.A_active) {
 
-			 if (PlayerInput.I_active) {
+					PlayerState = LeftState;
+					LOG("IDLE TO LEFT (SLIME)");
 
+				}
 
-				 PlayerState = SlimeState;
-				 LOG("IDLE (SLIME TO SLIME)");
+				if (PlayerInput.D_active) {
 
-			 }
-		 }
-	 }
-	 
-	 
-	 if (PlayerState == LeftState)
-	 {
-		 if (SlimeForm == false) {
-			 if (!PlayerInput.A_active)
-			 {
+					PlayerState = RightState;
+					LOG("IDLE TO RIGHT (SLIME)");
+				}
 
-				 PlayerState = IdleState;
-				 LOG("LEFT TO IDLE");
-			 }
+				if (PlayerInput.I_active) {
 
-			 if (PlayerInput.U_active) {
-				 DashActiveLeft = true;
-				 StartPosition.x = CurrentPosition.x;
-				 PlayerState = DashState;
-				 LOG("LEFT TO DASH LEFT");
-			 }
 
-			 /*if (PlayerInput.W_active) {
+					PlayerState = SlimeState;
+					LOG("IDLE (SLIME TO SLIME)");
 
-				 On_The_Ground();
+				}
+			}
+		}
 
 
-				 if (On_Ground == true) {
+		if (PlayerState == LeftState)
+		{
+			if (SlimeForm == false) {
+				if (!PlayerInput.A_active)
+				{
 
-					 StartPosition.y = CurrentPosition.y;
-					 PlayerState = JumpState;
-					 LOG("LEFT TO JUMP");
-				 }
+					PlayerState = IdleState;
+					LOG("LEFT TO IDLE");
+				}
 
-				 if (On_Ground == false) {
+				if (PlayerInput.U_active) {
+					DashActiveLeft = true;
+					StartPosition.x = CurrentPosition.x;
+					PlayerState = DashState;
+					LOG("LEFT TO DASH LEFT");
+				}
 
-					 LOG("JUMP NOT AVAILABLE");
-				 }
+				/*if (PlayerInput.W_active) {
 
+					On_The_Ground();
 
-			 }*/
 
-		 }
+					if (On_Ground == true) {
 
-		 else {
+						StartPosition.y = CurrentPosition.y;
+						PlayerState = JumpState;
+						LOG("LEFT TO JUMP");
+					}
 
-			  if (!PlayerInput.A_active)
-			 {
+					if (On_Ground == false) {
 
-				 PlayerState = IdleState;
-				 LOG("LEFT(SLIME) TO IDLE (SLIME)");
-			 }
+						LOG("JUMP NOT AVAILABLE");
+					}
 
 
-		 }
+				}*/
 
+			}
 
-		 if (PlayerInput.W_active && SlimeForm==false) {
+			else {
 
-			 On_The_Ground();
+				if (!PlayerInput.A_active)
+				{
 
+					PlayerState = IdleState;
+					LOG("LEFT(SLIME) TO IDLE (SLIME)");
+				}
 
-			 if (On_Ground == true) {
 
-				 StartPosition.y = CurrentPosition.y;
-				 PlayerState = JumpState;
-				 LOG("LEFT TO JUMP");
-			 }
+			}
 
-			 if (On_Ground == false) {
 
-				 LOG("JUMP NOT AVAILABLE");
-			 }
+			if (PlayerInput.W_active && SlimeForm == false) {
 
+				On_The_Ground();
 
-		 }
-		
-	 }
-	 if (PlayerState == RightState) 
-	 {
-		 if (SlimeForm == false) {
-			 if (!PlayerInput.D_active)
-			 {
-				 PlayerState = IdleState;
-				 LOG("RIGHT TO IDLE");
-			 }
 
+				if (On_Ground == true) {
 
+					StartPosition.y = CurrentPosition.y;
+					PlayerState = JumpState;
+					LOG("LEFT TO JUMP");
+				}
 
-			 if (PlayerInput.U_active) {
-				 DashActiveRight = true;
-				 StartPosition.x = CurrentPosition.x;
-				 PlayerState = DashState;
-				 LOG("LEFT TO DASH RIGHT");
-			 }
+				if (On_Ground == false) {
 
-			 /*if (PlayerInput.W_active) {
+					LOG("JUMP NOT AVAILABLE");
+				}
 
-				 On_The_Ground();
 
+			}
 
-				 if (On_Ground == true) {
+		}
+		if (PlayerState == RightState)
+		{
+			if (SlimeForm == false) {
+				if (!PlayerInput.D_active)
+				{
+					PlayerState = IdleState;
+					LOG("RIGHT TO IDLE");
+				}
 
-					 StartPosition.y = CurrentPosition.y;
-					 PlayerState = JumpState;
-					 LOG("RIGHT TO JUMP");
-				 }
 
-				 if (On_Ground == false) {
 
-					 LOG("JUMP NOT AVAILABLE");
-				 }
+				if (PlayerInput.U_active) {
+					DashActiveRight = true;
+					StartPosition.x = CurrentPosition.x;
+					PlayerState = DashState;
+					LOG("LEFT TO DASH RIGHT");
+				}
 
+				/*if (PlayerInput.W_active) {
 
-			 }*/
-		 }
+					On_The_Ground();
 
-		 else {
 
-			 if (!PlayerInput.D_active)
-			 {
-				 PlayerState = IdleState;
-				 LOG("RIGHT (SLIME) TO IDLE (SLIME)");
-			 }
+					if (On_Ground == true) {
 
-		 }
+						StartPosition.y = CurrentPosition.y;
+						PlayerState = JumpState;
+						LOG("RIGHT TO JUMP");
+					}
 
-		 if (PlayerInput.W_active && SlimeForm == false) {
+					if (On_Ground == false) {
 
-			 On_The_Ground();
+						LOG("JUMP NOT AVAILABLE");
+					}
 
 
-			 if (On_Ground == true) {
+				}*/
+			}
 
-				 StartPosition.y = CurrentPosition.y;
-				 PlayerState = JumpState;
-				 LOG("LEFT TO JUMP");
-			 }
+			else {
 
-			 if (On_Ground == false) {
+				if (!PlayerInput.D_active)
+				{
+					PlayerState = IdleState;
+					LOG("RIGHT (SLIME) TO IDLE (SLIME)");
+				}
 
-				 LOG("JUMP NOT AVAILABLE");
-			 }
+			}
 
+			if (PlayerInput.W_active && SlimeForm == false) {
 
-		 }
+				On_The_Ground();
 
-		 
 
-	 }
+				if (On_Ground == true) {
 
-	 if (PlayerState == SlimeState) {
-		 SlimeForm;
-		 if (SlimeForm == false) { //HUMAN TO SLIME
-			 //CANVIAR SPRITE AL DE SLIME 
-			 //ANIMACIO DE TRANSFORMACIO
-			 SlimeForm = true;
-			 //if(animation  to slime transformation finished) -> playerstate= Idle 
-			 LOG("TRANSFORMING INTO SLIME");
-			 PlayerState = IdleState; // Aixo no funciona be per ara perque com que no hi han animacions canvia al instant
-			 
-		 }
+					StartPosition.y = CurrentPosition.y;
+					PlayerState = JumpState;
+					LOG("LEFT TO JUMP");
+				}
 
-		 else if (SlimeForm == true) { // SLIME TO HUMAN
+				if (On_Ground == false) {
 
-			 //CANVIAR SPRITE AL NORMAL
-			 //ANIMACIO TRANSFORMACIO
-			 SlimeForm = false;
-			 //if(animation to human transformation finished) -> playerstate= Idle 
-			 LOG("TRANSFORMING INTO HUMAN");
-			 PlayerState = IdleState;
-		 }
+					LOG("JUMP NOT AVAILABLE");
+				}
+
+
+			}
+
+
+
+		}
+
+		if (PlayerState == SlimeState) {
+			SlimeForm;
+			if (SlimeForm == false) { //HUMAN TO SLIME
+				//CANVIAR SPRITE AL DE SLIME 
+				//ANIMACIO DE TRANSFORMACIO
+				SlimeForm = true;
+				//if(animation  to slime transformation finished) -> playerstate= Idle 
+				LOG("TRANSFORMING INTO SLIME");
+				PlayerState = IdleState; // Aixo no funciona be per ara perque com que no hi han animacions canvia al instant
+
+			}
+
+			else if (SlimeForm == true) { // SLIME TO HUMAN
+
+				//CANVIAR SPRITE AL NORMAL
+				//ANIMACIO TRANSFORMACIO
+				SlimeForm = false;
+				//if(animation to human transformation finished) -> playerstate= Idle 
+				LOG("TRANSFORMING INTO HUMAN");
+				PlayerState = IdleState;
+			}
+
+		}
+	}
+
+	else {
+
+
+		if (PlayerInput.AG_active) {
+			CurrentPosition.x -= Character_vel*2;
+
+		}
+
+		if (PlayerInput.DG_active) {
+			CurrentPosition.x += Character_vel*2;
+
+		}
+
+		if (PlayerInput.WG_active) {
+			CurrentPosition.y -= Character_vel*2;
+
+		}
+
+		if (PlayerInput.SG_active) {
+			CurrentPosition.y += Character_vel*2;
+
+		}
 
 	}
+
 	 return true ;
 }
 
@@ -313,7 +367,7 @@ bool j1Player::Update(float dt)
 	switch (PlayerState)
 	{
 	case IdleState:
-		LOG("IDLE");
+		//LOG("IDLE");
 		CurrentAnimation = &idle;
 		break;
 

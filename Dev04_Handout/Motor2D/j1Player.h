@@ -11,15 +11,30 @@ struct p2Animation;
 
 struct Input_player
 {
-
+	//GAMEPLAY
 	bool A_active; //LEFT
 	bool D_active;//RIGHT
 	bool Space_active;// ABILITY 1
 	bool U_active;//DASH ABILITY 2
 	bool I_active;//TRANSOFMRATION ABILITY 3
 	bool W_active; //JUMP
-	
 
+
+	//CONSOLE
+	bool F1_active; //START LEVEL 1
+	bool F2_active; //START LEVEL 2
+	bool F3_active; //Start Current Level from Beginning
+	bool F5_active; // Save 
+	bool F6_active; //Load
+	bool F9_active; //View Colliders
+	bool F10_active; //God Mode
+	
+	//GOD MODE
+
+	bool AG_active;
+	bool DG_active;
+	bool SG_active;
+	bool WG_active;
 
 };
 enum CurrentState 
@@ -46,7 +61,10 @@ private:
 	
 public:
 	
-	
+	//CONTROLLS F
+
+	bool GOD_MODE = false;
+
 	j1Player();
 
 	// Destructor
