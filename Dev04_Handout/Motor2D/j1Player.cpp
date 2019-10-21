@@ -53,7 +53,8 @@ j1Player::j1Player()
 bool j1Player::PreUpdate() 
  {
 	PlayerInput.F10_active = App->input->keyboard[SDL_SCANCODE_F10] == KEY_DOWN;
-	
+	PlayerInput.F3_active = App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN;
+
 	if(PlayerInput.F10_active && GOD_MODE==false) {
 		LOG("GOD MODE ON");
 		GOD_MODE = true;
@@ -74,6 +75,7 @@ bool j1Player::PreUpdate()
 		PlayerInput.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN;
 		PlayerInput.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
 		PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_DOWN;
+		
 	}
 
 	else  {
@@ -87,7 +89,12 @@ bool j1Player::PreUpdate()
 	}
 	 //AGAFAR INPUTS I TAL, HE MIRAT I CREC QUE FERHO AIXI ES MILLOR QUE TOT JUNT 
 	 
-	
+	//START CURRENT LEVEL
+	if (PlayerInput.F3_active) {
+
+		CurrentPosition.x = Inipos.x;
+		CurrentPosition.y =Inipos.y ;
+	}
 
 	//ROTACIO DELS PLAYER STATES 
 	if (GOD_MODE == false) {
