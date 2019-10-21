@@ -40,7 +40,7 @@ void j1Map::Draw()
 	for (item; item != nullptr; item = item->next) {
 
 		uint* gid = item->data->tile_ids;
-		int i = 0;
+		uint i = 0;
 		for (uint y = 0; y < data.height; ++y)
 		{
 			for (uint x = 0; x < data.width; ++x)
@@ -200,6 +200,20 @@ bool j1Map::Load(const char* file_name)
 		}
 
 		data.maplayers.add(lay);
+	}
+
+	// Load Object Group info -------------------------------------------
+	pugi::xml_node objectgroup;
+	for (objectgroup = map_file.child("map").child("objectgroup"); objectgroup && ret; objectgroup = objectgroup.next_sibling("objectgroup"))
+	{
+		ObjectGroup* obj = new ObjectGroup();
+
+		if (ret == true)
+		{
+			ret = LoadObjectGroup(objectgroup, obj);
+		}
+
+		data.objectgroups.add(obj);
 	}
 
 	if(ret == true)
@@ -388,10 +402,64 @@ bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 
 		for (pugi::xml_node tile_info = node.child("data").child("tile"); tile_info; tile_info = tile_info.next_sibling("tile"))
 		{
-			layer->tile_ids[i++] = tile_info.attribute("gid").as_uint();
+			layer->tile_ids[i] = tile_info.attribute("gid").as_uint();
+			i++;
 		}
 	}
 	
 	return ret;
 }
 
+bool j1Map::LoadObjectGroup(pugi::xml_node& node, ObjectGroup* object)
+{
+	bool ret = true;
+
+	if (node == NULL)
+	{
+		LOG("Error parsing tileset xml file: Cannot find 'objectgroup' tag.");
+		ret = false;
+	}
+	else
+	{
+
+		object->id = node.attribute("id").as_uint();
+		object->name = node.attribute("name").as_string();
+
+		uint num_objects = 0;
+		for (pugi::xml_node object_node = node.child("object"); object_node && ret; object_node = object_node.next_sibling("object"))
+		{ 
+			if (ret == true)
+			{
+				num_objects++;
+			}
+			else
+			{
+				LOG("Error parsing tileset xml file: Cannot find 'object' tag. ");
+			}
+		}
+
+		object->object_properties = new ObjectProperties[num_objects];
+		memset(object->object_properties, 0, num_objects * sizeof(ObjectProperties));
+
+		uint i = 0;
+		for (pugi::xml_node object_node = node.child("object"); object_node && ret; object_node = object_node.next_sibling("object"))
+		{
+			if (ret == true)
+			{
+				object->object_properties[i].id = object_node.attribute("id").as_uint();
+				object->object_properties[i].name = object_node.attribute("name").as_string();
+				object->object_properties[i].x = object_node.attribute("x").as_uint();
+				object->object_properties[i].y = object_node.attribute("y").as_uint();
+				object->object_properties[i].width = object_node.attribute("width").as_uint();
+				object->object_properties[i].height = object_node.attribute("height").as_uint();
+				i++;
+			}
+			else
+			{
+				LOG("Error parsing tileset xml file: Cannot find 'object' tag. ");
+			}
+		}
+	}
+
+	return ret;
+}

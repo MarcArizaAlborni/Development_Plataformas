@@ -23,6 +23,24 @@ struct MapLayer
 	};
 };
 
+struct ObjectProperties
+{
+	uint id;
+	p2SString name;
+	uint x = 0u;
+	uint y = 0u;
+	uint width = 0u;
+	uint height = 0u;
+
+};
+
+struct ObjectGroup
+{
+	uint id;
+	p2SString name;
+	ObjectProperties* object_properties;
+};
+
 
 // ----------------------------------------------------
 struct TileSet
@@ -58,16 +76,16 @@ enum MapTypes
 // ----------------------------------------------------
 struct MapData
 {
-	int					width;
-	int					height;
-	int					tile_width;
-	int					tile_height;
-	SDL_Color			background_color;
-	MapTypes			type;
-	p2List<TileSet*>	tilesets;
-
+	int						width;
+	int						height;
+	int						tile_width;
+	int						tile_height;
+	SDL_Color				background_color;
+	MapTypes				type;
+	p2List<TileSet*>		tilesets;
 	// TODO 2: Add a list/array of layers to the map!
-	p2List<MapLayer*>   maplayers;
+	p2List<MapLayer*>		maplayers;
+	p2List<ObjectGroup*>	objectgroups;
 };
 
 // ----------------------------------------------------
@@ -101,8 +119,10 @@ private:
 	bool LoadMap();
 	bool LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
-	// TODO 3: Create a method that loads a single layer
+	// Create a method that loads a single layer
 	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
+	// Create a methid to load the Object Group
+	bool LoadObjectGroup(pugi::xml_node& node, ObjectGroup* layer);
 
 public:
 

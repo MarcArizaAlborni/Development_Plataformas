@@ -3,7 +3,7 @@
 
 j1Collision::j1Collision()
 {
-
+	name.create("collision");
 }
 
 j1Collision::~j1Collision()
@@ -19,6 +19,7 @@ bool j1Collision::Awake(pugi::xml_node config)
 
 bool j1Collision::Start()
 {
+	
 	return true;
 }
 
