@@ -28,6 +28,7 @@ struct Input_player
 	bool F6_active; //Load
 	bool F9_active; //View Colliders
 	bool F10_active; //God Mode (FET)
+	bool F11_active; //FOCUS CAMERA ON THE  PLAYER
 	
 	//GOD MODE
 

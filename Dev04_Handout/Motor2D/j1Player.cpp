@@ -41,7 +41,8 @@ j1Player::j1Player()
  bool  j1Player::Start() 
  {
 	 LOG("Loading player textures");
-
+	 
+	 
 	 Graphics = App->tex->Load("Sprites/Dude.png");
 	 floor = CurrentPosition.y;
 	 PlayerState = IdleState;
@@ -54,6 +55,7 @@ bool j1Player::PreUpdate()
  {
 	PlayerInput.F10_active = App->input->keyboard[SDL_SCANCODE_F10] == KEY_DOWN;
 	PlayerInput.F3_active = App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN;
+	PlayerInput.F11_active= App->input->keyboard[SDL_SCANCODE_F11] == KEY_DOWN;
 
 	if(PlayerInput.F10_active && GOD_MODE==false) {
 		LOG("GOD MODE ON");
@@ -94,6 +96,14 @@ bool j1Player::PreUpdate()
 
 		CurrentPosition.x = Inipos.x;
 		CurrentPosition.y =Inipos.y ;
+	}
+	if (PlayerInput.F11_active) { //NI IDEA DE PERQUE NO VA
+
+		App->render->camera.x = CurrentPosition.x;
+		App->render->camera.y = CurrentPosition.y;
+		float camx = App->render->camera.x;
+		float camy = App->render->camera.y;
+		LOG("CAM.X = %f   CAM.Y == %f", camx, camy);
 	}
 
 	//ROTACIO DELS PLAYER STATES 
