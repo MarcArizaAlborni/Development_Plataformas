@@ -13,6 +13,9 @@ struct Mix_Chunk;
 class j1Audio : public j1Module
 {
 public:
+	p2SString	Music_Files;
+	p2SString	Fx_Files;
+
 
 	j1Audio();
 

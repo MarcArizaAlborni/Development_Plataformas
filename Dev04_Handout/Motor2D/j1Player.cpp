@@ -22,6 +22,13 @@ j1Player::j1Player()
 
  bool j1Player::Awake(pugi::xml_node& node)
  {
+
+	 Jump_Sound = App->audio->LoadFx();
+	 Death_Sound = App->audio->LoadFx();
+	 Fall_Sound = App->audio->LoadFx();
+	 Dash_Sound = App->audio->LoadFx();
+
+
 	 bool ret = true;
 	
 	 pugi::xml_node player = node.child("player");

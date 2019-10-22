@@ -153,17 +153,7 @@ public:
 				Max_Reached = true;
 			}
 			
-			/*if (PlayerInput.A_active) {
-				FallingLeft = true;
-				CurrentPosition.x -= Character_vel;
-
-			}
-
-			if (PlayerInput.D_active) {
-				FallingRight = true;
-				CurrentPosition.x += Character_vel;;
-
-			}*/
+			
 
 			if (PlayerInput.A_active && FallingRight != true) {
 
@@ -277,5 +267,13 @@ public:
 
 	bool SlimeForm;
 
-	
+	//AUDIO THINGS 
+
+	int Jump_Sound;
+	int Death_Sound;
+	int Dash_Sound;
+	int Fall_Sound;
+
+
+
 };
