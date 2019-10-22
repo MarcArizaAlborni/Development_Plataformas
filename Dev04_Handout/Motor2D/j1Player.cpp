@@ -73,7 +73,7 @@ bool j1Player::PreUpdate()
 
 		PlayerInput.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
 		PlayerInput.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
-		PlayerInput.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN;
+		//PlayerInput.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN;
 		PlayerInput.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN;
 		PlayerInput.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
 		PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_DOWN;
@@ -131,7 +131,7 @@ bool j1Player::PreUpdate()
 					LOG("IDLE (HUMAN) TO SLIME");
 				}
 
-				if (PlayerInput.W_active) {
+				if (PlayerInput.Space_active) {
 
 					On_The_Ground();
 
@@ -211,7 +211,7 @@ bool j1Player::PreUpdate()
 			}
 
 
-			if (PlayerInput.W_active && SlimeForm == false) {
+			if (PlayerInput.Space_active && SlimeForm == false) {
 
 				On_The_Ground();
 
@@ -263,7 +263,7 @@ bool j1Player::PreUpdate()
 
 			}
 
-			if (PlayerInput.W_active && SlimeForm == false) {
+			if (PlayerInput.Space_active && SlimeForm == false) {
 
 				On_The_Ground();
 

@@ -14,10 +14,10 @@ struct Input_player
 	//GAMEPLAY
 	bool A_active; //LEFT
 	bool D_active;//RIGHT
-	bool Space_active;// ABILITY 1
+	bool Space_active;// JUMP
 	bool U_active;//DASH ABILITY 2
 	bool I_active;//TRANSFORMATION ABILITY 3
-	bool W_active; //JUMP
+	//bool W_active; JUMP
 
 
 	//CONSOLE
@@ -108,7 +108,7 @@ public:
 	bool Jump_Ready;
 	uint temppos;
 	bool Max_Reached;
-	float FallingXSpeed = 10;
+	float FallingXSpeed = 10.0f;
 	bool FallingLeft;
 	bool FallingRight;
 
