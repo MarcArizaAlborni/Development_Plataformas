@@ -133,10 +133,11 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 				LOG("Cannot play in music %s. Mix_GetError(): %s", path, Mix_GetError());
 				ret = false;
 			}
+			LOG("Successfully playing %s", path);
 		}
 	}
 
-	LOG("Successfully playing %s", path);
+	
 	return ret;
 }
 
