@@ -54,6 +54,7 @@ enum CurrentState
 class j1Player : public j1Module 
 {
 private:
+	
 
 
 	iPoint Inipos;
@@ -62,6 +63,14 @@ private:
 	
 public:
 	
+
+	//AUDIO THINGS 
+
+	int Jump_Sound;
+	int Death_Sound;
+	int Dash_Sound;
+
+
 	//CONTROLLS F
 
 	bool GOD_MODE = false;
@@ -267,12 +276,7 @@ public:
 
 	bool SlimeForm;
 
-	//AUDIO THINGS 
-
-	int Jump_Sound;
-	int Death_Sound;
-	int Dash_Sound;
-	int Fall_Sound;
+	
 
 
 

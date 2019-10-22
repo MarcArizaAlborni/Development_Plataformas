@@ -5,6 +5,7 @@
 #include "j1Textures.h"
 #include "j1Map.h"
 #include <math.h>
+#include "j1Audio.h"
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
@@ -255,6 +256,7 @@ bool j1Map::Load(const char* file_name)
 // Load map general properties
 bool j1Map::LoadMap()
 {
+	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
 	bool ret = true;
 	pugi::xml_node map = map_file.child("map");
 
@@ -459,7 +461,11 @@ bool j1Map::LoadObjectGroup(pugi::xml_node& node, ObjectGroup* object)
 				LOG("Error parsing tileset xml file: Cannot find 'object' tag. ");
 			}
 		}
+
 	}
 
 	return ret;
 }
+
+
+	

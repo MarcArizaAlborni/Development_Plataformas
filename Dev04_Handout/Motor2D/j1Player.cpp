@@ -7,6 +7,7 @@
 #include "j1Render.h"
 #include "j1Input.h"
 #include "j1Player.h"
+#include "j1Audio.h"
 
 
 
@@ -22,11 +23,10 @@ j1Player::j1Player()
 
  bool j1Player::Awake(pugi::xml_node& node)
  {
-
-	 Jump_Sound = App->audio->LoadFx();
-	 Death_Sound = App->audio->LoadFx();
-	 Fall_Sound = App->audio->LoadFx();
-	 Dash_Sound = App->audio->LoadFx();
+	 
+	 Jump_Sound = App->audio->LoadFx("audio/FX/Jump_1");
+	 Death_Sound = App->audio->LoadFx("audio/FX/Death_1");
+	 Dash_Sound = App->audio->LoadFx("audio/FX/Dash_1");
 
 
 	 bool ret = true;

@@ -31,6 +31,7 @@ bool j1Scene::Awake()
 bool j1Scene::Start()
 {
 	App->map->Load("Level1V4.tmx");
+	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
 	return true;
 }
 

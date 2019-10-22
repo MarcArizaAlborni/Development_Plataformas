@@ -38,4 +38,13 @@
     
   </player>
 
+  <audio>
+    <Music>
+      <BackgroundMusic>audio/music</BackgroundMusic>
+    </Music>
+    <Fx>
+      <MovementSounds>audio/fx</MovementSounds>
+    </Fx>
+  </audio>
+
 </config>

@@ -1,8 +1,7 @@
 #include "p2Defs.h"
 #include "p2Log.h"
-#include "j1Audio.h"
 #include "p2List.h"
-
+#include "j1Audio.h"
 #include "SDL/include/SDL.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 #pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
@@ -20,8 +19,8 @@ j1Audio::~j1Audio()
 // Called before render is available
 bool j1Audio::Awake(pugi::xml_node& config)
 {
-	Music_Files = config.child("music").child_value("folder");
-	Fx_Files = config.child("fx").child_value("folder");
+	Music_Files = config.child("Music").child_value("BackgroundMusic");
+	Fx_Files = config.child("Fx").child_value("MovementSounds");
 
 	LOG("Loading Audio Mixer");
 	bool ret = true;
@@ -87,8 +86,7 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 {
 
 
-	p2SString tmp("%s%s", Music_Files.GetString(), path);
-	music = Mix_LoadMUS(tmp.GetString());
+	
 
 	bool ret = true;
 
@@ -110,7 +108,8 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 		Mix_FreeMusic(music);
 	}
 
-	
+	p2SString tmp("%s%s", Music_Files.GetString(), path);
+	music = Mix_LoadMUS(tmp.GetString());
 
 	if (music == NULL)
 	{

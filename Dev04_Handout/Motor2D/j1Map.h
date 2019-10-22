@@ -86,6 +86,9 @@ struct MapData
 	// TODO 2: Add a list/array of layers to the map!
 	p2List<MapLayer*>		maplayers;
 	p2List<ObjectGroup*>	objectgroups;
+	
+
+	p2SString MusicAudio_Files;
 };
 
 // ----------------------------------------------------

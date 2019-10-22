@@ -5,6 +5,7 @@
 #include "SDL_mixer\include\SDL_mixer.h"
 #include "p2List.h"
 
+
 #define DEFAULT_MUSIC_FADE_TIME 2.0f
 
 struct _Mix_Music;
@@ -12,10 +13,8 @@ struct Mix_Chunk;
 
 class j1Audio : public j1Module
 {
-public:
-	p2SString	Music_Files;
-	p2SString	Fx_Files;
 
+public:
 
 	j1Audio();
 
@@ -41,6 +40,12 @@ private:
 
 	_Mix_Music*			music;
 	p2List<Mix_Chunk*>	fx;
+
+
+public:
+	p2SString Music_Files;
+	p2SString Fx_Files;
+
 };
 
 #endif // __j1AUDIO_H__
