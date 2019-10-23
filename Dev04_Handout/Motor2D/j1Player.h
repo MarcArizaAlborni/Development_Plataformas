@@ -138,10 +138,10 @@ public:
 			LOG("FLOOR MES GRAN QUE CURRENT POSITION");
 
 		}
-		else { //AIXO AMB ELS COLLIDERS NO FARA FALTA PERO PER ARA EL DEIXO AQUI
+		else if(CurrentPosition.y>=floor){ //AIXO AMB ELS COLLIDERS NO FARA FALTA PERO PER ARA EL DEIXO AQUI
 
 
-			CurrentPosition.y = floor;
+			floor = CurrentPosition.y;
 
 			On_Ground = true;
 
