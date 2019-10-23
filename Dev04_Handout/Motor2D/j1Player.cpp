@@ -24,9 +24,7 @@ j1Player::j1Player()
  bool j1Player::Awake(pugi::xml_node& node)
  {
 	 
-	 Jump_Sound = App->audio->LoadFx("audio/FX/Jump_1");
-	 Death_Sound = App->audio->LoadFx("audio/FX/Death_1");
-	 Dash_Sound = App->audio->LoadFx("audio/FX/Dash_1");
+	
 
 
 	 bool ret = true;
@@ -55,6 +53,11 @@ j1Player::j1Player()
 	 PlayerState = IdleState;
 	 SlimeForm = false;
 
+
+	 Jump_Sound = App->audio->LoadFx("audio/FX/Jump_1");
+	 Death_Sound = App->audio->LoadFx("audio/FX/Death_1");
+	 Dash_Sound = App->audio->LoadFx("audio/FX/Dash_1");
+	
 	 return true;
  }
 

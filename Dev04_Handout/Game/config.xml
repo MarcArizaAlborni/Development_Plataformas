@@ -39,12 +39,15 @@
   </player>
 
   <audio>
+    <Volume></Volume>
     <Music>
-      <BackgroundMusic>audio/music</BackgroundMusic>
+      <BackgroundMusic> name="BackgroundMusic" value="MusicLevel1.ogg"/></BackgroundMusic>
     </Music>
     <Fx>
       <MovementSounds>audio/fx</MovementSounds>
     </Fx>
   </audio>
+
+  
 
 </config>

@@ -43,6 +43,7 @@ private:
 
 
 public:
+	uint Volume;
 	p2SString Music_Files;
 	p2SString Fx_Files;
 

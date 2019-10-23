@@ -256,7 +256,7 @@ bool j1Map::Load(const char* file_name)
 // Load map general properties
 bool j1Map::LoadMap()
 {
-	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
+	//App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
 	bool ret = true;
 	pugi::xml_node map = map_file.child("map");
 
@@ -296,6 +296,7 @@ bool j1Map::LoadMap()
 			sscanf_s(blue.GetString(), "%x", &v);
 			if(v >= 0 && v <= 255) data.background_color.b = v;
 		}
+		data.MusicAudio_Files = map.child("properties").child("property").attribute("value").as_string();
 
 		p2SString orientation(map.attribute("orientation").as_string());
 

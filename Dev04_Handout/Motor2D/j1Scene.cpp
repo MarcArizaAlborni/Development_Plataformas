@@ -31,6 +31,7 @@ bool j1Scene::Awake()
 bool j1Scene::Start()
 {
 	App->map->Load("Level1V4.tmx");
+
 	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
 	return true;
 }
@@ -44,6 +45,7 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
+
 	if(App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		App->LoadGame();
 
@@ -77,6 +79,23 @@ bool j1Scene::Update(float dt)
 // Called each loop iteration
 bool j1Scene::PostUpdate()
 {
+	//VOLUMEN
+
+	/*if (App->input->GetKey(SDL_SCANCODE_KP_PLUS) == KEY_DOWN)
+	{
+		App->audio->general_volume += 5;
+		App->audio->SetVolumeMusic();
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_KP_MINUS) == KEY_DOWN)
+	{
+		App->audio->general_volume -= 5;
+		App->audio->SetVolumeMusic();
+	}*/
+
+
+
+
 	bool ret = true;
 
 	if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)

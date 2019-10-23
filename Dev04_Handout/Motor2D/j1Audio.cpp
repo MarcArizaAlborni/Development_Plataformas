@@ -19,7 +19,9 @@ j1Audio::~j1Audio()
 // Called before render is available
 bool j1Audio::Awake(pugi::xml_node& config)
 {
-	Music_Files = config.child("Music").child_value("BackgroundMusic");
+	uint j = 0;
+	
+    Music_Files = config.child("Music").attribute("name").as_string();
 	Fx_Files = config.child("Fx").child_value("MovementSounds");
 
 	LOG("Loading Audio Mixer");
@@ -33,7 +35,7 @@ bool j1Audio::Awake(pugi::xml_node& config)
 		ret = true;
 	}
 
-	// load support for the JPG and PNG image formats
+	// load support for the OGG and Audio formats
 	int flags = MIX_INIT_OGG;
 	int init = Mix_Init(flags);
 
@@ -84,10 +86,6 @@ bool j1Audio::CleanUp()
 // Play a music file
 bool j1Audio::PlayMusic(const char* path, float fade_time)
 {
-
-
-	
-
 	bool ret = true;
 
 	if (!active)
@@ -108,8 +106,10 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 		Mix_FreeMusic(music);
 	}
 
-	p2SString tmp("%s%s", Music_Files.GetString(), path);
+	p2SString tmp("%s%s",Music_Files.GetString(), path);
 	music = Mix_LoadMUS(tmp.GetString());
+	
+	//music = Mix_LoadMUS("MusicLevel1");
 
 	if (music == NULL)
 	{
