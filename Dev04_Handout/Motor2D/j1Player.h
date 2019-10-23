@@ -128,14 +128,14 @@ public:
 		if (CurrentPosition.y == floor) {
 
 			On_Ground = true;
-
+			LOG("FLOOR EQUAL TO CURRENT POSITION");
 
 		}
 		else if (CurrentPosition.y<= floor) {
 
 
 			On_Ground = false;
-
+			LOG("FLOOR MES GRAN QUE CURRENT POSITION");
 
 		}
 		else { //AIXO AMB ELS COLLIDERS NO FARA FALTA PERO PER ARA EL DEIXO AQUI

@@ -63,6 +63,7 @@ j1Player::j1Player()
 
 bool j1Player::PreUpdate() 
  {
+
 	PlayerInput.F10_active = App->input->keyboard[SDL_SCANCODE_F10] == KEY_DOWN;
 	PlayerInput.F3_active = App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN;
 	PlayerInput.F11_active= App->input->keyboard[SDL_SCANCODE_F11] == KEY_DOWN;
