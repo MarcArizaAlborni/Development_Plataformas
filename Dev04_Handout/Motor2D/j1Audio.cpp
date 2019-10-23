@@ -106,10 +106,12 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 		Mix_FreeMusic(music);
 	}
 
-	p2SString tmp("%s%s",Music_Files.GetString(), path);
-	music = Mix_LoadMUS(tmp.GetString());
+	music = Mix_LoadMUS("audio/Music/MusicLevel1.ogg");
+	Dash_Sound = Mix_LoadWAV("audio/FX/Jump_1.wav");
+
 	
-	//music = Mix_LoadMUS("MusicLevel1");
+	//Jump_Sound = Mix_LoadWAV("audio/FX/Jump_2");
+	
 
 	if (music == NULL)
 	{

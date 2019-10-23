@@ -38,10 +38,12 @@ public:
 
 private:
 
-	_Mix_Music*			music;
+	Mix_Music*	music = NULL;
 	p2List<Mix_Chunk*>	fx;
-
-
+	p2List<Mix_Chunk*> Death_Sound;
+	p2List<Mix_Chunk*> Jump_Sound;
+	//p2List<Mix_Chunk*> Dash_Sound;
+	Mix_Chunk* Dash_Sound;
 public:
 	uint Volume;
 	p2SString Music_Files;
