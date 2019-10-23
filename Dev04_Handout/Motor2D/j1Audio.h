@@ -40,14 +40,17 @@ private:
 
 	Mix_Music*	music = NULL;
 	p2List<Mix_Chunk*>	fx;
-	p2List<Mix_Chunk*> Death_Sound;
-	p2List<Mix_Chunk*> Jump_Sound;
-	//p2List<Mix_Chunk*> Dash_Sound;
-	Mix_Chunk* Dash_Sound;
+	//Mix_Chunk* Dash_Sound = NULL;
+	
 public:
 	uint Volume;
 	p2SString Music_Files;
 	p2SString Fx_Files;
+	Mix_Chunk *Dash_Sound = NULL;
+	Mix_Chunk *Jump_Sound = NULL;
+
+
+
 
 };
 

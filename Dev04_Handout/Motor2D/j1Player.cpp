@@ -54,9 +54,8 @@ j1Player::j1Player()
 	 SlimeForm = false;
 
 
-	/* Jump_Sound = App->audio->LoadFx("audio/FX/Jump_1");
-	 Death_Sound = App->audio->LoadFx("audio/FX/Death_1");
-	 Dash_Sound = App->audio->LoadFx("audio/FX/Dash_1");*/
+	
+	
 	
 	 return true;
  }
@@ -381,7 +380,7 @@ bool j1Player::Update(float dt)
 		break;
 	case DashState:
 		
-		//Mix_PlayChannel(-1, Dash_Sound, 0);
+		//Mix_PlayChannel(-1,Jump_Sound , 0);
 		DashFunction();
 		LOG("DASH");
 		break;

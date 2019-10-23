@@ -107,7 +107,7 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 	}
 
 	music = Mix_LoadMUS("audio/Music/MusicLevel1.ogg");
-	Dash_Sound = Mix_LoadWAV("audio/FX/Jump_1.wav");
+	Jump_Sound = Mix_LoadWAV("audio/Music/Jump_1.wav");
 
 	
 	//Jump_Sound = Mix_LoadWAV("audio/FX/Jump_2");

@@ -4,6 +4,7 @@
 #include "j1Input.h"
 #include "j1Render.h"
 #include "p2Point.h"
+#include "j1Audio.h"
 
 
 struct SDL_Texture;
@@ -66,10 +67,14 @@ public:
 
 	//AUDIO THINGS 
 
-	int Jump_Sound;
+	/*int Jump_Sound;
 	int Death_Sound;
-	int Dash_Sound;
 
+
+
+	
+	/*Mix_Chunk *Death_Sound = NULL;
+	Mix_Chunk *Jump_Sound = NULL;*/
 
 	//CONTROLLS F
 
@@ -278,13 +283,8 @@ public:
 
 	
 	//AUDIO
-
-	void AudioLoadMusic() {
-
-
-
-
-	}
+	
+	
 
 
 };
