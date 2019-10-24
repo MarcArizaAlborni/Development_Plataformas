@@ -82,6 +82,10 @@ public:
 
 	bool CleanUp();
 
+	// Collision handling -----
+	void j1Player::OnCollision(Collider* A, Collider* B);
+
+
 	//CONTROLLS F
 
 	bool GOD_MODE = false;
