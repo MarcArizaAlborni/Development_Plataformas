@@ -14,10 +14,10 @@ into a small slime which has a smaller collider which allows you to reach certai
 
     -God Mode -> F10
 
--God Mode Left -> A
--God Mode Right -> D
--God Mode Up -> W
--God Mode Down -> S
+   -God Mode Move Left -> A
+   -God Mode Move Right -> D
+   -God Mode Move Up -> W
+   -God Mode Move Down -> S
 
     
     -Start Level 1 ->F1
