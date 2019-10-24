@@ -417,3 +417,19 @@ bool j1Player::Update(float dt)
 	 return true;
  }
 
+ bool j1Player::Load(pugi::xml_node& data)
+ {
+	 CurrentPosition.x = data.child("position1").attribute("x").as_int();
+	 CurrentPosition.y = data.child("position1").attribute("y").as_int();
+	 return true;
+ }
+
+
+ bool j1Player::Save(pugi::xml_node&  data) const
+ {
+	 pugi::xml_node pos = data.append_child("position1");
+
+	 pos.append_attribute("x") = CurrentPosition.x;
+	 pos.append_attribute("y") =CurrentPosition.y;
+	 return true;
+ }

@@ -65,16 +65,12 @@ private:
 public:
 	
 
+	bool Load(pugi::xml_node &node); //Load 
+	bool Save(pugi::xml_node &node) const;//Save
+
 	//AUDIO THINGS 
 
-	/*int Jump_Sound;
-	int Death_Sound;
-
-
-
 	
-	/*Mix_Chunk *Death_Sound = NULL;
-	Mix_Chunk *Jump_Sound = NULL;*/
 
 	//CONTROLLS F
 
