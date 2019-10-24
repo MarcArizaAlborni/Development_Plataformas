@@ -1,13 +1,14 @@
-#include "p2Point.h"
-#include "p2Animation.h"
-#include "p2Log.h"
-#include "j1Module.h"
 #include "j1App.h"
+#include "j1Player.h"
+#include "j1Module.h"
+#include "p2Point.h"
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Input.h"
-#include "j1Player.h"
-#include "j1Audio.h"
+#include "p2Animation.h"
+#include "j1Collision.h"
+#include "p2Log.h"
+#include "j1Map.h"
 
 
 
@@ -23,9 +24,6 @@ j1Player::j1Player()
 
  bool j1Player::Awake(pugi::xml_node& node)
  {
-	 CurrentPosition.y = floor;
-	
-
 
 	 bool ret = true;
 	
@@ -37,7 +35,7 @@ j1Player::j1Player()
 	 Gravity = node.attribute("gravity").as_float();
 	 DashDist = node.attribute("DashDistance").as_float();
 	 
-	 CurrentPosition = { Inipos.x, Inipos.y };
+	 
 
 	 return ret;
  }
@@ -53,9 +51,11 @@ j1Player::j1Player()
 	 PlayerState = IdleState;
 	 SlimeForm = false;
 
+	 CurrentPosition = { Inipos.x, Inipos.y };
 
-	
-	
+	 Player_Rect = { CurrentPosition.x, CurrentPosition.y, 50, 60 };
+
+	 Player_Collider = App->collision->AddCollider(Player_Rect, ObjectType::Player, this);
 	
 	 return true;
  }
@@ -392,10 +392,10 @@ bool j1Player::Update(float dt)
 	
 	//App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, 1.0f, true);
 
+	Player_Rect.x = CurrentPosition.x;
+	Player_Rect.y = CurrentPosition.y;
 
-	Player_Rect = { CurrentPosition.x, CurrentPosition.y, 50, 60 };
-
-	App->render->DrawQuad(Player_Rect, 255, 255, 0);
+	Player_Collider->SetPos(CurrentPosition.x, CurrentPosition.y);
 
 	 return true;
  }
@@ -433,3 +433,4 @@ bool j1Player::Update(float dt)
 	 pos.append_attribute("y") =CurrentPosition.y;
 	 return true;
  }
+

@@ -100,7 +100,7 @@ void j1Collision::DebugDraw()
 			App->render->DrawQuad(collider_iterator->data->rect, 255, 0, 0, alpha);
 			break;
 		case ObjectType::Player: // yellow
-			App->render->DrawQuad(collider_iterator->data->rect, 255, 255, 0, alpha);
+			App->render->DrawQuad(collider_iterator->data->rect, 255, 255, 0, 255);
 			break;
 		}
 	}

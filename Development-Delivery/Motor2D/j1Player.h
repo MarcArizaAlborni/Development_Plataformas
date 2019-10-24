@@ -5,8 +5,10 @@
 #include "j1Render.h"
 #include "p2Point.h"
 #include "j1Audio.h"
+#include "p2Log.h"
 
 
+struct Collider;
 struct SDL_Texture;
 struct p2Animation;
 
@@ -52,15 +54,12 @@ enum CurrentState
 
 };
 
+
 class j1Player : public j1Module 
 {
 private:
-	
 
-
-	iPoint Inipos;
-	
-	
+	iPoint Inipos;	
 	
 public:
 	
@@ -68,32 +67,36 @@ public:
 	bool Load(pugi::xml_node &node); //Load 
 	bool Save(pugi::xml_node &node) const;//Save
 
-	//AUDIO THINGS 
 
-	
-
-	//CONTROLLS F
-
-	bool GOD_MODE = false;
 
 	j1Player();
 
 	// Destructor
 	virtual ~j1Player();
-
+	
 	bool Awake(pugi::xml_node& conf);
-
 	bool Start();
-	float floor = CurrentPosition.y; //NOMES PER TESTING
 	bool PreUpdate();	
 	bool Update(float dt);
 	bool PostUpdate();
 
 	bool CleanUp();
+
+	//CONTROLLS F
+
+	bool GOD_MODE = false;
+
+	float floor = CurrentPosition.y; //NOMES PER TESTING
+
+
+	//AUDIO THINGS 
+
 	//INPUT COSES
 	Input_player		PlayerInput;
 	CurrentState		PlayerState;
 	SDL_Rect			Player_Rect;
+	Collider*			Player_Collider;
+
 	//ACTUALIZING POSITION 
 	iPoint				CurrentPosition;
 	iPoint              StartPosition;

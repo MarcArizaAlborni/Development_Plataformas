@@ -2,7 +2,7 @@
 
 <config>
   <app>
-    <title>Game Development Testbed</title>
+    <title>Project Ceta</title>
     <organization>UPC</organization>
   </app>
 	
@@ -11,7 +11,7 @@
   </renderer>
 
   <window>
-    <resolution width="1024" height="768" scale="1"/>
+    <resolution width="1024" height="768" scale="2"/>
     <fullscreen value="false"/>
     <borderless value="false"/>
     <resizable value="false"/>
@@ -27,7 +27,7 @@
     <folder>maps/</folder>
   </map>
 
-  <player  inipos_x="0.0f" inipos_y="500.0f" velocity="10" gravity="12" accelerationx ="2" accelerationy="15" DashDistance ="300">
+  <player  inipos_x="0.0f" inipos_y="290.0f" velocity="10" gravity="12" accelerationx ="2" accelerationy="15" DashDistance ="300">
     <!--Animations-->
     <animation name="idle" speed="1.0" loop="false">  
       <frame x="0" y="0" w="0" h="0"/>
