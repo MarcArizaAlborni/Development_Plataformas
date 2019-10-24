@@ -4,11 +4,9 @@
 #include "j1Render.h"
 #include "j1Map.h"
 
-j1Collision::j1Collision()
+j1Collision::j1Collision() : j1Module(), debug(true)
 {
 	name.create("collision");
-
-	debug = true;
 	
 }
 
@@ -72,7 +70,7 @@ bool j1Collision::PreUpdate()
 	return true;
 }
 
-bool j1Collision::Update()
+bool j1Collision::Update(float dt)
 {
 	DebugDraw();
 	return true;
@@ -95,7 +93,7 @@ void j1Collision::DebugDraw()
 
 	for (collider_iterator; collider_iterator != nullptr; collider_iterator = collider_iterator->next)
 	{
-
+	
 		switch (collider_iterator->data->type)
 		{
 		case ObjectType::Platform: // red
@@ -146,7 +144,7 @@ void j1Collision::LoadCollider() {
 
 bool Collider::CheckCollision(const SDL_Rect& r) const
 {
-
+	
 	return ((r.x + r.w > rect.x) && (r.x < rect.x + rect.w) &&
 		(r.y + r.h > rect.y) && (r.y < rect.y + rect.h));
 

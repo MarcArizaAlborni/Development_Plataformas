@@ -450,6 +450,7 @@ bool j1Map::LoadObjectGroup(pugi::xml_node& node, ObjectGroup* object)
 		{
 			if (ret == true)
 			{
+
 				object->object_properties[i].id = object_node.attribute("id").as_uint();
 				object->object_properties[i].name = object_node.attribute("name").as_string();
 				object->object_properties[i].x = object_node.attribute("x").as_uint();

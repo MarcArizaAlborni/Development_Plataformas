@@ -50,7 +50,7 @@ public:
 
 	// Called each loop iteration
 	bool PreUpdate();
-	bool Update();
+	bool Update(float dt);
 
 	// Called before quitting
 	bool CleanUp();

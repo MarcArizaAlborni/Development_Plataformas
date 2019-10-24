@@ -7,10 +7,10 @@
 #include "j1Input.h"
 #include "j1Render.h"
 #include "j1Textures.h"
-#include "j1Player.h"
+#include "j1Audio.h"
 #include "j1Scene.h"
 #include "j1Map.h"
-#include "j1Audio.h"
+#include "j1Player.h"
 #include "j1Collision.h"
 #include "j1FadeToBlack.h"
 #include "j1App.h"
@@ -26,10 +26,10 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	render = new j1Render();
 	tex = new j1Textures();
 	audio = new j1Audio();
-	collision = new j1Collision();
-	player = new j1Player();
 	scene = new j1Scene();
 	map = new j1Map();
+	player = new j1Player();
+	collision = new j1Collision();
 	fade = new j1FadeToBlack();
 	
 
@@ -37,17 +37,17 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	AddModule(win);
-	// render last to swap buffer
-	AddModule(render);
 	AddModule(input);
 	AddModule(tex);
-	AddModule(scene);
-	AddModule(map);
-	AddModule(player);
-	AddModule(fade);
 	AddModule(audio);
+	AddModule(map);
+	AddModule(scene);	
+	AddModule(player);
 	AddModule(collision);
-	
+	AddModule(fade);
+
+	// render last to swap buffer
+	AddModule(render);
 }
 
 // Destructor
