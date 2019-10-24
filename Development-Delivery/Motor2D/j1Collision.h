@@ -4,6 +4,7 @@
 #include "SDL/include/SDL.h"
 
 enum class ObjectType;
+struct ObjectProperties;
 
 struct Collider
 {
@@ -18,7 +19,11 @@ struct Collider
 		callback(callback)
 	{}
 
-	void inline SetPos(int x, int y)
+	Collider(ObjectProperties object);
+
+	Collider() {};
+
+	inline void SetPos(int x, int y)
 	{
 		rect.x = x;
 		rect.y = y;
@@ -51,11 +56,12 @@ public:
 	bool CleanUp();
 
 	Collider* AddCollider(SDL_Rect rect, ObjectType type,  j1Module* callback = nullptr);
-	void DebugDraw();
-	bool debug = true;
+	void LoadCollider();
 
+	void DebugDraw();
+	bool debug;
 private:
 
-	Collider* collider;
+	p2List<Collider*> collider;
 
 };
