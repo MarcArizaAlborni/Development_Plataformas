@@ -441,6 +441,7 @@ bool j1Map::LoadObjectGroup(pugi::xml_node& node, ObjectGroup* object)
 			}
 		}
 
+		object->object_count = num_objects;
 		object->object_properties = new ObjectProperties[num_objects];
 		memset(object->object_properties, 0, num_objects * sizeof(ObjectProperties));
 
@@ -455,6 +456,23 @@ bool j1Map::LoadObjectGroup(pugi::xml_node& node, ObjectGroup* object)
 				object->object_properties[i].y = object_node.attribute("y").as_uint();
 				object->object_properties[i].width = object_node.attribute("width").as_uint();
 				object->object_properties[i].height = object_node.attribute("height").as_uint();
+
+
+				p2SString type(object_node.attribute("type").as_string());
+
+				if (type == "Platform")
+				{
+					object->object_properties[i].type = ObjectType::Platform;
+				}
+				else if (type == "Player")
+				{
+					object->object_properties[i].type = ObjectType::Player;
+				}
+				else
+				{
+					object->object_properties[i].type = ObjectType::Unknown;
+				}
+
 				i++;
 			}
 			else

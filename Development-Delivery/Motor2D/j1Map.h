@@ -9,6 +9,13 @@
 // TODO 1: Create a struct for the map layer
 // ----------------------------------------------------
 
+enum class ObjectType
+{
+	Platform,
+	Player,
+	Unknown
+
+};
 struct MapLayer
 {
 	p2SString name;
@@ -31,6 +38,7 @@ struct ObjectProperties
 	uint y = 0u;
 	uint width = 0u;
 	uint height = 0u;
+	ObjectType type;
 
 };
 
@@ -39,6 +47,7 @@ struct ObjectGroup
 	uint id;
 	p2SString name;
 	ObjectProperties* object_properties;
+	uint object_count;
 };
 
 
