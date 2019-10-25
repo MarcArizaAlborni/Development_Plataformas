@@ -68,7 +68,6 @@ j1Player::j1Player()
 	 Graphics = App->tex->Load("Sprites/Dude.png");
 	 floor = CurrentPosition.y;
 	 PlayerState = IdleState;
-	 SlimeForm = false;
 
 	 CurrentPosition = { Inipos.x, Inipos.y };
 
@@ -86,7 +85,6 @@ bool j1Player::PreUpdate()
 	App->render->camera.y = CurrentPosition.y;*/ //768/2
 	PlayerInput.F10_active = App->input->keyboard[SDL_SCANCODE_F10] == KEY_DOWN;
 	PlayerInput.F3_active = App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN;
-	PlayerInput.F11_active= App->input->keyboard[SDL_SCANCODE_F11] == KEY_DOWN;
 
 	if(PlayerInput.F10_active && GOD_MODE==false) {
 		LOG("GOD MODE ON");
@@ -104,10 +102,10 @@ bool j1Player::PreUpdate()
 
 		PlayerInput.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
 		PlayerInput.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
-		//PlayerInput.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN;
+		PlayerInput.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN;
 		PlayerInput.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN;
 		PlayerInput.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
-		PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_DOWN;
+		
 		
 	}
 
@@ -128,121 +126,26 @@ bool j1Player::PreUpdate()
 		CurrentPosition.x = Inipos.x;
 		CurrentPosition.y =Inipos.y ;
 	}
-	if (PlayerInput.F11_active) { //NI IDEA DE PERQUE NO VA
 
-		App->render->camera.x = CurrentPosition.x;
-		App->render->camera.y = CurrentPosition.y;
-		float camx = App->render->camera.x;
-		float camy = App->render->camera.y;
-		LOG("CAM.X = %f   CAM.Y == %f", camx, camy);
-	}
 
 	//ROTACIO DELS PLAYER STATES 
 	if (GOD_MODE == false) {
 		if (PlayerState == IdleState)
 		{
-			if (SlimeForm == false) {
-				if (PlayerInput.A_active)
-				{
-					PlayerState = LeftState;
-					LOG("IDLE TO LEFT");
-				}
-
-				if (PlayerInput.D_active)
-				{
-					PlayerState = RightState;
-					LOG("IDLE TO RIGHT");
-				}
-
-
-
-				if (PlayerInput.I_active) {
-
-					PlayerState = SlimeState;
-					LOG("IDLE (HUMAN) TO SLIME");
-				}
-
-				if (PlayerInput.Space_active) {
-
-					On_The_Ground();
-
-
-					if (On_Ground == true) {
-
-						StartPosition.y = CurrentPosition.y;
-						PlayerState = JumpState;
-						LOG("IDLE TO JUMP");
-					}
-
-					if (On_Ground == false) {
-
-						LOG("JUMP NOT AVAILABLE");
-					}
-
-
-				}
-			}
-			else {
-
-				if (PlayerInput.A_active) {
-
-					PlayerState = LeftState;
-					LOG("IDLE TO LEFT (SLIME)");
-
-				}
-
-				if (PlayerInput.D_active) {
-
-					PlayerState = RightState;
-					LOG("IDLE TO RIGHT (SLIME)");
-				}
-
-				if (PlayerInput.I_active) {
-
-
-					PlayerState = SlimeState;
-					LOG("IDLE (SLIME TO SLIME)");
-
-				}
-			}
-		}
-
-
-		if (PlayerState == LeftState)
-		{
-			if (SlimeForm == false) {
-				if (!PlayerInput.A_active)
-				{
-
-					PlayerState = IdleState;
-					LOG("LEFT TO IDLE");
-				}
-
-				if (PlayerInput.U_active) {
-					DashActiveLeft = true;
-					StartPosition.x = CurrentPosition.x;
-					PlayerState = DashState;
-					LOG("LEFT TO DASH LEFT");
-				}
-
-				
-
+			
+			if (PlayerInput.A_active)
+			{
+				PlayerState = LeftState;
+				LOG("IDLE TO LEFT");
 			}
 
-			else {
-
-				if (!PlayerInput.A_active)
-				{
-
-					PlayerState = IdleState;
-					LOG("LEFT(SLIME) TO IDLE (SLIME)");
-				}
-
-
+			if (PlayerInput.D_active)
+			{
+				PlayerState = RightState;
+				LOG("IDLE TO RIGHT");
 			}
 
-
-			if (PlayerInput.Space_active && SlimeForm == false) {
+			if (PlayerInput.W_active) {
 
 				On_The_Ground();
 
@@ -251,7 +154,7 @@ bool j1Player::PreUpdate()
 
 					StartPosition.y = CurrentPosition.y;
 					PlayerState = JumpState;
-					LOG("LEFT TO JUMP");
+					LOG("IDLE TO JUMP");
 				}
 
 				if (On_Ground == false) {
@@ -259,45 +162,59 @@ bool j1Player::PreUpdate()
 					LOG("JUMP NOT AVAILABLE");
 				}
 
+			}
+			
+		}
 
+		if (PlayerState == LeftState)
+		{
+			
+			if (!PlayerInput.A_active)
+			{
+
+				PlayerState = IdleState;
+				LOG("LEFT TO IDLE");
+			}
+
+			if (PlayerInput.U_active) {
+				DashActiveLeft = true;
+				StartPosition.x = CurrentPosition.x;
+				PlayerState = DashState;
+				LOG("LEFT TO DASH LEFT");
+			}
+
+			if (PlayerInput.W_active ) {
+
+				On_The_Ground();
+
+				if (On_Ground == true) {
+
+					StartPosition.y = CurrentPosition.y;
+					PlayerState = JumpState;
+					LOG("LEFT TO JUMP");
+				}
 			}
 
 		}
 		if (PlayerState == RightState)
 		{
-			if (SlimeForm == false) {
-				if (!PlayerInput.D_active)
-				{
-					PlayerState = IdleState;
-					LOG("RIGHT TO IDLE");
-				}
-
-
-
-				if (PlayerInput.U_active) {
-					DashActiveRight = true;
-					StartPosition.x = CurrentPosition.x;
-					PlayerState = DashState;
-					LOG("LEFT TO DASH RIGHT");
-				}
-
-				
+			
+			if (!PlayerInput.D_active)
+			{
+				PlayerState = IdleState;
+				LOG("RIGHT TO IDLE");
 			}
 
-			else {
-
-				if (!PlayerInput.D_active)
-				{
-					PlayerState = IdleState;
-					LOG("RIGHT (SLIME) TO IDLE (SLIME)");
-				}
-
+			if (PlayerInput.U_active) {
+				DashActiveRight = true;
+				StartPosition.x = CurrentPosition.x;
+				PlayerState = DashState;
+				LOG("LEFT TO DASH RIGHT");
 			}
 
-			if (PlayerInput.Space_active && SlimeForm == false) {
+			if (PlayerInput.W_active) {
 
 				On_The_Ground();
-
 
 				if (On_Ground == true) {
 
@@ -306,41 +223,16 @@ bool j1Player::PreUpdate()
 					LOG("LEFT TO JUMP");
 				}
 
-				if (On_Ground == false) {
-
-					LOG("JUMP NOT AVAILABLE");
-				}
-
-
-			}
-
-
-
-		}
-
-		if (PlayerState == SlimeState) {
-			SlimeForm;
-			if (SlimeForm == false) { //HUMAN TO SLIME
-				//CANVIAR SPRITE AL DE SLIME 
-				//ANIMACIO DE TRANSFORMACIO
-				SlimeForm = true;
-				//if(animation  to slime transformation finished) -> playerstate= Idle 
-				LOG("TRANSFORMING INTO SLIME");
-				PlayerState = IdleState; // Aixo no funciona be per ara perque com que no hi han animacions canvia al instant
-
-			}
-
-			else if (SlimeForm == true) { // SLIME TO HUMAN
-
-				//CANVIAR SPRITE AL NORMAL
-				//ANIMACIO TRANSFORMACIO
-				SlimeForm = false;
-				//if(animation to human transformation finished) -> playerstate= Idle 
-				LOG("TRANSFORMING INTO HUMAN");
-				PlayerState = IdleState;
 			}
 
 		}
+
+		if (PlayerState == JumpState)
+		{
+			Jumping();
+
+		}
+
 	}
 
 	else {
@@ -380,7 +272,7 @@ bool j1Player::Update(float dt)
 	switch (PlayerState)
 	{
 	case IdleState:
-		//LOG("IDLE");
+		LOG("IDLE");
 		CurrentAnimation = &idle;
 		break;
 
@@ -454,25 +346,28 @@ bool j1Player::Update(float dt)
 
 	 if (A->type == ObjectType::Player && B->type == ObjectType::Platform) {
 
+		 //from below
 		 if (LastPosition.y > (B->rect.y + B->rect.h - 1))
 		 {
 			 CurrentPosition.y = B->rect.y + B->rect.h;
-			 //player.cealing = true;
+		 }
 
-		 }
 		 //from a side
-		 else if (CurrentPosition.y + (A->rect.h* 1.0f / 4.0f) < B->rect.y + B->rect.h
-			 && CurrentPosition.y + (A->rect.h* 3.0f / 4.0f) > B->rect.y)
+		 else if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) && ((CurrentPosition.y + A->rect.h)  > B->rect.y))
 		 {
-			 //player.wall = true;
-			 LOG("Touching WALL");
-			 if ((A->rect.x + A->rect.w) < (B->rect.x + B->rect.w / 4)) { //Player to the left 
-				 CurrentPosition.x = B->rect.x - A->rect.w - 19; //Magic Numbers
+
+			 if ((A->rect.x + A->rect.w) < (B->rect.x + B->rect.w)) 
+			 { //Player to the left 
+				 CurrentPosition.x = B->rect.x - A->rect.w; 
 			 }
-			 else if (A->rect.x > (B->rect.x + B->rect.w * 3 / 4)) { //Player to the right
-				 CurrentPosition.x = B->rect.x + B->rect.w - 19; //Magic Numbers
+
+			 else if (A->rect.x > (B->rect.x + B->rect.w)) 
+			 { //Player to the right
+				 CurrentPosition.x = B->rect.x + B->rect.w; 
 			 }
 		 }
+
+		 //from above
 		 else if (CurrentPosition.y + A->rect.h - Character_vel - 2 < B->rect.y && A->rect.x < B->rect.x + B->rect.w && A->rect.x + A->rect.w > B->rect.x) { // from above
 
 			 if (Character_vel > 0)
@@ -482,7 +377,6 @@ bool j1Player::Update(float dt)
 
 			 CurrentPosition.y = B->rect.y - Player_Collider->rect.h + 1;
 
-			 //player.SetGroundState(true);
 			 On_Ground = true;
 		 }
 	 }
