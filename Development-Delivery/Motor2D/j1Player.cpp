@@ -72,7 +72,7 @@ j1Player::j1Player()
 
 	 CurrentPosition = { Inipos.x, Inipos.y };
 
-	 Player_Rect = { CurrentPosition.x, CurrentPosition.y, 50, 60 };
+	 Player_Rect = { CurrentPosition.x, CurrentPosition.y, 21, 35 };
 
 	 Player_Collider = App->collision->AddCollider(Player_Rect, ObjectType::Player, this);
 	
@@ -405,11 +405,6 @@ bool j1Player::Update(float dt)
 		break;
 	}
 
-	
-
-	//SDL_Rect r = CurrentAnimation->GetCurrentFrame();
-	
-	//App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, 1.0f, true);
 
 	Player_Rect.x = CurrentPosition.x;
 	Player_Rect.y = CurrentPosition.y;
@@ -438,5 +433,6 @@ bool j1Player::Update(float dt)
 
  void j1Player::OnCollision(Collider* A, Collider* B) {
 
+	//From Above
 	
  }
