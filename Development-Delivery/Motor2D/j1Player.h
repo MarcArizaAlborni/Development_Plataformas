@@ -17,7 +17,7 @@ struct Input_player
 	//GAMEPLAY
 	bool A_active; //LEFT
 	bool D_active;//RIGHT
-	bool Space_active;// JUMP
+	bool W_active;// JUMP
 	bool U_active;//DASH ABILITY 2
 	bool I_active;//TRANSFORMATION ABILITY 3
 	//bool W_active; JUMP
@@ -31,10 +31,8 @@ struct Input_player
 	bool F6_active; //Load
 	bool F9_active; //View Colliders
 	bool F10_active; //God Mode (FET)
-	bool F11_active; //FOCUS CAMERA ON THE  PLAYER
 	
 	//GOD MODE
-
 	bool AG_active;//LEFT
 	bool DG_active;//RIGHT
 	bool SG_active;//UP
@@ -48,9 +46,7 @@ enum CurrentState
 	JumpState,
 	LeftState,
 	RightState,
-	SlimeState,
 	DashState,
-	FallingState
 
 };
 
@@ -116,17 +112,14 @@ public:
 
 
 	//JUMP
-
 	bool On_Ground;
 	float Jump_Pow = 20.0f;
 	float Gravity; //10
-	float character_velY;
-	float MaxJump= 200.0f;
+	float MaxJump= 90.0f;
 	uint On_Ground_Counter;
 	bool Jump_Ready;
 	uint temppos;
 	bool Max_Reached;
-	float FallingXSpeed = 10.0f;
 	bool FallingLeft;
 	bool FallingRight;
 
@@ -135,23 +128,17 @@ public:
 	void On_The_Ground(){ //AIXO VA ALS IF DELS STATES
 
 		if (CurrentPosition.y == floor) {
-
 			On_Ground = true;
 			LOG("FLOOR EQUAL TO CURRENT POSITION");
-
 		}
-		else if (CurrentPosition.y<= floor) {
-
+		else if (CurrentPosition.y <= floor) {
 
 			On_Ground = false;
 			LOG("FLOOR MES GRAN QUE CURRENT POSITION");
-
 		}
-		else if(CurrentPosition.y>=floor){ //AIXO AMB ELS COLLIDERS NO FARA FALTA PERO PER ARA EL DEIXO AQUI
-
+		else if(CurrentPosition.y >= floor ){ //AIXO AMB ELS COLLIDERS NO FARA FALTA PERO PER ARA EL DEIXO AQUI
 
 			floor = CurrentPosition.y;
-
 			On_Ground = true;
 
 			LOG("CHARACTER UNDER THE FLOOR");
@@ -197,7 +184,6 @@ public:
 			if (FallingRight == true) {
 
 				CurrentPosition.x += Character_vel;
-
 
 			}
 
@@ -250,11 +236,6 @@ public:
 		}
 	}
 
-
-
-
-
-
 	//DASH THINGS
 	float DashDist;
 	bool DashActiveLeft;
@@ -270,7 +251,7 @@ public:
 		}
 		else if (StartPosition.x + DashDist > CurrentPosition.x && DashActiveRight== true) {
 
-			CurrentPosition.x += Character_vel * 2;
+			CurrentPosition.x += Character_vel*2;
 			LOG("DASH FUNCTION RIGHT");
 		}
 		else {
@@ -281,14 +262,7 @@ public:
 		}
 	}
 
-	//SLIME
-
-	bool SlimeForm;
-
-	
 	//AUDIO
 	
-	
-
 
 };
