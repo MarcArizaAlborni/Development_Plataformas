@@ -342,8 +342,6 @@ bool j1Player::Update(float dt)
 		 return;
 	 }
 
-
-
 	 if (A->type == ObjectType::Player && B->type == ObjectType::Platform) {
 
 		 //from below
@@ -353,16 +351,17 @@ bool j1Player::Update(float dt)
 		 }
 
 		 //from a side
-		 else if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) && ((CurrentPosition.y + A->rect.h)  > B->rect.y))
+		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h)  > B->rect.y))
 		 {
 
-			 if ((A->rect.x + A->rect.w) < (B->rect.x + B->rect.w)) 
+			 if ((A->rect.x + A->rect.w - 5) <= (B->rect.x ))
 			 { //Player to the left 
-				 CurrentPosition.x = B->rect.x - A->rect.w; 
+				 CurrentPosition.x = LastPosition.x; 
+				
 				 LOG("PLAYER INTO WALL FROM THE LEFT");
 			 }
 
-			 else if (A->rect.x > (B->rect.x + B->rect.w)) 
+			 else if (A->rect.x >= (B->rect.x + B->rect.w - 5 )) 
 			 { //Player to the right
 				 CurrentPosition.x = B->rect.x + B->rect.w; 
 				 LOG("PLAYER INTO WALL FROM THE RIGHT");
@@ -370,16 +369,12 @@ bool j1Player::Update(float dt)
 		 }
 
 		 //from above
-		 else if (CurrentPosition.y + A->rect.h - Character_vel - 2 < B->rect.y && A->rect.x < B->rect.x + B->rect.w && A->rect.x + A->rect.w > B->rect.x) { // from above
+		 if (((CurrentPosition.y + A->rect.h) > B->rect.y - 20) && (A->rect.x > B->rect.x + B->rect.w) && (A->rect.x + A->rect.w < B->rect.x)) { // from above
 
-			 if (Character_vel > 0)
-			 {
-				 Character_vel = 0;
-			 }
+			 CurrentPosition.y = LastPosition.y;
 
-			 CurrentPosition.y = B->rect.y - Player_Collider->rect.h + 1;
-			 LOG("PLAYER INTO WALL FROM THE TOP");
 			 On_Ground = true;
+			 LOG("PLAYER INTO WALL FROM THE TOP");
 		 }
 	 }
 

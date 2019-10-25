@@ -144,8 +144,10 @@ void j1Collision::LoadCollider() {
 bool Collider::CheckCollision(const SDL_Rect& r) const
 {
 	
-	return ((r.x + r.w > rect.x) && (r.x < rect.x + rect.w) &&
-		(r.y + r.h > rect.y) && (r.y < rect.y + rect.h));
+	return ((r.x + r.w > rect.x) &&
+		(r.x < rect.x + rect.w) &&
+		(r.y + r.h > rect.y) && 
+		(r.y < rect.y + rect.h));
 
 }
 
