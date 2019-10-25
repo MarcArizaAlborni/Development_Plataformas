@@ -40,9 +40,8 @@ bool j1Collision::PreUpdate()
 
 	Collider* c1;
 	Collider* c2;
-
-
-	for (collider_iterator; collider_iterator != nullptr; collider_iterator = collider_iterator->next)
+	
+	for (collider_iterator=collider.start; collider_iterator != nullptr; collider_iterator = collider_iterator->next)
 	{
 		
 		c1 = collider_iterator->data;

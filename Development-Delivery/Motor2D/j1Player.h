@@ -50,7 +50,7 @@ enum CurrentState
 	RightState,
 	SlimeState,
 	DashState,
-	
+	FallingState
 
 };
 
@@ -104,6 +104,7 @@ public:
 	//ACTUALIZING POSITION 
 	iPoint				CurrentPosition;
 	iPoint              StartPosition;
+	iPoint              LastPosition;
 	float Character_vel;
 	SDL_Texture*		Graphics = nullptr;
 	//For printing the animation in each moment

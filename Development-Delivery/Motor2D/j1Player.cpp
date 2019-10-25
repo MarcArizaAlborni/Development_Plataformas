@@ -80,8 +80,10 @@ j1Player::j1Player()
  }
 
 bool j1Player::PreUpdate() 
- {
-
+ {  //1024
+	//768
+	/*App->render->camera.x = CurrentPosition.x;
+	App->render->camera.y = CurrentPosition.y;*/ //768/2
 	PlayerInput.F10_active = App->input->keyboard[SDL_SCANCODE_F10] == KEY_DOWN;
 	PlayerInput.F3_active = App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN;
 	PlayerInput.F11_active= App->input->keyboard[SDL_SCANCODE_F11] == KEY_DOWN;
@@ -372,6 +374,7 @@ bool j1Player::PreUpdate()
 
 bool j1Player::Update(float dt)
  {
+	LastPosition = CurrentPosition;
 	bool ret = true;
 	//APLICACIO DELS DIFFERENTS PLAYER STATES
 	switch (PlayerState)
@@ -411,6 +414,11 @@ bool j1Player::Update(float dt)
 
 	Player_Collider->SetPos(CurrentPosition.x, CurrentPosition.y);
 
+	//OnCollision(Collider *A, collider *B);
+
+
+
+
 	 return true;
  }
 
@@ -433,6 +441,54 @@ bool j1Player::Update(float dt)
 
  void j1Player::OnCollision(Collider* A, Collider* B) {
 
-	//From Above
-	
+	 if (B->type == ObjectType::Player) {
+		 Collider temp = *A;
+		 A = B;
+		 B = &temp;
+	 }
+	 if (A->type != ObjectType::Player) {
+		 return;
+	 }
+
+
+
+	 if (A->type == ObjectType::Player && B->type == ObjectType::Platform) {
+
+		 if (LastPosition.y > (B->rect.y + B->rect.h - 1))
+		 {
+			 CurrentPosition.y = B->rect.y + B->rect.h;
+			 //player.cealing = true;
+
+		 }
+		 //from a side
+		 else if (CurrentPosition.y + (A->rect.h* 1.0f / 4.0f) < B->rect.y + B->rect.h
+			 && CurrentPosition.y + (A->rect.h* 3.0f / 4.0f) > B->rect.y)
+		 {
+			 //player.wall = true;
+			 LOG("Touching WALL");
+			 if ((A->rect.x + A->rect.w) < (B->rect.x + B->rect.w / 4)) { //Player to the left 
+				 CurrentPosition.x = B->rect.x - A->rect.w - 19; //Magic Numbers
+			 }
+			 else if (A->rect.x > (B->rect.x + B->rect.w * 3 / 4)) { //Player to the right
+				 CurrentPosition.x = B->rect.x + B->rect.w - 19; //Magic Numbers
+			 }
+		 }
+		 else if (CurrentPosition.y + A->rect.h - Character_vel - 2 < B->rect.y && A->rect.x < B->rect.x + B->rect.w && A->rect.x + A->rect.w > B->rect.x) { // from above
+
+			 if (Character_vel > 0)
+			 {
+				 Character_vel = 0;
+			 }
+
+			 CurrentPosition.y = B->rect.y - Player_Collider->rect.h + 1;
+
+			 //player.SetGroundState(true);
+			 On_Ground = true;
+		 }
+	 }
+
+	 
+
+
  }
+ 
