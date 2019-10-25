@@ -459,6 +459,8 @@ bool j1Player::Update(float dt)
 			 CurrentPosition.y = B->rect.y + B->rect.h;
 			 //player.cealing = true;
 
+			 LOG("IF NUMBER 1");
+
 		 }
 		 //from a side
 		 else if (CurrentPosition.y + (A->rect.h* 1.0f / 4.0f) < B->rect.y + B->rect.h
@@ -468,13 +470,15 @@ bool j1Player::Update(float dt)
 			 LOG("Touching WALL");
 			 if ((A->rect.x + A->rect.w) < (B->rect.x + B->rect.w / 4)) { //Player to the left 
 				 CurrentPosition.x = B->rect.x - A->rect.w - 19; //Magic Numbers
+				 LOG("IF NUMBER 2 SUB 1");
 			 }
 			 else if (A->rect.x > (B->rect.x + B->rect.w * 3 / 4)) { //Player to the right
 				 CurrentPosition.x = B->rect.x + B->rect.w - 19; //Magic Numbers
+				 LOG("IF NUMBER 2 SUB 2");
 			 }
 		 }
 		 else if (CurrentPosition.y + A->rect.h - Character_vel - 2 < B->rect.y && A->rect.x < B->rect.x + B->rect.w && A->rect.x + A->rect.w > B->rect.x) { // from above
-
+			 LOG("IF NUMBER 3");
 			 if (Character_vel > 0)
 			 {
 				 Character_vel = 0;
