@@ -359,11 +359,13 @@ bool j1Player::Update(float dt)
 			 if ((A->rect.x + A->rect.w) < (B->rect.x + B->rect.w)) 
 			 { //Player to the left 
 				 CurrentPosition.x = B->rect.x - A->rect.w; 
+				 LOG("PLAYER INTO WALL FROM THE LEFT");
 			 }
 
 			 else if (A->rect.x > (B->rect.x + B->rect.w)) 
 			 { //Player to the right
 				 CurrentPosition.x = B->rect.x + B->rect.w; 
+				 LOG("PLAYER INTO WALL FROM THE RIGHT");
 			 }
 		 }
 
@@ -376,7 +378,7 @@ bool j1Player::Update(float dt)
 			 }
 
 			 CurrentPosition.y = B->rect.y - Player_Collider->rect.h + 1;
-
+			 LOG("PLAYER INTO WALL FROM THE TOP");
 			 On_Ground = true;
 		 }
 	 }
