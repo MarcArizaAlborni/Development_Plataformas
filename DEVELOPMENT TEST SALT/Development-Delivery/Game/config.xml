@@ -1,0 +1,53 @@
+<!-- Config file for the game -->
+
+<config>
+  <app>
+    <title>Project Ceta</title>
+    <organization>UPC</organization>
+  </app>
+	
+  <renderer>
+    <vsync value="true"/>
+  </renderer>
+
+  <window>
+    <resolution width="1024" height="768" scale="1"/>
+    <fullscreen value="false"/>
+    <borderless value="false"/>
+    <resizable value="false"/>
+    <fullscreen_window value="false"/>
+    <screen_size> value="1" </screen_size>
+  </window>
+
+  <file_system>
+    <path>data.zip</path>
+  </file_system>
+
+  <map>
+    <folder>maps/</folder>
+  </map>
+
+  <player  inipos_x="90.0f" inipos_y="829.0f" velocityX="7" velocityY= "7" gravity="10"  DashDistance ="100">
+    <!--Animations-->
+    <animation name="idle" speed="1.0" loop="false">  
+      <frame x="0" y="0" w="0" h="0"/>
+      <frame x="0" y="0" w="0" h="0"/>
+      <frame x="0" y="0" w="0" h="0"/>
+    </animation> 
+    
+    
+  </player>
+
+  <audio>
+    <Volume></Volume>
+    <Music>
+      <BackgroundMusic> name="BackgroundMusic" value="MusicLevel1.ogg"/></BackgroundMusic>
+    </Music>
+    <Fx>
+      <MovementSounds>audio/fx</MovementSounds>
+    </Fx>
+  </audio>
+
+  
+
+</config>
