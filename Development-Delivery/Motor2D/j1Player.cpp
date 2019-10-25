@@ -50,7 +50,7 @@ j1Player::j1Player()
 
 	 Inipos.x = node.attribute("inipos_x").as_float();
 	 Inipos.y = node.attribute("inipos_y").as_float();
-	 Character_vel = node.attribute("velocity").as_float();
+	 Character_vel.x = node.attribute("velocity").as_float();
 	 Gravity = node.attribute("gravity").as_float();
 	 DashDist = node.attribute("DashDistance").as_float();
 	 
@@ -239,22 +239,22 @@ bool j1Player::PreUpdate()
 
 
 		if (PlayerInput.AG_active) {
-			CurrentPosition.x -= Character_vel*2;
+			CurrentPosition.x -= Character_vel.x*2;
 
 		}
 
 		if (PlayerInput.DG_active) {
-			CurrentPosition.x += Character_vel*2;
+			CurrentPosition.x += Character_vel.x*2;
 
 		}
 
 		if (PlayerInput.WG_active) {
-			CurrentPosition.y -= Character_vel*2;
+			CurrentPosition.y -= Character_vel.x*2;
 
 		}
 
 		if (PlayerInput.SG_active) {
-			CurrentPosition.y += Character_vel*2;
+			CurrentPosition.y += Character_vel.x*2;
 
 		}
 
@@ -278,18 +278,18 @@ bool j1Player::Update(float dt)
 
 	case LeftState:
 		LOG("MOVING LEFT");
-		CurrentPosition.x -= Character_vel;
+		CurrentPosition.x -= Character_vel.x;
 		CurrentPosition.y;
 		break;
 
 	case RightState:
 		LOG("MOVING RIGHT");
-		CurrentPosition.x += Character_vel;
+		CurrentPosition.x += Character_vel.x;
 		CurrentPosition.y;
 		break;
 	case JumpState:
 		
-		Jumping();
+		
 		LOG("JUMP STATE ACTIVE");
 		break;
 	case DashState:

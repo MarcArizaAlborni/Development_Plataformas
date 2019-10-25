@@ -132,23 +132,79 @@ public:
 
 
 
-	 void On_The_Ground()
-	{
-		if (On_Ground == true)
-		{
-			On_Ground_Counter = CurrentPosition;
+	void On_The_Ground() { //AIXO VA ALS IF DELS STATES
+
+		if (CurrentPosition.y == floor) {
+			On_Ground = true;
+			LOG("FLOOR EQUAL TO CURRENT POSITION");
 		}
-		//On_Ground = state;
-	};
-	
+		else if (CurrentPosition.y <= floor) {
+
+			On_Ground = false;
+			LOG("FLOOR MES GRAN QUE CURRENT POSITION");
+		}
+		else if (CurrentPosition.y >= floor) { //AIXO AMB ELS COLLIDERS NO FARA FALTA PERO PER ARA EL DEIXO AQUI
+
+			floor = CurrentPosition.y;
+			On_Ground = true;
+
+			LOG("CHARACTER UNDER THE FLOOR");
+		}
+	}
+
+	void Jumping() {
+
+		temppos = CurrentPosition.y;
+		LOG("%f", temppos);
+
+		if (StartPosition.y - MaxJump < CurrentPosition.y && Max_Reached == false) {
+
+			CurrentPosition.y -= Jump_Pow;
+
+			if (StartPosition.y - MaxJump >= CurrentPosition.y) {
+				Max_Reached = true;
+			}
 
 
+
+			if (PlayerInput.A_active && FallingRight != true) {
+
+
+				FallingLeft = true;
+				LOG("FALLING LEFT");
+
+			}
+
+			if (PlayerInput.D_active&&FallingLeft != true) {
+
+
+				FallingRight = true;
+				LOG("FALLING RIGHT");
+			}
+
+			if (FallingLeft == true) {
+
+				CurrentPosition.x -= Character_vel.x;
+
+			}
+
+			if (FallingRight == true) {
+
+				CurrentPosition.x += Character_vel.x;
+
+			}
+
+			LOG("JUMPING UP");
+
+		}
+	}
 	//DASH THINGS
 	float DashDist;
 	bool DashActiveLeft;
 	bool DashActiveRight;
 	
-	void DashFunction(){
+	void DashFunction()
+	{
 		
 
 		if (StartPosition.x - DashDist < CurrentPosition.x && DashActiveLeft== true) {
