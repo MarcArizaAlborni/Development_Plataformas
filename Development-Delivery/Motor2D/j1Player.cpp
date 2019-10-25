@@ -289,9 +289,12 @@ bool j1Player::Update(float dt)
 		break;
 	case JumpState:
 		
-		
+		Character_vel.y -= Acceleration_Y; //character vel potser ha de ser CURRENTPOSITION
+		MidAirUP = true;
+		Jump_Ready = false;
 		LOG("JUMP STATE ACTIVE");
 		break;
+		
 	case DashState:
 		
 		//Mix_PlayChannel(-1,Jump_Sound , 0);
@@ -309,7 +312,63 @@ bool j1Player::Update(float dt)
 	//OnCollision(Collider *A, collider *B);
 
 
+	if (On_Ground == true)
+	{
+		Jump_Ready = true;
+		MidAirUP = false;
+		LOG("1");
 
+
+		if (PlayerState == DashState) {
+			PlayerState = IdleState;
+		}
+	}
+	else //FALLING IF NOT JUMP/DASH
+	{
+		LOG("2");
+		if (PlayerState != DashState)
+		{
+			LOG("3");
+			PlayerState == FallState;
+		}
+	}
+
+	if (PlayerState == DashState)
+	{
+		//Dash Check
+		//LIMIT DASH DESPRES HO FAIG
+	}
+	else //Player not Dashing
+	{
+		LOG("4");
+		//Logic for when player is jumping
+		if (MidAirUP)
+		{
+			LOG("5");
+			Character_vel.x += Gravity; // Speed.y is +gravity when not grounded
+
+		}
+
+		CurrentPosition.y += Character_vel.y; //Update position y
+
+		if (Hit_PLatform_From_Up)
+		{
+			LOG("6");
+			Character_vel.y = 0;
+		}
+	}
+
+	CurrentPosition.x += Character_vel.x;
+	LOG("7");
+	if (Hit_Platform_From_Side)
+	{
+		LOG("8");
+		Character_vel.x = 0;
+	}
+
+
+	return true;
+}
 
 	 return true;
  }
