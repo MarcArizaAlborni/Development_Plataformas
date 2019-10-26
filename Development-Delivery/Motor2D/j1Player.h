@@ -170,17 +170,19 @@ public:
 		}
 
 		if (MidAirUP == false) {
-			LOG("FALLING");
+			LOG("MID AIR UP == FALSE");
 			Character_vel.y += Gravity;
-			if (On_Ground == false) {
-
+		//	On_Ground = Jump_Ready;
+			if (On_Ground == true) {
+				LOG("TO IDLE FROM JUMP");
 				
 				PlayerState = IdleState;
 			}
 			
-			if (On_Ground == true) {
+			if (On_Ground == false) {
 				
-				CurrentPosition.y += Gravity;
+				LOG("FALLING");
+				CurrentPosition.y += Character_vel.y;
 
 			}
 

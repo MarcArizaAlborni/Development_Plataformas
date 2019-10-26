@@ -151,8 +151,8 @@ bool j1Player::PreUpdate()
 			if (PlayerInput.W_active) {
 
 				
-					PlayerState = JumpState;
-					LOG("IDLE TO JUMP");
+				PlayerState = JumpState;
+				LOG("IDLE TO JUMP");
 				
 
 				if (On_Ground == false) {
