@@ -469,6 +469,10 @@ bool j1Map::LoadObjectGroup(pugi::xml_node& node, ObjectGroup* object)
 				{
 					object->object_properties[i].type = ObjectType::Player;
 				}
+				else if (type == "Water")
+				{
+					object->object_properties[i].type = ObjectType::Water;
+				}
 				else
 				{
 					object->object_properties[i].type = ObjectType::Unknown;

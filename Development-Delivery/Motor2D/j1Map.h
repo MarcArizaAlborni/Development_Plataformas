@@ -13,6 +13,7 @@ enum class ObjectType
 {
 	Platform,
 	Player,
+	Water,
 	Unknown
 
 };
