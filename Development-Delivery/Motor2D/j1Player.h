@@ -171,7 +171,7 @@ public:
 
 		if (MidAirUP == false) {
 			LOG("FALLING");
-			//Character_vel.y += Gravity;
+			Character_vel.y += Gravity;
 			if (On_Ground == false) {
 
 				
