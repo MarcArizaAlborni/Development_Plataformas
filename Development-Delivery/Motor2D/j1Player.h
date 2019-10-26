@@ -107,8 +107,13 @@ public:
 	//For printing the animation in each moment
 	Animation*			CurrentAnimation;
 
+	bool flip = false;
 	// ANIMATION
+
 	Animation			idle;
+	Animation			jump;
+	Animation			run;
+	Animation			dash;
 
 
 

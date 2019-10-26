@@ -16,6 +16,45 @@
 j1Player::j1Player() 
 {
 	name.create("player");
+
+	idle.PushBack({ 0,0,21,35 });
+	idle.PushBack({ 21,0,21,35 });
+	idle.PushBack({ 42,0,21,35 });
+	idle.PushBack({ 63,0,21,35 });
+	idle.PushBack({ 84,0,21,35 });
+	idle.PushBack({ 105,0,21,35 });
+	idle.PushBack({ 126,0,21,35 });
+	idle.PushBack({ 0,35,21,35 });
+	idle.PushBack({ 21,35,21,35 });
+	idle.PushBack({ 42,35,21,35 });
+	idle.PushBack({ 63,35,21,35 });
+	idle.PushBack({ 84,35,21,35 });
+	idle.speed = 0.5;
+
+
+	jump.PushBack({ 0,70,21,35 });
+	jump.PushBack({ 21,70,21,35 });
+	jump.PushBack({ 42,70,21,35 });
+	jump.PushBack({ 63,70,21,35 });
+	jump.speed = 0.2;
+
+	run.PushBack({ 0,105,21,35 });
+	run.PushBack({ 21,105,21,35 });
+	run.PushBack({ 42,105,21,35 });
+	run.PushBack({ 63,105,21,35 });
+	run.PushBack({ 84,105,21,35 });
+	run.PushBack({ 105,105,21,35 });
+	run.PushBack({ 126,105,21,35 });
+	run.PushBack({ 147,105,21,35 });
+	run.speed = 0.5;
+
+	dash.PushBack({ 0,140,21,35 });
+	dash.PushBack({ 21,140,21,35 });
+	dash.PushBack({ 42,140,21,35 });
+	dash.PushBack({ 63,140,21,35 });
+	dash.PushBack({ 84,140,21,35 });
+	dash.PushBack({ 105,140,21,35 });
+	dash.speed = 0.5;
 }
 
 
@@ -285,21 +324,24 @@ bool j1Player::Update(float dt)
 
 	case LeftState:
 		LOG("MOVING LEFT");
+		flip = true;
 		CurrentPosition.x -= Character_vel.x;
-		CurrentPosition.y;
+		CurrentAnimation = &run;
 		break;
 
 	case RightState:
 		LOG("MOVING RIGHT");
+		flip = false;
 		CurrentPosition.x += Character_vel.x;
-		CurrentPosition.y;
+		CurrentAnimation = &run;
 		break;
 	case JumpState:
 		EndJump = false;
-
+		CurrentAnimation = &jump;
 		On_The_Ground();
 		if (Jump_Ready == false) {
 			PlayerState = IdleState;
+			CurrentAnimation = &idle;
 		}
 		if (Jump_Ready == true) {
 			MidAirUP = true;
@@ -308,6 +350,7 @@ bool j1Player::Update(float dt)
 		}
 		if (EndJump == true) {
 			PlayerState = IdleState;
+			CurrentAnimation = &idle;
 		 }
 		
 		LOG("JUMP STATE ACTIVE");
@@ -316,6 +359,7 @@ bool j1Player::Update(float dt)
 	case DashState:
 		
 		//Mix_PlayChannel(-1,Jump_Sound , 0);
+		CurrentAnimation = &dash;
 		DashFunction();
 		LOG("DASH");
 		break;
@@ -329,6 +373,18 @@ bool j1Player::Update(float dt)
 
 	//OnCollision(Collider *A, collider *B);
 
+	SDL_Rect r = CurrentAnimation->GetCurrentFrame();
+
+	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, flip);
+
+	if (flip == false)
+	{
+		Player_Collider->SetPos(CurrentPosition.x, CurrentPosition.y); //Makes the collider follow the player.
+	}
+	else
+	{
+		Player_Collider->SetPos(CurrentPosition.x + 15, CurrentPosition.y); //Makes the collider follow the player.
+	}
 
 	
 
@@ -374,26 +430,26 @@ bool j1Player::Update(float dt)
 		 }
 
 		 //from a side
-		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h)  > B->rect.y))
+		 if ((A->rect.y >= (B->rect.y)) || ((A->rect.y + A->rect.h) <= (B->rect.y +B->rect.h)))
 		 {
 
-			 if ((A->rect.x + A->rect.w - 5) <= (B->rect.x ))
-			 { //Player to the left 
-
-				 CurrentPosition.x = LastPosition.x - 5; 
+			 if ((CurrentPosition.x + A->rect.w - 5) <= (B->rect.x ))
+			 { //Left to Right
+				
+				 CurrentPosition.x = LastPosition.x - 1; 
 				 LOG("PLAYER INTO WALL FROM THE LEFT");
 				 
 			 }
 
-			 else if (A->rect.x >= (B->rect.x + B->rect.w - 5 )) 
+			 else if (CurrentPosition.x = (B->rect.x + B->rect.w )) 
 			 { //Player to the right
-				 CurrentPosition.x = LastPosition.x - 5; 
+				 CurrentPosition.x = LastPosition.x; 
 				 LOG("PLAYER INTO WALL FROM THE RIGHT");
 			 }
 		 }
 
 		 //from above
-		 if ((CurrentPosition.y + A->rect.h) <= B->rect.y + 20 ) // from above
+		 if ((A->rect.y + A->rect.h) <= B->rect.y + 20 ) // from above
 		 {
 			 if ((A->rect.x + A->rect.w < B->rect.x) || (A->rect.x + A->rect.w < B->rect.x + B->rect.w)) { 
 

@@ -3,11 +3,14 @@
 #include "j1Collision.h"
 #include "j1Render.h"
 #include "j1Map.h"
+#include "j1Input.h"
 
-j1Collision::j1Collision() : j1Module(), debug(true)
+
+j1Collision::j1Collision() : j1Module()
 {
 	name.create("collision");
 	
+	debug = true;
 }
 
 j1Collision::~j1Collision()
@@ -83,6 +86,16 @@ bool j1Collision::CleanUp()
 
 void j1Collision::DebugDraw()
 {
+	if (App->input->keyboard[SDL_SCANCODE_F9] == KEY_DOWN) {
+
+		if (debug) {
+			debug = false;
+		}
+		else
+		{
+			debug = true;
+		}
+	}
 	if (debug == false)
 		return;
 

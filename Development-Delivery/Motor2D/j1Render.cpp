@@ -128,19 +128,35 @@ void j1Render::ResetViewPort()
 }
 
 // Blit to screen
-bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, float speed, double angle, int pivot_x, int pivot_y) const
+bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, bool flip, float speed, double angle, int pivot_x, int pivot_y) const
 {
 	bool ret = true;
 	uint scale = App->win->GetScale();
 
 	SDL_Rect rect;
-	rect.x = (int)(camera.x * speed) + x * scale;
-	rect.y = (int)(camera.y * speed) + y * scale;
-
-	if(section != NULL)
+	if (flip)
 	{
-		rect.w = section->w;
-		rect.h = section->h;
+		rect.x = (int)(camera.x * speed) + x * scale + 35; //Add players sprite width.
+		rect.y = (int)(camera.y * speed) + y * scale;
+	}
+	else
+	{
+		rect.x = (int)(camera.x * speed) + x * scale;
+		rect.y = (int)(camera.y * speed) + y * scale;
+	}
+
+	if (section != NULL)
+	{
+		if (flip)
+		{
+			rect.w = -section->w; //Sprite will be printed from top right to left down instead of top left right down.
+			rect.h = section->h;
+		}
+		else
+		{
+			rect.w = section->w;
+			rect.h = section->h;
+		}
 	}
 	else
 	{
@@ -153,7 +169,7 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 	SDL_Point* p = NULL;
 	SDL_Point pivot;
 
-	if(pivot_x != INT_MAX && pivot_y != INT_MAX)
+	if (pivot_x != INT_MAX && pivot_y != INT_MAX)
 	{
 		pivot.x = pivot_x;
 		pivot.y = pivot_y;
