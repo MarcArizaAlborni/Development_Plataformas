@@ -166,6 +166,7 @@ j1Player::j1Player()
 		PlayerInput.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
 		
 		
+		
 	}
 
 	else  {
@@ -174,7 +175,8 @@ j1Player::j1Player()
 		PlayerInput.DG_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
 		PlayerInput.WG_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT;
 		PlayerInput.SG_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT;
-
+		Player_Collider->to_delete = true;
+		Gravity = 0;
 
 	}
 	 //AGAFAR INPUTS I TAL, HE MIRAT I CREC QUE FERHO AIXI ES MILLOR QUE TOT JUNT 
@@ -430,26 +432,26 @@ bool j1Player::Update(float dt)
 		 }
 
 		 //from a side
-		 if ((A->rect.y >= (B->rect.y)) || ((A->rect.y + A->rect.h) <= (B->rect.y +B->rect.h)))
+		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h)  > B->rect.y))
 		 {
 
-			 if ((CurrentPosition.x + A->rect.w - 5) <= (B->rect.x ))
-			 { //Left to Right
-				
+			 if ((A->rect.x + A->rect.w - 5) <= (B->rect.x ))
+			 { //Player to the left 
+
 				 CurrentPosition.x = LastPosition.x - 1; 
 				 LOG("PLAYER INTO WALL FROM THE LEFT");
 				 
 			 }
 
-			 else if (CurrentPosition.x = (B->rect.x + B->rect.w )) 
+			 else if (B->rect.x+ B->rect.w < CurrentPosition.x)
 			 { //Player to the right
-				 CurrentPosition.x = LastPosition.x; 
+				 CurrentPosition.x = B->rect.x + 5; 
 				 LOG("PLAYER INTO WALL FROM THE RIGHT");
 			 }
 		 }
 
 		 //from above
-		 if ((A->rect.y + A->rect.h) <= B->rect.y + 20 ) // from above
+		 if ((CurrentPosition.y + A->rect.h) <= B->rect.y + 20 ) // from above
 		 {
 			 if ((A->rect.x + A->rect.w < B->rect.x) || (A->rect.x + A->rect.w < B->rect.x + B->rect.w)) { 
 
