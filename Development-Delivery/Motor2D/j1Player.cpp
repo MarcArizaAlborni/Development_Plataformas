@@ -425,6 +425,7 @@ bool j1Player::Update(float dt)
 
 	 if (A->type == ObjectType::Player && B->type == ObjectType::Platform) {
 
+
 		 //from below
 		 if (LastPosition.y > (B->rect.y + B->rect.h - 1))
 		 {
@@ -436,32 +437,34 @@ bool j1Player::Update(float dt)
 		 {
 
 			 if ((A->rect.x + A->rect.w - 5) <= (B->rect.x ))
-			 { //Player to the left 
+			 { //Left to right
 
 				 CurrentPosition.x = LastPosition.x - 1; 
 				 LOG("PLAYER INTO WALL FROM THE LEFT");
 				 
 			 }
 
-			 else if (B->rect.x+ B->rect.w < CurrentPosition.x)
-			 { //Player to the right
-				 CurrentPosition.x = B->rect.x + 5; 
-				 LOG("PLAYER INTO WALL FROM THE RIGHT");
-			 }
+			 //else if (B->rect.x - B->rect.w <= CurrentPosition.x - 20)
+			 //{ //Right to left
+				// CurrentPosition.x = B->rect.x + 5; 
+				// LOG("PLAYER INTO WALL FROM THE RIGHT");
+			 //}
 		 }
 
 		 //from above
 		 if ((CurrentPosition.y + A->rect.h) <= B->rect.y + 20 ) // from above
 		 {
-			 if ((A->rect.x + A->rect.w < B->rect.x) || (A->rect.x + A->rect.w < B->rect.x + B->rect.w)) { 
-
-			 CurrentPosition.y = LastPosition.y;
-			 if (GOD_MODE != true) {
+			 if ((A->rect.x + A->rect.w > B->rect.x) || (A->rect.x + A->rect.w < B->rect.x + B->rect.w)) { 
+				
 				 On_Ground = true;
 				 CanJump = true;
+				 CurrentPosition.y = LastPosition.y -4;
+				 LOG("PLAYER INTO WALL FROM THE TOP");
+				 float Gravity2 = Gravity;
+				 Gravity = 0;	
+				 Gravity = Gravity2;
 			 }
-			// LOG("PLAYER INTO WALL FROM THE TOP");
-			 }
+
 		 }
 	 }
 
