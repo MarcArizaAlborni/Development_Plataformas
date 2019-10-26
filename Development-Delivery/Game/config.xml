@@ -28,12 +28,8 @@
   </map>
 
   <player  inipos_x="90.0f" inipos_y="0" velocity_X="5" velocity_Y="50" gravity="10"  DashDistance ="100">
-    <!--Animations-->
-    <animation name="idle" speed="1.0" loop="false">  
-      <frame x="0" y="0" w="0" h="0"/>
-      <frame x="0" y="0" w="0" h="0"/>
-      <frame x="0" y="0" w="0" h="0"/>
-    </animation> 
+   
+   
     
     
   </player>

@@ -30,8 +30,8 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
+	App->map->Load("SimpleLevel1.tmx");
 	//App->map->Load("Level1v4.tmx");
-	App->map->Load("Level1v4.tmx");
 	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
 	return true;
 }
