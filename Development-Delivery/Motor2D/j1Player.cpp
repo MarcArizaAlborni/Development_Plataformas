@@ -50,10 +50,10 @@ j1Player::j1Player()
 
 	 Inipos.x = node.attribute("inipos_x").as_float();
 	 Inipos.y = node.attribute("inipos_y").as_float();
-	 Character_vel.x = node.attribute("velocity_X").as_float();
+	 Character_vel.x = node.attribute("velocity").as_float();
 	 Gravity = node.attribute("gravity").as_float();
 	 DashDist = node.attribute("DashDistance").as_float();
-	 Character_vel.y = node.attribute("velocity_Y").as_float();
+	 Character_vel.y = node.attribute("gravity").as_float();
 	 
 
 	 return ret;
@@ -430,11 +430,11 @@ bool j1Player::Update(float dt)
 		 }
 
 		 //from above
-		 if ((CurrentPosition.y + A->rect.h) <= B->rect.y + 16 ) // from above
+		 if ((CurrentPosition.y + A->rect.h) <= B->rect.y + 20 ) // from above
 		 {
 			 if ((A->rect.x + A->rect.w < B->rect.x) || (A->rect.x + A->rect.w < B->rect.x + B->rect.w)) { 
 
-			 CurrentPosition.y = LastPosition.y - 1;
+			 CurrentPosition.y = LastPosition.y ;
 
 			 On_Ground = true;
 			 LOG("PLAYER INTO WALL FROM THE TOP");
