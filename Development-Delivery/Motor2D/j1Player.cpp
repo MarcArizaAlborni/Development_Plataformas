@@ -56,6 +56,8 @@ j1Player::j1Player()
 	 DashDist = node.attribute("DashDistance").as_float();
 	 Character_vel.y = node.attribute("velocity_Y").as_float();
 	 
+	 
+
 
 	 return ret;
  }
@@ -77,7 +79,8 @@ j1Player::j1Player()
 	 Player_Collider = App->collision->AddCollider(Player_Rect, ObjectType::Player, this);
 	
 	// On_Ground = true;
-
+	 CanJump = true;
+	
 	 return true;
  }
 
@@ -86,6 +89,7 @@ j1Player::j1Player()
 	//768
 	/*App->render->camera.x = CurrentPosition.x;
 	App->render->camera.y = CurrentPosition.y;*/ //768/2
+	
 	 On_Ground;
 	 if (On_Ground == false) {
 
@@ -160,9 +164,9 @@ j1Player::j1Player()
 				PlayerState = RightState;
 				LOG("IDLE TO RIGHT");
 			}
-
-			if (PlayerInput.W_active) {
-
+			
+			if (PlayerInput.W_active && CanJump == true) {
+				CanJump = false;
 				Character_vel.y = 50;
 				PlayerState = JumpState;
 				LOG("IDLE TO JUMP");
@@ -194,7 +198,7 @@ j1Player::j1Player()
 				LOG("LEFT TO DASH LEFT");
 			}
 
-			if (PlayerInput.W_active ) {
+			if (PlayerInput.W_active && CanJump==true) {
 				Character_vel.y = 50;
 				
 					PlayerState = JumpState;
@@ -219,7 +223,7 @@ j1Player::j1Player()
 				LOG("LEFT TO DASH RIGHT");
 			}
 
-			if (PlayerInput.W_active) {
+			if (PlayerInput.W_active && CanJump == true) {
 				Character_vel.y = 50;
 				PlayerState = JumpState;
 					LOG("LEFT TO JUMP");
@@ -233,7 +237,7 @@ j1Player::j1Player()
 		if (PlayerState == JumpState)
 		{
 			
-		
+			
 		}
 
 	}
@@ -292,6 +296,7 @@ bool j1Player::Update(float dt)
 		break;
 	case JumpState:
 		EndJump = false;
+
 		On_The_Ground();
 		if (Jump_Ready == false) {
 			PlayerState = IdleState;
@@ -304,6 +309,7 @@ bool j1Player::Update(float dt)
 		if (EndJump == true) {
 			PlayerState = IdleState;
 		 }
+		
 		LOG("JUMP STATE ACTIVE");
 		break;
 		
@@ -394,6 +400,7 @@ bool j1Player::Update(float dt)
 			 CurrentPosition.y = LastPosition.y;
 			 if (GOD_MODE != true) {
 				 On_Ground = true;
+				 CanJump = true;
 			 }
 			// LOG("PLAYER INTO WALL FROM THE TOP");
 			 }

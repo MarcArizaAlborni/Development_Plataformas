@@ -131,12 +131,12 @@ public:
 	bool Hit_Platform_From_Side = false;
 	bool Falling;
 	bool EndJump;
-	
+	bool CanJump;
 	
 	void On_The_Ground() {
 
 		//CHECK COLLISION
-
+		CanJump = false;
 		if (On_Ground == true) {
 
 			Jump_Ready = true;
@@ -156,7 +156,7 @@ public:
 
 	void Jumping() {
 
-
+		CanJump = false;
 
 		if (MidAirUP == true) {
 			LOG("MID AIR TRUE");
