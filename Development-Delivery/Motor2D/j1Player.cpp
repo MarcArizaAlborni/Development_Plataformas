@@ -222,6 +222,11 @@ bool j1Player::PreUpdate()
 
 		}
 
+		if (PlayerState != JumpState || PlayerState != DashState) {
+
+			CurrentPosition.y += Gravity;
+
+		}
 		if (PlayerState == JumpState)
 		{
 			
