@@ -50,10 +50,10 @@ j1Player::j1Player()
 
 	 Inipos.x = node.attribute("inipos_x").as_float();
 	 Inipos.y = node.attribute("inipos_y").as_float();
-	 Character_vel.x = node.attribute("velocity").as_float();
+	 Character_vel.x = node.attribute("velocity_X").as_float();
 	 Gravity = node.attribute("gravity").as_float();
 	 DashDist = node.attribute("DashDistance").as_float();
-	 
+	 Character_vel.y = node.attribute("velocity_Y").as_float();
 	 
 
 	 return ret;
@@ -223,6 +223,11 @@ bool j1Player::PreUpdate()
 
 		}
 
+		if (PlayerState != JumpState || PlayerState != DashState) {
+
+			CurrentPosition.y += Gravity;
+
+		}
 		if (PlayerState == JumpState)
 		{
 			
