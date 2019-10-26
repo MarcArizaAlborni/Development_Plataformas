@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="80" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="37">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="80" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="38">
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32" tilecount="768" columns="32">
   <image source="generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
@@ -2435,7 +2435,7 @@
   <object id="22" name="Floor" type="Platform" x="2304.5" y="224.5" width="30" height="32"/>
   <object id="23" name="Floor" type="Platform" x="2368.5" y="160.5" width="31" height="31"/>
   <object id="25" name="Floor" type="Platform" x="2464.5" y="128.5" width="96" height="31"/>
-  <object id="34" name="Floor" type="Platform" x="-25.3333" y="1.33333" width="24" height="477.333"/>
+  <object id="34" name="Floor" type="Platform" x="-20.3333" y="1.33333" width="24" height="477.333"/>
   <object id="35" name="Floor" type="Platform" x="2560.33" y="1.33333" width="24" height="477.333"/>
   <object id="36" name="Floor" type="Water" x="192" y="432" width="2370.67" height="60"/>
  </objectgroup>
