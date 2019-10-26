@@ -69,7 +69,7 @@ j1Player::j1Player()
 	 floor = CurrentPosition.y;
 	 PlayerState = IdleState;
 
-	 CurrentPosition = { Inipos.x, Inipos.y };
+	 CurrentPosition = { Inipos.x, Inipos.y } ;
 
 	 Player_Rect = { CurrentPosition.x, CurrentPosition.y, 21, 35 };
 
@@ -85,6 +85,7 @@ bool j1Player::PreUpdate()
 	//768
 	/*App->render->camera.x = CurrentPosition.x;
 	App->render->camera.y = CurrentPosition.y;*/ //768/2
+
 	PlayerInput.F10_active = App->input->keyboard[SDL_SCANCODE_F10] == KEY_DOWN;
 	PlayerInput.F3_active = App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN;
 
@@ -246,6 +247,8 @@ bool j1Player::PreUpdate()
 				}
 			}
 
+
+
 			if (PlayerState == DashState)
 			{
 				//Dash Check
@@ -262,7 +265,7 @@ bool j1Player::PreUpdate()
 
 				}
 
-				CurrentPosition.y += Character_vel.y; //Update position y
+				CurrentPosition.y -= Character_vel.y; //Update position y
 
 				if (Hit_PLatform_From_Up)
 				{
@@ -271,7 +274,7 @@ bool j1Player::PreUpdate()
 				}
 			}
 
-			CurrentPosition.x += Character_vel.x;
+			//CurrentPosition.x += Character_vel.x;
 			LOG("7");
 			if (Hit_Platform_From_Side)
 			{
@@ -422,12 +425,15 @@ bool j1Player::Update(float dt)
 		 }
 
 		 //from above
-		 if (((CurrentPosition.y + A->rect.h) > B->rect.y - 20) && (A->rect.x > B->rect.x + B->rect.w) && (A->rect.x + A->rect.w < B->rect.x)) { // from above
+		 if ((CurrentPosition.y + A->rect.h) <= B->rect.y + 16 ) // from above
+		 {
+			 if ((A->rect.x + A->rect.w < B->rect.x) || (A->rect.x + A->rect.w < B->rect.x + B->rect.w)) { 
 
-			 CurrentPosition.y = LastPosition.y;
+			 CurrentPosition.y = LastPosition.y - 1;
 
 			 On_Ground = true;
 			 LOG("PLAYER INTO WALL FROM THE TOP");
+			 }
 		 }
 	 }
 
