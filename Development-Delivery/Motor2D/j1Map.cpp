@@ -6,6 +6,8 @@
 #include "j1Map.h"
 #include <math.h>
 #include "j1Audio.h"
+#include "j1Window.h"
+#include "j1Collision.h"
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
@@ -32,6 +34,14 @@ void j1Map::Draw()
 	if(map_loaded == false)
 		return;
 
+	uint winW = App->win->GetWidth();
+	uint winH = App->win->GetHeight();
+
+	camera_rect.rect.x = winW;
+	camera_rect.rect.y = winH;
+
+	App->map->camera_rect.SetPos(App->render->camera.x, App->render->camera.y);
+
 	// TODO 5: Prepare the loop to iterate all the tiles in a layer
 	
 	MapLayer* layer = data.maplayers[0];
@@ -45,12 +55,13 @@ void j1Map::Draw()
 		for (uint y = 0; y < data.height; ++y)
 		{
 			for (uint x = 0; x < data.width; ++x)
-			{
-				// TODO 9: Complete the draw function
+			{			
+				
 				App->render->Blit(data.tilesets[0]->texture,
 				MapToWorld(x,y).x, MapToWorld(x,y).y,
 				data.tilesets[0]->GetTileRectId(gid[i]));
 				i++;
+				
 			}
 		}
 		

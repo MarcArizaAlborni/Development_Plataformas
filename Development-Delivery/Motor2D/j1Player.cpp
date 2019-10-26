@@ -388,7 +388,7 @@ bool j1Player::Update(float dt)
 	}
 	else
 	{
-		Player_Collider->SetPos(CurrentPosition.x + 0, CurrentPosition.y); //Makes the collider follow the player.
+		Player_Collider->SetPos(CurrentPosition.x, CurrentPosition.y); //Makes the collider follow the player.
 	}
 
 	

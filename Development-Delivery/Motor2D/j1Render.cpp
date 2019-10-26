@@ -3,6 +3,7 @@
 #include "j1App.h"
 #include "j1Window.h"
 #include "j1Render.h"
+#include "j1Player.h"
 
 #define VSYNC true
 
@@ -136,7 +137,7 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 	SDL_Rect rect;
 	if (flip)
 	{
-		rect.x = (int)(camera.x * speed) + x * scale + 35; //Add players sprite width.
+		rect.x = (int)(camera.x * speed) + x * scale + App->player->Player_Rect.h; //It is not a Magic number ;)
 		rect.y = (int)(camera.y * speed) + y * scale;
 	}
 	else
@@ -149,7 +150,7 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 	{
 		if (flip)
 		{
-			rect.w = -section->w; //Sprite will be printed from top right to left down instead of top left right down.
+			rect.w = -section->w; 
 			rect.h = section->h;
 		}
 		else

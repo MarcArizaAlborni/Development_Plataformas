@@ -5,6 +5,7 @@
 #include "p2List.h"
 #include "p2Point.h"
 #include "j1Module.h"
+#include "j1Collision.h"
 
 // TODO 1: Create a struct for the map layer
 // ----------------------------------------------------
@@ -29,6 +30,7 @@ struct MapLayer
 	{
 		return (y * width) + x;
 	};
+
 };
 
 struct ObjectProperties
@@ -71,8 +73,6 @@ struct TileSet
 	int					num_tiles_height;
 	int					offset_x;
 	int					offset_y;
-
-	
 
 };
 
@@ -140,6 +140,7 @@ private:
 public:
 
 	MapData data;
+	Collider camera_rect; //For camera culling
 
 private:
 
