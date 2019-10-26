@@ -76,17 +76,29 @@ j1Player::j1Player()
 
 	 Player_Collider = App->collision->AddCollider(Player_Rect, ObjectType::Player, this);
 	
-	 On_Ground = true;
+	// On_Ground = true;
 
 	 return true;
  }
 
-bool j1Player::PreUpdate() 
+ bool j1Player::PreUpdate()
  {  //1024
 	//768
 	/*App->render->camera.x = CurrentPosition.x;
 	App->render->camera.y = CurrentPosition.y;*/ //768/2
+	 On_Ground;
+	 if (On_Ground == false) {
 
+		 Falling = true;
+	 }
+
+	 if (Falling == true)
+	 {
+
+		 CurrentPosition.y += Gravity;
+
+
+	 }
 	PlayerInput.F10_active = App->input->keyboard[SDL_SCANCODE_F10] == KEY_DOWN;
 	PlayerInput.F3_active = App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN;
 
@@ -151,7 +163,7 @@ bool j1Player::PreUpdate()
 
 			if (PlayerInput.W_active) {
 
-				
+				Character_vel.y = 50;
 				PlayerState = JumpState;
 				LOG("IDLE TO JUMP");
 				
@@ -183,7 +195,7 @@ bool j1Player::PreUpdate()
 			}
 
 			if (PlayerInput.W_active ) {
-
+				Character_vel.y = 50;
 				
 					PlayerState = JumpState;
 					LOG("LEFT TO JUMP");
@@ -208,7 +220,7 @@ bool j1Player::PreUpdate()
 			}
 
 			if (PlayerInput.W_active) {
-				
+				Character_vel.y = 50;
 				PlayerState = JumpState;
 					LOG("LEFT TO JUMP");
 				
@@ -279,16 +291,19 @@ bool j1Player::Update(float dt)
 		CurrentPosition.y;
 		break;
 	case JumpState:
-		
+		EndJump = false;
 		On_The_Ground();
 		if (Jump_Ready == false) {
 			PlayerState = IdleState;
 		}
 		if (Jump_Ready == true) {
 			MidAirUP = true;
+			
 			Jumping();
 		}
-
+		if (EndJump == true) {
+			PlayerState = IdleState;
+		 }
 		LOG("JUMP STATE ACTIVE");
 		break;
 		
@@ -380,7 +395,7 @@ bool j1Player::Update(float dt)
 			 if (GOD_MODE != true) {
 				 On_Ground = true;
 			 }
-			 LOG("PLAYER INTO WALL FROM THE TOP");
+			// LOG("PLAYER INTO WALL FROM THE TOP");
 			 }
 		 }
 	 }

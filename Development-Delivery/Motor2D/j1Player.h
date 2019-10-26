@@ -129,6 +129,8 @@ public:
 	bool Hit_Platform_From_Down = false;
 	bool Hit_PLatform_From_Up = false;
 	bool Hit_Platform_From_Side = false;
+	bool Falling;
+	bool EndJump;
 	
 	
 	void On_The_Ground() {
@@ -158,10 +160,17 @@ public:
 
 		if (MidAirUP == true) {
 			LOG("MID AIR TRUE");
-			Character_vel.y -= Gravity;
+			Character_vel.y -= Gravity; //CHARACTER VELOCITY = 0 AL SEGON SALT PER AIXO NO VA
 
+			if (PlayerInput.A_active) {
+				CurrentPosition.x -= Gravity;
+			}
+			if (PlayerInput.D_active) {
+				CurrentPosition.x += Gravity;
+			}
 			if (Character_vel.y <= 0) {
-				LOG("VELY REACHED 0");
+				float altura = CurrentPosition.y;
+				LOG("VELY REACHED 0   %f",altura);
 				MidAirUP = false;
 			}
 
@@ -173,8 +182,11 @@ public:
 			LOG("MID AIR UP == FALSE");
 			Character_vel.y += Gravity;
 		//	On_Ground = Jump_Ready;
+			
 			if (On_Ground == true) {
 				LOG("TO IDLE FROM JUMP");
+				
+				EndJump = true;
 				
 				PlayerState = IdleState;
 			}
