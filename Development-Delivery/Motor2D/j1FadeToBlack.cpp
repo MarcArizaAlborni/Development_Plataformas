@@ -8,7 +8,10 @@
 #include "SDL/include/SDL_timer.h"
 
 j1FadeToBlack::j1FadeToBlack()
-{}
+{
+	name.create("fade");
+
+}
 
 j1FadeToBlack::~j1FadeToBlack()
 {}
@@ -27,8 +30,10 @@ bool j1FadeToBlack::Start()
 	screen = { 0, 0, width * scale, height * scale };
 }
 
+
+
 // Update: draw background
-bool j1FadeToBlack::Update()
+bool j1FadeToBlack::Update(float dt)
 {
 	if (current_step == fade_step::none)
 		return true;
@@ -67,9 +72,13 @@ bool j1FadeToBlack::Update()
 }
 
 // Fade to black. At mid point deactivate one module, then activate the other
-bool j1FadeToBlack::FadeToBlack( float time)
+bool j1FadeToBlack::FadeToBlack(const char* mapname, bool restartlvl, float time)
 {
 	bool ret = false;
+	
+	this->restartlvl = restartlvl;
+
+	this->mapname = mapname;
 
 	if (current_step == fade_step::none)
 	{
@@ -81,3 +90,4 @@ bool j1FadeToBlack::FadeToBlack( float time)
 
 	return ret;
 }
+

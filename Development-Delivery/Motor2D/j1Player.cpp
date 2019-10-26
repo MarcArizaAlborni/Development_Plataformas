@@ -7,6 +7,7 @@
 #include "j1Input.h"
 #include "p2Animation.h"
 #include "j1Collision.h"
+#include "j1FadeToBlack.h"
 #include "p2Log.h"
 #include "j1Map.h"
 
@@ -229,22 +230,22 @@ bool j1Player::PreUpdate()
 
 
 		if (PlayerInput.AG_active) {
-			CurrentPosition.x -= Character_vel.x*2;
+			CurrentPosition.x -= Character_vel.x;
 
 		}
 
 		if (PlayerInput.DG_active) {
-			CurrentPosition.x += Character_vel.x*2;
+			CurrentPosition.x += Character_vel.x;
 
 		}
 
 		if (PlayerInput.WG_active) {
-			CurrentPosition.y -= Character_vel.x*2;
+			CurrentPosition.y -= Character_vel.x;
 
 		}
 
 		if (PlayerInput.SG_active) {
-			CurrentPosition.y += Character_vel.x*2;
+			CurrentPosition.y += Character_vel.x;
 
 		}
 
@@ -357,14 +358,15 @@ bool j1Player::Update(float dt)
 
 			 if ((A->rect.x + A->rect.w - 5) <= (B->rect.x ))
 			 { //Player to the left 
-				 CurrentPosition.x = LastPosition.x; 
-				
+
+				 CurrentPosition.x = LastPosition.x - 5; 
 				 LOG("PLAYER INTO WALL FROM THE LEFT");
+				 
 			 }
 
 			 else if (A->rect.x >= (B->rect.x + B->rect.w - 5 )) 
 			 { //Player to the right
-				 CurrentPosition.x = B->rect.x + B->rect.w; 
+				 CurrentPosition.x = LastPosition.x - 5; 
 				 LOG("PLAYER INTO WALL FROM THE RIGHT");
 			 }
 		 }
@@ -374,17 +376,25 @@ bool j1Player::Update(float dt)
 		 {
 			 if ((A->rect.x + A->rect.w < B->rect.x) || (A->rect.x + A->rect.w < B->rect.x + B->rect.w)) { 
 
-			 CurrentPosition.y = LastPosition.y ;
-
-			 On_Ground = true;
-
+			 CurrentPosition.y = LastPosition.y;
+			 if (GOD_MODE != true) {
+				 On_Ground = true;
+			 }
 			 LOG("PLAYER INTO WALL FROM THE TOP");
 			 }
 		 }
 	 }
 
-	 
+	 if (GOD_MODE == false) {
+		 if (A->type == ObjectType::Player && B->type == ObjectType::Water) {
 
+			 if ((CurrentPosition.y + A->rect.h) <= B->rect.y + 20) // from above
+			 {
+				 CurrentPosition.x = Inipos.x;
+				 CurrentPosition.y = Inipos.y;
+			 }
+		 }
+	 }
 
  }
  
