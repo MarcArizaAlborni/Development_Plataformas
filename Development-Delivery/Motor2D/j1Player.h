@@ -20,8 +20,7 @@ struct Input_player
 	bool W_active;// JUMP
 	bool U_active;//DASH ABILITY 2
 	bool I_active;//TRANSFORMATION ABILITY 3
-	//bool W_active; JUMP
-
+	
 
 	//CONSOLE
 	bool F1_active; //START LEVEL 1
@@ -232,19 +231,28 @@ public:
 	bool DashActiveLeft;
 	bool DashActiveRight;
 	float DashTime;
+	float DashPrep = 20;
 	void DashFunction()
 	{
 		
 		
-		if (StartPosition.x - DashDist < CurrentPosition.x && DashActiveLeft== true) {
-
-			CurrentPosition.x -= Character_vel.x*2;
+		if (DashActiveLeft== true) {
+			CurrentPosition.x += Character_vel.x;
+			CurrentPosition.x = StartPosition.x - DashDist;
 			LOG("DASH FUNCTION LEFT");
+			DashActiveLeft = false;
+			DashActiveRight = false;
+			if (CurrentAnimation->FinishedAnimation()) {
+				PlayerState = IdleState;
+			}
 		}
-		else if (StartPosition.x + DashDist > CurrentPosition.x && DashActiveRight== true) {
-
-			CurrentPosition.x += Character_vel.x*2;
+		else if( DashActiveRight== true) {
+			CurrentPosition.x -= Character_vel.x;
+			CurrentPosition.x = StartPosition.x + DashDist;
 			LOG("DASH FUNCTION RIGHT");
+			DashActiveLeft = false;
+			DashActiveRight = false;
+			PlayerState = IdleState;
 		}
 		else {
 			DashActiveLeft = false;

@@ -48,13 +48,19 @@ j1Player::j1Player()
 	run.PushBack({ 147,105,21,35 });
 	run.speed = 0.5;
 
-	dash.PushBack({ 0,140,21,35 });
-	dash.PushBack({ 21,140,21,35 });
-	dash.PushBack({ 42,140,21,35 });
-	dash.PushBack({ 63,140,21,35 });
-	dash.PushBack({ 84,140,21,35 });
-	dash.PushBack({ 105,140,21,35 });
-	dash.speed = 0.5;
+	//dash.PushBack({ 0,140,21,35 });
+	//dash.PushBack({ 21,140,21,35 });
+	//dash.PushBack({ 42,140,21,35 });
+	//dash.PushBack({ 63,140,21,35 });
+	//dash.PushBack({ 84,140,21,35 });
+	/*dash.PushBack({ 172,131,24,43 });
+	dash.PushBack({ 172,131,24,43 });*/
+	dash.PushBack({ 172,131,24,43 });
+	dash.PushBack({ 208,131,31,43 });
+	/*dash.PushBack({ 208,131,31,43 });
+	dash.PushBack({ 208,131,31,43 });*/
+	//dash.PushBack({ 105,140,21,35 });
+	dash.speed = 0.01;
 }
 
 
@@ -107,7 +113,7 @@ j1Player::j1Player()
 	 LOG("Loading player textures");
 	 
 	 
-	 Graphics = App->tex->Load("Sprites/Dude.png");
+	 Graphics = App->tex->Load("Sprites/DudeMOD.png");
 	 floor = CurrentPosition.y;
 	 PlayerState = IdleState;
 
