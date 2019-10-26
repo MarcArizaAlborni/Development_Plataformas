@@ -129,7 +129,68 @@ public:
 	bool Hit_Platform_From_Down = false;
 	bool Hit_PLatform_From_Up = false;
 	bool Hit_Platform_From_Side = false;
+	
+	
+	void On_The_Ground() {
 
+		//CHECK COLLISION
+
+		if (On_Ground == true) {
+
+			Jump_Ready = true;
+
+			LOG("ON GROUND TRUE");
+		}
+		else if (On_Ground == false) {
+
+			Jump_Ready = false;
+
+			LOG("ON GROUND FALSE");
+		}
+
+
+
+	}
+
+	void Jumping() {
+
+
+
+		if (MidAirUP == true) {
+			LOG("MID AIR TRUE");
+			Character_vel.y -= Gravity;
+
+			if (Character_vel.y <= 0) {
+				LOG("VELY REACHED 0");
+				MidAirUP = false;
+			}
+
+			CurrentPosition.y -= Character_vel.y;
+
+		}
+
+		if (MidAirUP == false) {
+			LOG("FALLING");
+			Character_vel.y += Gravity;
+			if (On_Ground == false) {
+
+				
+				PlayerState = IdleState;
+			}
+			
+			if (On_Ground == true) {
+				
+				CurrentPosition.y += Gravity;
+
+			}
+
+
+
+
+		}
+
+
+	}
 	
 	//DASH THINGS
 	float DashDist;
