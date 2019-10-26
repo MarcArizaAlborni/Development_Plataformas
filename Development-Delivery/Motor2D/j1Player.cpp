@@ -321,20 +321,23 @@ bool j1Player::Update(float dt)
 	{
 	case IdleState:
 		//LOG("IDLE");
+		TouchingCollider = false;
 		CurrentAnimation = &idle;
 		break;
 
 	case LeftState:
 		LOG("MOVING LEFT");
 		flip = true;
-		CurrentPosition.x -= Character_vel.x;
+		Movement();
+		//CurrentPosition.x -= Character_vel.x;
 		CurrentAnimation = &run;
 		break;
 
 	case RightState:
 		LOG("MOVING RIGHT");
 		flip = false;
-		CurrentPosition.x += Character_vel.x;
+		Movement();
+		//CurrentPosition.x += Character_vel.x;
 		CurrentAnimation = &run;
 		break;
 	case JumpState:
@@ -385,7 +388,7 @@ bool j1Player::Update(float dt)
 	}
 	else
 	{
-		Player_Collider->SetPos(CurrentPosition.x + 15, CurrentPosition.y); //Makes the collider follow the player.
+		Player_Collider->SetPos(CurrentPosition.x + 0, CurrentPosition.y); //Makes the collider follow the player.
 	}
 
 	
@@ -438,17 +441,20 @@ bool j1Player::Update(float dt)
 
 			 if ((A->rect.x + A->rect.w - 5) <= (B->rect.x ))
 			 { //Left to right
-
+				 TouchingCollider = true;
+				 Movement();
 				 CurrentPosition.x = LastPosition.x - 1; 
 				 LOG("PLAYER INTO WALL FROM THE LEFT");
 				 
 			 }
 
-			 //else if (B->rect.x - B->rect.w <= CurrentPosition.x - 20)
-			 //{ //Right to left
-				// CurrentPosition.x = B->rect.x + 5; 
-				// LOG("PLAYER INTO WALL FROM THE RIGHT");
-			 //}
+			 else if (B->rect.x - B->rect.w >= A->rect.x - 20)
+			 { //Right to left
+				 TouchingCollider = true;
+				 Movement();
+				 CurrentPosition.x = LastPosition.x;
+				LOG("PLAYER INTO WALL FROM THE RIGHT");
+			 }
 		 }
 
 		 //from above
@@ -458,7 +464,7 @@ bool j1Player::Update(float dt)
 				
 				 On_Ground = true;
 				 CanJump = true;
-				 CurrentPosition.y = LastPosition.y -4;
+				 CurrentPosition.y = LastPosition.y ;
 				 LOG("PLAYER INTO WALL FROM THE TOP");
 				 float Gravity2 = Gravity;
 				 Gravity = 0;	

@@ -114,6 +114,21 @@ public:
 	Animation			jump;
 	Animation			run;
 	Animation			dash;
+	
+	//MOVEMENT
+
+	void Movement() {
+
+		if (PlayerInput.A_active && TouchingCollider==false) {
+			CurrentPosition.x -= Character_vel.x;
+		}
+
+		if (PlayerInput.D_active&&TouchingCollider==false) {
+			CurrentPosition.x += Character_vel.x;
+		}
+	}
+
+
 
 
 
@@ -137,6 +152,7 @@ public:
 	bool Falling;
 	bool EndJump;
 	bool CanJump;
+	bool TouchingCollider;
 	
 	void On_The_Ground() {
 
@@ -162,11 +178,11 @@ public:
 	void Jumping() {
 
 		CanJump = false;
-
+		
 		if (MidAirUP == true) {
 			LOG("MID AIR TRUE");
 			Character_vel.y -= Gravity; //CHARACTER VELOCITY = 0 AL SEGON SALT PER AIXO NO VA
-
+			
 			if (PlayerInput.A_active) {
 				CurrentPosition.x -= Gravity;
 			}
@@ -215,11 +231,11 @@ public:
 	float DashDist;
 	bool DashActiveLeft;
 	bool DashActiveRight;
-	
+	float DashTime;
 	void DashFunction()
 	{
 		
-
+		
 		if (StartPosition.x - DashDist < CurrentPosition.x && DashActiveLeft== true) {
 
 			CurrentPosition.x -= Character_vel.x*2;
