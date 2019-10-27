@@ -96,20 +96,20 @@ bool j1FadeToBlack::ChangeMap(const char* newMap)
 {
 	bool ret = true;
 
-	App->map->CleanUp();						//Deletes everything related with the map from memory. (Tilesets, Layers and ObjectGroups)
+	App->map->CleanUp();						
 	
-	App->collision->collider.clear();	//Deletes all colliders from memory.
-	App->player->CleanUp();					//Deletes all data related to P1. 
-						//Deletes all data related to P2.
-	//App->audio->CleanUp();
+	App->collision->collider.clear();	
+	App->player->CleanUp();					
+						
+	
 
-	App->map->Load(newMap);						//Loads a specified map
-	App->collision->LoadCollider();		//Load Collisions
-	App->player->LoadPlayer1();				//Load / Reset P1
-	//App->player1->LoadPlayer1Textures();		//Load / Reset P1's textures.
+	App->map->Load(newMap);					
+	App->collision->LoadCollider();	
+	App->player->LoadPlayer1();				
+	
 				
-	//App->player1->LoadPlayer1Textures();		//Load / Reset P2's textures.
-	//App->audio->
+		
+	
 
 
 	return ret;
