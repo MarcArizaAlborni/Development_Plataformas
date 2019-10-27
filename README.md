@@ -28,7 +28,7 @@ into a small slime which has a smaller collider which allows you to reach certai
 
     -View Colliders/Logic  ->F9
 
-    -Focus Camera On Player ->F11
+    
 
 
 
@@ -52,10 +52,9 @@ into a small slime which has a smaller collider which allows you to reach certai
 
      - Jump -> Space Bar
 
-     - Dash -> U
+     
 
-     - Transform Human/Slime -> I
-
+    
 
  Github Repository:
 
