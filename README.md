@@ -47,6 +47,7 @@ into a small slime which has a smaller collider which allows you to reach certai
 
      - Jump -> Space Bar
 
+
  God Mode :
    
    -God Mode -> F10
