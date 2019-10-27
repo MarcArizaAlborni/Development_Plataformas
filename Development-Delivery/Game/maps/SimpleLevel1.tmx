@@ -3641,13 +3641,13 @@
   <object id="48" name="Floor" type="Platform" x="1152.67" y="287.667" width="30.6667" height="33.3333"/>
   <object id="50" name="Floor" type="Victory" x="2495.5" y="438" width="65" height="42"/>
   <object id="57" name="Floor" type="Platform" x="1280.67" y="224.333" width="30.6667" height="30.8333"/>
-  <object id="58" name="Floor" type="Platform" x="2400.67" y="130.122" width="61.3333" height="348.545"/>
-  <object id="59" name="Floor" type="Platform" x="2368.67" y="162.122" width="75.1667" height="38.5455"/>
-  <object id="60" name="Floor" type="Platform" x="2336.33" y="194.485" width="97.1667" height="38.1818"/>
-  <object id="61" name="Floor" type="Platform" x="2304.33" y="226.424" width="96.6667" height="38.9091"/>
-  <object id="62" name="Floor" type="Platform" x="2273" y="258.424" width="124.667" height="38.9091"/>
-  <object id="63" name="Floor" type="Platform" x="2240.33" y="290.788" width="120.667" height="38.5455"/>
-  <object id="64" name="Floor" type="Platform" x="2209" y="322.182" width="98" height="32.1515"/>
+  <object id="58" name="Floor" type="Platform" x="2402.49" y="132.304" width="59.5151" height="346.363"/>
+  <object id="59" name="Floor" type="Platform" x="2370.12" y="163.94" width="73.7122" height="36.7273"/>
+  <object id="60" name="Floor" type="Platform" x="2339.97" y="195.94" width="93.5303" height="36.7273"/>
+  <object id="61" name="Floor" type="Platform" x="2306.51" y="227.879" width="94.4849" height="37.4546"/>
+  <object id="62" name="Floor" type="Platform" x="2275.91" y="259.879" width="121.758" height="37.4546"/>
+  <object id="63" name="Floor" type="Platform" x="2245.06" y="291.515" width="115.94" height="37.8182"/>
+  <object id="64" name="Floor" type="Platform" x="2212.64" y="322.182" width="94.3636" height="32.1515"/>
   <object id="65" name="Floor" type="Platform" x="2176.75" y="354.205" width="142.5" height="29.5455"/>
  </objectgroup>
 </map>
