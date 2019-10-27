@@ -99,7 +99,7 @@ void j1Collision::DebugDraw()
 	if (debug == false)
 		return;
 
-	Uint8 alpha = 100;
+	uint alpha = 100;
 
 	p2List_item<Collider*>* collider_iterator = collider.start;
 
@@ -116,7 +116,10 @@ void j1Collision::DebugDraw()
 			break;
 		case ObjectType::Water: // blue
 			App->render->DrawQuad(collider_iterator->data->rect, 0, 0, 255, alpha);
-
+			break;
+		case ObjectType::Victory: // Green
+			App->render->DrawQuad(collider_iterator->data->rect, 0, 255, 0, alpha);
+			break;
 		}
 	}
 

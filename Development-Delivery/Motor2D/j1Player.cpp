@@ -100,9 +100,8 @@ j1Player::j1Player()
 	 Gravity = node.attribute("gravity").as_float();
 	 DashDist = node.attribute("DashDistance").as_float();
 	 Character_vel.y = node.attribute("velocity_Y").as_float();
-	 
-	 
-
+	 Player_Width = node.attribute("width").as_int();
+	 Player_Height = node.attribute("height").as_int();
 
 	 return ret;
  }
@@ -119,7 +118,7 @@ j1Player::j1Player()
 
 	 CurrentPosition = { Inipos.x, Inipos.y } ;
 
-	 Player_Rect = { CurrentPosition.x, CurrentPosition.y, 21, 35 };
+	 Player_Rect = { CurrentPosition.x, CurrentPosition.y, Player_Width, Player_Height };
 
 	 Player_Collider = App->collision->AddCollider(Player_Rect, ObjectType::Player, this);
 	
@@ -130,10 +129,7 @@ j1Player::j1Player()
  }
 
  bool j1Player::PreUpdate()
- {  //1024
-	//768
-	/*App->render->camera.x = CurrentPosition.x;
-	App->render->camera.y = CurrentPosition.y;*/ //768/2
+ {  
 	
 	 On_Ground;
 	 if (On_Ground == false) {
@@ -382,8 +378,6 @@ bool j1Player::Update(float dt)
 
 	Player_Collider->SetPos(CurrentPosition.x, CurrentPosition.y);
 
-	//OnCollision(Collider *A, collider *B);
-
 	SDL_Rect r = CurrentAnimation->GetCurrentFrame();
 
 	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, flip);
@@ -489,6 +483,21 @@ bool j1Player::Update(float dt)
 				 CurrentPosition.y = Inipos.y;
 			 }
 		 }
+	 }
+
+	 if (A->type == ObjectType::Player && B->type == ObjectType::Victory)
+	 {
+		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y))
+		 {
+
+			 if ((A->rect.x + A->rect.w - 5) <= (B->rect.x))
+			 { //Left to right
+
+				 App->fade->FadeToBlack("SimpleLvl1.tmx");
+
+			 }
+		 }
+	
 	 }
 
  }
