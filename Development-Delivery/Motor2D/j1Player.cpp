@@ -151,7 +151,7 @@ j1Player::j1Player()
 
 		PlayerInput.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
 		PlayerInput.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
-		PlayerInput.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN;
+		PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_DOWN;
 		PlayerInput.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN;
 		PlayerInput.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
 		
@@ -196,7 +196,7 @@ j1Player::j1Player()
 				LOG("IDLE TO RIGHT");
 			}
 			
-			if (PlayerInput.W_active && CanJump == true) {
+			if (PlayerInput.Space_active && CanJump == true) {
 				CanJump = false;
 				Character_vel.y = 50;
 				PlayerState = JumpState;
@@ -229,7 +229,7 @@ j1Player::j1Player()
 				LOG("LEFT TO DASH LEFT");
 			}
 
-			if (PlayerInput.W_active && CanJump==true) {
+			if (PlayerInput.Space_active && CanJump==true) {
 				Character_vel.y = 50;
 				
 					PlayerState = JumpState;
@@ -254,7 +254,7 @@ j1Player::j1Player()
 				LOG("LEFT TO DASH RIGHT");
 			}
 
-			if (PlayerInput.W_active && CanJump == true) {
+			if (PlayerInput.Space_active && CanJump == true) {
 				Character_vel.y = 50;
 				PlayerState = JumpState;
 					LOG("LEFT TO JUMP");

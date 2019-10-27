@@ -17,7 +17,7 @@ struct Input_player
 	//GAMEPLAY
 	bool A_active; //LEFT
 	bool D_active;//RIGHT
-	bool W_active;// JUMP
+	bool Space_active;// JUMP
 	bool U_active;//DASH ABILITY 2
 	bool I_active;//TRANSFORMATION ABILITY 3
 	
