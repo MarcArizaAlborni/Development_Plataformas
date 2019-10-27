@@ -471,7 +471,7 @@ bool j1Player::Update(float dt)
 				 On_Ground = true;
 				 CanJump = true;
 				 CurrentPosition.y = LastPosition.y ;
-				 LOG("PLAYER INTO WALL FROM THE TOP");
+				 //LOG("PLAYER INTO WALL FROM THE TOP");
 				 float Gravity2 = Gravity;
 				 Gravity = 0;	
 				 Gravity = Gravity2;
