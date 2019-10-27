@@ -141,6 +141,7 @@ public:
 
 	MapData data;
 	Collider camera_rect; //For camera culling
+	SDL_Rect tile_rect;
 
 private:
 
