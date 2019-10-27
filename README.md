@@ -1,8 +1,11 @@
 # Development_Plataformas
-
-Made by: Adrian Mirabel, Marc Ariza.
 Developed for development delivery CITM 2nd Course
 
+Made by: 
+- Marc Ariza (GitHub Link: [MarcArizaAlborni](https://github.com/MarcArizaAlborni))
+- Adrián Mirabel (GitHub Link: [M1R4B3L](https://github.com/M1R4B3L))
+
+# Download Game: 
 
 About the game:
 
@@ -10,55 +13,34 @@ This first release is a simple platformer game, made for a single player where y
 To move across the map the player can use basic mechanics as Moving Left/Right and jumping. There are also other movement mechanics such as Dashing and transforming 
 into a small slime which has a smaller collider which allows you to reach certain areas that can't be reached by normal means.
 
- The game also includes the following  debuging functions:
+## Controls:
+- Left -> A    
+- Right -> D
+- Jump -> W
 
-   
+## Save/Load the location of the character 
+- Save Game -> F5
 
-    
-    -Start Level 1 -> F1
+- Load Game -> F6
+
+## Debuging functions:  
+- Start Level 1 -> F1
   
-    -Start Level 2 -> F2
+- Start Level 2 -> F2
 
-    -Restart Current Level -> F3
+- Restart Current Level -> F3
 
-    -View Colliders/Logic -> F9
+- View Colliders/Logic -> F9
 
-    
+- God Mode -> F10
 
+- God Mode Move Left -> A
 
+- God Mode Move Right -> D
 
+- God Mode Move Up -> W
 
- The game also has the option to Save/Load the current location of the character 
-
-
-
-      -Save Game -> F5
-
-      -Load Game -> F6
-
-
-
- Controls:
-
-
-     - Left -> A
-     
-     - Right -> D
-
-     - Jump -> Space Bar
-
-
- God Mode :
-   
-   -God Mode -> F10
-
-   -God Mode Move Left -> A
-
-   -God Mode Move Right -> D
-
-   -God Mode Move Up -> W
-
-   -God Mode Move Down -> S
+- God Mode Move Down -> S
 
  Github Repository:
 
@@ -66,15 +48,15 @@ into a small slime which has a smaller collider which allows you to reach certai
 
 Credits:
 
-   -ART:
+- ART:
         
-         https://opengameart.org/content/generic-platformer-tiles
+        https://opengameart.org/content/generic-platformer-tiles
 
-         https://anokolisa.itch.io/pocket-pack-black-temple
+        https://anokolisa.itch.io/pocket-pack-black-temple
    
-   -AUDIO:
+- AUDIO:
 
-         https://opengameart.org/content/platformer-game-music-pack
+        https://opengameart.org/content/platformer-game-music-pack
 
 License:
 
