@@ -1,11 +1,11 @@
-# Development_Plataformas
+## Development_Plataformas
 Developed for development delivery CITM 2nd Course
 
 Made by: 
 - Marc Ariza (GitHub Link: [MarcArizaAlborni](https://github.com/MarcArizaAlborni))
 - Adrián Mirabel (GitHub Link: [M1R4B3L](https://github.com/M1R4B3L))
 
-# Download Game: 
+#Download Game: 
 
 About the game:
 
@@ -16,7 +16,7 @@ into a small slime which has a smaller collider which allows you to reach certai
 ## Controls:
 - Left -> A    
 - Right -> D
-- Jump -> W
+- Jump -> Space
 
 ## Save/Load the location of the character 
 - Save Game -> F5
@@ -62,7 +62,7 @@ License:
 
 MIT License
 
-Copyright (c) [2019] [Marc Ariza, Adri¨¢n Mirabel]
+Copyright (c) [2019] [Marc Ariza, Adrián Mirabel]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
