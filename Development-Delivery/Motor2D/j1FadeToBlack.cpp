@@ -50,7 +50,7 @@ bool j1FadeToBlack::Update(float dt)
 	{
 		if (now >= total_time)
 		{
-
+			ChangeMap(mapname);
 			total_time += total_time;
 			start_time = SDL_GetTicks();
 			current_step = fade_step::fade_from_black;
@@ -100,17 +100,10 @@ bool j1FadeToBlack::ChangeMap(const char* newMap)
 	
 	App->collision->collider.clear();	
 	App->player->CleanUp();					
-						
-	
 
 	App->map->Load(newMap);					
 	App->collision->LoadCollider();	
-	App->player->LoadPlayer1();				
-	
-				
-		
-	
-
+	App->player->InitPlayer();				
 
 	return ret;
 }
