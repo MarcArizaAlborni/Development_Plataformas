@@ -10,7 +10,7 @@ j1Collision::j1Collision() : j1Module()
 {
 	name.create("collision");
 	
-	debug = true;
+	debug = false;
 }
 
 j1Collision::~j1Collision()

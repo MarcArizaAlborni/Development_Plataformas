@@ -16,7 +16,7 @@ public:
 	bool Update(float dt);
 
 	// Calling FadeToBlack funtion
-	bool FadeToBlack(const char* mapname, float time = 2.0f);
+	bool FadeToBlack(const char* mapname, float time = 1.02f);
 
 	bool ChangeMap(const char* newMap);
 private:

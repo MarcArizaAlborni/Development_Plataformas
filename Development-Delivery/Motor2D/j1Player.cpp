@@ -477,18 +477,9 @@ bool j1Player::Update(float dt)
 	 {
 		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y))
 		 {
-
-			 
-			  //Left to right
-
-				 App->fade->FadeToBlack("SimpleLevel2.tmx");
-			 
-				 //App->fade->FadeToBlack("SimpleLevel1.tmx");
-			 
+			 App->fade->FadeToBlack("SimpleLevel2.tmx"); 
 		 }
-	
 	 }
-
  }
  
  bool j1Player::InitPlayer()
