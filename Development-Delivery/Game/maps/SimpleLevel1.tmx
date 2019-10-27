@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="80" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="66">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="80" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="66">
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32" tilecount="768" columns="32">
   <image source="generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
@@ -603,7 +603,7 @@
    <tile gid="329"/>
    <tile gid="329"/>
    <tile gid="329"/>
-   <tile gid="329"/>
+   <tile gid="363"/>
    <tile gid="329"/>
    <tile gid="329"/>
    <tile gid="329"/>
@@ -3090,10 +3090,10 @@
    <tile gid="567"/>
    <tile/>
    <tile gid="534"/>
-   <tile/>
-   <tile/>
-   <tile gid="567"/>
-   <tile/>
+   <tile gid="261"/>
+   <tile gid="241"/>
+   <tile gid="242"/>
+   <tile gid="302"/>
    <tile/>
    <tile/>
    <tile/>
@@ -3171,9 +3171,9 @@
    <tile gid="54"/>
    <tile gid="152"/>
    <tile gid="61"/>
-   <tile gid="241"/>
-   <tile gid="242"/>
-   <tile gid="302"/>
+   <tile gid="153"/>
+   <tile gid="154"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -3251,8 +3251,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="153"/>
-   <tile gid="154"/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -3280,9 +3280,9 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile/>
    <tile gid="54"/>
-   <tile gid="55"/>
-   <tile gid="56"/>
+   <tile gid="241"/>
    <tile gid="89"/>
    <tile gid="89"/>
    <tile gid="89"/>
@@ -3360,15 +3360,15 @@
    <tile/>
    <tile/>
    <tile gid="534"/>
-   <tile gid="566"/>
-   <tile/>
-   <tile gid="120"/>
+   <tile gid="54"/>
+   <tile gid="55"/>
+   <tile gid="137"/>
    <tile gid="138"/>
    <tile gid="121"/>
    <tile gid="89"/>
    <tile gid="89"/>
    <tile gid="89"/>
-   <tile gid="534"/>
+   <tile gid="89"/>
    <tile gid="91"/>
    <tile gid="218"/>
    <tile gid="218"/>
@@ -3447,10 +3447,10 @@
    <tile gid="153"/>
    <tile gid="121"/>
    <tile gid="89"/>
-   <tile gid="54"/>
-   <tile gid="241"/>
-   <tile gid="57"/>
-   <tile gid="242"/>
+   <tile gid="89"/>
+   <tile gid="89"/>
+   <tile gid="91"/>
+   <tile gid="218"/>
    <tile gid="408"/>
    <tile gid="218"/>
    <tile gid="90"/>
@@ -3528,9 +3528,9 @@
    <tile gid="153"/>
    <tile gid="121"/>
    <tile gid="89"/>
-   <tile gid="88"/>
-   <tile gid="90"/>
+   <tile gid="89"/>
    <tile gid="91"/>
+   <tile gid="218"/>
    <tile gid="408"/>
    <tile gid="217"/>
    <tile gid="90"/>
@@ -3608,9 +3608,9 @@
    <tile/>
    <tile gid="88"/>
    <tile gid="89"/>
-   <tile gid="88"/>
-   <tile gid="90"/>
+   <tile gid="89"/>
    <tile gid="91"/>
+   <tile gid="218"/>
    <tile gid="408"/>
    <tile gid="217"/>
   </data>
@@ -3623,7 +3623,7 @@
   <object id="6" name="Floor" type="Platform" x="576.5" y="318.5" width="126" height="33"/>
   <object id="7" name="Floor" type="Platform" x="800.5" y="320.5" width="31" height="31"/>
   <object id="8" name="Floor" type="Platform" x="896.833" y="289.167" width="63" height="62"/>
-  <object id="11" name="Floor" type="Platform" x="1217.5" y="288.5" width="62" height="62"/>
+  <object id="11" name="Floor" type="Platform" x="1217.5" y="256.5" width="62" height="62"/>
   <object id="14" name="Floor" type="Platform" x="1632.5" y="0.5" width="190" height="63"/>
   <object id="15" name="Floor" type="Platform" x="1344.5" y="192.5" width="447" height="30"/>
   <object id="16" name="Floor" type="Platform" x="1376.5" y="222.5" width="384" height="33"/>
@@ -3640,15 +3640,14 @@
   <object id="47" name="Floor" type="Platform" x="992" y="288.333" width="32.6667" height="32.6667"/>
   <object id="48" name="Floor" type="Platform" x="1152.67" y="287.667" width="30.6667" height="33.3333"/>
   <object id="50" name="Floor" type="Victory" x="2495.5" y="438" width="65" height="42"/>
-  <object id="54" name="Floor" type="Platform" x="2400.5" y="384.5" width="95" height="96"/>
   <object id="57" name="Floor" type="Platform" x="1280.67" y="224.333" width="30.6667" height="30.8333"/>
-  <object id="58" name="Floor" type="Platform" x="2400.67" y="128.667" width="61.3333" height="254.667"/>
-  <object id="59" name="Floor" type="Platform" x="2368.67" y="160.667" width="75.1667" height="40"/>
-  <object id="60" name="Floor" type="Platform" x="2336.33" y="192.667" width="97.1667" height="40"/>
-  <object id="61" name="Floor" type="Platform" x="2304.33" y="225.333" width="96.6667" height="40"/>
-  <object id="62" name="Floor" type="Platform" x="2273" y="257.333" width="124.667" height="40"/>
-  <object id="63" name="Floor" type="Platform" x="2240.33" y="289.333" width="120.667" height="40"/>
-  <object id="64" name="Floor" type="Platform" x="2209" y="349" width="30.6667" height="34.3333"/>
-  <object id="65" name="Floor" type="Platform" x="2175.75" y="320.75" width="142.5" height="31"/>
+  <object id="58" name="Floor" type="Platform" x="2400.67" y="130.122" width="61.3333" height="348.545"/>
+  <object id="59" name="Floor" type="Platform" x="2368.67" y="162.122" width="75.1667" height="38.5455"/>
+  <object id="60" name="Floor" type="Platform" x="2336.33" y="194.485" width="97.1667" height="38.1818"/>
+  <object id="61" name="Floor" type="Platform" x="2304.33" y="226.424" width="96.6667" height="38.9091"/>
+  <object id="62" name="Floor" type="Platform" x="2273" y="258.424" width="124.667" height="38.9091"/>
+  <object id="63" name="Floor" type="Platform" x="2240.33" y="290.788" width="120.667" height="38.5455"/>
+  <object id="64" name="Floor" type="Platform" x="2209" y="322.182" width="98" height="32.1515"/>
+  <object id="65" name="Floor" type="Platform" x="2176.75" y="354.205" width="142.5" height="29.5455"/>
  </objectgroup>
 </map>

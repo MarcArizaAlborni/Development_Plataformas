@@ -183,10 +183,10 @@ public:
 			Character_vel.y -= Gravity; //CHARACTER VELOCITY = 0 AL SEGON SALT PER AIXO NO VA
 			
 			if (PlayerInput.A_active) {
-				CurrentPosition.x -= Gravity;
+				CurrentPosition.x -= Character_vel.x;
 			}
 			if (PlayerInput.D_active) {
-				CurrentPosition.x += Gravity;
+				CurrentPosition.x +=Character_vel.x;
 			}
 			if (Character_vel.y <= 0) {
 				float altura = CurrentPosition.y;
@@ -194,7 +194,7 @@ public:
 				MidAirUP = false;
 			}
 
-			CurrentPosition.y -= Character_vel.y;
+			CurrentPosition.y -= Character_vel.y/2;
 
 		}
 
