@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="80" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="66">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="80" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="66">
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32" tilecount="768" columns="32">
   <image source="generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
@@ -3642,7 +3642,7 @@
   <object id="50" name="Floor" type="Victory" x="2495.5" y="438" width="65" height="42"/>
   <object id="54" name="Floor" type="Platform" x="2400.5" y="384.5" width="95" height="96"/>
   <object id="57" name="Floor" type="Platform" x="1280.67" y="224.333" width="30.6667" height="30.8333"/>
-  <object id="58" name="Floor" type="Platform" x="2400.67" y="128.667" width="61.3333" height="254.667"/>
+  <object id="58" name="Floor" type="Platform" x="2400.67" y="128.667" width="61.3333" height="350"/>
   <object id="59" name="Floor" type="Platform" x="2368.67" y="160.667" width="75.1667" height="40"/>
   <object id="60" name="Floor" type="Platform" x="2336.33" y="192.667" width="97.1667" height="40"/>
   <object id="61" name="Floor" type="Platform" x="2304.33" y="225.333" width="96.6667" height="40"/>
