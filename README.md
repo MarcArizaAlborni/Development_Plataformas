@@ -27,6 +27,7 @@ into a small slime which has a smaller collider which allows you to reach certai
 - Left -> A    
 - Right -> D
 - Jump -> Space
+- Dash -> U (It does not work as it should do)
 
 ## Save/Load the location of the character 
 - Save Game -> F5
