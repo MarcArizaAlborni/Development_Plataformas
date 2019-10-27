@@ -491,5 +491,20 @@ bool j1Player::Update(float dt)
 		 }
 	 }
 
+	 if (A->type == ObjectType::Player && B->type == ObjectType::Victory)
+	 {
+		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y))
+		 {
+
+			 if ((A->rect.x + A->rect.w - 5) <= (B->rect.x))
+			 { //Left to right
+
+				 App->fade->FadeToBlack("SimpleLvl1.tmx");
+
+			 }
+		 }
+	
+	 }
+
  }
  

@@ -72,11 +72,9 @@ bool j1FadeToBlack::Update(float dt)
 }
 
 // Fade to black. At mid point deactivate one module, then activate the other
-bool j1FadeToBlack::FadeToBlack(const char* mapname, bool restartlvl, float time)
+bool j1FadeToBlack::FadeToBlack(const char* mapname,  float time)
 {
 	bool ret = false;
-	
-	this->restartlvl = restartlvl;
 
 	this->mapname = mapname;
 

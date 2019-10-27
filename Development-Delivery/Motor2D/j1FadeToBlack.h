@@ -16,7 +16,7 @@ public:
 	bool Update(float dt);
 
 	// Calling FadeToBlack funtion
-	bool FadeToBlack(const char* mapname, bool restartlvl, float time = 2.0f);
+	bool FadeToBlack(const char* mapname, float time = 2.0f);
 
 private:
 
@@ -30,7 +30,6 @@ private:
 	uint			start_time = 0;
 	uint			total_time = 0;
 	SDL_Rect		screen;
-	
-	bool restartlvl = true;
+
 	const char* mapname;
 };

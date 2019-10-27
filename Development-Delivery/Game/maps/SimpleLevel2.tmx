@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="120" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="26" nextobjectid="81">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="120" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="26" nextobjectid="82">
  <tileset firstgid="1" name="Cave" tilewidth="16" tileheight="16" tilecount="143" columns="13">
   <image source="Cave.png" width="208" height="176"/>
  </tileset>
@@ -10824,7 +10824,7 @@
   <object id="6" name="Floor" type="Platform" x="529.333" y="223.667" width="61" height="224"/>
   <object id="9" name="Floor" type="Platform" x="816.667" y="272.167" width="95" height="175.25"/>
   <object id="22" name="Floor" type="Platform" x="1200.58" y="256.121" width="94.7576" height="191.212"/>
-  <object id="29" name="Floor" type="Platform" x="1.16667" y="97.6667" width="1.41667" height="230.667"/>
+  <object id="29" name="Floor" type="Platform" x="2.22045e-16" y="0" width="4" height="274"/>
   <object id="31" name="Floor" type="Water" x="110.667" y="447.334" width="1811.62" height="16.3333"/>
   <object id="46" name="Floor" type="Platform" x="1840.63" y="224" width="79.3333" height="223.583"/>
   <object id="52" name="Floor" type="Platform" x="623.917" y="207.917" width="48.25" height="15.75"/>
@@ -10841,5 +10841,6 @@
   <object id="77" name="Floor" type="Platform" x="1104.33" y="289.333" width="30" height="31"/>
   <object id="78" name="Floor" type="Platform" x="1168.5" y="272" width="33" height="15"/>
   <object id="79" name="Floor" type="Victory" x="1871.38" y="191.875" width="33.25" height="31.25"/>
+  <object id="81" name="Floor" type="Platform" x="1916" y="0" width="4" height="274"/>
  </objectgroup>
 </map>

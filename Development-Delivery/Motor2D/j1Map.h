@@ -15,6 +15,7 @@ enum class ObjectType
 	Platform,
 	Player,
 	Water,
+	Victory,
 	Unknown
 
 };
