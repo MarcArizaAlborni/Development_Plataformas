@@ -99,7 +99,7 @@ void j1Collision::DebugDraw()
 	if (debug == false)
 		return;
 
-	Uint8 alpha = 100;
+	uint alpha = 100;
 
 	p2List_item<Collider*>* collider_iterator = collider.start;
 

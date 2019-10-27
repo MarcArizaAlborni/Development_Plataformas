@@ -60,6 +60,7 @@ public:
 
 	void DebugDraw();
 	bool debug;
+
 private:
 
 	p2List<Collider*> collider;

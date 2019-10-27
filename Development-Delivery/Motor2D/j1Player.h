@@ -85,9 +85,9 @@ public:
 	//CONTROLLS F
 
 	bool GOD_MODE = false;
+	bool flip = false;
 
-	float floor = CurrentPosition.y; //NOMES PER TESTING
-
+	float floor;
 
 	//AUDIO THINGS 
 
@@ -96,6 +96,8 @@ public:
 	CurrentState		PlayerState;
 	SDL_Rect			Player_Rect;
 	Collider*			Player_Collider;
+	int 				Player_Width;
+	int					Player_Height;
 
 	//ACTUALIZING POSITION 
 	iPoint				CurrentPosition;
@@ -106,7 +108,7 @@ public:
 	//For printing the animation in each moment
 	Animation*			CurrentAnimation;
 
-	bool flip = false;
+	
 	// ANIMATION
 
 	Animation			idle;
@@ -128,26 +130,11 @@ public:
 	}
 
 
-
-
-
 	//JUMP
 	bool On_Ground;
-	float Jump_Pow = 20.0f;
 	float Gravity; //10
-	float MaxJump= 90.0f;
-	iPoint  On_Ground_Counter;
 	bool Jump_Ready;
-	uint temppos;
-	bool Max_Reached;
-	bool FallingLeft;
-	bool FallingRight;
-	float Acceleration_Y;
 	bool MidAirUP;
-	bool MidAirDOWN;
-	bool Hit_Platform_From_Down = false;
-	bool Hit_PLatform_From_Up = false;
-	bool Hit_Platform_From_Side = false;
 	bool Falling;
 	bool EndJump;
 	bool CanJump;
@@ -218,20 +205,13 @@ public:
 
 			}
 
-
-
-
 		}
-
-
 	}
 	
 	//DASH THINGS
 	float DashDist;
 	bool DashActiveLeft;
 	bool DashActiveRight;
-	float DashTime;
-	float DashPrep = 20;
 	void DashFunction()
 	{
 		

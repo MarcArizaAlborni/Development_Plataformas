@@ -21,10 +21,10 @@ enum class ObjectType
 };
 struct MapLayer
 {
-	p2SString name;
-	uint width = 0u;
-	uint height = 0u;
-	uint* tile_ids;
+	p2SString	name;
+	uint		width;
+	uint		height;
+	uint*		tile_ids;
 
 	// TODO 6: Short function to get the value of x,y
 	inline uint Get(int x, int y)
@@ -36,22 +36,22 @@ struct MapLayer
 
 struct ObjectProperties
 {
-	uint id;
-	p2SString name;
-	uint x = 0u;
-	uint y = 0u;
-	uint width = 0u;
-	uint height = 0u;
-	ObjectType type;
+	uint			id;
+	p2SString		name;
+	uint			x;
+	uint			y;
+	uint			width;
+	uint			height;
+	ObjectType		type;
 
 };
 
 struct ObjectGroup
 {
-	uint id;
-	p2SString name;
-	ObjectProperties* object_properties;
-	uint object_count;
+	uint				id;
+	p2SString			name;
+	ObjectProperties*	object_properties;
+	uint				object_count;
 };
 
 
