@@ -247,17 +247,23 @@ public:
 			}
 		}
 		else if( DashActiveRight== true) {
-			CurrentPosition.x -= Character_vel.x;
+			
 			CurrentPosition.x = StartPosition.x + DashDist;
+			
 			LOG("DASH FUNCTION RIGHT");
 			DashActiveLeft = false;
 			DashActiveRight = false;
-			PlayerState = IdleState;
+
+			if (CurrentAnimation->FinishedAnimation()) {
+				PlayerState = IdleState;
+			}
 		}
 		else {
 			DashActiveLeft = false;
 			DashActiveRight = false;
-			PlayerState = IdleState;
+			if (CurrentAnimation->FinishedAnimation()) {
+				PlayerState = IdleState;
+			}
 			LOG("DASH  TO IDLE");
 		}
 	}
