@@ -18,6 +18,7 @@ public:
 	// Calling FadeToBlack funtion
 	bool FadeToBlack(const char* mapname, float time = 2.0f);
 
+	bool ChangeMap(const char* newMap);
 private:
 
 	enum fade_step
