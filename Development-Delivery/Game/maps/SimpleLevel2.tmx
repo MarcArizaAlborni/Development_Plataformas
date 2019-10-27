@@ -5842,8 +5842,8 @@
    <tile gid="17"/>
    <tile/>
    <tile/>
-   <tile gid="67"/>
-   <tile gid="68"/>
+   <tile/>
+   <tile/>
    <tile gid="40"/>
    <tile gid="42"/>
    <tile gid="21"/>
@@ -9208,7 +9208,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="15"/>
    <tile/>
    <tile/>
    <tile/>
@@ -9328,7 +9328,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="28"/>
    <tile/>
    <tile/>
    <tile/>
@@ -10839,7 +10839,7 @@
   <object id="74" name="Floor" type="Platform" x="928.5" y="239.5" width="62" height="31.5"/>
   <object id="75" name="Floor" type="Platform" x="1025" y="320.75" width="30" height="126"/>
   <object id="77" name="Floor" type="Platform" x="1104.33" y="289.333" width="30" height="31"/>
-  <object id="78" name="Floor" type="Platform" x="1168.5" y="272" width="33" height="31"/>
+  <object id="78" name="Floor" type="Platform" x="1168.5" y="272" width="33" height="15"/>
   <object id="79" name="Floor" type="Victory" x="1871.38" y="191.875" width="33.25" height="31.25"/>
  </objectgroup>
 </map>
