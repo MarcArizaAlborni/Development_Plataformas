@@ -4,6 +4,7 @@
 #include "j1Window.h"
 #include "j1Render.h"
 #include "j1Player.h"
+#include "j1Map.h"
 
 #define VSYNC true
 
@@ -73,7 +74,23 @@ bool j1Render::PreUpdate()
 
 bool j1Render::Update(float dt)
 {
+	uint winW = App->win->GetWidth();
+	uint winH = App->win->GetHeight();
 	
+
+	camera.x = -App->player->CurrentPosition.x;
+		
+	if (camera.x >= 0)
+	{
+		camera.x = 0;
+	}
+	else if (camera.x <= -App->map->data.tile_width * App->map->data.width + winW)
+	{
+		camera.x = -App->map->data.tile_width * App->map->data.width + winW;
+	}
+
+
+
 	return true;
 }
 
@@ -137,7 +154,7 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 	SDL_Rect rect;
 	if (flip)
 	{
-		rect.x = (int)(camera.x * speed) + x * scale + App->player->Player_Rect.h; //It is not a Magic number ;)
+		rect.x = (int)(camera.x * speed) + x * scale + App->player->Player_Rect.w; //It is not a Magic number ;)
 		rect.y = (int)(camera.y * speed) + y * scale;
 	}
 	else

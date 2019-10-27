@@ -15,6 +15,7 @@ enum class ObjectType
 	Platform,
 	Player,
 	Water,
+	Victory,
 	Unknown
 
 };
@@ -141,7 +142,7 @@ public:
 
 	MapData data;
 	Collider camera_rect; //For camera culling
-	SDL_Rect tile_rect;
+	SDL_Rect tile_rect; //For tile rect
 
 private:
 
