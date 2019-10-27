@@ -116,6 +116,8 @@ public:
 	Animation			run;
 	Animation			dash;
 	
+	bool InitPlayer();
+
 	//MOVEMENT
 
 	void Movement() {
@@ -249,6 +251,6 @@ public:
 	}
 
 	//AUDIO
-	
 
 };
+

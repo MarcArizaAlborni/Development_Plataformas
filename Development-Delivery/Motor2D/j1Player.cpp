@@ -111,19 +111,7 @@ j1Player::j1Player()
  {
 	 LOG("Loading player textures");
 	 
-	 
-	 Graphics = App->tex->Load("Sprites/DudeMOD.png");
-	 floor = CurrentPosition.y;
-	 PlayerState = IdleState;
-
-	 CurrentPosition = { Inipos.x, Inipos.y } ;
-
-	 Player_Rect = { CurrentPosition.x, CurrentPosition.y, Player_Width, Player_Height };
-
-	 Player_Collider = App->collision->AddCollider(Player_Rect, ObjectType::Player, this);
-	
-	// On_Ground = true;
-	 CanJump = true;
+	 InitPlayer();
 	
 	 return true;
  }
@@ -494,9 +482,6 @@ bool j1Player::Update(float dt)
 			  //Left to right
 
 				 App->fade->FadeToBlack("SimpleLevel2.tmx");
-
-			 
-			 
 			 
 				 //App->fade->FadeToBlack("SimpleLevel1.tmx");
 			 
@@ -506,3 +491,21 @@ bool j1Player::Update(float dt)
 
  }
  
+ bool j1Player::InitPlayer()
+ {
+
+	 Graphics = App->tex->Load("Sprites/DudeMOD.png");
+	 floor = CurrentPosition.y;
+	 PlayerState = IdleState;
+
+	 CurrentPosition = { Inipos.x, Inipos.y };
+
+	 Player_Rect = { CurrentPosition.x, CurrentPosition.y, Player_Width, Player_Height };
+
+	 Player_Collider = App->collision->AddCollider(Player_Rect, ObjectType::Player, this);
+
+	 // On_Ground = true;
+	 CanJump = true;
+
+	 return true;
+ }
