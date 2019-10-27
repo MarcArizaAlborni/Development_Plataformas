@@ -146,6 +146,15 @@ bool j1Map::CleanUp()
 	}
 	data.maplayers.clear();
 
+	//REMOVE OBJECTS
+	p2List_item<ObjectGroup*>* object_iterator = data.objectgroups.start;
+	while (object_iterator != NULL)
+	{
+		RELEASE(object_iterator->data);				//RELEASE deletes all elements in a list (deletes a buffer).
+		object_iterator = object_iterator->next;
+	}
+	data.objectgroups.clear();
+
 	// Clean up the pugui tree
 	map_file.reset();
 
@@ -248,6 +257,16 @@ bool j1Map::Load(const char* file_name)
 			LOG("name: %s", l->name.GetString());
 			LOG("tile width: %d tile height: %d", l->width, l->height);
 			item_layer = item_layer->next;
+		}
+
+		p2List_item<ObjectGroup*>* obj_layer = data.objectgroups.start;
+		while (obj_layer != NULL)
+		{
+			ObjectGroup* o = obj_layer->data;
+			LOG("Group ----");
+			LOG("Gname: %s", o->name.GetString());
+
+			obj_layer = obj_layer->next;
 		}
 	}
 

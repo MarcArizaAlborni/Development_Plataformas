@@ -411,7 +411,7 @@ bool j1Player::Update(float dt)
 	 LOG("Unloading Player");
 
 	 App->tex->UnLoad(Graphics);
-
+	 App->player->Disable();
 	 return true;
  }
 
