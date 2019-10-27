@@ -7,6 +7,16 @@ Made by:
 
 #Download Game: 
 
+- Last Release
+
+
+
+
+- Github Repository:
+
+ https://github.com/MarcArizaAlborni/Development_Plataformas
+
+
 About the game:
 
 This first release is a simple platformer game, made for a single player where you have to get to the end of the level. There are currently only two levels.
@@ -42,11 +52,7 @@ into a small slime which has a smaller collider which allows you to reach certai
 
 - God Mode Move Down -> S
 
- Github Repository:
-
- https://github.com/MarcArizaAlborni/Development_Plataformas
-
-Credits:
+## Credits:
 
 - ART:
         
@@ -58,7 +64,7 @@ Credits:
 
         https://opengameart.org/content/platformer-game-music-pack
 
-License:
+## License:
 
 MIT License
 
