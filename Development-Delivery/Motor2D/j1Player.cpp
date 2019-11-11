@@ -97,12 +97,13 @@ j1Player::j1Player()
 	 Inipos.x = node.attribute("inipos_x").as_float();
 	 Inipos.y = node.attribute("inipos_y").as_float();
 	 Character_vel.x = node.attribute("velocity_X").as_float();
-	 Gravity = node.attribute("gravity").as_float();
+	 GravitySave = Gravity = node.attribute("gravity").as_float();
 	 DashDist = node.attribute("DashDistance").as_float();
 	 Character_vel.y = node.attribute("velocity_Y").as_float();
 	 Player_Width = node.attribute("width").as_int();
 	 Player_Height = node.attribute("height").as_int();
-
+	 CanDash = true;
+	 JumpTicks = true;
 	 return ret;
  }
 
@@ -129,8 +130,6 @@ j1Player::j1Player()
 	 {
 
 		 CurrentPosition.y += Gravity;
-
-
 	 }
 	PlayerInput.F10_active = App->input->keyboard[SDL_SCANCODE_F10] == KEY_DOWN;
 	PlayerInput.F3_active = App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN;
@@ -193,16 +192,32 @@ j1Player::j1Player()
 				LOG("IDLE TO RIGHT");
 			}
 			
-			if (PlayerInput.Space_active && CanJump == true) {
+			if (PlayerInput.Space_active && CanJump == true && JumpTicks == true) {
+				JumpTicks = false;
 				CanJump = false;
 				Character_vel.y = 50;
 				PlayerState = JumpState;
-				LOG("IDLE TO JUMP");
+ 				LOG("IDLE TO JUMP");
 				
 
 				if (On_Ground == false) {
 
 					LOG("JUMP NOT AVAILABLE");
+				}
+
+			}
+
+			if (PlayerInput.Space_active && CanJump == true && JumpTicks == false) {
+				
+				CanJump = false;
+				Character_vel.y = 50;
+				PlayerState = JumpState;
+ 				LOG("JUMP TO DOUBLE JUMP");
+
+
+				if (On_Ground == false) {
+
+					LOG("CAN'T DOUBLE JUMP");
 				}
 
 			}
@@ -219,14 +234,14 @@ j1Player::j1Player()
 				LOG("LEFT TO IDLE");
 			}
 
-			if (PlayerInput.U_active) {
+			if (PlayerInput.U_active && CanDash == true) {
 				DashActiveLeft = true;
 				StartPosition.x = CurrentPosition.x;
 				PlayerState = DashState;
 				LOG("LEFT TO DASH LEFT");
 			}
 
-			if (PlayerInput.Space_active && CanJump==true) {
+			if (PlayerInput.Space_active && CanJump==true ) {
 				Character_vel.y = 50;
 				
 					PlayerState = JumpState;
@@ -244,7 +259,7 @@ j1Player::j1Player()
 				LOG("RIGHT TO IDLE");
 			}
 
-			if (PlayerInput.U_active) {
+			if (PlayerInput.U_active && CanDash==true) {
 				DashActiveRight = true;
 				StartPosition.x = CurrentPosition.x;
 				PlayerState = DashState;
@@ -259,13 +274,6 @@ j1Player::j1Player()
 
 			}
 
-		}
-
-		
-		if (PlayerState == JumpState)
-		{
-			
-			
 		}
 
 	}
@@ -292,8 +300,7 @@ j1Player::j1Player()
 			CurrentPosition.y += Character_vel.x;
 
 		}
-
-	}
+    }
 
 	 return true ;
 }
@@ -310,13 +317,15 @@ bool j1Player::Update(float dt)
 		//LOG("IDLE");
 		TouchingCollider = false;
 		CurrentAnimation = &idle;
+		CanDash = true;
+		JumpTicks = true;
 		break;
 
 	case LeftState:
 		LOG("MOVING LEFT");
 		flip = true;
 		Movement();
-		//CurrentPosition.x -= Character_vel.x;
+		
 		CurrentAnimation = &run;
 		break;
 
@@ -324,17 +333,19 @@ bool j1Player::Update(float dt)
 		LOG("MOVING RIGHT");
 		flip = false;
 		Movement();
-		//CurrentPosition.x += Character_vel.x;
+		
 		CurrentAnimation = &run;
 		break;
+
 	case JumpState:
 		EndJump = false;
+		Gravity = GravitySave;
 		CurrentAnimation = &jump;
 		On_The_Ground();
-		if (Jump_Ready == false) {
+		/*if (Jump_Ready == false) {
 			PlayerState = IdleState;
 			CurrentAnimation = &idle;
-		}
+		}*/
 		if (Jump_Ready == true) {
 			MidAirUP = true;
 			
@@ -343,14 +354,14 @@ bool j1Player::Update(float dt)
 		if (EndJump == true) {
 			PlayerState = IdleState;
 			CurrentAnimation = &idle;
-		 }
+	    }
 		
 		LOG("JUMP STATE ACTIVE");
 		break;
 		
 	case DashState:
 		
-		//Mix_PlayChannel(-1,Jump_Sound , 0);
+		CanDash = false;
 		CurrentAnimation = &dash;
 		DashFunction();
 		LOG("DASH");

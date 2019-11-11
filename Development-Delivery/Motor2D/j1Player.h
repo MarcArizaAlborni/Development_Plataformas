@@ -135,12 +135,14 @@ public:
 	//JUMP
 	bool On_Ground;
 	float Gravity; //10
+	float GravitySave;
 	bool Jump_Ready;
 	bool MidAirUP;
 	bool Falling;
 	bool EndJump;
 	bool CanJump;
 	bool TouchingCollider;
+	bool JumpTicks;
 	
 	void On_The_Ground() {
 
@@ -173,10 +175,26 @@ public:
 			
 			if (PlayerInput.A_active) {
 				CurrentPosition.x -= Character_vel.x;
+
+				if (PlayerInput.U_active ){
+
+					DashActiveRight;
+					DashFunction();
+
+				}
 			}
+
 			if (PlayerInput.D_active) {
 				CurrentPosition.x +=Character_vel.x;
+
+				if (PlayerInput.U_active ) {
+
+					DashActiveLeft;
+					DashFunction();
+
+				}
 			}
+
 			if (Character_vel.y <= 0) {
 				float altura = CurrentPosition.y;
 				LOG("VELY REACHED 0   %f",altura);
@@ -192,6 +210,23 @@ public:
 			Character_vel.y += Gravity;
 		//	On_Ground = Jump_Ready;
 			
+			if (PlayerInput.U_active && PlayerInput.D_active) {
+
+				DashActiveLeft;
+				DashFunction();
+
+			}
+
+			if (PlayerInput.U_active && PlayerInput.A_active) {
+
+				DashActiveRight;
+				DashFunction();
+
+			}
+
+
+
+
 			if (On_Ground == true) {
 				LOG("TO IDLE FROM JUMP");
 				
@@ -214,43 +249,36 @@ public:
 	float DashDist;
 	bool DashActiveLeft;
 	bool DashActiveRight;
-	void DashFunction()
-	{
-		
-		
-		if (DashActiveLeft== true) {
-			CurrentPosition.x += Character_vel.x;
-			CurrentPosition.x = StartPosition.x - DashDist;
-			LOG("DASH FUNCTION LEFT");
-			DashActiveLeft = false;
-			DashActiveRight = false;
-			if (CurrentAnimation->FinishedAnimation()) {
-				PlayerState = IdleState;
-			}
-		}
-		else if( DashActiveRight== true) {
-			
-			CurrentPosition.x = StartPosition.x + DashDist;
-			
-			LOG("DASH FUNCTION RIGHT");
-			DashActiveLeft = false;
-			DashActiveRight = false;
+	bool CanDash;
 
-			if (CurrentAnimation->FinishedAnimation()) {
-				PlayerState = IdleState;
-			}
+	void DashFunction() {
+
+		Gravity = 0;
+		if (StartPosition.x - DashDist < CurrentPosition.x && DashActiveLeft == true && TouchingCollider == false) {
+
+			CurrentPosition.x -= Character_vel.x * 2;
+			CurrentPosition.y -= 1; //MAGIC NUMBER UNA VEGADA ELS COLIDERS FUNCIONIN PERFECTAMENT NO FARA FALTA
+			LOG("DASH FUNCTION LEFT");
+			
+		}
+		else if (StartPosition.x + DashDist > CurrentPosition.x && DashActiveRight == true && TouchingCollider==false) {
+
+			CurrentPosition.x += Character_vel.x * 2;
+			CurrentPosition.y -= 1; //MAGIC NUMBER UNA VEGADA ELS COLIDERS FUNCIONIN PERFECTAMENT NO FARA FALTA
+
+			LOG("DASH FUNCTION RIGHT");
+			
 		}
 		else {
 			DashActiveLeft = false;
 			DashActiveRight = false;
-			if (CurrentAnimation->FinishedAnimation()) {
-				PlayerState = IdleState;
-			}
+			MidAirUP = false;
+			
+			PlayerState = JumpState;
+			
 			LOG("DASH  TO IDLE");
 		}
 	}
-
-	//AUDIO
 
 };
 
