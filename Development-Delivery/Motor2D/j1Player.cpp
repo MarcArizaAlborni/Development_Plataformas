@@ -325,7 +325,6 @@ bool j1Player::Update(float dt)
 		LOG("MOVING LEFT");
 		flip = true;
 		Movement();
-		
 		CurrentAnimation = &run;
 		break;
 
@@ -333,7 +332,6 @@ bool j1Player::Update(float dt)
 		LOG("MOVING RIGHT");
 		flip = false;
 		Movement();
-		
 		CurrentAnimation = &run;
 		break;
 
@@ -355,10 +353,39 @@ bool j1Player::Update(float dt)
 			PlayerState = IdleState;
 			CurrentAnimation = &idle;
 	    }
+
+		if (PlayerInput.Space_active) {
+
+			LOG("JUMP TO DOUBLE JUMP");
+			PlayerState = DoubleJumpState;
+
+		}
 		
 		LOG("JUMP STATE ACTIVE");
 		break;
+
+	case DoubleJumpState:
+
+		LOG("DOUBLE JUMP STATE");
+		EndJump = false;
+		Gravity = GravitySave;
+		CurrentAnimation = &jump;
+		//On_The_Ground();
 		
+		if (Jump_Ready == true) {
+			MidAirUP = true;
+			LOG("GOING TO DOUBLE JUMP");
+			Jumping();
+		}
+		if (EndJump == true) {
+			PlayerState = IdleState;
+			CurrentAnimation = &idle;
+			LOG("DOUBLE JUMP TO IDLE");
+		}
+		
+
+		break;
+
 	case DashState:
 		
 		CanDash = false;

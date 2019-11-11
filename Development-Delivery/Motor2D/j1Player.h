@@ -47,7 +47,7 @@ enum CurrentState
 	RightState,
 	DashState,
 	FallState,
-
+	DoubleJumpState,
 };
 
 
@@ -144,6 +144,17 @@ public:
 	bool TouchingCollider;
 	bool JumpTicks;
 	
+	void On_The_Air() {
+
+		CanJump = false;
+		if (On_Ground == true) {
+			Jump_Ready = false;
+		}
+		else if(On_Ground==false){
+			Jump_Ready = true;
+		}
+
+	}
 	void On_The_Ground() {
 
 		//CHECK COLLISION
@@ -208,8 +219,9 @@ public:
 		if (MidAirUP == false) {
 			LOG("MID AIR UP == FALSE");
 			Character_vel.y += Gravity;
-		//	On_Ground = Jump_Ready;
 			
+
+
 			if (PlayerInput.U_active && PlayerInput.D_active) {
 
 				DashActiveLeft;
@@ -223,10 +235,7 @@ public:
 				DashFunction();
 
 			}
-
-
-
-
+			
 			if (On_Ground == true) {
 				LOG("TO IDLE FROM JUMP");
 				
@@ -250,9 +259,10 @@ public:
 	bool DashActiveLeft;
 	bool DashActiveRight;
 	bool CanDash;
+	
 
 	void DashFunction() {
-
+		MidAirUP = false;
 		Gravity = 0;
 		if (StartPosition.x - DashDist < CurrentPosition.x && DashActiveLeft == true && TouchingCollider == false) {
 
