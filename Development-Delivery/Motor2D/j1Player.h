@@ -145,7 +145,8 @@ public:
 	bool CanJump;
 	bool TouchingCollider;
 	bool JumpTicks;
-	
+	bool FallLeft;
+	bool FallRight;
 	void On_The_Air() {
 
 		CanJump = false;
@@ -238,7 +239,20 @@ public:
 
 			//CurrentPosition.y += 1.5*Character_vel.y;
 
-			
+			if (PlayerInput.D_active) {
+				FallLeft = true;
+				FallRight = false;
+				
+			}
+			if (PlayerInput.A_active) {
+				FallRight = true;
+				FallLeft = false;
+			}
+
+		
+			if (FallRight == true) {
+				CurrentPosition.x += Character_vel.x;
+			}
 			
 		
 
