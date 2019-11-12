@@ -99,7 +99,7 @@ j1Player::j1Player()
 	 Character_vel.x = node.attribute("velocity_X").as_float();
 	 GravitySave = Gravity = node.attribute("gravity").as_float();
 	 DashDist = node.attribute("DashDistance").as_float();
-TempVelY=Character_vel.y = node.attribute("velocity_Y").as_float();
+     TempVelY=Character_vel.y = node.attribute("velocity_Y").as_float();
 	 Player_Width = node.attribute("width").as_int();
 	 Player_Height = node.attribute("height").as_int();
 	 CanDash = true;
@@ -207,18 +207,16 @@ TempVelY=Character_vel.y = node.attribute("velocity_Y").as_float();
 
 			}
 
-			if (PlayerInput.Space_active && CanJump == true && JumpTicks == false) {
+			if (PlayerInput.Space_active && CanJump == true ) {
 				
+				On_Ground = false;
 				CanJump = false;
 				Character_vel.y = 50;
 				PlayerState = JumpState;
- 				LOG("JUMP TO DOUBLE JUMP");
+ 				
 
 
-				if (On_Ground == false) {
-
-					LOG("CAN'T DOUBLE JUMP");
-				}
+				
 
 			}
 			
@@ -243,9 +241,9 @@ TempVelY=Character_vel.y = node.attribute("velocity_Y").as_float();
 
 			if (PlayerInput.Space_active && CanJump==true ) {
 				
-				
-					PlayerState = JumpState;
-					LOG("LEFT TO JUMP");
+				On_Ground = false;
+				PlayerState = JumpState;
+				LOG("LEFT TO JUMP");
 				
 			}
 
@@ -267,13 +265,17 @@ TempVelY=Character_vel.y = node.attribute("velocity_Y").as_float();
 			}
 
 			if (PlayerInput.Space_active && CanJump == true) {
-				Character_vel.y = 50;
+				//Character_vel.y = 50;
 				PlayerState = JumpState;
-					LOG("LEFT TO JUMP");
+				LOG("LEFT TO JUMP");
 				
 
 			}
 
+		}
+		if (PlayerState == JumpState) {
+
+			
 		}
 
 	}
@@ -336,6 +338,7 @@ bool j1Player::Update(float dt)
 		break;
 
 	case JumpState:
+		
 		EndJump = false;
 		Gravity = GravitySave;
 		CurrentAnimation = &jump;
