@@ -133,6 +133,7 @@ public:
 
 
 	//JUMP
+	float TempVelY;
 	bool On_Ground;
 	float Gravity; //10
 	float GravitySave;
@@ -182,29 +183,40 @@ public:
 		
 		if (MidAirUP == true) {
 			LOG("MID AIR TRUE");
-			Character_vel.y -= Gravity; //CHARACTER VELOCITY = 0 AL SEGON SALT PER AIXO NO VA
+			Character_vel.y -= Gravity; 
 			
+
+
+			if (PlayerInput.U_active&&PlayerInput.A_active) {
+
+				DashActiveRight;
+				DashFunction();
+
+			}
+
+
 			if (PlayerInput.A_active) {
 				CurrentPosition.x -= Character_vel.x;
 
-				if (PlayerInput.U_active ){
-
-					DashActiveRight;
-					DashFunction();
-
-				}
+				
 			}
+
+			
 
 			if (PlayerInput.D_active) {
-				CurrentPosition.x +=Character_vel.x;
-
-				if (PlayerInput.U_active ) {
-
-					DashActiveLeft;
-					DashFunction();
-
-				}
+				CurrentPosition.x += Character_vel.x;
+				LOG("GOING RIGHT INSIDE JUMP");
 			}
+
+			if (PlayerInput.U_active && PlayerInput.D_active) {
+				LOG("GOING RIGHT AND DASHING RIGHT IN JUMP");
+				
+				DashActiveLeft;
+				DashFunction();
+
+			}
+				
+			
 
 			if (Character_vel.y <= 0) {
 				float altura = CurrentPosition.y;
@@ -224,27 +236,28 @@ public:
 
 			if (PlayerInput.U_active && PlayerInput.D_active) {
 
+				LOG("100");
 				DashActiveLeft;
 				DashFunction();
 
 			}
 
 			if (PlayerInput.U_active && PlayerInput.A_active) {
-
+				LOG("100");
 				DashActiveRight;
 				DashFunction();
 
 			}
 			
-			if (On_Ground == true) {
+			if (On_Ground == true) { //AQUI ERROR DASH
 				LOG("TO IDLE FROM JUMP");
 				
 				EndJump = true;
-				
+				Character_vel.y = TempVelY;
 				PlayerState = IdleState;
 			}
 			
-			if (On_Ground == false) {
+			else  {
 				
 				LOG("FALLING");
 				CurrentPosition.y += Character_vel.y;
@@ -286,7 +299,7 @@ public:
 			
 			PlayerState = JumpState;
 			
-			LOG("DASH  TO IDLE");
+			LOG("DASH  TO JUMP");
 		}
 	}
 
