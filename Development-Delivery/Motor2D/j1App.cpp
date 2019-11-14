@@ -33,15 +33,16 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	player = new j1Player();
 	collision = new j1Collision();
 	fade = new j1FadeToBlack();
-	//entityManager = new j1EntityManager();
-	//entities = new j1Entities();
+	entityManager = new j1EntityManager();
+	
 	
 
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	AddModule(win);
-	//AddModule(entityManager);
+	AddModule(entityManager);
+	
 	AddModule(input);
 	AddModule(tex);
 	AddModule(audio);

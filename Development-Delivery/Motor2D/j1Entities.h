@@ -5,12 +5,12 @@
 #include "p2Point.h"
 #include "j1App.h"
 #include "j1Collision.h"
-#include "SDL_mixer/include/SDL_mixer.h"
+#include "p2Animation.h"
 
 
-enum EntityStates {
-	
-	UNKNOWN_STATE,
+
+enum EntityState {
+	UNKNOWN
 };
 class j1EntityManager;
 struct SDL_Texture;
@@ -18,14 +18,16 @@ struct SDL_Rect;
 
 enum class ENTITY_TYPE;
 
-class j1Entities {
+class j1Entity {
 
 
 public:
 
-	//j1Entites(iPoint pos, ENTITY_TYPE Type);
+	
 
-	//~j1Entiies() {}
+	j1Entity(iPoint pos, ENTITY_TYPE Type);
+
+	~j1Entity() {}
 
 	virtual bool Start() { return true; }
 
@@ -36,31 +38,22 @@ public:
 	virtual bool Load(pugi::xml_node&) { return true; }
 	virtual bool Save(pugi::xml_node&) { return true; }
 
-	
+	//virtual void OnCollision(Collider* c1, Collider* c2) {}
 	virtual void OnCollision(Collider*, Collider*) {}
 
 public:
-	
-	//Entity Variables
-	iPoint		position;
-	iPoint EntityVel;
+
+	//INITIALIZE VARIABLES 
+
+	iPoint	position;
 	ENTITY_TYPE type;
 	Collider*	collider = nullptr;
 
 	
-	
-	
-	
 
 	
-
-	
-
-
-
-
-
-
+	//TEXUTRES INIT
+	SDL_Texture* texture = nullptr;
 	
 
 };

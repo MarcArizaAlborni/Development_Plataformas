@@ -17,6 +17,7 @@ class j1FadeToBlack;
 class j1Player;
 class j1Collision;
 class j1EntityManager;
+class j1Entity;
 
 class j1App
 {
@@ -92,7 +93,7 @@ public:
 	j1FadeToBlack*		fade;
 	j1Player*			player;
 	j1EntityManager*    entityManager;
-	//j1Entities*      entities;
+	//j1Entity*           entities;
 
 private:
 
