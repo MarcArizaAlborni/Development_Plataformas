@@ -10,9 +10,6 @@
     <ClCompile Include="j1App.cpp">
       <Filter>Desenvolupament  ========</Filter>
     </ClCompile>
-    <ClCompile Include="j1Input.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="j1Main.cpp">
       <Filter>Desenvolupament  ========</Filter>
     </ClCompile>
@@ -37,17 +34,26 @@
     <ClCompile Include="j1FadeToBlack.cpp">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="j1Player.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Collision.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="j1PerfTimer.cpp">
       <Filter>Desenvolupament  ========\Tools</Filter>
     </ClCompile>
     <ClCompile Include="j1Timer.cpp">
       <Filter>Desenvolupament  ========\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Player.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Collision.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="j1EntityManager.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Input.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Entities.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,9 +65,6 @@
     </ClInclude>
     <ClInclude Include="j1App.h">
       <Filter>Desenvolupament  ========</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Input.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Module.h">
       <Filter>Desenvolupament  ========</Filter>
@@ -105,12 +108,6 @@
     <ClInclude Include="j1FadeToBlack.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="j1Player.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Collision.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
     <ClInclude Include="p2Animation.h">
       <Filter>Programacio 2 ===========</Filter>
     </ClInclude>
@@ -119,6 +116,21 @@
     </ClInclude>
     <ClInclude Include="j1Timer.h">
       <Filter>Desenvolupament  ========\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Player.h">
+      <Filter>Desenvolupament  ========\Modules\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Collision.h">
+      <Filter>Desenvolupament  ========\Modules\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="j1EntityManager.h">
+      <Filter>Desenvolupament  ========\Modules\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Input.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Entities.h">
+      <Filter>Desenvolupament  ========\Modules\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +151,9 @@
     </Filter>
     <Filter Include="Desenvolupament  ========\Tools\PuguiXML">
       <UniqueIdentifier>{7cb78d67-17cc-45eb-af97-e2106becce7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Modules\Entities">
+      <UniqueIdentifier>{473c9170-b2ea-4d57-8860-a4f10d774cfd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

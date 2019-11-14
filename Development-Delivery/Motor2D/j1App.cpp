@@ -14,6 +14,8 @@
 #include "j1Collision.h"
 #include "j1FadeToBlack.h"
 #include "j1App.h"
+#include "j1EntityManager.h"
+#include "j1Entities.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -31,12 +33,15 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	player = new j1Player();
 	collision = new j1Collision();
 	fade = new j1FadeToBlack();
+	//entityManager = new j1EntityManager();
+	//entities = new j1Entities();
 	
 
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	AddModule(win);
+	//AddModule(entityManager);
 	AddModule(input);
 	AddModule(tex);
 	AddModule(audio);
@@ -45,6 +50,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(player);
 	AddModule(collision);
 	AddModule(fade);
+	
 
 	// render last to swap buffer
 	AddModule(render);
