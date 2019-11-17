@@ -122,7 +122,7 @@ bool j1App::Awake()
 
 // Called before the first frame
 bool j1App::Start()
-{
+{//
 	startup_timer.Start();
 
 	bool ret = true;
