@@ -61,9 +61,9 @@ bool j1Scene::Update(float dt)
 
 	App->map->Draw();
 
-	p2SString title("Project Ceta");
+	//p2SString title("Project Ceta");
 
-	App->win->SetTitle(title.GetString());
+	//App->win->SetTitle(title.GetString());
 	return true;
 }
 

@@ -88,10 +88,12 @@ bool j1App::Awake()
 	save_game = "save_file";
 	load_game = "save_file";
 
+	frame_cap = 30; 
 
 	bool ret = false;
 		
 	config = LoadConfig(config_file);
+
 
 	if(config.empty() == false)
 	{
@@ -100,6 +102,7 @@ bool j1App::Awake()
 		app_config = config.child("app");
 		title.create(app_config.child("title").child_value());
 		organization.create(app_config.child("organization").child_value());
+		frame_cap = config.child("app").attribute("framerate_cap").as_uint();
 	}
 
 	if(ret == true)
@@ -119,7 +122,9 @@ bool j1App::Awake()
 
 // Called before the first frame
 bool j1App::Start()
-{
+{//
+	startup_timer.Start();
+
 	bool ret = true;
 	p2List_item<j1Module*>* item;
 	item = modules.start;
@@ -183,11 +188,57 @@ void j1App::FinishUpdate()
 
 	if(want_to_load == true)
 		LoadGameNow();
+
+
+
+
+	if (last_second_timer.ReadMs() > 1000)
+	{
+		last_second_timer.Start();
+		prev_sec_frames = frames_last_second;
+		frames_last_second = 0;
+	}
+
+	float avg_fps = frame_count / startup_timer.ReadSec();		//Equals seconds to the returning value of the ReadSec() method, which returns the amount of time passed in seconds. Use timer->ReadSec() to have no decimals (as its a low resolution timer)
+	float seconds_since_startup = startup_timer.ReadSec();		//Gets the average frames per second by dividing the actual number of frames with the amount of seconds that have passed.
+	uint32 last_frame_ms = frame_timer.Read();					//As it is the end of the update, the frame's ms can be calculated.
+	uint32 frames_on_last_update = prev_sec_frames;				//Keeps track of how many frames were processed the last second.
+
+	static char title[256];
+	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %lu ",
+		avg_fps, last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count);
+
+	App->win->SetTitle(title);
+
+	float frame_cap_ms = 1000 / frame_cap;						//Calculates the frame_cap in ms (how fast a frame is processed / how fast an image is refreshed). Done for readability.
+	float current_frame_ms = frame_timer.Read();				//Calculates the current frame's time spent processing. Need to declare it here so the time is consistent through the whole check. Could be below or above the cap.
+
+	if (current_frame_ms < frame_cap_ms)						//If the current frame processing time is lower than the specified frame_cap. Timer instead of PerfTimer was used because SDL_Delay is inaccurate.
+	{
+		true_delay_timer.Start();
+
+		SDL_Delay(frame_cap_ms - current_frame_ms);				//SDL_Delay delays processing for a specified time. In this case, it delays for the difference in ms between the frame cap (30fps so 33,3ms per frame) and the current frame.
+
+		int intended_delay = frame_cap_ms - current_frame_ms;	//Done for readability. Set as the value of the intended delay.
+
+		LOG("We waited for %d milliseconds and got back in %f", intended_delay, true_delay_timer.ReadMs());
+	}
+
+
 }
 
 // Call modules before each loop iteration
 bool j1App::PreUpdate()
 {
+	frame_count++;									//Adds +1 to the frame count before each update loop. This variable will keep track of how many frames have been processed through all runtime.
+	frames_last_second++;							//Used to keep track of how many frames there were in the last second.
+
+	dt = frame_timer.ReadSec();						//Keeps track of the amount of time that has passed since last frame in seconds (processing time of a frame: Frame 1: 0.033secs, ...).
+	frame_timer.Start();							//Starts the frame timer. Used to calculate ms per frame.
+
+	LOG("The differential time since last frame: %f", dt);
+
+
 	bool ret = true;
 	p2List_item<j1Module*>* item;
 	item = modules.start;
