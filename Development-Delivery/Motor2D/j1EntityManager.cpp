@@ -98,6 +98,8 @@ j1Entity *j1EntityManager::CreateEntity(int x, int y, EntityType eType) {
 //FOR DESTROYING A SINGLE ENTITY
 void j1EntityManager::DestroyEntity(j1Entity *Entity) {
 
+	j1Entity* ret = nullptr;
+
 	/*p2List_item<j1Entity*>* finder = entities_list.start;
 	while (finder != NULL)
 	{

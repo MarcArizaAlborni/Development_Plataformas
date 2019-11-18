@@ -10,6 +10,7 @@
 #include "j1FadeToBlack.h"
 #include "p2Log.h"
 #include "j1Map.h"
+#include "j1EntityManager.h"
 
 
 
