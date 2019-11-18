@@ -9,46 +9,57 @@
 
 
 
-enum EntityState {
-	UNKNOWN
+enum EntityType {
+	UNKNOWN,
+	PLAYER,
+	FLYING_ENEMY,
+	GROUND_ENEMY,
 };
+
+
 class j1EntityManager;
 struct SDL_Texture;
 struct SDL_Rect;
 
-enum class ENTITY_TYPE;
 
-class j1Entity {
+
+class j1Entity:public j1Module {
 
 
 public:
 
 	
 
-	j1Entity(iPoint pos, ENTITY_TYPE Type);
+	j1Entity(iPoint pos, EntityType Type);
 
 	~j1Entity() {}
 
-	virtual bool Start() { return true; }
+	 bool Start() { return true; }
 
-	virtual bool Update(float dt) { return true; }
-	virtual bool PostUpdate() { return true; }
-	virtual bool CleanUp();
+	 bool Update(float dt) { return true; }
+	 bool PostUpdate() { return true; }
+	 bool CleanUp();
 
-	virtual bool Load(pugi::xml_node&) { return true; }
-	virtual bool Save(pugi::xml_node&) { return true; }
+	 bool Load(pugi::xml_node&) { return true; }
+	 bool Save(pugi::xml_node&) { return true; }
 
 	//virtual void OnCollision(Collider* c1, Collider* c2) {}
 	virtual void OnCollision(Collider*, Collider*) {}
 
+
+	j1Entity* createEntity(EntityType type, int x, int y);
+	void DestroyEntity(j1Entity* entity);
+
+
 public:
 
 	//INITIALIZE VARIABLES 
+	p2List<j1Entity*> entities;
+
 
 	iPoint	position;
-	ENTITY_TYPE type;
 	Collider*	collider = nullptr;
-
+	EntityType type;
 	
 
 	

@@ -10,7 +10,7 @@
 
 
 
-j1Entity::j1Entity(iPoint pos, ENTITY_TYPE Type) :position(pos), type(Type) {
+j1Entity::j1Entity(iPoint pos, EntityType Type) :position(pos), type(Type) {
 
 }
 

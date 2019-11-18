@@ -4,22 +4,26 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Player.h"
-
+#include "j1App.h"
 
 
 
 j1EntityManager::j1EntityManager()
 {
-	name.create("entityManager");
-
+	name.create("Entities");
 	//Load XML FILE FOR ALL VARIABLES HERE
-	
-
 }
 
 j1EntityManager::~j1EntityManager() {}
 
-bool j1EntityManager::Awake() {
+bool j1EntityManager::Awake(pugi::xml_node& config) {
+
+	this->config = config;
+
+	for (p2List_item<j1Entity*>* Entity = entities_list.start; Entity; Entity = Entity->next)
+	{
+		Entity->data->Awake(config.child(Entity->data->name.GetString()));
+	}
 
 	LOG("AWAKE ENTITIY MANAGER");
 
@@ -69,22 +73,24 @@ bool j1EntityManager::CleanUp() {
 }
 
 //FOR CREATING NEW ENTITIES
-j1Entity *j1EntityManager::CreateEntity(int x, int y, ENTITY_TYPE eType) {
+j1Entity *j1EntityManager::CreateEntity(int x, int y, EntityType eType) {
 
-	static_assert(ENTITY_TYPE::UNKNOWN == ENTITY_TYPE(2), "UPDATE ENTITY TYPES");
+	j1Entity* ret = nullptr;
 
-	j1Entity* Entity = nullptr;
-
-	switch (eType) {
-
-	
-	default:
+	switch (eType)
+	{
+	case GROUND_ENEMY:
+		//
+		break;
+	case FLYING_ENEMY:
+		//
 		break;
 	}
+	ret->type = eType;
 
-	entities_list.add(Entity);
-	Entity->Start();
-	return Entity;
+	entities_list.add(ret);
+
+	return ret;
 }
 
 
@@ -92,33 +98,22 @@ j1Entity *j1EntityManager::CreateEntity(int x, int y, ENTITY_TYPE eType) {
 //FOR DESTROYING A SINGLE ENTITY
 void j1EntityManager::DestroyEntity(j1Entity *Entity) {
 
-	p2List_item<j1Entity*>*item = entities_list.start;
-
-	while (item != nullptr) {
-
-		if (item->data == Entity) {
-
-			entities_list.del(item);
-			RELEASE(item->data);
+	/*p2List_item<j1Entity*>* finder = entities_list.start;
+	while (finder != NULL)
+	{
+		if (finder->data == Entity)
+		{
+			if (finder->data == getPlayer())
+				getPlayer()->CleanUp();
+			entities_list.del(finder);
+			RELEASE(finder->data);
 			break;
 		}
-
-		item = item->next;
-	}
+		finder = finder->next;
+	}*/
 }
 
-//FOR REMOVING ALL ENTITIES
-void j1EntityManager::DestroyAllEntities() {
-	p2List_item<j1Entity*>* item;
-	item = entities_list.start;
 
-	while (item != nullptr) {
-		if (item->data->type != ENTITY_TYPE::PLAYER) {
-			RELEASE(item->data);
-			item = item->next;
-		}
-	}
-}
 
 //CLEANUP ALL ENTITIES (CLEANUP STATE)
 void j1EntityManager::CleanEntities()
