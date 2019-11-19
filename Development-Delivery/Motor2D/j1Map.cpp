@@ -61,15 +61,29 @@ void j1Map::Draw()
 			for (uint x = 0; x < data.width; ++x)
 			{
 				iPoint tileCoords = MapToWorld(x, y);
+				float speed = 1.0f;
+
+				if (item->data->name == "Parallax")
+				{
+
+					speed = 0.50f;
+
+					tile_rect.x = (App->render->camera.x * speed) + data.tilesets[0]->GetPos(x, y).x - App->render->camera.x;
+					tile_rect.y = (App->render->camera.y * speed) + data.tilesets[0]->GetPos(x, y).y - App->render->camera.y;
+
+				}
+				else
+				{
+					tile_rect.x = data.tilesets[0]->GetPos(x, y).x;
+					tile_rect.y = data.tilesets[0]->GetPos(x, y).y;
+				}
 				
-				tile_rect.x = data.tilesets[0]->GetPos(x, y).x - 100;
-				tile_rect.y = data.tilesets[0]->GetPos(x, y).y;
 				tile_rect.h = App->map->data.tile_height;
 				tile_rect.w = App->map->data.tile_height;
 
 				if (camera_collider.CheckCollision(tile_rect))
 				{
-					App->render->Blit(data.tilesets[0]->texture, tileCoords.x, tileCoords.y, data.tilesets[0]->GetTileRectId(gid[i]));
+					App->render->Blit(data.tilesets[0]->texture, tileCoords.x, tileCoords.y, data.tilesets[0]->GetTileRectId(gid[i]), false, speed );
 				}
 
 				i++;
