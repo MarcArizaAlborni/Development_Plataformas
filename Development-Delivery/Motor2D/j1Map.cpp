@@ -39,6 +39,13 @@ void j1Map::Draw()
 	MapLayer* layer = data.maplayers[0];
 
 	p2List_item<MapLayer*>* item = data.maplayers.start;
+	
+	// Camera culling
+
+	uint camera_rect_w;
+	uint camera_rect_h;
+
+	App->win->GetWindowSize(camera_rect_w, camera_rect_h);
 
 	for (item; item != nullptr; item = item->next) {
 
@@ -48,12 +55,11 @@ void j1Map::Draw()
 		{
 			for (uint x = 0; x < data.width; ++x)
 			{
+				iPoint tileCoords = MapToWorld(x, y);
 				
-				App->render->Blit(data.tilesets[0]->texture,
-				MapToWorld(x,y).x, MapToWorld(x,y).y,
-				data.tilesets[0]->GetTileRectId(gid[i]));
+				App->render->Blit(data.tilesets[0]->texture, tileCoords.x, tileCoords.y, data.tilesets[0]->GetTileRectId(gid[i]));
 				i++;
-				
+					
 			}
 		}
 		
