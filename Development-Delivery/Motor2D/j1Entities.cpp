@@ -8,11 +8,18 @@
 
 
 
-
-
-j1Entity::j1Entity(iPoint pos, EntityType Type) :position(pos), type(Type) {
-
+j1Entity::j1Entity(int x, int y, EntityType type) : position(x, y), type(type), texture(nullptr), collider(nullptr), animation(nullptr)	
+{
+	return;
 }
+
+
+
+bool j1Entity::Update(float dt, bool DoLogic)
+{
+	return true;
+}
+
 
 bool j1Entity::CleanUp() {
 

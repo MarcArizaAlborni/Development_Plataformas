@@ -8,21 +8,27 @@
 
 
 
-j1EntityManager::j1EntityManager()
+j1EntityManager::j1EntityManager():player(nullptr)
 {
 	name.create("Entities");
 	//Load XML FILE FOR ALL VARIABLES HERE
 }
 
-j1EntityManager::~j1EntityManager() {}
+j1EntityManager::~j1EntityManager() {
+
+	delete player;
+}
 
 bool j1EntityManager::Awake(pugi::xml_node& config) {
 
 	this->config = config;
 
-	for (p2List_item<j1Entity*>* Entity = entities_list.start; Entity; Entity = Entity->next)
+	
+
+
+	for (p2List_item<j1Entity*>* EntitySelect = entities_list.start; EntitySelect; EntitySelect = EntitySelect->next)
 	{
-		Entity->data->Awake(config.child(Entity->data->name.GetString()));
+		EntitySelect->data->Awake(config.child(EntitySelect->data->name.GetString()));
 	}
 
 	LOG("AWAKE ENTITIY MANAGER");
@@ -34,13 +40,28 @@ bool j1EntityManager::Start() {
 
 	
 	LOG("START ENTITIY MANAGER");
-	//Load Entity textures
+	
 	//Initialize all Entities in the entity list 
 	
+	for (p2List_item<j1Entity*>* EntitySelect = entities_list.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
+	{
+		EntitySelect->data->Start();
+	}
+
+
+
 	return true;
 }
 
 bool j1EntityManager::PreUpdate() {
+
+
+	for (p2List_item<j1Entity*>* EntitySelect = entities_list.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
+	{
+		EntitySelect->data->PreUpdate();
+	}
+
+
 
 	LOG("PREUPDATE ENTITIY MANAGER");
 	return true;
@@ -48,12 +69,37 @@ bool j1EntityManager::PreUpdate() {
 
 bool j1EntityManager::Update(float dt) {
 
+
+	Accumulated_dt += dt;
+
+	if (Accumulated_dt >= Cycle_Pause_Time) 
+	{
+		DoLogic = true;
+	}
+
+	for (p2List_item<j1Entity*>* EntitySelect = entities_list.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
+	{
+		EntitySelect->data->Update(dt, DoLogic);
+	}
+
+	if (DoLogic == true)				
+	{
+		DoLogic = false;
+		Accumulated_dt = 0;
+	}
+
 	LOG("UPDATE ENTITIY MANAGER");
 
 	return true;
 }
 
 bool j1EntityManager::PostUpdate() {
+
+
+	for (p2List_item<j1Entity*>* EntitySelect = entities_list.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
+	{
+		EntitySelect->data->PostUpdate();
+	}
 
 	LOG("POSTUPDATE ENTITIY MANAGER");
 
@@ -66,29 +112,48 @@ bool j1EntityManager::CleanUp() {
 	LOG("CLEAN UP ENTITIY MANAGER");
 
 	
+	for (p2List_item<j1Entity*>* EntitySelect = entities_list.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
+	{
+		EntitySelect->data->CleanUp();
+	}
 
+	entities_list.clear();	//Clear List								
+
+	player = NULL;
 	
 	
 	return true;
 }
 
 //FOR CREATING NEW ENTITIES
-j1Entity *j1EntityManager::CreateEntity(int x, int y, EntityType eType) {
+j1Entity* j1EntityManager::CreateEntity(EntityType type, int x, int y)
+{
+	//static_assert?
 
 	j1Entity* ret = nullptr;
 
-	switch (eType)
+	switch (type)
 	{
-	case GROUND_ENEMY:
-		//
+	case EntityType::PLAYER:							
+				
+		ret = new j1Player(x, y, type);
+
+		
 		break;
-	case FLYING_ENEMY:
-		//
+
+	case EntityType::GROUND_ENEMY:							
+		
+		break;
+	case EntityType::FLYING_ENEMY:							
+		
 		break;
 	}
-	ret->type = eType;
+	//ret->type = type;
 
-	entities_list.add(ret);
+	if (ret != nullptr)								
+	{
+		entities_list.add(ret);								
+	}
 
 	return ret;
 }
@@ -98,21 +163,20 @@ j1Entity *j1EntityManager::CreateEntity(int x, int y, EntityType eType) {
 //FOR DESTROYING A SINGLE ENTITY
 void j1EntityManager::DestroyEntity(j1Entity *Entity) {
 
-	j1Entity* ret = nullptr;
-
-	/*p2List_item<j1Entity*>* finder = entities_list.start;
-	while (finder != NULL)
+	for (p2List_item<j1Entity*>* EntitySelect = entities_list.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
 	{
-		if (finder->data == Entity)
+		if (EntitySelect->data == Entity)
 		{
-			if (finder->data == getPlayer())
+			if (EntitySelect->data == getPlayer())		
+			{
 				getPlayer()->CleanUp();
-			entities_list.del(finder);
-			RELEASE(finder->data);
+			}
+
+			entities_list.del(EntitySelect);
+			RELEASE(EntitySelect->data);
 			break;
 		}
-		finder = finder->next;
-	}*/
+	}
 }
 
 
@@ -129,4 +193,22 @@ void j1EntityManager::CleanEntities()
 		item->data->CleanUp();
 	}
 
+}
+
+
+
+j1Entity* j1EntityManager::getPlayer() const
+{
+	j1Entity* ret = nullptr;
+
+	for (p2List_item<j1Entity*>* entity = entities_list.start; entity; entity = entity->next)
+	{
+		if (entity->data->type == EntityType::PLAYER)
+		{
+			ret = entity->data;
+			break;
+		}
+	}
+
+	return ret;
 }

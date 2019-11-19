@@ -16,6 +16,8 @@ public:
 
 	~j1EntityManager();
 
+
+	//FUNCTION ROTATION IN ENTITY MANAGER
 	bool Awake(pugi::xml_node&);
 	bool Start();				//Load textures for each entity
 	bool PreUpdate();
@@ -23,13 +25,18 @@ public:
 	bool PostUpdate();
 	bool CleanUp();
 
-	j1Entity *CreateEntity(int x, int y, EntityType eType);
+	
 	p2List<j1Entity*> entities_list;
+
+	//FUNCTIONS RELATED TO ENTITIES
+	j1Entity* CreateEntity(EntityType type, int x = 0, int y = 0);
 	void DestroyAllEntities();
 	void DestroyEntity(j1Entity *Entity);
 
 	j1Entity* getPlayer() const;
 
+	//ENTITIES
+	j1Player* player; //Player (Entity)
 
 	pugi::xml_node	config;
 	bool DoLogic;			//Bool to see if logic from an entity has to be done

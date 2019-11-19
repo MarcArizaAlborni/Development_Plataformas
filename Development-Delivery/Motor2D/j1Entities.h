@@ -25,25 +25,23 @@ struct SDL_Rect;
 
 class j1Entity:public j1Module {
 
-
 public:
 
-	
 
-	j1Entity(iPoint pos, EntityType Type);
+	j1Entity(int x, int y, EntityType type);
 
 	~j1Entity() {}
 
 	 bool Start() { return true; }
 
-	 bool Update(float dt) { return true; }
+	 virtual bool Update(float dt, bool DoLogic);
 	 bool PostUpdate() { return true; }
 	 bool CleanUp();
 
 	 bool Load(pugi::xml_node&) { return true; }
 	 bool Save(pugi::xml_node&) { return true; }
 
-	//virtual void OnCollision(Collider* c1, Collider* c2) {}
+	
 	virtual void OnCollision(Collider*, Collider*) {}
 
 
@@ -63,10 +61,10 @@ public:
 	
 
 	
-	//TEXUTRES INIT
-	SDL_Texture* texture = nullptr;
-	
-
+	//INIT TEXTURES AND ANIMATIONS 
+	SDL_Texture* texture;
+			
+	Animation* animation;				
 };
 
 #endif
