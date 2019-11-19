@@ -47,6 +47,11 @@ void j1Map::Draw()
 
 	App->win->GetWindowSize(camera_rect_w, camera_rect_h);
 
+	camera_collider.rect.w = camera_rect_w;
+	camera_collider.rect.h = camera_rect_h;
+
+	App->map->camera_collider.SetPos(-App->render->camera.x, -App->render->camera.y);
+
 	for (item; item != nullptr; item = item->next) {
 
 		uint* gid = item->data->tile_ids;
@@ -57,9 +62,17 @@ void j1Map::Draw()
 			{
 				iPoint tileCoords = MapToWorld(x, y);
 				
-				App->render->Blit(data.tilesets[0]->texture, tileCoords.x, tileCoords.y, data.tilesets[0]->GetTileRectId(gid[i]));
+				tile_rect.x = data.tilesets[0]->GetPos(x, y).x - 100;
+				tile_rect.y = data.tilesets[0]->GetPos(x, y).y;
+				tile_rect.h = App->map->data.tile_height;
+				tile_rect.w = App->map->data.tile_height;
+
+				if (camera_collider.CheckCollision(tile_rect))
+				{
+					App->render->Blit(data.tilesets[0]->texture, tileCoords.x, tileCoords.y, data.tilesets[0]->GetTileRectId(gid[i]));
+				}
+
 				i++;
-					
 			}
 		}
 		

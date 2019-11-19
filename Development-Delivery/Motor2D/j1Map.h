@@ -75,6 +75,14 @@ struct TileSet
 	int					offset_x;
 	int					offset_y;
 
+	inline p2Point<uint> GetPos(uint x, uint y) {
+		p2Point<uint> ret;
+		ret.x = x * tile_width;
+		ret.y = y * tile_height;
+
+		return ret;
+	}
+
 };
 
 enum MapTypes
@@ -141,6 +149,7 @@ private:
 public:
 
 	MapData data;
+	Collider camera_collider;
 	SDL_Rect tile_rect;
 
 private:

@@ -136,7 +136,7 @@ j1Entity* j1EntityManager::CreateEntity(EntityType type, int x, int y)
 	{
 	case EntityType::PLAYER:							
 				
-		ret = new j1Player(x, y, type);
+		//ret = new j1Player(x, y, type);
 
 		
 		break;
