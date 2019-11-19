@@ -145,6 +145,7 @@ bool j1App::Update()
 
 	BROFILER_CATEGORY("App Update();", Profiler::Color::Aqua)
 
+
 	bool ret = true;
 	PrepareUpdate();
 
@@ -188,6 +189,7 @@ void j1App::PrepareUpdate()
 void j1App::FinishUpdate()
 {
 	BROFILER_CATEGORY("App FinishUpdate();", Profiler::Color::LawnGreen)
+
 
 	if(want_to_save == true)
 		SavegameNow();
@@ -237,6 +239,7 @@ void j1App::FinishUpdate()
 bool j1App::PreUpdate()
 {
 	BROFILER_CATEGORY("App PreUpdate);", Profiler::Color::DarkOrange)
+
 
 	frame_count++;									//Adds +1 to the frame count before each update loop. This variable will keep track of how many frames have been processed through all runtime.
 	frames_last_second++;							//Used to keep track of how many frames there were in the last second.
@@ -291,6 +294,7 @@ bool j1App::DoUpdate()
 // Call modules after each loop iteration
 bool j1App::PostUpdate()
 {
+	BROFILER_CATEGORY("App PreUpdate);", Profiler::Color::DeepPink)
 	bool ret = true;
 	p2List_item<j1Module*>* item;
 	j1Module* pModule = NULL;
@@ -312,7 +316,7 @@ bool j1App::PostUpdate()
 // Called before quitting
 bool j1App::CleanUp()
 {
-	BROFILER_CATEGORY("App CleanUp();", Profiler::Color::Tomato)
+	BROFILER_CATEGORY("App CleanUp();", Profiler::Color::Orange)
 	bool ret = true;
 	p2List_item<j1Module*>* item;
 	item = modules.end;
