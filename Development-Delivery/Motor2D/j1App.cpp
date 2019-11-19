@@ -16,6 +16,7 @@
 #include "j1App.h"
 #include "j1EntityManager.h"
 #include "j1Entities.h"
+#include "Brofiler/Brofiler.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -141,6 +142,9 @@ bool j1App::Start()
 // Called each loop iteration
 bool j1App::Update()
 {
+
+	BROFILER_CATEGORY("App Update();", Profiler::Color::Aqua)
+
 	bool ret = true;
 	PrepareUpdate();
 
@@ -183,6 +187,8 @@ void j1App::PrepareUpdate()
 // ---------------------------------------------
 void j1App::FinishUpdate()
 {
+	BROFILER_CATEGORY("App FinishUpdate();", Profiler::Color::LawnGreen)
+
 	if(want_to_save == true)
 		SavegameNow();
 
@@ -230,6 +236,8 @@ void j1App::FinishUpdate()
 // Call modules before each loop iteration
 bool j1App::PreUpdate()
 {
+	BROFILER_CATEGORY("App PreUpdate);", Profiler::Color::DarkOrange)
+
 	frame_count++;									//Adds +1 to the frame count before each update loop. This variable will keep track of how many frames have been processed through all runtime.
 	frames_last_second++;							//Used to keep track of how many frames there were in the last second.
 
@@ -304,6 +312,7 @@ bool j1App::PostUpdate()
 // Called before quitting
 bool j1App::CleanUp()
 {
+	BROFILER_CATEGORY("App CleanUp();", Profiler::Color::Tomato)
 	bool ret = true;
 	p2List_item<j1Module*>* item;
 	item = modules.end;
