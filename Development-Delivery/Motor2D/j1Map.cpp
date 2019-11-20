@@ -63,10 +63,19 @@ void j1Map::Draw()
 				iPoint tileCoords = MapToWorld(x, y);
 				float speed = 1.0f;
 
-				if (item->data->name == "Parallax")
+				if (item->data->name == "Clouds")
 				{
 
 					speed = 0.50f;
+
+					tile_rect.x = (App->render->camera.x * speed) + data.tilesets[0]->GetPos(x, y).x - App->render->camera.x;
+					tile_rect.y = (App->render->camera.y * speed) + data.tilesets[0]->GetPos(x, y).y - App->render->camera.y;
+
+				}
+				else if (item->data->name == "Water")
+				{
+
+					speed = 0.75f;
 
 					tile_rect.x = (App->render->camera.x * speed) + data.tilesets[0]->GetPos(x, y).x - App->render->camera.x;
 					tile_rect.y = (App->render->camera.y * speed) + data.tilesets[0]->GetPos(x, y).y - App->render->camera.y;
