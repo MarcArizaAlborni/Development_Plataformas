@@ -17,7 +17,6 @@ enum EntityType {
 };
 
 
-class j1EntityManager;
 struct SDL_Texture;
 struct SDL_Rect;
 
@@ -63,6 +62,7 @@ public:
 	
 	//INIT TEXTURES AND ANIMATIONS 
 	SDL_Texture* texture;
+	iPoint texture_size;
 			
 	Animation* animation;				
 };

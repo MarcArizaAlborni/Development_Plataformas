@@ -229,7 +229,7 @@ void j1App::FinishUpdate()
 
 		int intended_delay = frame_cap_ms - current_frame_ms;	//Done for readability. Set as the value of the intended delay.
 
-		LOG("Waiting for  %d milliseconds starting in  %f", intended_delay, true_delay_timer.ReadMs());
+		//LOG("Waiting for  %d milliseconds starting in  %f", intended_delay, true_delay_timer.ReadMs());
 	}
 
 
@@ -247,7 +247,7 @@ bool j1App::PreUpdate()
 	dt = frame_timer.ReadSec();						//Keeps track of the amount of time that has passed since last frame in seconds (processing time of a frame: Frame 1: 0.033secs, ...).
 	frame_timer.Start();							//Starts the frame timer. Used to calculate ms per frame.
 
-	LOG("Time between frames: %f", dt);
+	//LOG("Time between frames: %f", dt);
 
 
 	bool ret = true;

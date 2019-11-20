@@ -124,10 +124,12 @@ public:
 
 		if (PlayerInput.A_active && TouchingCollider==false) {
 			CurrentPosition.x -= Character_vel.x;
+			
 		}
 
 		if (PlayerInput.D_active&&TouchingCollider==false) {
 			CurrentPosition.x += Character_vel.x;
+			
 		}
 	}
 
@@ -147,6 +149,7 @@ public:
 	bool JumpTicks;
 	bool FallLeft;
 	bool FallRight;
+	
 	void On_The_Air() {
 
 		CanJump = false;
@@ -250,28 +253,28 @@ public:
 			}
 
 		
-			if (FallRight == true) {
-				CurrentPosition.x += Character_vel.x;
-			}
-			
-		
-
 			if (PlayerInput.U_active && PlayerInput.D_active) {
 
 				LOG("100");
-				DashActiveLeft;
-				DashFunction();
+				DashActiveRight = true;
+				StartPosition.x = CurrentPosition.x;
+				PlayerState = DashState;
+				On_Ground = false;
+
 
 			}
 
 			else if (PlayerInput.U_active && PlayerInput.A_active) {
 				LOG("100");
-				DashActiveRight;
-				DashFunction();
+				DashActiveLeft = true;
+				StartPosition.x = CurrentPosition.x;
+				PlayerState = DashState;
+				On_Ground = false;
+				LOG("LEFT TO DASH LEFT");
 
 			}
 			
-			if (On_Ground == true) { //AQUI ERROR DASH
+			if (On_Ground == true) { 
 				LOG("TO IDLE FROM JUMP");
 				
 				
@@ -297,6 +300,7 @@ public:
 	bool DashActiveLeft;
 	bool DashActiveRight;
 	bool CanDash;
+	bool DashDone;
 	
 
 	void DashFunction() {
@@ -320,9 +324,9 @@ public:
 		else {
 			DashActiveLeft = false;
 			DashActiveRight = false;
-			MidAirUP = false;
-			
-			PlayerState = JumpState;
+			//MidAirUP = false;
+			Gravity = GravitySave;
+			PlayerState = FallState;
 			
 			LOG("DASH  TO JUMP");
 		}

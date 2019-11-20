@@ -91,6 +91,7 @@ j1Player::j1Player()
  bool j1Player::Awake(pugi::xml_node& node)
  {
 
+
 	 bool ret = true;
 	
 	 pugi::xml_node player = node.child("player");
@@ -105,6 +106,12 @@ j1Player::j1Player()
 	 Player_Height = node.attribute("height").as_int();
 	 CanDash = true;
 	 JumpTicks = true;
+	
+
+	 PlayerState = IdleState;
+	 CurrentAnimation = &idle;
+	 CanJump = false;
+
 	 return ret;
  }
 
@@ -202,7 +209,7 @@ j1Player::j1Player()
 				
 
 				if (On_Ground == false) {
-
+					PlayerState = FallState;
 					LOG("JUMP NOT AVAILABLE");
 				}
 
@@ -274,8 +281,28 @@ j1Player::j1Player()
 			}
 
 		}
-		if (PlayerState == JumpState) {
+		if (PlayerState == FallState) {
 
+			
+			LOG("FALL STATE");
+			Movement();
+
+			if (PlayerInput.U_active && PlayerInput.D_active) {
+				DashActiveRight = true;
+				StartPosition.x = CurrentPosition.x;
+				PlayerState = DashState;
+			}
+			else if (PlayerInput.U_active && PlayerInput.A_active) {
+				DashActiveLeft = true;
+				StartPosition.x = CurrentPosition.x;
+				PlayerState = DashState;
+			}
+
+			//PlayerState = IdleState;
+			if (CanJump == true) {
+				LOG("22");
+				PlayerState = IdleState;
+			}
 			
 		}
 
@@ -319,7 +346,14 @@ bool j1Player::Update(float dt)
 	case IdleState:
 		//LOG("IDLE");
 		TouchingCollider = false;
-		CurrentAnimation = &idle;
+		//CurrentPosition.y -= Gravity;
+		if (EndJump == true) {
+			CurrentAnimation = &idle;
+
+		}
+		else {
+			CurrentAnimation = &jump;
+		}
 		CanDash = true;
 		JumpTicks = true;
 		break;
@@ -328,7 +362,7 @@ bool j1Player::Update(float dt)
 		LOG("MOVING LEFT");
 		flip = true;
 		Movement();
-		CurrentAnimation = &run;
+		CurrentAnimation = &run; 
 		break;
 
 	case RightState:
@@ -344,28 +378,26 @@ bool j1Player::Update(float dt)
 		Gravity = GravitySave;
 		CurrentAnimation = &jump;
 		On_The_Ground();
-		/*if (Jump_Ready == false) {
-			PlayerState = IdleState;
-			CurrentAnimation = &idle;
-		}*/
+		
 		if (Jump_Ready == true) {
 			MidAirUP = true;
 			
 			Jumping();
 		}
 		if (EndJump == true) {
-			PlayerState = IdleState;
-			CurrentAnimation = &idle;
+			PlayerState = FallState;
+			CurrentAnimation = &jump;
 	    }
 
-		/*if (PlayerInput.Space_active && MidAirUP == true) {
-
-			LOG("JUMP TO DOUBLE JUMP");
-			PlayerState = DoubleJumpState;
-
-		}*/
 		
 		LOG("JUMP STATE ACTIVE");
+		break;
+
+	case FallState:
+
+		TouchingCollider = false;
+		CurrentAnimation = &jump;
+		
 		break;
 
 	case DoubleJumpState:
@@ -494,8 +526,8 @@ bool j1Player::Update(float dt)
 				 CurrentPosition.y = LastPosition.y ;
 				 //LOG("PLAYER INTO WALL FROM THE TOP");
 				 float Gravity2 = Gravity;
-				 Gravity = 0;	
-				 Gravity = Gravity2;
+				 /*Gravity = 0;	
+				 Gravity = Gravity2;*/
 			 }
 
 		 }
@@ -526,8 +558,7 @@ bool j1Player::Update(float dt)
 
 	 Graphics = App->tex->Load("Sprites/DudeMOD.png");
 	 floor = CurrentPosition.y;
-	 PlayerState = IdleState;
-
+	 
 	 CurrentPosition = { Inipos.x, Inipos.y };
 
 	 Player_Rect = { CurrentPosition.x, CurrentPosition.y, Player_Width, Player_Height };
@@ -535,7 +566,7 @@ bool j1Player::Update(float dt)
 	 Player_Collider = App->collision->AddCollider(Player_Rect, ObjectType::Player, this);
 
 	 // On_Ground = true;
-	 CanJump = true;
+	
 
 	 return true;
  }

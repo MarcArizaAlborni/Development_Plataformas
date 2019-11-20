@@ -31,7 +31,7 @@ bool j1EntityManager::Awake(pugi::xml_node& config) {
 		EntitySelect->data->Awake(config.child(EntitySelect->data->name.GetString()));
 	}
 
-	LOG("AWAKE ENTITIY MANAGER");
+	//LOG("AWAKE ENTITIY MANAGER");
 
 	return true;
 }
@@ -39,7 +39,7 @@ bool j1EntityManager::Awake(pugi::xml_node& config) {
 bool j1EntityManager::Start() {
 
 	
-	LOG("START ENTITIY MANAGER");
+	//LOG("START ENTITIY MANAGER");
 	
 	//Initialize all Entities in the entity list 
 	
@@ -63,7 +63,7 @@ bool j1EntityManager::PreUpdate() {
 
 
 
-	LOG("PREUPDATE ENTITIY MANAGER");
+	//LOG("PREUPDATE ENTITIY MANAGER");
 	return true;
 }
 
@@ -88,7 +88,7 @@ bool j1EntityManager::Update(float dt) {
 		Accumulated_dt = 0;
 	}
 
-	LOG("UPDATE ENTITIY MANAGER");
+	//LOG("UPDATE ENTITIY MANAGER");
 
 	return true;
 }
@@ -101,7 +101,7 @@ bool j1EntityManager::PostUpdate() {
 		EntitySelect->data->PostUpdate();
 	}
 
-	LOG("POSTUPDATE ENTITIY MANAGER");
+	//LOG("POSTUPDATE ENTITIY MANAGER");
 
 
 	return true;
@@ -109,7 +109,7 @@ bool j1EntityManager::PostUpdate() {
 
 bool j1EntityManager::CleanUp() {
 
-	LOG("CLEAN UP ENTITIY MANAGER");
+	//LOG("CLEAN UP ENTITIY MANAGER");
 
 	
 	for (p2List_item<j1Entity*>* EntitySelect = entities_list.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
