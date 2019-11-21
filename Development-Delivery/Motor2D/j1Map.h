@@ -10,6 +10,34 @@
 // TODO 1: Create a struct for the map layer
 // ----------------------------------------------------
 
+struct Properties
+{
+	struct Property
+	{
+		p2SString name;
+		int value;
+	};
+
+	~Properties()
+	{
+		p2List_item<Property*>* item;
+		item = list.start;
+
+		while (item != NULL)
+		{
+			RELEASE(item->data);
+			item = item->next;
+		}
+
+		list.clear();
+	}
+
+	int Get(const char* name, int default_value = 0) const;
+
+	p2List<Property*>	list;
+};
+
+
 enum class ObjectType
 {
 	Platform,
@@ -24,12 +52,21 @@ struct MapLayer
 	p2SString	name;
 	uint		width;
 	uint		height;
-	uint*		tile_ids;
+	uint*		data;
+	Properties	properties;
+
+	MapLayer() : data(NULL)
+	{}
+
+	~MapLayer()
+	{
+		RELEASE(data);
+	}
 
 	// TODO 6: Short function to get the value of x,y
 	inline uint Get(int x, int y)
 	{
-		return (y * width) + x;
+		return data[(y * width) + x];
 	};
 
 };
@@ -135,6 +172,7 @@ public:
 	// TODO 8: Create a method that translates x,y coordinates from map positions to world positions
 	iPoint MapToWorld(int x, int y) const;
 	iPoint WorldToMap(int x, int y) const;
+	bool CreateWalkabilityMap(int& width, int& height, uchar** buffer) const;
 
 private:
 
@@ -145,6 +183,9 @@ private:
 	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
 	// Create a methid to load the Object Group
 	bool LoadObjectGroup(pugi::xml_node& node, ObjectGroup* layer);
+	bool LoadProperties(pugi::xml_node& node, Properties& properties);
+
+	TileSet* GetTilesetFromTileId(int id) const;
 
 public:
 

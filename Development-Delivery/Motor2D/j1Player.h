@@ -63,8 +63,6 @@ public:
 	bool Load(pugi::xml_node &node); //Load 
 	bool Save(pugi::xml_node &node) const;//Save
 
-
-
 	j1Player();
 
 	// Destructor
@@ -81,9 +79,7 @@ public:
 	// Collision handling -----
 	void j1Player::OnCollision(Collider* A, Collider* B);
 
-
 	//CONTROLLS F
-
 	bool GOD_MODE = false;
 	bool flip = false;
 

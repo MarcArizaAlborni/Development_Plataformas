@@ -23,9 +23,6 @@ bool j1EntityManager::Awake(pugi::xml_node& config) {
 
 	this->config = config;
 
-	
-
-
 	for (p2List_item<j1Entity*>* EntitySelect = entities_list.start; EntitySelect; EntitySelect = EntitySelect->next)
 	{
 		EntitySelect->data->Awake(config.child(EntitySelect->data->name.GetString()));
@@ -48,20 +45,15 @@ bool j1EntityManager::Start() {
 		EntitySelect->data->Start();
 	}
 
-
-
 	return true;
 }
 
 bool j1EntityManager::PreUpdate() {
 
-
 	for (p2List_item<j1Entity*>* EntitySelect = entities_list.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
 	{
 		EntitySelect->data->PreUpdate();
 	}
-
-
 
 	//LOG("PREUPDATE ENTITIY MANAGER");
 	return true;
