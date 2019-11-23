@@ -54,7 +54,7 @@ struct MapLayer
 	uint		height;
 	uint*		data;
 	Properties	properties;
-	
+
 	MapLayer() : data(NULL)
 	{}
 
@@ -80,7 +80,6 @@ struct ObjectProperties
 	uint			width;
 	uint			height;
 	ObjectType		type;
-	SDL_Rect*   colliderPos;
 
 };
 
