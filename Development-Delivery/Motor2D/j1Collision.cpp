@@ -6,6 +6,7 @@
 #include "j1Input.h"
 
 
+
 j1Collision::j1Collision() : j1Module()
 {
 	name.create("collision");
@@ -32,6 +33,7 @@ bool j1Collision::Start()
 
 bool j1Collision::PreUpdate()
 {
+	
 	p2List_item<Collider*>* collider_iterator = collider.start;
 	for (collider_iterator; collider_iterator != nullptr; collider_iterator = collider_iterator->next) {
 
@@ -41,7 +43,7 @@ bool j1Collision::PreUpdate()
 		}
 	}
 
-	Collider* c1;
+	/*Collider* c1;
 	Collider* c2;
 	
 	for (collider_iterator=collider.start; collider_iterator != nullptr; collider_iterator = collider_iterator->next)
@@ -67,6 +69,36 @@ bool j1Collision::PreUpdate()
 				}
 			}
 		}
+	}*/
+
+
+	Collider* c1;		
+	Collider* c2;		
+
+	
+	p2List_item<Collider*>* c1_iterator = collider.start;
+	while (c1_iterator != NULL)
+	{
+		c1 = c1_iterator->data;										
+
+		p2List_item<Collider*>* c2_iterator = collider.start;	
+		{
+			c2 = c2_iterator->data;									
+
+			if (c1 != c2)											
+			{
+				if (c1->CheckCollision(c2->rect) == true) 
+				{
+					if (c1->callback)
+					{
+						c1->callback->OnCollision(c1, c2);			
+					}
+					
+				}
+			}
+			c2_iterator = c2_iterator->next; 
+		}
+		c1_iterator = c1_iterator->next;
 	}
 
 	return true;
@@ -128,18 +160,20 @@ void j1Collision::DebugDraw()
 Collider* j1Collision::AddCollider(SDL_Rect rectangle, ObjectType type, j1Module* callback )
 {
 
-	Collider* rect = new Collider;
+	Collider* rectCollision = new Collider;
 
-	rect->callback = callback;
-	rect->rect = rectangle;
-	rect->type = type;
+	rectCollision->callback = callback;
+	rectCollision->rect = rectangle;
+	rectCollision->type = type;
 
-	collider.add(rect);
+	collider.add(rectCollision);
 
 	LOG("Added collider");
 
-	return rect;
+	return rectCollision;
 }
+
+
 
 void j1Collision::LoadCollider() {
 	p2List_item<ObjectGroup*>* item = App->map->data.objectgroups.start;
@@ -177,4 +211,6 @@ Collider::Collider(ObjectProperties object) {
 	rect.w = object.width;
 	rect.h = object.height;
 	type = object.type;
+	rect = *object.colliderPos;
+
 }
