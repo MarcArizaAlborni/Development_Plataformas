@@ -507,6 +507,8 @@ bool j1Player::Update(float dt)
 				 
 			 }
 
+			 
+
 			 else if (B->rect.x - B->rect.w >= A->rect.x - 20)
 			 { //Right to left
 				 TouchingCollider = true;
