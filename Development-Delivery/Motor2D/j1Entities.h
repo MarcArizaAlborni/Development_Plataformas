@@ -27,7 +27,7 @@ class j1Entity:public j1Module {
 public:
 
 
-	j1Entity(int x, int y, EntityType type);
+	j1Entity(iPoint Position, EntityType type);
 
 	~j1Entity() {}
 

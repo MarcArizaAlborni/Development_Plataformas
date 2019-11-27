@@ -8,7 +8,7 @@
 
 
 
-j1Entity::j1Entity(int x, int y, EntityType type) : position(x, y), type(type), texture(nullptr), collider(nullptr), animation(nullptr)	
+j1Entity::j1Entity(iPoint position, EntityType type) : position(position), type(type), texture(nullptr), collider(nullptr), animation(nullptr)	
 {
 	return;
 }

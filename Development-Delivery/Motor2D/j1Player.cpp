@@ -500,7 +500,7 @@ bool j1Player::Update(float dt)
 		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h)  > B->rect.y))
 		 {
 
-			 if ((A->rect.x + A->rect.w - 5) <= (B->rect.x ))
+			 if ((A->rect.x + A->rect.w - 5) <= (B->rect.x ))  //EL BO
 			 { //Left to right
 				 TouchingCollider = true;
 				 Movement();
@@ -511,13 +511,13 @@ bool j1Player::Update(float dt)
 
 			 
 
-			 else if (B->rect.x - B->rect.w >= A->rect.x - 20)
-			 { //Right to left
-				 TouchingCollider = true;
-				 Movement();
-				 CurrentPosition.x = LastPosition.x;
-				LOG("PLAYER INTO WALL FROM THE RIGHT");
-			 }
+			 //else if (B->rect.x - B->rect.w >= A->rect.x - 20)
+			 //{ //Right to left
+				// TouchingCollider = true;
+				// Movement();
+				// CurrentPosition.x = LastPosition.x;
+				//LOG("PLAYER INTO WALL FROM THE RIGHT");
+			 //}
 		 }
 
 		 //from above

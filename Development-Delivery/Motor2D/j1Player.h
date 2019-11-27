@@ -190,12 +190,12 @@ public:
 			
 
 
-			if (PlayerInput.U_active&&PlayerInput.A_active) {
+			/*if (PlayerInput.U_active&&PlayerInput.A_active) {
 
 				DashActiveRight;
 				DashFunction();
 
-			}
+			}*/
 
 
 			if (PlayerInput.A_active) {
@@ -212,13 +212,13 @@ public:
 				LOG("GOING RIGHT INSIDE JUMP");
 			}
 
-			if (PlayerInput.U_active && PlayerInput.D_active) {
+			/*if (PlayerInput.U_active && PlayerInput.D_active) {
 				LOG("GOING RIGHT AND DASHING RIGHT IN JUMP");
 				
 				DashActiveLeft;
 				DashFunction();
 
-			}
+			}*/
 				
 			
 
@@ -249,7 +249,7 @@ public:
 			}
 
 		
-			if (PlayerInput.U_active && PlayerInput.D_active) {
+			/*if (PlayerInput.U_active && PlayerInput.D_active) {
 
 				LOG("100");
 				DashActiveRight = true;
@@ -268,7 +268,7 @@ public:
 				On_Ground = false;
 				LOG("LEFT TO DASH LEFT");
 
-			}
+			}*/
 			
 			if (On_Ground == true) { 
 				LOG("TO IDLE FROM JUMP");
@@ -305,14 +305,14 @@ public:
 		if (StartPosition.x - DashDist < CurrentPosition.x && DashActiveLeft == true && TouchingCollider == false) {
 
 			CurrentPosition.x -= Character_vel.x * 2;
-			CurrentPosition.y -= 1; //MAGIC NUMBER UNA VEGADA ELS COLIDERS FUNCIONIN PERFECTAMENT NO FARA FALTA
+			//CurrentPosition.y -= 1; //MAGIC NUMBER UNA VEGADA ELS COLIDERS FUNCIONIN PERFECTAMENT NO FARA FALTA
 			LOG("DASH FUNCTION LEFT");
 			
 		}
 		else if (StartPosition.x + DashDist > CurrentPosition.x && DashActiveRight == true && TouchingCollider==false) {
 
 			CurrentPosition.x += Character_vel.x * 2;
-			CurrentPosition.y -= 1; //MAGIC NUMBER UNA VEGADA ELS COLIDERS FUNCIONIN PERFECTAMENT NO FARA FALTA
+			//CurrentPosition.y -= 1; //MAGIC NUMBER UNA VEGADA ELS COLIDERS FUNCIONIN PERFECTAMENT NO FARA FALTA
 
 			LOG("DASH FUNCTION RIGHT");
 			
