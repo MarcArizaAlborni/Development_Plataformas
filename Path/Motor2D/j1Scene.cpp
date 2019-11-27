@@ -10,6 +10,7 @@
 #include "j1Scene.h"
 #include "j1FadeToBlack.h"
 #include "j1Pathfinding.h"
+#include "j1Player.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -63,6 +64,8 @@ bool j1Scene::PreUpdate()
 	iPoint p = App->render->ScreenToWorld(x, y);
 	p = App->map->WorldToMap(p.x, p.y);
 
+	iPoint Player_pos = App->map->WorldToMap(App->player->CurrentPosition.x, App->player->CurrentPosition.y);
+
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
 	{
 		if (origin_selected == true)
@@ -72,7 +75,7 @@ bool j1Scene::PreUpdate()
 		}
 		else
 		{
-			origin = p;
+			origin = Player_pos;
 			origin_selected = true;
 		}
 	}
@@ -127,7 +130,6 @@ bool j1Scene::Update(float dt)
 	App->win->SetTitle(title.GetString());
 
 	// Debug pathfinding ------------------------------
-
 	App->input->GetMousePosition(x, y);
 	iPoint p = App->render->ScreenToWorld(x, y);
 	p = App->map->WorldToMap(p.x, p.y);
