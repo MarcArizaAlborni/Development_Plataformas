@@ -1,6 +1,7 @@
 #include "FlyingEnemy.h"
 #include "j1Entities.h"
 #include "j1Player.h"
+#include "GroundEnemy.h"
 
 j1FlyingEnemy::j1FlyingEnemy(iPoint FEnemyPos, EntityType type):j1Entity(position,type)
 {
