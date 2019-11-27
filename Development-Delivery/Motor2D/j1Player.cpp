@@ -301,6 +301,7 @@ j1Player::j1Player()
 			//PlayerState = IdleState;
 			if (CanJump == true) {
 				LOG("22");
+				TouchingCollider = true;
 				PlayerState = IdleState;
 			}
 			
@@ -356,6 +357,7 @@ bool j1Player::Update(float dt)
 		}
 		CanDash = true;
 		JumpTicks = true;
+		LOG("IDLE STATE");
 		break;
 
 	case LeftState:
@@ -521,17 +523,15 @@ bool j1Player::Update(float dt)
 		 //from above
 		 if ((CurrentPosition.y + A->rect.h) <= B->rect.y + 20 ) // from above
 		 {
-			 if ((A->rect.x + A->rect.w > B->rect.x) || (A->rect.x + A->rect.w < B->rect.x + B->rect.w)) { 
-				
+			 if ((A->rect.x + A->rect.w > B->rect.x) || (A->rect.x + A->rect.w < B->rect.x + B->rect.w)) {
+
 				 On_Ground = true;
 				 CanJump = true;
-				 CurrentPosition.y = LastPosition.y ;
-				 //LOG("PLAYER INTO WALL FROM THE TOP");
+				 CurrentPosition.y = LastPosition.y;
+				 CurrentPosition.y = B->rect.y - A->rect.h + 1;
 				 float Gravity2 = Gravity;
-				 /*Gravity = 0;	
-				 Gravity = Gravity2;*/
-			 }
 
+			 }
 		 }
 	 }
 
