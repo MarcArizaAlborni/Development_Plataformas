@@ -80,7 +80,7 @@ bool j1Render::Update(float dt)
 	uint winH = App->win->GetHeight();
 
 
-	camera.x = -App->player->CurrentPosition.x + winH;
+	/*camera.x = -App->player->CurrentPosition.x + winH;
 
 	if (camera.x >= 0)
 	{
@@ -94,9 +94,11 @@ bool j1Render::Update(float dt)
 	if (camera.y >= 0)
 	{
 		camera.y = 0;
-	}
+	}*/
 
-	else if (camera.y <= -App->map->data.tile_height * App->map->data.height + winH)
+	camera.x -= 1;
+
+    if (camera.y <= -App->map->data.tile_height * App->map->data.height + winH)
 	{
 		camera.y = -App->map->data.tile_height * App->map->data.height + winH ;
 	}

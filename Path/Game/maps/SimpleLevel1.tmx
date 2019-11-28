@@ -6056,7 +6056,7 @@
   <object id="18" name="Floor" type="Platform" x="1920.5" y="320.5" width="31" height="31"/>
   <object id="19" name="Floor" type="Platform" x="1984.5" y="384.5" width="63" height="96"/>
   <object id="20" name="Floor" type="Platform" x="2112.5" y="384.5" width="62" height="95"/>
-  <object id="34" name="Floor" type="Platform" x="0" y="0" width="4" height="480"/>
+  <object id="34" name="Floor" type="Water" x="0" y="0" width="4" height="480"/>
   <object id="36" name="Floor" type="Water" x="1" y="432" width="2335.67" height="46.3333"/>
   <object id="42" name="Floor" type="Platform" x="2556" y="0" width="4" height="480.333"/>
   <object id="44" name="Floor" type="Platform" x="320.667" y="353.333" width="62.6667" height="30"/>
