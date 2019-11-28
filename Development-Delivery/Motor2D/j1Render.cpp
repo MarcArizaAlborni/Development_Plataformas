@@ -81,6 +81,7 @@ bool j1Render::Update(float dt)
 
 
 	camera.x = -App->player->CurrentPosition.x + winH;
+	
 
 	if (camera.x >= 0)
 	{
