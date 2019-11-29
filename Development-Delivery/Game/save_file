@@ -1,18 +1,17 @@
 <?xml version="1.0"?>
 <game_state>
 	<window />
-	<Entities />
 	<input />
 	<textures />
 	<audio />
 	<map />
 	<scene />
 	<player>
-		<position1 x="1442" y="158" />
+		<position1 x="1391" y="154" />
 	</player>
 	<collision />
 	<fade />
 	<renderer>
-		<camera x="-963" y="0" />
+		<camera x="-912" y="0" />
 	</renderer>
 </game_state>

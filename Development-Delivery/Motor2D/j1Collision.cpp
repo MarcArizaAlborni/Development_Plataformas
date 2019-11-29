@@ -120,26 +120,6 @@ void j1Collision::DebugDraw()
 		case ObjectType::Victory: // Green
 			App->render->DrawQuad(collider_iterator->data->rect, 0, 255, 0, alpha);
 			break;
-
-		case ObjectType::Teleporter1: // blue fosc
-			App->render->DrawQuad(collider_iterator->data->rect, 0, 0, 204, alpha);
-			break;
-
-		case ObjectType::Teleporter2: //blue fosc
-			App->render->DrawQuad(collider_iterator->data->rect, 0, 0, 204, alpha);
-			break;
-
-		case ObjectType::AudioArea: // 
-			App->render->DrawQuad(collider_iterator->data->rect, 0, 255, 128, alpha);
-			break;
-
-		case ObjectType::CheckPoint: //
-			App->render->DrawQuad(collider_iterator->data->rect, 128, 255, 0, alpha);
-			break;
-
-		case ObjectType::TransformationPoint: //
-			App->render->DrawQuad(collider_iterator->data->rect, 100, 100, 0, alpha);
-			break;
 		}
 	}
 
