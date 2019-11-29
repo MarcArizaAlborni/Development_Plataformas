@@ -57,8 +57,9 @@ void j1Map::Draw()
 		uint* gid = item->data->data;
 		uint i = 0;
 
-		if (layer->properties.Get("Nodraw") != 0)
+		if (item->data->properties.Get("Nodraw") != 0) {
 			continue;
+		}
 
 		for (uint y = 0; y < data.height; ++y)
 		{

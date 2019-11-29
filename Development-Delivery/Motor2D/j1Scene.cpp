@@ -9,10 +9,14 @@
 #include "j1Map.h"
 #include "j1Scene.h"
 #include "j1FadeToBlack.h"
+#include "j1Pathfinding.h"
+#include "j1Player.h"
 
 j1Scene::j1Scene() : j1Module()
 {
 	name.create("scene");
+
+	debug_path = false;
 }
 
 // Destructor
@@ -31,8 +35,19 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	App->map->Load("SimpleLevel1.tmx");
-	//App->map->Load("Level1v4.tmx");
+
+	if (App->map->Load("SimpleLevel1.tmx") == true)
+	{
+		int w, h;
+		uchar* data = NULL;
+		if (App->map->CreateWalkabilityMap(w, h, &data))
+			App->pathfinding->SetMap(w, h, data);
+
+		RELEASE_ARRAY(data);
+	}
+
+	debug_tex = App->tex->Load("maps/rosa.png");
+
 	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
 	return true;
 }
@@ -40,6 +55,31 @@ bool j1Scene::Start()
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
+	// debug pathfing ------------------
+	static iPoint origin;
+	static bool origin_selected = false;
+
+	int x, y;
+	App->input->GetMousePosition(x, y);
+	iPoint p = App->render->ScreenToWorld(x, y);
+	p = App->map->WorldToMap(p.x, p.y);
+
+	iPoint Player_pos = App->map->WorldToMap(App->player->CurrentPosition.x, App->player->CurrentPosition.y);
+
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+	{
+		if (origin_selected == true)
+		{
+			App->pathfinding->CreatePath(origin, p);
+			origin_selected = false;
+		}
+		else
+		{
+			origin = Player_pos;
+			origin_selected = true;
+		}
+	}
+
 	return true;
 }
 
@@ -47,12 +87,12 @@ bool j1Scene::PreUpdate()
 bool j1Scene::Update(float dt)
 {
 
-	if(App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		App->LoadGame();
 
-	if(App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		App->SaveGame();
-	
+
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		App->fade->FadeToBlack("SimpleLevel1.tmx");
 
@@ -64,6 +104,49 @@ bool j1Scene::Update(float dt)
 	//p2SString title("Project Ceta");
 
 	//App->win->SetTitle(title.GetString());
+
+	if (App->input->keyboard[SDL_SCANCODE_F9] == KEY_DOWN) {
+
+		if (debug_path) {
+			debug_path = false;
+		}
+		else
+		{
+			debug_path = true;
+		}
+	}
+	if (debug_path == false)
+		return true;
+
+	int x, y;
+	App->input->GetMousePosition(x, y);
+	iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
+	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d",
+		App->map->data.width, App->map->data.height,
+		App->map->data.tile_width, App->map->data.tile_height,
+		App->map->data.tilesets.count(),
+		map_coordinates.x, map_coordinates.y);
+
+	App->win->SetTitle(title.GetString());
+
+	// Debug pathfinding ------------------------------
+	App->input->GetMousePosition(x, y);
+	iPoint p = App->render->ScreenToWorld(x, y);
+	p = App->map->WorldToMap(p.x, p.y);
+	p = App->map->MapToWorld(p.x, p.y);
+
+	App->render->Blit(debug_tex, p.x, p.y);
+
+	const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
+
+	for (uint i = 0; i < path->Count(); ++i)
+	{
+		iPoint pos = App->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+		App->render->Blit(debug_tex, pos.x, pos.y);
+	}
+
+
+
 	return true;
 }
 
@@ -89,7 +172,7 @@ bool j1Scene::PostUpdate()
 
 	bool ret = true;
 
-	if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 
 	return ret;
