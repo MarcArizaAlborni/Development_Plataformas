@@ -553,6 +553,27 @@ bool j1Player::Update(float dt)
 			 App->fade->FadeToBlack("SimpleLevel2.tmx"); 
 		 }
 	 }
+
+
+	 if (A->type == ObjectType::Player && B->type == ObjectType::Teleporter) {
+
+		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y)) {
+
+			 //POTSER POSAR UN INPUT AQUI PER ACTIVAR EL TELEPORT?
+			 B->rect.x; //COM AGAFO LA POSICIO DEL RECT DEL TELEPORTER 2 PERQUE EL RECT.X ES LA DEL TELEPORTER 1 (EMITER) NO LA DEL RECEIVER
+			 B->rect.y;
+			 // PlayerTP(B->rect.x,B->rect.y);
+			 PlayerTP(100, 50); //AMB AIXO FUNCIONA PERO ESTA BRUTALMENT HARDCODEJAT
+		 }
+	 }
+
+
+	 if (A->type == ObjectType::Player && B->type == ObjectType::CheckPoint) {
+
+		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y)) {
+			// App->SaveGame();
+		 }
+	 }
  }
  
  bool j1Player::InitPlayer()
@@ -720,4 +741,13 @@ bool j1Player::Update(float dt)
 		 }
 
 	 }
+ }
+
+
+
+ void j1Player::PlayerTP(int TPposx, int TPposy) {
+
+	 CurrentPosition.x = TPposx;
+	 CurrentPosition.y = TPposy;
+
  }

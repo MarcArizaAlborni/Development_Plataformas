@@ -114,6 +114,9 @@ public:
 	
 	bool InitPlayer();
 
+	//TELEPORT
+
+	void PlayerTP(int posx,int posy);
 	//MOVEMENT
 
 	void Movement() {

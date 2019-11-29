@@ -594,6 +594,10 @@ bool j1Map::LoadObjectGroup(pugi::xml_node& node, ObjectGroup* object)
 				{
 					object->object_properties[i].type = ObjectType::CheckPoint;
 				}
+				else if (type == "TransformationPoint")
+				{
+					object->object_properties[i].type = ObjectType::TransformationPoint;
+				}
 				else
 				{
 					object->object_properties[i].type = ObjectType::Unknown;

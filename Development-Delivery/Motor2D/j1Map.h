@@ -47,6 +47,7 @@ enum class ObjectType
 	Teleporter,
 	AudioArea,
 	CheckPoint,
+	TransformationPoint,
 	Unknown
 
 };
