@@ -555,7 +555,7 @@ bool j1Player::Update(float dt)
 	 }
 
 
-	 if (A->type == ObjectType::Player && B->type == ObjectType::Teleporter) {
+	 if (A->type == ObjectType::Player && B->type == ObjectType::Teleporter1) {
 
 		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y)) {
 
@@ -571,7 +571,7 @@ bool j1Player::Update(float dt)
 	 if (A->type == ObjectType::Player && B->type == ObjectType::CheckPoint) {
 
 		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y)) {
-			// App->SaveGame();
+			 App->SaveGame("save_game.xml");
 		 }
 	 }
  }
