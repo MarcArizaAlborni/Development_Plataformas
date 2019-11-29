@@ -80,7 +80,7 @@ bool j1Render::Update(float dt)
 	uint winH = App->win->GetHeight();
 
 
-	/*camera.x = -App->player->CurrentPosition.x + winH;
+	camera.x = -App->player->CurrentPosition.x + winH;
 
 	if (camera.x >= 0)
 	{
@@ -94,7 +94,7 @@ bool j1Render::Update(float dt)
 	if (camera.y >= 0)
 	{
 		camera.y = 0;
-	}*/
+	}
 
 	camera.x -= 1;
 

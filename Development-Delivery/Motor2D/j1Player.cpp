@@ -572,3 +572,152 @@ bool j1Player::Update(float dt)
 
 	 return true;
  }
+
+
+
+ void j1Player::DashFunction(){
+
+	 
+		 MidAirUP = false;
+		 Gravity = 0;
+		 if (StartPosition.x - DashDist < CurrentPosition.x && DashActiveLeft == true && TouchingCollider == false) {
+
+			 CurrentPosition.x -= Character_vel.x * 2;
+			 //CurrentPosition.y -= 1; //MAGIC NUMBER UNA VEGADA ELS COLIDERS FUNCIONIN PERFECTAMENT NO FARA FALTA
+			 LOG("DASH FUNCTION LEFT");
+
+		 }
+		 else if (StartPosition.x + DashDist > CurrentPosition.x && DashActiveRight == true && TouchingCollider == false) {
+
+			 CurrentPosition.x += Character_vel.x * 2;
+			 //CurrentPosition.y -= 1; //MAGIC NUMBER UNA VEGADA ELS COLIDERS FUNCIONIN PERFECTAMENT NO FARA FALTA
+
+			 LOG("DASH FUNCTION RIGHT");
+
+		 }
+		 else {
+			 DashActiveLeft = false;
+			 DashActiveRight = false;
+			 //MidAirUP = false;
+			 Gravity = GravitySave;
+			 PlayerState = FallState;
+
+			 LOG("DASH  TO JUMP");
+		 }
+	 
+
+
+ }
+
+
+ void j1Player::Jumping() {
+
+
+	 CanJump = false;
+
+	 if (MidAirUP == true) {
+		 LOG("MID AIR TRUE");
+		 Character_vel.y -= Gravity * 0.75;
+
+
+
+		 /*if (PlayerInput.U_active&&PlayerInput.A_active) {
+
+			 DashActiveRight;
+			 DashFunction();
+
+		 }*/
+
+
+		 if (PlayerInput.A_active) {
+			 CurrentPosition.x -= 1.5*Character_vel.x;
+
+
+		 }
+
+
+
+		 if (PlayerInput.D_active) {
+			 CurrentPosition.x += 1.5*Character_vel.x;
+
+			 LOG("GOING RIGHT INSIDE JUMP");
+		 }
+
+		 /*if (PlayerInput.U_active && PlayerInput.D_active) {
+			 LOG("GOING RIGHT AND DASHING RIGHT IN JUMP");
+
+			 DashActiveLeft;
+			 DashFunction();
+
+		 }*/
+
+
+
+		 if (Character_vel.y <= 0) {
+			 float altura = CurrentPosition.y;
+			 LOG("VELOCITY REACHED 0   %f", altura);
+			 MidAirUP = false;
+		 }
+
+		 CurrentPosition.y -= Character_vel.y / 2;
+
+	 }
+
+	 if (MidAirUP == false) {
+		 LOG("MID AIR UP == FALSE");
+		 //Character_vel.y += Gravity;
+
+		 //CurrentPosition.y += 1.5*Character_vel.y;
+
+		 if (PlayerInput.D_active) {
+			 FallLeft = true;
+			 FallRight = false;
+
+		 }
+		 if (PlayerInput.A_active) {
+			 FallRight = true;
+			 FallLeft = false;
+		 }
+
+
+		 /*if (PlayerInput.U_active && PlayerInput.D_active) {
+
+			 LOG("100");
+			 DashActiveRight = true;
+			 StartPosition.x = CurrentPosition.x;
+			 PlayerState = DashState;
+			 On_Ground = false;
+
+
+		 }
+
+		 else if (PlayerInput.U_active && PlayerInput.A_active) {
+			 LOG("100");
+			 DashActiveLeft = true;
+			 StartPosition.x = CurrentPosition.x;
+			 PlayerState = DashState;
+			 On_Ground = false;
+			 LOG("LEFT TO DASH LEFT");
+
+		 }*/
+
+		 if (On_Ground == true) {
+			 LOG("TO IDLE FROM JUMP");
+
+
+			 EndJump = true;
+			 Character_vel.y = TempVelY;
+
+		 }
+
+		 else {
+
+			 LOG("FALLING");
+			 CurrentPosition.y += Character_vel.y;
+
+			 ++FallingVel;
+			 LOG("TIMES = %d", FallingVel);
+		 }
+
+	 }
+ }

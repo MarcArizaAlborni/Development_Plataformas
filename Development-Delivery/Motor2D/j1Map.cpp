@@ -582,6 +582,18 @@ bool j1Map::LoadObjectGroup(pugi::xml_node& node, ObjectGroup* object)
 				{
 					object->object_properties[i].type = ObjectType::Victory;
 				}
+				else if (type == "Teleporter")
+				{
+					object->object_properties[i].type = ObjectType::Teleporter;
+				}
+				else if (type == "AudioArea")
+				{
+					object->object_properties[i].type = ObjectType::AudioArea;
+				}
+				else if (type == "CheckPoint")
+				{
+					object->object_properties[i].type = ObjectType::CheckPoint;
+				}
 				else
 				{
 					object->object_properties[i].type = ObjectType::Unknown;
