@@ -91,7 +91,7 @@ bool j1Scene::Update(float dt)
 		App->LoadGame();
 
 	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
-		App->SaveGame();
+		App->SaveGame("save_game.xml");
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		App->fade->FadeToBlack("SimpleLevel1.tmx");
@@ -182,6 +182,17 @@ bool j1Scene::PostUpdate()
 bool j1Scene::CleanUp()
 {
 	LOG("Freeing scene");
+
+	return true;
+}
+
+
+
+
+bool j1Scene::Save(pugi::xml_node& data)const {
+
+	pugi::xml_node mapname = data.append_child("");
+
 
 	return true;
 }

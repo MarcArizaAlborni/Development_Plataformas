@@ -368,23 +368,20 @@ void j1App::LoadGame()
 }
 
 // ---------------------------------------
-void j1App::SaveGame() const
+void j1App::SaveGame(const char* file) const
 {
 	// we should be checking if that file actually exist
 	// from the "GetSaveGames" list ... should we overwrite ?
 
 	want_to_save = true;
-}
-
-// ---------------------------------------
-void j1App::GetSaveGames(p2List<p2SString>& list_to_fill) const
-{
-	// need to add functionality to file_system module for this to work
+	save_game.create(file);
 }
 
 bool j1App::LoadGameNow()
 {
 	bool ret = false;
+
+	load_game.create("save_game.xml");
 
 	pugi::xml_document data;
 	pugi::xml_node root;

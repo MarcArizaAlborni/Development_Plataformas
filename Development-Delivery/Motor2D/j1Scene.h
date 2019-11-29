@@ -32,6 +32,9 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	// Save Current Map
+	bool Save(pugi::xml_node& data) const;
+
 private:
 
 	SDL_Texture* debug_tex;
