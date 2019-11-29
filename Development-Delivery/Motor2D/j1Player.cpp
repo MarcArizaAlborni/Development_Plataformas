@@ -497,32 +497,28 @@ bool j1Player::Update(float dt)
 		 }
 
 		 //from a side
-		 //if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h)  > B->rect.y))
-		 //{
+		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h)  > B->rect.y))
+		 {
 
-			// if ((A->rect.x + A->rect.w - 5) <= (B->rect.x ))  //EL BO
-			// { //Left to right
-			//	 TouchingCollider = true;
-			//	 Movement();
-			//	 CurrentPosition.x = LastPosition.x - 1; 
-			//	 LOG("PLAYER INTO WALL FROM THE LEFT");
-			//	 
-			// }
+			 if ((A->rect.x + A->rect.w - 5) <= (B->rect.x ))  //EL BO
+			 { //Left to right
+				 TouchingCollider = true;
+				 Movement();
+				 CurrentPosition.x = LastPosition.x - 1; 
+				 LOG("PLAYER INTO WALL FROM THE LEFT");
+				 
+			 }
 
-			// 
+			 
 
-			// //else if (B->rect.x - B->rect.w >= A->rect.x - 20)
-			// //{ //Right to left
-			//	// TouchingCollider = true;
-			//	// Movement();
-			//	// CurrentPosition.x = LastPosition.x;
-			//	//LOG("PLAYER INTO WALL FROM THE RIGHT");
-			// //}
-		 //}
-		 
-
-
-
+			 //else if (B->rect.x - B->rect.w >= A->rect.x - 20)
+			 //{ //Right to left
+				// TouchingCollider = true;
+				// Movement();
+				// CurrentPosition.x = LastPosition.x;
+				//LOG("PLAYER INTO WALL FROM THE RIGHT");
+			 //}
+		 }
 
 		 //from above
 		 if ((CurrentPosition.y + A->rect.h) <= B->rect.y + 20 ) // from above
@@ -535,28 +531,6 @@ bool j1Player::Update(float dt)
 				 CurrentPosition.y = B->rect.y - A->rect.h + 1;
 				 float Gravity2 = Gravity;
 
-			 }
-		 }
-	 }
-
-	 if (A->type == ObjectType::Player && B->type == ObjectType::LateralPlatform) {
-		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y))
-		 {
-
-			 if ((A->rect.x + A->rect.w - 5) <= (B->rect.x))  //EL BO
-			 { //Left to right
-				 TouchingCollider = true;
-				 Movement();
-				 CurrentPosition.x = LastPosition.x - 1;
-				 LOG("PLAYER INTO WALL FROM THE LEFT");
-
-			 }
-			 //Right to Left
-			 else if (A->rect.x <= B->rect.x + B->rect.w && A->rect.x + A->rect.w >= B->rect.x + B->rect.w) {
-
-				 TouchingCollider = true;
-				 Movement();
-				 CurrentPosition.x = LastPosition.x +1 ;
 			 }
 		 }
 	 }

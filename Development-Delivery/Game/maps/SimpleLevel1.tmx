@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="80" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="86">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="80" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="84">
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32" tilecount="768" columns="32">
   <image source="generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
@@ -4845,8 +4845,6 @@
   <object id="81" name="Floor" type="Platform" x="7" y="322" width="1462" height="90"/>
   <object id="82" name="CheckPoint" type="CheckPoint" x="384.333" y="287.485" width="31.3333" height="31.0297"/>
   <object id="83" name="TELEPORTER" type="Teleporter1" x="480.333" y="287.818" width="31.3333" height="31.0297"/>
-  <object id="84" name="Lateral Platform" type="LateralPlatform" x="178.82" y="251.224" width="0.173913" height="71.1208"/>
-  <object id="85" name="Lateral Platform" type="LateralPlatform" x="288.992" y="251.279" width="0.173913" height="71.1208"/>
  </objectgroup>
  <layer id="7" name="Pathfinding" width="80" height="15">
   <properties>

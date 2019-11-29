@@ -41,7 +41,6 @@ struct Properties
 enum class ObjectType
 {
 	Platform,
-	LateralPlatform,
 	Player,
 	Water,
 	Victory,
