@@ -79,13 +79,6 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
      TempVelY=Character_vel.y = node.attribute("velocity_Y").as_float();
 	 Player_Width = node.attribute("width").as_int();
 	 Player_Height = node.attribute("height").as_int();
-	 CanDash = true;
-	 JumpTicks = true;
-	
-
-	 PlayerState = IdleState;
-	 CurrentAnimation = &idle;
-	 CanJump = false;
 
 	 return ret;
  }
@@ -576,6 +569,15 @@ bool j1Player::Update(float dt)
  
  bool j1Player::InitPlayer()
  {
+	 CanDash = true;
+
+	 JumpTicks = true;
+
+	 PlayerState = IdleState;
+
+	 CurrentAnimation = &idle;
+
+	 CanJump = false;
 
 	 floor = CurrentPosition.y;
 	 
