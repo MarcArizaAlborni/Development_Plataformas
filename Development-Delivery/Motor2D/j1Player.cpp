@@ -69,7 +69,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 
 	 bool ret = true;
 	
-	 pugi::xml_node player = node.child("player");
+	 pugi::xml_node player = node.child("entities").child("player");
 
 	 Inipos.x = node.attribute("inipos_x").as_float();
 	 Inipos.y = node.attribute("inipos_y").as_float();
@@ -197,10 +197,6 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 				CanJump = false;
 				Character_vel.y = 50;
 				PlayerState = JumpState;
- 				
-
-
-				
 
 			}
 			
