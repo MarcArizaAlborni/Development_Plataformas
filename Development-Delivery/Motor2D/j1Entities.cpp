@@ -5,28 +5,63 @@
 #include "p2Animation.h"
 #include "j1Player.h"
 #include "p2Log.h"
+#include "Brofiler/Brofiler.h"
 
 
 
-j1Entity::j1Entity(iPoint position, EntityType type) : position(position), type(type), texture(nullptr), collider(nullptr), animation(nullptr)	
+j1Entities::j1Entities(iPoint pos, EntitiesType type)	
 {
-	return;
+	position.x = pos.x;
+	position.y = pos.y;
+	this->type = type;
 }
 
-
-
-bool j1Entity::Update(float dt, bool DoLogic)
+bool j1Entities::Start()
 {
 	return true;
 }
 
-
-bool j1Entity::CleanUp() {
-
-	if (collider != nullptr)
-		collider->to_delete = true;
-
+bool j1Entities::PreUpdate()
+{
 	return true;
 }
 
+bool j1Entities::Update(float dt)
+{
+	return true;
+}
 
+bool j1Entities::PostUpdate()
+{
+	return true;
+}
+
+bool j1Entities::CleanUp() 
+{
+	return true;
+}
+
+bool j1Entities::Load(pugi::xml_node &)
+{
+	return true;
+}
+
+bool j1Entities::Save(pugi::xml_node &)const
+{
+	return true;
+}
+
+void j1Entities::BlitEntities(SDL_Rect r, bool flip, float x, float y)
+{
+	BROFILER_CATEGORY("BlitEntity", Profiler::Color::Thistle)
+
+		if (flip == false)
+			App->render->Blit(texture, (int)position.x + x, (int)position.y + y, &r, flip);
+		else
+			App->render->Blit(texture, (int)position.x + x, (int)position.y + y, &r, flip);
+}
+
+void j1Entities::OnCollision(Collider* c1, Collider* c2)
+{
+
+}

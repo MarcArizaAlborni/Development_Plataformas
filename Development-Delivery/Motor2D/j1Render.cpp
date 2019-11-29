@@ -80,7 +80,7 @@ bool j1Render::Update(float dt)
 	uint winH = App->win->GetHeight();
 
 
-	camera.x = -App->player->CurrentPosition.x + winH;
+	camera.x = /*-App->player->CurrentPosition.x +*/ winH;
 	
 
 	if (camera.x >= 0)
@@ -175,7 +175,7 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 	SDL_Rect rect;
 	if (flip)
 	{
-		rect.x = (int)(camera.x * speed) + x * scale + App->player->Player_Rect.w; 
+		rect.x = (int)(camera.x * speed) + x * scale /*+ App->player->Player_Rect.w*/; 
 		rect.y = (int)(camera.y * speed) + y * scale;
 	}
 	else

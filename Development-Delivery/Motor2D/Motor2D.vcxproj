@@ -76,8 +76,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FlyingEnemy.cpp" />
-    <ClCompile Include="GroundEnemy.cpp" />
     <ClCompile Include="j1Entities.cpp" />
     <ClCompile Include="j1EntityManager.cpp" />
     <ClCompile Include="j1Pathfinding.cpp" />
@@ -97,11 +95,8 @@
     <ClCompile Include="j1Textures.cpp" />
     <ClCompile Include="j1Window.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
-    <ClCompile Include="WallEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FlyingEnemy.h" />
-    <ClInclude Include="GroundEnemy.h" />
     <ClInclude Include="j1Entities.h" />
     <ClInclude Include="j1EntityManager.h" />
     <ClInclude Include="j1Pathfinding.h" />
@@ -128,7 +123,6 @@
     <ClInclude Include="p2SString.h" />
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
-    <ClInclude Include="WallEnemy.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Test.xml" />

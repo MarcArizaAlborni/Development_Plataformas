@@ -1,11 +1,30 @@
-#ifndef _J1_ENTITY_MANAGER
-#define _J1_ENTITY_MANAGER
+#ifndef _J1ENTITYMANAGER_
+#define _J1ENTITYMANAGER_
 
 #include "j1Module.h"
 #include "j1Entities.h"
 #include "p2List.h"
+#include "p2Point.h"
+#include "j1Entities.h"
 
+class j1Entities;
+class j1Player;
 
+struct SDL_Texture;
+
+enum class EntitiesType
+{
+	NOTHING,
+	PLAYER,
+	GROUND,
+	FLYING
+};
+
+struct EntitiesInfo
+{
+	EntitiesType type = EntitiesType::NOTHING;
+	p2Point<float> position;
+};
 
 
 class j1EntityManager : public j1Module
@@ -16,8 +35,7 @@ public:
 
 	~j1EntityManager();
 
-
-	//FUNCTION ROTATION IN ENTITY MANAGER
+	//FUNCTIONS IN ENTITY MANAGER
 	bool Awake(pugi::xml_node&);
 	bool Start();				//Load textures for each entity
 	bool PreUpdate();
@@ -25,37 +43,24 @@ public:
 	bool PostUpdate();
 	bool CleanUp();
 
-	
-	p2List<j1Entity*> entities_list;
+	bool Load(pugi::xml_node&);
+	bool Save(pugi::xml_node&) const;
 
-	//FUNCTIONS RELATED TO ENTITIES
-	j1Entity* CreateEntity(EntityType type, int x = 0, int y = 0);
-	void DestroyAllEntities();
-	void DestroyEntity(j1Entity *Entity);
-
-	j1Entity* getPlayer() const;
-
-	//ENTITIES
-	j1Player* player; //Player (Entity)
-
-	pugi::xml_node	config;
-	bool DoLogic;			//Bool to see if logic from an entity has to be done
-	float Accumulated_dt;	    //dt accomulated amount 
-	float Cycle_Pause_Time;	//Time between cycle 
-
-
+	j1Entities* CreateEntities(EntitiesType type, iPoint pos = { 0,0 });
+	void CreateEntity(iPoint pos, EntitiesType type);
+	void SpawnEnemies(const EntitiesInfo& info);
+	void DeleteEntities(j1Entities* entity);
 	void CleanEntities();
 
-public:
+	void OnCollision(Collider* c1, Collider* c2);
 
-	
+	//
+	p2List<j1Entities*>	entityList;
+	j1Player*			player = nullptr;
 
-	
+private:
 
-	//XML DOCUMENT OPEN
-	//CREATE LOAD TEXTURES FOR RENTITIES
-	
-	
+	EntitiesInfo	entities[200];		//NUMERO HARCODED HA DE POSSARSE AL XML
 };
 
-#endif
+#endif //_J1ENTITYMANAGER_

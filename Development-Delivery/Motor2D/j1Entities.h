@@ -8,63 +8,42 @@
 #include "p2Animation.h"
 
 
-
-enum EntityType {
-	UNKNOWN,
-	PLAYER,
-	FLYING_ENEMY,
-	GROUND_ENEMY,
-};
-
-
 struct SDL_Texture;
 struct SDL_Rect;
+struct Collider;
 
+enum class EntitiesType;
 
-
-class j1Entity:public j1Module {
-
-public:
-
-
-	j1Entity(iPoint Position, EntityType type);
-
-	~j1Entity() {}
-
-	 bool Start() { return true; }
-
-	 virtual bool Update(float dt, bool DoLogic);
-	 bool PostUpdate() { return true; }
-	 bool CleanUp();
-
-	 bool Load(pugi::xml_node&) { return true; }
-	 bool Save(pugi::xml_node&) { return true; }
-
-	
-	virtual void OnCollision(Collider*, Collider*) {}
-
-
-	j1Entity* createEntity(EntityType type, int x, int y);
-	void DestroyEntity(j1Entity* entity);
-
+class j1Entities
+{
 
 public:
 
-	//INITIALIZE VARIABLES 
-	p2List<j1Entity*> entities;
+	j1Entities(iPoint Position, EntitiesType type);
 
+	~j1Entities() {}
 
-	iPoint	position;
-	Collider*	collider = nullptr;
-	EntityType type;
-	
+	virtual bool Start();
+	virtual bool PreUpdate();
+	virtual bool Update(float dt);
+	virtual bool PostUpdate();
+	virtual bool CleanUp();
 
-	
-	//INIT TEXTURES AND ANIMATIONS 
-	SDL_Texture* texture;
-	iPoint texture_size;
-			
-	Animation* animation;				
+	virtual bool Load(pugi::xml_node&);
+	virtual bool Save(pugi::xml_node&) const;
+
+	virtual void BlitEntities(SDL_Rect r, bool flip = false, float x = 0, float y = 0);
+
+	virtual void OnCollision(Collider* c1, Collider* c2);
+
+public:
+
+	iPoint			position;				//Entity Position
+	EntitiesType	type;					//Entity Type
+
+	Collider*		collider = nullptr;		//Entity Collider
+	SDL_Texture*	texture = nullptr;		//Entity Texture
+	Animation*		animation = nullptr;	//Entity Animation
 };
 
 #endif

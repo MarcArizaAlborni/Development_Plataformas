@@ -1,22 +1,17 @@
+#include "p2Log.h"
+#include "p2Point.h"
+#include "p2Animation.h"
 #include "j1App.h"
 #include "j1Player.h"
-#include "j1Module.h"
-#include "p2Point.h"
-#include "j1Textures.h"
 #include "j1Render.h"
+#include "j1Textures.h"
 #include "j1Input.h"
-#include "p2Animation.h"
 #include "j1Collision.h"
 #include "j1FadeToBlack.h"
-#include "p2Log.h"
 #include "j1Map.h"
-#include "j1EntityManager.h"
 
-
-
-j1Player::j1Player() 
+j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::PLAYER)
 {
-	name.create("player");
 
 	idle.PushBack({ 0,0,21,35 });
 	idle.PushBack({ 21,0,21,35 });
@@ -69,28 +64,8 @@ j1Player::j1Player()
  {
  }
 
- bool j1Player::Load(pugi::xml_node& data)
- {
-	 CurrentPosition.x = data.child("position1").attribute("x").as_int();
-	 CurrentPosition.y = data.child("position1").attribute("y").as_int();
-	 return true;
- }
-
-
- bool j1Player::Save(pugi::xml_node&  data) const
- {
-	 pugi::xml_node pos = data.append_child("position1");
-
-	 pos.append_attribute("x") = CurrentPosition.x;
-	 pos.append_attribute("y") = CurrentPosition.y;
-	 return true;
- }
-
-
-
  bool j1Player::Awake(pugi::xml_node& node)
  {
-
 
 	 bool ret = true;
 	
@@ -115,11 +90,12 @@ j1Player::j1Player()
 	 return ret;
  }
 
-
  bool  j1Player::Start() 
  {
 	 LOG("Loading player textures");
 	 
+	 Graphics = App->tex->Load("Sprites/DudeMOD.png");
+
 	 InitPlayer();
 	
 	 return true;
@@ -472,9 +448,33 @@ bool j1Player::Update(float dt)
 	 LOG("Unloading Player");
 
 	 App->tex->UnLoad(Graphics);
-	 App->player->Disable();
+	
+	 if (collider != nullptr)
+	 {
+		 collider->to_delete = true;
+		 collider = nullptr;
+	 }
+
 	 return true;
  }
+
+ bool j1Player::Load(pugi::xml_node& data)
+ {
+	 CurrentPosition.x = data.child("position1").attribute("x").as_int();
+	 CurrentPosition.y = data.child("position1").attribute("y").as_int();
+	 return true;
+ }
+
+
+ bool j1Player::Save(pugi::xml_node&  data) const
+ {
+	 pugi::xml_node pos = data.append_child("position1");
+
+	 pos.append_attribute("x") = CurrentPosition.x;
+	 pos.append_attribute("y") = CurrentPosition.y;
+	 return true;
+ }
+
 
  void j1Player::OnCollision(Collider* A, Collider* B) {
 
@@ -558,14 +558,13 @@ bool j1Player::Update(float dt)
  bool j1Player::InitPlayer()
  {
 
-	 Graphics = App->tex->Load("Sprites/DudeMOD.png");
 	 floor = CurrentPosition.y;
 	 
 	 CurrentPosition = { Inipos.x, Inipos.y };
 
 	 Player_Rect = { CurrentPosition.x, CurrentPosition.y, Player_Width, Player_Height };
 
-	 Player_Collider = App->collision->AddCollider(Player_Rect, ObjectType::Player, this);
+	 Player_Collider = App->collision->AddCollider(Player_Rect, ObjectType::Player /*this*/);
 
 	 // On_Ground = true;
 	

@@ -1,16 +1,16 @@
-#pragma once
-#include "p2Animation.h"
-#include "j1Module.h"
-#include "j1Input.h"
-#include "j1Render.h"
+#include "p2List.h"
 #include "p2Point.h"
-#include "j1Audio.h"
 #include "p2Log.h"
+#include "j1Entities.h"
+#include "j1Audio.h"
+#include "j1Input.h"
 
 
 struct Collider;
 struct SDL_Texture;
-struct p2Animation;
+struct Animation;
+
+enum class EntitiesType;
 
 struct Input_player
 {
@@ -38,9 +38,9 @@ struct Input_player
 	bool WG_active;//DOWN
 
 };
+
 enum CurrentState 
 {
-
 	IdleState,
 	JumpState,
 	LeftState,
@@ -51,19 +51,11 @@ enum CurrentState
 };
 
 
-class j1Player : public j1Module 
+class j1Player : public j1Entities
 {
-private:
-
-	iPoint Inipos;	
-	
 public:
 	
-
-	bool Load(pugi::xml_node &node); //Load 
-	bool Save(pugi::xml_node &node) const;//Save
-
-	j1Player();
+	j1Player(iPoint Position, EntitiesType type);
 
 	// Destructor
 	virtual ~j1Player();
@@ -73,11 +65,15 @@ public:
 	bool PreUpdate();	
 	bool Update(float dt);
 	bool PostUpdate();
-
 	bool CleanUp();
 
+	bool Load(pugi::xml_node &node); //Load 
+	bool Save(pugi::xml_node &node) const;//Save
 	// Collision handling -----
 	void j1Player::OnCollision(Collider* A, Collider* B);
+
+
+	iPoint Inipos;
 
 	//CONTROLLS F
 	bool GOD_MODE = false;

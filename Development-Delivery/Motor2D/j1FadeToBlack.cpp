@@ -99,11 +99,11 @@ bool j1FadeToBlack::ChangeMap(const char* newMap)
 	App->map->CleanUp();						
 	
 	App->collision->collider.clear();	
-	App->player->CleanUp();					
+	//App->player->CleanUp();					
 
 	App->map->Load(newMap);					
 	App->collision->LoadCollider();	
-	App->player->InitPlayer();				
+	//App->player->InitPlayer();				
 
 	return ret;
 }

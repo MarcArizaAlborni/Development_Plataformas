@@ -58,15 +58,6 @@
     <ClCompile Include="j1Pathfinding.cpp">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="FlyingEnemy.cpp">
-      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundEnemy.cpp">
-      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="WallEnemy.cpp">
-      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -147,15 +138,6 @@
     <ClInclude Include="j1Pathfinding.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="FlyingEnemy.h">
-      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="GroundEnemy.h">
-      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="WallEnemy.h">
-      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
@@ -179,11 +161,11 @@
     <Filter Include="Desenvolupament  ========\Modules\Entities">
       <UniqueIdentifier>{473c9170-b2ea-4d57-8860-a4f10d774cfd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========\Modules\Entities\Player">
-      <UniqueIdentifier>{5a5278e5-0ef5-4305-bd9f-821a636f2046}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Desenvolupament  ========\Modules\Entities\Enemies">
       <UniqueIdentifier>{00066dc2-0d17-4aef-b55b-e6f29c67e078}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Modules\Entities\Player">
+      <UniqueIdentifier>{5a5278e5-0ef5-4305-bd9f-821a636f2046}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
