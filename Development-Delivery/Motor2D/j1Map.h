@@ -44,9 +44,11 @@ enum class ObjectType
 	Player,
 	Water,
 	Victory,
-	Teleporter,
+	Teleporter1,
+	Teleporter2,
 	AudioArea,
 	CheckPoint,
+	TransformationPoint,
 	Unknown
 
 };

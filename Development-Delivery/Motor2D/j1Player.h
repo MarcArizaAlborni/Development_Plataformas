@@ -20,6 +20,7 @@ struct Input_player
 	bool Space_active;// JUMP
 	bool U_active;//DASH ABILITY 2
 	bool I_active;//TRANSFORMATION ABILITY 3
+	bool F_active; //TELEPORT
 	
 
 	//CONSOLE
@@ -94,6 +95,8 @@ public:
 	Collider*			Player_Collider;
 	int 				Player_Width;
 	int					Player_Height;
+	int Player_Width_Save;
+	int Player_Height_Save;
 
 	//ACTUALIZING POSITION 
 	iPoint				CurrentPosition;
@@ -116,20 +119,17 @@ public:
 
 	//MOVEMENT
 
-	void Movement() {
+	void Movement();
 
-		if (PlayerInput.A_active && TouchingCollider==false) {
-			CurrentPosition.x -= Character_vel.x;
-			
-		}
+	//TELEPORT
+	//bool In_Out; // TRUE for Emiter as entry point  FALSE for Receiver entry point
 
-		if (PlayerInput.D_active&&TouchingCollider==false) {
-			CurrentPosition.x += Character_vel.x;
-			
-		}
-	}
+	void PlayerTP(int posx,int posy); //X and Y of the teleporter
 
 
+	//TRANSFORM
+
+	void PlayerTransformation(int NewHeight,int NewWidth);
 	//JUMP
 	float TempVelY;
 	float FallingVel = 0;

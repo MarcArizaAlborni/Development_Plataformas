@@ -536,12 +536,16 @@ bool j1Player::Update(float dt)
 	 }
 
 	 if (GOD_MODE == false) {
+
+		 //NOW WATER COLLIDER RESTARTS LEVEL SO THAT ENEMIES AND EVERYTHING RESTARTS
 		 if (A->type == ObjectType::Player && B->type == ObjectType::Water) {
 
 			 if ((CurrentPosition.y + A->rect.h) <= B->rect.y + 20) // from above
 			 {
-				 CurrentPosition.x = Inipos.x;
-				 CurrentPosition.y = Inipos.y;
+				/* CurrentPosition.x = Inipos.x;
+				 CurrentPosition.y = Inipos.y;*/
+
+				 App->fade->FadeToBlack("SimpleLevel1.tmx");
 			 }
 		 }
 	 }
@@ -553,6 +557,41 @@ bool j1Player::Update(float dt)
 			 App->fade->FadeToBlack("SimpleLevel2.tmx"); 
 		 }
 	 }
+
+
+	 //TELEPORTER 1 COLLISION
+	 if (A->type == ObjectType::Player && B->type == ObjectType::Teleporter1) {
+
+		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y)) {
+
+			 //POTSER POSAR UN INPUT AQUI PER ACTIVAR EL TELEPORT?
+			 B->rect.x; //COM AGAFO LA POSICIO DEL RECT DEL TELEPORTER 2 PERQUE EL RECT.X ES LA DEL TELEPORTER 1 (EMITER) NO LA DEL RECEIVER
+			 B->rect.y;
+			// PlayerTP(B->rect.x,B->rect.y);
+			 PlayerTP(2206, 95); //AMB AIXO FUNCIONA PERO ESTA BRUTALMENT HARDCODEJAT
+		 }
+
+
+	 }
+
+	 //CHECKPOINT
+
+	 if (A->type == ObjectType::Player && B->type == ObjectType::CheckPoint) {
+
+		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y)) {
+			 App->SaveGame();
+		 }
+	 }
+
+	 //CHANGE AMBIENT AUDIO DEPENDING ON THGE COLLIDER
+	 if (A->type == ObjectType::Player && B->type == ObjectType::AudioArea) {
+	 
+	 }
+
+	
+	 
+
+
  }
  
  bool j1Player::InitPlayer()
@@ -720,4 +759,37 @@ bool j1Player::Update(float dt)
 		 }
 
 	 }
+
+ }
+
+
+ void j1Player::Movement() {
+	
+
+		 if (PlayerInput.A_active && TouchingCollider == false) {
+			 CurrentPosition.x -= Character_vel.x;
+
+		 }
+
+		 if (PlayerInput.D_active&&TouchingCollider == false) {
+			 CurrentPosition.x += Character_vel.x;
+
+		 }
+	 
+ }
+
+ void j1Player::PlayerTP(int TPposx,int TPposy) {
+
+	 CurrentPosition.x = TPposx;
+	 CurrentPosition.y = TPposy;
+
+ }
+
+ void j1Player::PlayerTransformation(int NewHeight,int NewWidth) { //SI TINC TEMPS PUC INTENTAR FERHO PERO NO CREC
+
+	Player_Rect.h = NewHeight;
+	 Player_Rect.w = NewWidth;
+
+	// LOG("TRANSFORMING");
+
  }
