@@ -7,7 +7,7 @@
 
 j1EntityManager::j1EntityManager()
 {
-	name.create("Entities");
+	name.create("entities");
 	//Load XML FILE FOR ALL VARIABLES HERE
 }
 
@@ -39,7 +39,7 @@ bool j1EntityManager::Start()
 bool j1EntityManager::PreUpdate()
 {
 	//BROFILER_CATEGORY
-	for (int i = 0; i < 200; ++i)
+	for (int i = 0; i < 2; ++i)
 	{
 		if (entities[i].type != EntitiesType::NOTHING)
 		{
@@ -52,7 +52,8 @@ bool j1EntityManager::PreUpdate()
 			entities[i].type = EntitiesType::NOTHING;
 		}
 	}
-	//LOG("PREUPDATE ENTITIY MANAGER");
+
+	LOG("PREUPDATE ENTITIY MANAGER");
 	return true;
 }
 
@@ -89,7 +90,6 @@ bool j1EntityManager::CleanUp() {
 
 	//LOG("CLEAN UP ENTITIY MANAGER");
 
-	
 	for (p2List_item<j1Entities*>* EntitySelect = entityList.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
 	{
 		EntitySelect->data->CleanUp();
@@ -122,7 +122,6 @@ j1Entities* j1EntityManager::CreateEntities(EntitiesType type, iPoint pos)
 	case EntitiesType::PLAYER:
 		
 		ret = new j1Player(pos, type);
-		
 		break;
 
 	case EntitiesType::GROUND:
@@ -149,6 +148,20 @@ void j1EntityManager::CreateEntity(iPoint pos, EntitiesType type)
 	case EntitiesType::PLAYER:
 		player = (j1Player*)CreateEntities(EntitiesType::PLAYER, pos);
 		break;
+	}
+}
+
+void j1EntityManager::AddEnemies(iPoint pos, EntitiesType type)
+{
+	for (int i = 0; i < 200; ++i)
+	{
+		if (entities[i].type == EntitiesType::NOTHING)
+		{
+			entities[i].type = type;
+			entities[i].position.x = pos.x;
+			entities[i].position.y = pos.y;
+			break;
+		}
 	}
 }
 
