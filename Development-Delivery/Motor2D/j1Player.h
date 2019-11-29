@@ -19,7 +19,8 @@ struct Input_player
 	bool D_active;//RIGHT
 	bool Space_active;// JUMP
 	bool U_active;//DASH ABILITY 2
-	bool I_active;//TRANSFORMATION ABILITY 3
+	bool I_active;//TELEPORT
+	
 	
 
 	//CONSOLE
@@ -110,20 +111,12 @@ public:
 	
 	bool InitPlayer();
 
+	//TELEPORT
+
+	void PlayerTP(int posx,int posy);
 	//MOVEMENT
 
-	void Movement() {
-
-		if (PlayerInput.A_active && TouchingCollider==false) {
-			CurrentPosition.x -= Character_vel.x;
-			
-		}
-
-		if (PlayerInput.D_active&&TouchingCollider==false) {
-			CurrentPosition.x += Character_vel.x;
-			
-		}
-	}
+	void Movement();
 
 
 	//JUMP

@@ -553,6 +553,29 @@ bool j1Player::Update(float dt)
 			 App->fade->FadeToBlack("SimpleLevel2.tmx"); 
 		 }
 	 }
+
+
+	 if (A->type == ObjectType::Player && B->type == ObjectType::Teleporter1) {
+
+		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y)) {
+
+			 if(PlayerInput.I_active){
+			 //POTSER POSAR UN INPUT AQUI PER ACTIVAR EL TELEPORT?
+			 B->rect.x; //COM AGAFO LA POSICIO DEL RECT DEL TELEPORTER 2 PERQUE EL RECT.X ES LA DEL TELEPORTER 1 (EMITER) NO LA DEL RECEIVER
+			 B->rect.y;
+			 // PlayerTP(B->rect.x,B->rect.y);
+			 PlayerTP(100, 50); //AMB AIXO FUNCIONA PERO ESTA BRUTALMENT HARDCODEJAT
+			 }
+		 }
+	 }
+
+
+	 if (A->type == ObjectType::Player && B->type == ObjectType::CheckPoint) {
+
+		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y)) {
+			 App->SaveGame("save_game.xml");
+		 }
+	 }
  }
  
  bool j1Player::InitPlayer()
@@ -679,26 +702,7 @@ bool j1Player::Update(float dt)
 		 }
 
 
-		 /*if (PlayerInput.U_active && PlayerInput.D_active) {
-
-			 LOG("100");
-			 DashActiveRight = true;
-			 StartPosition.x = CurrentPosition.x;
-			 PlayerState = DashState;
-			 On_Ground = false;
-
-
-		 }
-
-		 else if (PlayerInput.U_active && PlayerInput.A_active) {
-			 LOG("100");
-			 DashActiveLeft = true;
-			 StartPosition.x = CurrentPosition.x;
-			 PlayerState = DashState;
-			 On_Ground = false;
-			 LOG("LEFT TO DASH LEFT");
-
-		 }*/
+		 
 
 		 if (On_Ground == true) {
 			 LOG("TO IDLE FROM JUMP");
@@ -719,4 +723,27 @@ bool j1Player::Update(float dt)
 		 }
 
 	 }
+ }
+
+
+
+ void j1Player::PlayerTP(int TPposx, int TPposy) {
+
+	 CurrentPosition.x = TPposx;
+	 CurrentPosition.y = TPposy;
+
+ }
+
+ void j1Player::Movement() {
+
+	 if (PlayerInput.A_active && TouchingCollider == false) {
+			 CurrentPosition.x -= Character_vel.x;
+
+	 }
+
+	 if (PlayerInput.D_active&&TouchingCollider == false) {
+			 CurrentPosition.x += Character_vel.x;
+
+	 }
+	 
  }
