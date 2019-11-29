@@ -6,23 +6,24 @@
 #include "j1App.h"
 #include "j1Collision.h"
 #include "p2Animation.h"
+#include "j1EntityManager.h"
 
 
 struct SDL_Texture;
 struct SDL_Rect;
 struct Collider;
 
-enum class EntitiesType;
+enum EntitiesType;
 
 class j1Entities
 {
-
 public:
 
 	j1Entities(iPoint Position, EntitiesType type);
 
 	~j1Entities() {}
 
+	virtual bool Awake(pugi::xml_node& config);
 	virtual bool Start();
 	virtual bool PreUpdate();
 	virtual bool Update(float dt);

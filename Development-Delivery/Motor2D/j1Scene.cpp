@@ -65,7 +65,7 @@ bool j1Scene::PreUpdate()
 	iPoint p = App->render->ScreenToWorld(x, y);
 	p = App->map->WorldToMap(p.x, p.y);
 
-	iPoint Player_pos = App->map->WorldToMap(App->entityManager->player->CurrentPosition.x, App->entityManager->player->CurrentPosition.y);
+	iPoint Player_pos = App->map->WorldToMap(0,0);
 
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
 	{

@@ -10,7 +10,7 @@ struct Collider;
 struct SDL_Texture;
 struct Animation;
 
-enum class EntitiesType;
+enum EntitiesType;
 
 struct Input_player
 {

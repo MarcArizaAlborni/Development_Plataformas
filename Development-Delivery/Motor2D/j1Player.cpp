@@ -10,7 +10,7 @@
 #include "j1FadeToBlack.h"
 #include "j1Map.h"
 
-j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::PLAYER)
+j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::PLAYER )
 {
 
 	idle.PushBack({ 0,0,21,35 });

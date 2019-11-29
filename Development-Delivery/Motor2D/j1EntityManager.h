@@ -12,7 +12,7 @@ class j1Player;
 
 struct SDL_Texture;
 
-enum class EntitiesType
+enum EntitiesType
 {
 	NOTHING,
 	PLAYER,
