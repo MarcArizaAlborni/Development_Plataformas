@@ -678,4 +678,3 @@ bool j1Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
 
 	return ret;
 }
-	
