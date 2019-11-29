@@ -39,6 +39,11 @@ bool j1EntityManager::Start()
 bool j1EntityManager::PreUpdate()
 {
 	//BROFILER_CATEGORY
+	for (p2List_item<j1Entities*>* EntitySelect = entityList.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
+	{
+		EntitySelect->data->PreUpdate();
+	}
+
 	for (int i = 0; i < 2; ++i)
 	{
 		if (entities[i].type != EntitiesType::NOTHING)
@@ -212,15 +217,14 @@ void j1EntityManager::CleanEntities()
 
 }
 
-
 void j1EntityManager::OnCollision(Collider * c1, Collider * c2)
 {
-	for (p2List_item<j1Entities*>* it = entityList.start; it != nullptr; it = it->next)
+	for (p2List_item<j1Entities*>* EntitySelect = entityList.start; EntitySelect != nullptr; EntitySelect = EntitySelect->next)
 	{
-		if (it->data->collider == c1)
+		if (EntitySelect->data->collider == c1)
 		{
-			it->data->OnCollision(c1, c2);
-			it->data->OnCollision(c2, c1);
+			EntitySelect->data->OnCollision(c1, c2);
+			EntitySelect->data->OnCollision(c2, c1);
 			break;
 		}
 	}

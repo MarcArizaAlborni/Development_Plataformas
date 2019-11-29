@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <game_state>
 	<window />
-	<Entities />
 	<input />
 	<textures />
 	<audio />
@@ -9,11 +8,9 @@
 	<scene>
 		<:anonymous />
 	</scene>
-	<player>
-		<position1 x="417" y="288" />
-	</player>
 	<collision />
 	<fade />
+	<entities />
 	<renderer>
 		<camera x="0" y="0" />
 	</renderer>

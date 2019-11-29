@@ -28,7 +28,7 @@
   </map>
 
   <entities>
-    <player  inipos_x="90.0f" inipos_y="250" velocity_X="5" velocity_Y="60" gravity="6"  DashDistance ="90" width="21" height="35">
+    <player  inipos_x="90.0f" inipos_y="250.0f" velocity_X="5" velocity_Y="60" gravity="6"  DashDistance ="90" width="21" height="35">
      <!--21 I 35 PER COM ABANS-->
     </player>
   </entities>

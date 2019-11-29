@@ -35,7 +35,7 @@ public:
 
 	virtual void BlitEntities(SDL_Rect r, bool flip = false, float x = 0, float y = 0);
 
-	virtual void OnCollision(Collider* c1, Collider* c2);
+	virtual void OnCollision(Collider* c1, Collider* c2) {};
 
 public:
 

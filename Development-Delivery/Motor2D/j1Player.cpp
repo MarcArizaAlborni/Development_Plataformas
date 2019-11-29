@@ -68,7 +68,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
  {
 
 	 bool ret = true;
-	
+	/*
 	 pugi::xml_node player = node.child("entities").child("player");
 
 	 Inipos.x = node.attribute("inipos_x").as_float();
@@ -78,7 +78,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 	 DashDist = node.attribute("DashDistance").as_float();
      TempVelY=Character_vel.y = node.attribute("velocity_Y").as_float();
 	 Player_Width = node.attribute("width").as_int();
-	 Player_Height = node.attribute("height").as_int();
+	 Player_Height = node.attribute("height").as_int();*/
 
 	 return ret;
  }
@@ -138,7 +138,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 		PlayerInput.DG_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
 		PlayerInput.WG_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT;
 		PlayerInput.SG_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT;
-		Player_Collider->to_delete = true;
+		collider->to_delete = true;
 		Gravity = 0;
 
 	}
@@ -402,7 +402,7 @@ bool j1Player::Update(float dt)
 	Player_Rect.x = CurrentPosition.x;
 	Player_Rect.y = CurrentPosition.y;
 
-	Player_Collider->SetPos(CurrentPosition.x, CurrentPosition.y);
+	collider->SetPos(CurrentPosition.x, CurrentPosition.y);
 
 	SDL_Rect r = CurrentAnimation->GetCurrentFrame();
 
@@ -410,11 +410,11 @@ bool j1Player::Update(float dt)
 
 	if (flip == false)
 	{
-		Player_Collider->SetPos(CurrentPosition.x, CurrentPosition.y); //Makes the collider follow the player.
+		collider->SetPos(CurrentPosition.x, CurrentPosition.y); //Makes the collider follow the player.
 	}
 	else
 	{
-		Player_Collider->SetPos(CurrentPosition.x, CurrentPosition.y); //Makes the collider follow the player.
+		collider->SetPos(CurrentPosition.x, CurrentPosition.y); //Makes the collider follow the player.
 	}
 
 	
@@ -465,7 +465,8 @@ bool j1Player::Update(float dt)
  }
 
 
- void j1Player::OnCollision(Collider* A, Collider* B) {
+ void j1Player::OnCollision(Collider* A, Collider* B) 
+ {
 
 	 if (B->type == ObjectType::Player) {
 		 Collider temp = *A;
@@ -569,6 +570,19 @@ bool j1Player::Update(float dt)
  
  bool j1Player::InitPlayer()
  {
+
+	//POSSAR EN EL XML
+	 Inipos.x = 90.0f;
+	 Inipos.y = 250;
+	 Character_vel.x = 5;
+	 TempVelY = Character_vel.y = 60;
+	 GravitySave = Gravity = 6;
+	 DashDist = 90;
+	 Player_Width = 21;
+	 Player_Height = 35;
+
+
+	 // ESTA BE PERO TAMBE ES POT POSSAR
 	 CanDash = true;
 
 	 JumpTicks = true;
@@ -585,7 +599,7 @@ bool j1Player::Update(float dt)
 
 	 Player_Rect = { CurrentPosition.x, CurrentPosition.y, Player_Width, Player_Height };
 
-	 Player_Collider = App->collision->AddCollider(Player_Rect, ObjectType::Player /*this*/);
+	 collider = App->collision->AddCollider(Player_Rect, ObjectType::Player, App->entityManager); //NO SE QUE POSSAR AL CALLBACK
 
 	 // On_Ground = true;
 	

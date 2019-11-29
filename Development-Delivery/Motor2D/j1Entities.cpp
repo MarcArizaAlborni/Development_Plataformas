@@ -65,8 +65,3 @@ void j1Entities::BlitEntities(SDL_Rect r, bool flip, float x, float y)
 		else
 			App->render->Blit(texture, (int)position.x + x, (int)position.y + y, &r, flip);
 }
-
-void j1Entities::OnCollision(Collider* c1, Collider* c2)
-{
-
-}
