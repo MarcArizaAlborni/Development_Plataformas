@@ -155,9 +155,6 @@ void j1EntityManager::CreateEntity(EntitiesType type, iPoint pos)
 		player = (j1Player*)CreateEntities(EntitiesType::PLAYER, pos);
 		break;
 
-	case EntitiesType::SKELETON:
-		skeleton = (j1Skeleton*)CreateEntities(EntitiesType::SKELETON, pos);
-		break;
 	}
 }
 
@@ -186,6 +183,7 @@ void j1EntityManager::SpawnEnemies(const EntitiesInfo& info)
 			switch (info.type) {
 
 			case EntitiesType::SKELETON:
+				ret = new j1Skeleton(info.position, info.type);
 
 				if (ret != nullptr)
 					entityList.add(ret);

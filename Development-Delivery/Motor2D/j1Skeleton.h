@@ -26,7 +26,6 @@ public:
 	bool InitEntity();
 
 	//Initial properties
-	iPoint IniPos;
 	bool flip = false;
 
 	SDL_Rect SKrect;

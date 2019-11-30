@@ -37,7 +37,7 @@ enum EntitiesType
 struct EntitiesInfo
 {
 	EntitiesType type = EntitiesType::NOTHING;
-	p2Point<float> position;
+	iPoint position;
 };
 
 

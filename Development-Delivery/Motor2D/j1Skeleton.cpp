@@ -77,14 +77,12 @@ bool j1Skeleton::PreUpdate()
 
 bool j1Skeleton::Update(float dt)
 {
-	position = IniPos;
 
 	switch (state)
 	{
 	case IdleState:
 		flip = true;
-		position.x = 100*dt;
-		animation = &idle;
+		animation = &walking;
 		break;
 
 	case DeadState:
@@ -142,14 +140,13 @@ void j1Skeleton::OnCollision(Collider* A, Collider* B)
 
 bool j1Skeleton::InitEntity()
 {
-	IniPos.x = 6;
-	IniPos.y = 270;
+
 	SKwith = 21;
 	SKheight = 35;
 
 	state = IdleState;
 
-	animation = &idle;
+	animation = &walking;
 	SKrect = { position.x, position.y, SKwith, SKheight };
 	collider = App->collision->AddCollider(SKrect, ObjectType::Skeleton, App->entityManager);
 
