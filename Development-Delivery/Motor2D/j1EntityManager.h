@@ -9,14 +9,28 @@
 
 class j1Entities;
 class j1Player;
+class j1Skeleton;
 
 struct SDL_Texture;
+
+enum EntitiesState
+{
+	IdleState,
+	JumpState,
+	LeftState,
+	RightState,
+	DashState,
+	FallState,
+	DoubleJumpState,
+	DeadState,
+	None
+};
 
 enum EntitiesType
 {
 	NOTHING,
 	PLAYER,
-	GROUND,
+	SKELETON,
 	FLYING
 };
 
@@ -55,9 +69,12 @@ public:
 
 	void OnCollision(Collider* c1, Collider* c2);
 
+	bool InitEntity();
+
 	//
 	p2List<j1Entities*>	entityList;
 	j1Player*			player = nullptr;
+	j1Skeleton*			skeleton = nullptr;
 
 private:
 

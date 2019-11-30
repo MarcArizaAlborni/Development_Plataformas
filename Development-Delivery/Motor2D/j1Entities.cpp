@@ -65,3 +65,8 @@ void j1Entities::BlitEntities(SDL_Rect r, bool flip, float x, float y)
 		else
 			App->render->Blit(texture,  x,  y, &r, flip);
 }
+
+bool j1Entities::InitEntity()
+{
+	return true;
+}

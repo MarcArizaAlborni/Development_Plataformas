@@ -89,7 +89,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 	 
 	 texture = App->tex->Load("Sprites/DudeMOD.png");
 
-	 InitPlayer();
+	 InitEntity();
 	
 	 return true;
  }
@@ -154,18 +154,18 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 
 	//ROTACIO DELS PLAYER STATES 
 	if (GOD_MODE == false) {
-		if (PlayerState == IdleState)
+		if (state == IdleState)
 		{
 			
 			if (PlayerInput.A_active)
 			{
-				PlayerState = LeftState;
+				state = LeftState;
 				LOG("IDLE TO LEFT");
 			}
 
 			if (PlayerInput.D_active)
 			{
-				PlayerState = RightState;
+				state = RightState;
 				LOG("IDLE TO RIGHT");
 			}
 			
@@ -173,12 +173,12 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 				JumpTicks = false;
 				CanJump = false;
 				
-				PlayerState = JumpState;
+				state = JumpState;
  				LOG("IDLE TO JUMP");
 				
 
 				if (On_Ground == false) {
-					PlayerState = FallState;
+					state = FallState;
 					LOG("JUMP NOT AVAILABLE");
 				}
 
@@ -189,64 +189,64 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 				On_Ground = false;
 				CanJump = false;
 				Character_vel.y = 50;
-				PlayerState = JumpState;
+				state = JumpState;
 
 			}
 			
 		}
 
-		if (PlayerState == LeftState)
+		if (state == LeftState)
 		{
 			
 			if (!PlayerInput.A_active)
 			{
 
-				PlayerState = IdleState;
+				state = IdleState;
 				LOG("LEFT TO IDLE");
 			}
 
 			if (PlayerInput.U_active && CanDash == true) {
 				DashActiveLeft = true;
 				StartPosition.x = position.x;
-				PlayerState = DashState;
+				state = DashState;
 				LOG("LEFT TO DASH LEFT");
 			}
 
 			if (PlayerInput.Space_active && CanJump==true ) {
 				
 				On_Ground = false;
-				PlayerState = JumpState;
+				state = JumpState;
 				LOG("LEFT TO JUMP");
 				
 			}
 
 		}
-		if (PlayerState == RightState)
+		if (state == RightState)
 		{
 			
 			if (!PlayerInput.D_active)
 			{
-				PlayerState = IdleState;
+				state = IdleState;
 				LOG("RIGHT TO IDLE");
 			}
 
 			if (PlayerInput.U_active && CanDash==true) {
 				DashActiveRight = true;
 				StartPosition.x = position.x;
-				PlayerState = DashState;
+				state = DashState;
 				LOG("LEFT TO DASH RIGHT");
 			}
 
 			if (PlayerInput.Space_active && CanJump == true) {
 				//Character_vel.y = 50;
-				PlayerState = JumpState;
+				state = JumpState;
 				LOG("LEFT TO JUMP");
 				
 
 			}
 
 		}
-		if (PlayerState == FallState) {
+		if (state == FallState) {
 
 			
 			LOG("FALL STATE");
@@ -255,19 +255,19 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 			if (PlayerInput.U_active && PlayerInput.D_active) {
 				DashActiveRight = true;
 				StartPosition.x = position.x;
-				PlayerState = DashState;
+				state = DashState;
 			}
 			else if (PlayerInput.U_active && PlayerInput.A_active) {
 				DashActiveLeft = true;
 				StartPosition.x = position.x;
-				PlayerState = DashState;
+				state = DashState;
 			}
 
 			//PlayerState = IdleState;
 			if (CanJump == true) {
 				LOG("22");
 				TouchingCollider = true;
-				PlayerState = IdleState;
+				state = IdleState;
 			}
 			
 		}
@@ -307,7 +307,7 @@ bool j1Player::Update(float dt)
 	LastPosition = position;
 	bool ret = true;
 	//APLICACIO DELS DIFFERENTS PLAYER STATES
-	switch (PlayerState)
+	switch (state)
 	{
 	case IdleState:
 		//LOG("IDLE");
@@ -352,7 +352,7 @@ bool j1Player::Update(float dt)
 			Jumping();
 		}
 		if (EndJump == true) {
-			PlayerState = FallState;
+			state = FallState;
 			animation = &jump;
 	    }
 
@@ -381,7 +381,7 @@ bool j1Player::Update(float dt)
 			Jumping();
 		}
 		if (EndJump == true) {
-			PlayerState = IdleState;
+			state = IdleState;
 			animation = &idle;
 			LOG("DOUBLE JUMP TO IDLE");
 		}
@@ -423,8 +423,6 @@ bool j1Player::Update(float dt)
 
  bool j1Player::PostUpdate()
  {
-
-
 	 return true;
  }
 
@@ -565,7 +563,7 @@ bool j1Player::Update(float dt)
 	 }
  }
  
- bool j1Player::InitPlayer()
+ bool j1Player::InitEntity()
  {
 
 	//POSSAR EN EL XML
@@ -584,7 +582,7 @@ bool j1Player::Update(float dt)
 
 	 JumpTicks = true;
 
-	 PlayerState = IdleState;
+	 state = IdleState;
 
 	 animation = &idle;
 
@@ -631,7 +629,7 @@ bool j1Player::Update(float dt)
 			 DashActiveRight = false;
 			 //MidAirUP = false;
 			 Gravity = GravitySave;
-			 PlayerState = FallState;
+			 state = FallState;
 
 			 LOG("DASH  TO JUMP");
 		 }

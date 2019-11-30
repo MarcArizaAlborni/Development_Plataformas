@@ -12,7 +12,7 @@
 #include "j1Pathfinding.h"
 #include "j1EntityManager.h"
 #include "j1Player.h"
-#include "j1EntityManager.h"
+#include "j1Skeleton.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -52,6 +52,7 @@ bool j1Scene::Start()
 
 	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
 
+	App->entityManager->CreateEntities(SKELETON);
 	App->entityManager->CreateEntities(PLAYER);
 	return true;
 }

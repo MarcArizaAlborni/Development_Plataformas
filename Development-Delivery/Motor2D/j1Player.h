@@ -6,8 +6,7 @@
 #include "j1Input.h"
 
 
-struct Collider;
-struct SDL_Texture;
+struct SDL_Rect;
 struct Animation;
 
 enum EntitiesType;
@@ -40,17 +39,6 @@ struct Input_player
 
 };
 
-enum CurrentState 
-{
-	IdleState,
-	JumpState,
-	LeftState,
-	RightState,
-	DashState,
-	FallState,
-	DoubleJumpState,
-};
-
 
 class j1Player : public j1Entities
 {
@@ -71,7 +59,7 @@ public:
 	bool Load(pugi::xml_node &node); //Load 
 	bool Save(pugi::xml_node &node) const;//Save
 	// Collision handling -----
-	void j1Player::OnCollision(Collider* A, Collider* B);
+	void OnCollision(Collider* A, Collider* B);
 
 
 	iPoint Inipos;
@@ -86,7 +74,6 @@ public:
 
 	//INPUT COSES
 	Input_player		PlayerInput;
-	CurrentState		PlayerState;
 	SDL_Rect			Player_Rect;
 	int 				Player_Width;
 	int					Player_Height;
@@ -102,7 +89,7 @@ public:
 	Animation			run;
 	Animation			dash;
 	
-	bool InitPlayer();
+	bool InitEntity();
 
 	//TELEPORT
 

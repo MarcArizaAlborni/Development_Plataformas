@@ -1,5 +1,6 @@
 #include "j1EntityManager.h"
 #include "j1Player.h"
+#include "j1Skeleton.h"
 #include "p2Log.h"
 
 #include "Brofiler/Brofiler.h"
@@ -44,11 +45,12 @@ bool j1EntityManager::PreUpdate()
 		EntitySelect->data->PreUpdate();
 	}
 
-	for (int i = 0; i < 2; ++i)
+	// i < NUMBER OF MAXIM ENTITIES
+	for (int i = 0; i < 200; ++i)
 	{
 		if (entities[i].type != EntitiesType::NOTHING)
 		{
-			if (entities[i].type == EntitiesType::FLYING)
+			if (entities[i].type == EntitiesType::SKELETON)
 				SpawnEnemies(entities[i]);
 
 			else
@@ -125,22 +127,21 @@ j1Entities* j1EntityManager::CreateEntities(EntitiesType type, iPoint pos)
 	switch (type)
 	{
 	case EntitiesType::PLAYER:
-		
 		ret = new j1Player(pos, type);
+
+		if (ret != nullptr)
+		{
+			entityList.add(ret);
+		}
 		break;
 
-	case EntitiesType::GROUND:
-		
-		break;
-	case EntitiesType::FLYING:
-		
-		break;
-	}
-	//ret->type = type;
-
-	if (ret != nullptr)								
-	{
-		entityList.add(ret);
+	case EntitiesType::SKELETON:
+		ret = new j1Skeleton(pos, type);
+		if (ret != nullptr)
+		{
+			entityList.add(ret);
+		}
+		break;	
 	}
 
 	return ret;
@@ -152,6 +153,10 @@ void j1EntityManager::CreateEntity(iPoint pos, EntitiesType type)
 	{
 	case EntitiesType::PLAYER:
 		player = (j1Player*)CreateEntities(EntitiesType::PLAYER, pos);
+		break;
+
+	case EntitiesType::SKELETON:
+		skeleton = (j1Skeleton*)CreateEntities(EntitiesType::SKELETON, pos);
 		break;
 	}
 }
@@ -180,7 +185,7 @@ void j1EntityManager::SpawnEnemies(const EntitiesInfo& info)
 
 			switch (info.type) {
 
-			case EntitiesType::FLYING:
+			case EntitiesType::SKELETON:
 
 				if (ret != nullptr)
 					entityList.add(ret);
@@ -228,4 +233,15 @@ void j1EntityManager::OnCollision(Collider * c1, Collider * c2)
 			break;
 		}
 	}
+}
+
+bool j1EntityManager::InitEntity()
+{
+
+	for (p2List_item<j1Entities*>* EntitySelect = entityList.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
+	{
+		EntitySelect->data->InitEntity();
+	}
+
+	return true;
 }

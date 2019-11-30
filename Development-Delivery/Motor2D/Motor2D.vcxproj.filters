@@ -58,7 +58,7 @@
     <ClCompile Include="j1Pathfinding.cpp">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Skeleton.cpp">
+    <ClCompile Include="j1Skeleton.cpp">
       <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
@@ -141,7 +141,7 @@
     <ClInclude Include="j1Pathfinding.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Skeleton.h">
+    <ClInclude Include="j1Skeleton.h">
       <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

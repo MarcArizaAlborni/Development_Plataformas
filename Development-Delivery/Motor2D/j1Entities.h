@@ -1,5 +1,5 @@
-#ifndef _J1_ENTITIES_
-#define _J1_ENTITIES_
+#ifndef _J1ENTITIES_
+#define _J1ENTITIES_
 
 #include "p2SString.h"
 #include "p2Point.h"
@@ -14,6 +14,7 @@ struct SDL_Rect;
 struct Collider;
 
 enum EntitiesType;
+enum EntitiesState;
 
 class j1Entities
 {
@@ -37,14 +38,17 @@ public:
 
 	virtual void OnCollision(Collider* c1, Collider* c2) {};
 
+	virtual bool InitEntity();
+
 public:
 
 	iPoint			position;				//Entity Position
 	EntitiesType	type;					//Entity Type
+	EntitiesState	state;					//Entity State
 
 	Collider*		collider = nullptr;		//Entity Collider
 	SDL_Texture*	texture = nullptr;		//Entity Texture
 	Animation*		animation = nullptr;	//Entity Animation
 };
 
-#endif
+#endif _J1ENTITIES_
