@@ -1,6 +1,9 @@
 #include "j1EntityManager.h"
 #include "j1Player.h"
 #include "j1Skeleton.h"
+#include "j1Skull.h"
+#include "j1Slime.h"
+#include "j1Bee.h"
 #include "p2Log.h"
 
 #include "Brofiler/Brofiler.h"
@@ -50,7 +53,7 @@ bool j1EntityManager::PreUpdate()
 	{
 		if (entities[i].type != EntitiesType::NOTHING)
 		{
-			if (entities[i].type == EntitiesType::SKELETON)
+			if (entities[i].type == EntitiesType::SKELETON || entities[i].type == EntitiesType::SKULL || entities[i].type == EntitiesType::SLIME || entities[i].type == EntitiesType::BEE)
 				SpawnEnemies(entities[i]);
 
 			else
@@ -142,6 +145,30 @@ j1Entities* j1EntityManager::CreateEntities(EntitiesType type, iPoint pos)
 			entityList.add(ret);
 		}
 		break;	
+
+	case EntitiesType::SKULL:
+		ret = new j1Skull(pos, type);
+		if (ret != nullptr)
+		{
+			entityList.add(ret);
+		}
+		break;
+
+	case EntitiesType::SLIME:
+		ret = new j1Slime(pos, type);
+		if (ret != nullptr)
+		{
+			entityList.add(ret);
+		}
+		break;
+
+	case EntitiesType::BEE:
+		ret = new j1Bee(pos, type);
+		if (ret != nullptr)
+		{
+			entityList.add(ret);
+		}
+		break;
 	}
 
 	return ret;
@@ -188,6 +215,28 @@ void j1EntityManager::SpawnEnemies(const EntitiesInfo& info)
 				if (ret != nullptr)
 					entityList.add(ret);
 				break;
+
+			case EntitiesType::SKULL:
+				ret = new j1Skull(info.position, info.type);
+
+				if (ret != nullptr)
+					entityList.add(ret);
+				break;
+
+			case EntitiesType::SLIME:
+				ret = new j1Slime(info.position, info.type);
+
+				if (ret != nullptr)
+					entityList.add(ret);
+				break;
+
+			case EntitiesType::BEE:
+				ret = new j1Bee(info.position, info.type);
+
+				if (ret != nullptr)
+					entityList.add(ret);
+				break;
+
 			}
 
 			ret->Start();

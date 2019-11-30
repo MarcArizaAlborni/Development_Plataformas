@@ -5,11 +5,13 @@
 #include "j1Entities.h"
 #include "p2List.h"
 #include "p2Point.h"
-#include "j1Entities.h"
 
 class j1Entities;
 class j1Player;
 class j1Skeleton;
+class j1Skull;
+class j1Slime;
+class j1Bee;
 
 struct SDL_Texture;
 
@@ -31,7 +33,10 @@ enum EntitiesType
 	NOTHING,
 	PLAYER,
 	SKELETON,
-	FLYING
+	SLIME,
+	SKULL,
+	BEE
+	
 };
 
 struct EntitiesInfo
@@ -75,6 +80,9 @@ public:
 	p2List<j1Entities*>	entityList;
 	j1Player*			player = nullptr;
 	j1Skeleton*			skeleton = nullptr;
+	j1Skull*			skull = nullptr;
+	j1Slime*			slime = nullptr;
+	j1Bee*				bee = nullptr;
 
 private:
 

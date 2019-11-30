@@ -76,6 +76,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="j1Bee.cpp" />
     <ClCompile Include="j1Entities.cpp" />
     <ClCompile Include="j1EntityManager.cpp" />
     <ClCompile Include="j1Pathfinding.cpp" />
@@ -89,6 +90,8 @@
     <ClCompile Include="j1Map.cpp" />
     <ClCompile Include="j1Player.cpp" />
     <ClCompile Include="j1Scene.cpp" />
+    <ClCompile Include="j1Skull.cpp" />
+    <ClCompile Include="j1Slime.cpp" />
     <ClCompile Include="j1Timer.cpp" />
     <ClCompile Include="p2Log.cpp" />
     <ClCompile Include="j1Render.cpp" />
@@ -98,10 +101,13 @@
     <ClCompile Include="j1Skeleton.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="j1Bee.h" />
     <ClInclude Include="j1Entities.h" />
     <ClInclude Include="j1EntityManager.h" />
     <ClInclude Include="j1Pathfinding.h" />
     <ClInclude Include="j1PerfTimer.h" />
+    <ClInclude Include="j1Skull.h" />
+    <ClInclude Include="j1Slime.h" />
     <ClInclude Include="j1Timer.h" />
     <ClInclude Include="p2Animation.h" />
     <ClInclude Include="j1Collision.h" />

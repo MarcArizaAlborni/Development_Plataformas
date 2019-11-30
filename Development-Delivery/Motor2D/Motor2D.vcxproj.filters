@@ -61,6 +61,15 @@
     <ClCompile Include="j1Skeleton.cpp">
       <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="j1Bee.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Skull.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Slime.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -142,6 +151,15 @@
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Skeleton.h">
+      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Bee.h">
+      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Skull.h">
+      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Slime.h">
       <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
