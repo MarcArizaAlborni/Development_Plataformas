@@ -10,7 +10,9 @@
 	</scene>
 	<collision />
 	<fade />
-	<entities />
+	<entities>
+		<position1 x="416" y="294" />
+	</entities>
 	<renderer>
 		<camera x="0" y="0" />
 	</renderer>
