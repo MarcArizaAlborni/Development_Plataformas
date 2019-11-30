@@ -492,7 +492,7 @@ bool j1Player::Update(float dt)
 				 On_Ground = true;
 				 CanJump = true;
 				 position.y = LastPosition.y;
-				position.y = B->rect.y - A->rect.h + 1;
+				position.y = B->rect.y - A->rect.h -5;
 				 float Gravity2 = Gravity;
 
 			 }
@@ -714,13 +714,7 @@ bool j1Player::Update(float dt)
 			 LOG("GOING RIGHT INSIDE JUMP");
 		 }
 
-		 /*if (PlayerInput.U_active && PlayerInput.D_active) {
-			 LOG("GOING RIGHT AND DASHING RIGHT IN JUMP");
-
-			 DashActiveLeft;
-			 DashFunction();
-
-		 }*/
+		 
 
 
 
@@ -736,9 +730,7 @@ bool j1Player::Update(float dt)
 
 	 if (MidAirUP == false) {
 		 LOG("MID AIR UP == FALSE");
-		 //Character_vel.y += Gravity;
-
-		 //CurrentPosition.y += 1.5*Character_vel.y;
+		
 
 		 if (PlayerInput.D_active) {
 			 FallLeft = true;
