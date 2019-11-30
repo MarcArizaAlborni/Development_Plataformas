@@ -112,14 +112,21 @@ bool j1EntityManager::CleanUp() {
 	return true;
 }
 
-bool j1EntityManager::Load(pugi::xml_node &)
+bool j1EntityManager::Load(pugi::xml_node& node)
 {
+	for (p2List_item<j1Entities*>* EntitySelect = entityList.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
+	{
+		EntitySelect->data->Load(node);
+	}
 	return true;
 }
 
-bool j1EntityManager::Save(pugi::xml_node &) const
+bool j1EntityManager::Save(pugi::xml_node& node) const
 {
-
+	for (p2List_item<j1Entities*>* EntitySelect = entityList.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
+	{
+		EntitySelect->data->Save(node);
+	}
 	return true;
 }
 
