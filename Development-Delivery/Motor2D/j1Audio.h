@@ -36,6 +36,23 @@ public:
 	// Play a previously loaded WAV
 	bool PlayFx(unsigned int fx, int repeat = 0);
 
+
+
+
+
+	Mix_Music* Area1MusicLvL2;
+	Mix_Music* Area2MusicLvL2;
+
+	Mix_Music* Area1MusicLvL1;
+	Mix_Music* Area2MusicLvl1;
+
+
+
+	bool Area1Level2;
+	bool Area2Level2;
+	bool Area1Level1;
+	bool Area2Level1;
+
 private:
 
 	Mix_Music*	music = NULL;

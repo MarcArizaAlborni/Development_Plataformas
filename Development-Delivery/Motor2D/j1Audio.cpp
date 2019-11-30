@@ -20,8 +20,8 @@ j1Audio::~j1Audio()
 bool j1Audio::Awake(pugi::xml_node& config)
 {
 	uint j = 0;
-	
-    Music_Files = config.child("Music").attribute("name").as_string();
+
+	Music_Files = config.child("Music").attribute("name").as_string();
 	Fx_Files = config.child("Fx").child_value("MovementSounds");
 
 	LOG("Loading Audio Mixer");
@@ -106,12 +106,25 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 		Mix_FreeMusic(music);
 	}
 
-	music = Mix_LoadMUS("audio/Music/MusicLevel1.ogg");
+	//Area1MusicLvL1 = Mix_LoadMUS("audio/Music/MusicLevel1.ogg");
+
+	//music = Area1MusicLvL1;
+
+	if (Area1Level1 == true) {
+
+		music = Mix_LoadMUS("audio/Music/L1_A1.ogg");
+	}
+
+	else if (Area2Level1 == true) {
+		music = Mix_LoadMUS("audio/Music/L1_A2.ogg");
+	}
+	Area1MusicLvL1;
+	//music= Mix_LoadMUS("audio/Music/L1_A3.ogg");
 	Jump_Sound = Mix_LoadWAV("audio/Music/Jump_1.wav");
 
-	
+
 	//Jump_Sound = Mix_LoadWAV("audio/FX/Jump_2");
-	
+
 
 	if (music == NULL)
 	{
@@ -139,9 +152,10 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 		}
 	}
 
-	
+
 	return ret;
 }
+
 
 // Load WAV
 unsigned int j1Audio::LoadFx(const char* path)
@@ -155,7 +169,7 @@ unsigned int j1Audio::LoadFx(const char* path)
 	if (!active)
 		return 0;
 
-	
+
 
 	if (chunk == NULL)
 	{
@@ -185,3 +199,5 @@ bool j1Audio::PlayFx(unsigned int id, int repeat)
 
 	return ret;
 }
+
+

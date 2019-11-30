@@ -63,7 +63,8 @@ bool j1EntityManager::PreUpdate()
 		}
 	}
 
-	LOG("PREUPDATE ENTITIY MANAGER");
+
+//	LOG("PREUPDATE ENTITIY MANAGER");
 	return true;
 }
 
@@ -118,6 +119,7 @@ bool j1EntityManager::Load(pugi::xml_node &)
 
 bool j1EntityManager::Save(pugi::xml_node &) const
 {
+
 	return true;
 }
 

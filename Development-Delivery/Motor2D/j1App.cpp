@@ -101,6 +101,7 @@ bool j1App::Awake()
 		title.create(app_config.child("title").child_value());
 		organization.create(app_config.child("organization").child_value());
 		frame_cap = config.child("app").attribute("framerate_cap").as_uint();
+		vsyncActive = config.child("vsync").attribute("value").as_bool(true);
 	}
 
 	if(ret == true)
@@ -194,7 +195,32 @@ void j1App::FinishUpdate()
 	if(want_to_load == true)
 		LoadGameNow();
 
+	if (App->input->keyboard[SDL_SCANCODE_F11] == KEY_DOWN) {
 
+		if (FramesCaped == true) {
+			frame_cap = 60;
+			FramesCaped = false;
+			LOG("FRAME CAP OFF");
+		}
+		else if (FramesCaped == false) {
+			frame_cap = 30;
+			FramesCaped = true;
+			LOG("FRAME CAP ON");
+		}
+	}
+
+
+
+
+	if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_DOWN) {
+
+		if (vsyncActive == false) {
+			vsyncActive = true;
+		}
+		else if (vsyncActive == true) {
+			vsyncActive = false;
+		}
+	}
 
 
 	if (last_second_timer.ReadMs() > 1000)
@@ -210,8 +236,26 @@ void j1App::FinishUpdate()
 	uint32 frames_on_last_update = prev_sec_frames;				//Keeps track of how many frames were processed the last second.
 
 	static char title[256];
-	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %lu ",
-		avg_fps, last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count);
+	if (FramesCaped == true) {
+		if (vsyncActive == true) {
+			sprintf_s(title, 256, "Project Ceta || Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %lu FRAMES CAPED vsync ON  ",
+				avg_fps, last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count, vsyncActive);
+		}
+		else if (vsyncActive == false) {
+			sprintf_s(title, 256, "Project Ceta || Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %lu FRAMES CAPED vsync OFF  ",
+				avg_fps, last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count, vsyncActive);
+		}
+	}
+	else if (FramesCaped == false) {
+		if (vsyncActive == true) {
+			sprintf_s(title, 256, "Project Ceta || Av.FPS: UNLIMITED POWER Last Frame Ms: %02u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %lu FRAMES NOT CAPED vsync ON  ",
+				last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count, vsyncActive);
+		}
+		else if (vsyncActive == false) {
+			sprintf_s(title, 256, "Project Ceta || Av.FPS: UNLIMITED POWER Last Frame Ms: %02u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %lu FRAMES NOT CAPED vsync OFF  ",
+				last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count, vsyncActive);
+		}
+	}
 
 	App->win->SetTitle(title);
 

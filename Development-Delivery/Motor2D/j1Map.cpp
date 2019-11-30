@@ -590,9 +590,13 @@ bool j1Map::LoadObjectGroup(pugi::xml_node& node, ObjectGroup* object)
 				{
 					object->object_properties[i].type = ObjectType::Teleporter2;
 				}
-				else if (type == "AudioArea")
+				else if (type == "AudioArea1")
 				{
-					object->object_properties[i].type = ObjectType::AudioArea;
+					object->object_properties[i].type = ObjectType::AudioArea1;
+				}
+				else if (type == "AudioArea2")
+				{
+					object->object_properties[i].type = ObjectType::AudioArea2;
 				}
 				else if (type == "CheckPoint")
 				{
@@ -601,6 +605,10 @@ bool j1Map::LoadObjectGroup(pugi::xml_node& node, ObjectGroup* object)
 				else if (type == "TransformationPoint")
 				{
 					object->object_properties[i].type = ObjectType::TransformationPoint;
+				}
+				else if (type == "LateralPlatform")
+				{
+					object->object_properties[i].type = ObjectType::LateralPlatform;
 				}
 				else
 				{

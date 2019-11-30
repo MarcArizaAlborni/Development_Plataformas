@@ -50,9 +50,11 @@ enum class ObjectType
 	Victory,
 	Teleporter1,
 	Teleporter2,
-	AudioArea,
+	AudioArea1,
+	AudioArea2,
 	CheckPoint,
 	TransformationPoint,
+	LateralPlatform,
 	Unknown
 
 };

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="80" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="84">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="80" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="94">
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32" tilecount="768" columns="32">
   <image source="generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
@@ -4838,13 +4838,19 @@
   <object id="34" name="Floor" type="Platform" x="0" y="0" width="4" height="480"/>
   <object id="36" name="Floor" type="Water" x="1" y="432" width="2335.67" height="46.3333"/>
   <object id="42" name="Floor" type="Platform" x="2556" y="0" width="4" height="480.333"/>
-  <object id="50" name="Floor" type="Victory" x="1540" y="141" width="73" height="111"/>
+  <object id="50" name="VICTORY" type="Victory" x="1534.67" y="124.333" width="30.3333" height="35"/>
   <object id="58" name="Floor" type="Platform" x="464" y="110" width="490" height="72.363"/>
   <object id="78" name="Floor" type="Platform" x="179" y="250" width="110" height="72.363"/>
   <object id="80" name="Floor" type="Platform" x="1133" y="252" width="146" height="72.363"/>
   <object id="81" name="Floor" type="Platform" x="7" y="322" width="1462" height="90"/>
   <object id="82" name="CheckPoint" type="CheckPoint" x="384.333" y="287.485" width="31.3333" height="31.0297"/>
   <object id="83" name="TELEPORTER" type="Teleporter1" x="480.333" y="287.818" width="31.3333" height="31.0297"/>
+  <object id="84" name="LateralPlatform" type="LateralPlatform" x="178.874" y="252.103" width="0.108207" height="70.2302"/>
+  <object id="85" name="LateralPlatform" type="LateralPlatform" x="289.012" y="252.236" width="0.152344" height="70.1442"/>
+  <object id="86" name="AudioArea1" type="AudioArea1" x="635.917" y="286.152" width="35.333" height="33.03"/>
+  <object id="87" name="AudioArea2" type="AudioArea2" x="761.958" y="287.985" width="39.333" height="33.03"/>
+  <object id="91" name="Floor" type="Platform" x="1307.67" y="245.818" width="146" height="72.363"/>
+  <object id="92" name="Floor" type="Platform" x="1458.33" y="168.485" width="146" height="72.363"/>
  </objectgroup>
  <layer id="7" name="Pathfinding" width="80" height="15">
   <properties>

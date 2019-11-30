@@ -147,7 +147,11 @@ void j1Collision::DebugDraw()
 			App->render->DrawQuad(collider_iterator->data->rect, 0, 0, 204, alpha);
 			break;
 
-		case ObjectType::AudioArea: // 
+		case ObjectType::AudioArea1: // 
+			App->render->DrawQuad(collider_iterator->data->rect, 0, 255, 128, alpha);
+			break;
+
+		case ObjectType::AudioArea2: // 
 			App->render->DrawQuad(collider_iterator->data->rect, 0, 255, 128, alpha);
 			break;
 
@@ -157,6 +161,10 @@ void j1Collision::DebugDraw()
 
 		case ObjectType::TransformationPoint: //
 			App->render->DrawQuad(collider_iterator->data->rect, 100, 100, 0, alpha);
+			break;
+
+		case ObjectType::LateralPlatform: //
+			App->render->DrawQuad(collider_iterator->data->rect, 255, 255, 0, alpha);
 			break;
 		}
 	}

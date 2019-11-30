@@ -322,7 +322,7 @@ bool j1Player::Update(float dt)
 		}
 		CanDash = true;
 		JumpTicks = true;
-		LOG("IDLE STATE");
+		//LOG("IDLE STATE");
 		break;
 
 	case LeftState:
@@ -480,41 +480,45 @@ bool j1Player::Update(float dt)
 			 position.y = B->rect.y + B->rect.h;
 		 }
 
-		 //from a side
-		 if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h)  > B->rect.y))
-		 {
+		
 
-			 if ((A->rect.x + A->rect.w - 5) <= (B->rect.x ))  //EL BO
-			 { //Left to right
-				 TouchingCollider = true;
-				 Movement();
-				 position.x = LastPosition.x - 1;
-				 LOG("PLAYER INTO WALL FROM THE LEFT");
-				 
-			 }
 
-			 
-
-			 //else if (B->rect.x - B->rect.w >= A->rect.x - 20)
-			 //{ //Right to left
-				// TouchingCollider = true;
-				// Movement();
-				// CurrentPosition.x = LastPosition.x;
-				//LOG("PLAYER INTO WALL FROM THE RIGHT");
-			 //}
-		 }
 
 		 //from above
-		 if ((position.y + A->rect.h) <= B->rect.y + 20 ) // from above
+		 if ((position.y + A->rect.h) <= B->rect.y + 20) // from above
 		 {
 			 if ((A->rect.x + A->rect.w > B->rect.x) || (A->rect.x + A->rect.w < B->rect.x + B->rect.w)) {
 
 				 On_Ground = true;
 				 CanJump = true;
 				 position.y = LastPosition.y;
-				 position.y = B->rect.y - A->rect.h + 1;
+				position.y = B->rect.y - A->rect.h + 1;
 				 float Gravity2 = Gravity;
 
+			 }
+		 }
+	 }
+
+	 if (A->type == ObjectType::Player && B->type == ObjectType::LateralPlatform) {
+		 if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h) > B->rect.y))
+		 {
+			 //Left to right
+			 if (A->rect.x + A->rect.w >= B->rect.x && A->rect.x <= B->rect.x)  //EL BO
+			 {
+
+				 TouchingCollider = true;
+				 Movement();
+				 position.x = LastPosition.x;
+				 LOG("PLAYER INTO WALL FROM THE LEFT");
+
+			 }
+			 //Right to Left
+			 else if (A->rect.x <= B->rect.x + B->rect.w && A->rect.x + A->rect.w >= B->rect.x + B->rect.w) {
+
+				 TouchingCollider = true;
+				 Movement();
+				position.x = LastPosition.x;
+				 LOG("PLAYER INTO WALL FROM THE RIGHT");
 			 }
 		 }
 	 }
@@ -525,7 +529,7 @@ bool j1Player::Update(float dt)
 			 if ((position.y + A->rect.h) <= B->rect.y + 20) // from above
 			 {
 				 position.x = Inipos.x;
-				 position.y = Inipos.y;
+				position.y = Inipos.y;
 			 }
 		 }
 	 }
@@ -534,7 +538,7 @@ bool j1Player::Update(float dt)
 	 {
 		 if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h) > B->rect.y))
 		 {
-			 App->fade->FadeToBlack("SimpleLevel2.tmx"); 
+			 App->fade->FadeToBlack("SimpleLevel2.tmx");
 		 }
 	 }
 
@@ -543,12 +547,13 @@ bool j1Player::Update(float dt)
 
 		 if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h) > B->rect.y)) {
 
-			 if(PlayerInput.I_active){
-			 //POTSER POSAR UN INPUT AQUI PER ACTIVAR EL TELEPORT?
-			 B->rect.x; //COM AGAFO LA POSICIO DEL RECT DEL TELEPORTER 2 PERQUE EL RECT.X ES LA DEL TELEPORTER 1 (EMITER) NO LA DEL RECEIVER
-			 B->rect.y;
-			 // PlayerTP(B->rect.x,B->rect.y);
-			 PlayerTP(100, 50); //AMB AIXO FUNCIONA PERO ESTA BRUTALMENT HARDCODEJAT
+			 if (PlayerInput.I_active) {
+				 //POTSER POSAR UN INPUT AQUI PER ACTIVAR EL TELEPORT?
+				 B->rect.x; //COM AGAFO LA POSICIO DEL RECT DEL TELEPORTER 2 PERQUE EL RECT.X ES LA DEL TELEPORTER 1 (EMITER) NO LA DEL RECEIVER
+				 B->rect.y;
+				 // PlayerTP(B->rect.x,B->rect.y);
+				 //POTSER POSAR COORDENADES EN EL CONFIG.XML I DIR TELEPORTER POSITION.X?
+				 PlayerTP(100, 50); //AMB AIXO FUNCIONA PERO ESTA BRUTALMENT HARDCODEJAT
 			 }
 		 }
 	 }
@@ -558,8 +563,46 @@ bool j1Player::Update(float dt)
 
 		 if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h) > B->rect.y)) {
 			 App->SaveGame("save_game.xml");
+			 LOG("SAVING CHECKPOINT");
 		 }
 	 }
+
+	 if (A->type == ObjectType::Player && B->type == ObjectType::AudioArea1) {
+
+
+		 if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h) > B->rect.y)) {
+
+			 if (App->audio->Area1Level1 != true) {
+				 Mix_HaltMusic();
+				 App->audio->Area2Level1 = false;
+				 App->audio->Area1Level1 = true;
+				 App->audio->PlayMusic("audio/Music/L1_A1.ogg");
+
+				 //ALTRE
+			 }
+		 }
+	 }
+
+
+	 if (A->type == ObjectType::Player && B->type == ObjectType::AudioArea2) {
+
+
+
+		 if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h) > B->rect.y)) {
+
+			 if (App->audio->Area2Level1 != true) {
+				 Mix_HaltMusic();
+				 App->audio->Area1Level1 = false;
+				 App->audio->Area2Level1 = true;
+
+
+				 App->audio->PlayMusic("audio/Music/L1_A2.ogg");
+
+			 }
+		 }
+
+	 }
+
  }
  
  bool j1Player::InitEntity()

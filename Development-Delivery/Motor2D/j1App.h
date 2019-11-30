@@ -81,6 +81,8 @@ private:
 
 public:
 
+
+
 	// Modules
 	j1Window*			win;
 	j1Input*			input;
@@ -93,6 +95,11 @@ public:
 	j1FadeToBlack*		fade;
 	j1PathFinding*		pathfinding;
 	j1EntityManager*    entityManager;
+
+	//FRAMERATE/VSYNC
+
+	bool FramesCaped;
+	bool vsyncActive;
 
 private:
 
