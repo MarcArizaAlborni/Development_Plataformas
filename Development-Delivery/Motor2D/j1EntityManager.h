@@ -61,7 +61,7 @@ public:
 	bool Save(pugi::xml_node&) const;
 
 	j1Entities* CreateEntities(EntitiesType type, iPoint pos = { 0,0 });
-	void CreateEntity(iPoint pos, EntitiesType type);
+	void CreateEntity(EntitiesType type, iPoint pos = { 0,0 });
 	void AddEnemies(iPoint pos, EntitiesType type);
 	void SpawnEnemies(const EntitiesInfo& info);
 	void DeleteEntities(j1Entities* entity);

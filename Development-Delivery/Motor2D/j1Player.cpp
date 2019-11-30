@@ -402,8 +402,7 @@ bool j1Player::Update(float dt)
 	Player_Rect.x = position.x;
 	Player_Rect.y = position.y;
 
-	collider->SetPos(position.x, position.y);
-
+	
 	SDL_Rect r = animation->GetCurrentFrame();
 
 	if (flip == false)
@@ -414,7 +413,7 @@ bool j1Player::Update(float dt)
 	else
 	{
 		BlitEntities(r, flip, position.x, position.y);
-		collider->SetPos(position.x, position.y); //Makes the collider follow the player.
+		collider->SetPos(position.x+8, position.y); //Makes the collider follow the player.
 	}
 
 	return true;

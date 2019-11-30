@@ -114,6 +114,9 @@ void j1Collision::DebugDraw()
 		case ObjectType::Player: // yellow
 			App->render->DrawQuad(collider_iterator->data->rect, 255, 255, 0, alpha);
 			break;
+		case ObjectType::Skeleton:
+			App->render->DrawQuad(collider_iterator->data->rect, 133, 222, 0, alpha);
+			break;
 		case ObjectType::Water: // blue
 			App->render->DrawQuad(collider_iterator->data->rect, 0, 0, 255, alpha);
 			break;

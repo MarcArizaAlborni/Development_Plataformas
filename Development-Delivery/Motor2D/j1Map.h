@@ -42,6 +42,7 @@ enum class ObjectType
 {
 	Platform,
 	Player,
+	Skeleton,
 	Water,
 	Victory,
 	Teleporter1,

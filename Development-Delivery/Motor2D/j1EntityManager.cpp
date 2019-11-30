@@ -147,7 +147,7 @@ j1Entities* j1EntityManager::CreateEntities(EntitiesType type, iPoint pos)
 	return ret;
 }
 
-void j1EntityManager::CreateEntity(iPoint pos, EntitiesType type)
+void j1EntityManager::CreateEntity(EntitiesType type, iPoint pos)
 {
 	switch (type)
 	{
