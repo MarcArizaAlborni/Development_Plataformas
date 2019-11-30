@@ -52,8 +52,8 @@ bool j1Scene::Start()
 
 	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
 
-	App->entityManager->CreateEntities(SKELETON);
-	App->entityManager->CreateEntities(PLAYER);
+	App->entityManager->CreateEntity(SKELETON);
+	App->entityManager->CreateEntity(PLAYER);
 	return true;
 }
 

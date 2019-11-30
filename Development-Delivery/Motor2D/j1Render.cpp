@@ -44,8 +44,6 @@ bool j1Render::Awake(pugi::xml_node& config)
 	}
 	else
 	{
-		//camera.w = App->win->screen_surface->w; //1024
-		//camera.h = App->win->screen_surface->h;//479
 		camera.w = 500;
 		camera.h = 500;
 		camera.x = 0;
@@ -79,28 +77,30 @@ bool j1Render::Update(float dt)
 	uint winW = App->win->GetWidth();
 	uint winH = App->win->GetHeight();
 
+	if (App->entityManager->player != nullptr) {
 
-	camera.x = /*-App->player->CurrentPosition.x +*/ winH;
-	
+		camera.x = -App->entityManager->player->position.x + winH;
 
-	if (camera.x >= 0)
-	{
-		camera.x = 0;
-	}
-	else if (camera.x <= -App->map->data.tile_width * App->map->data.width + winW)
-	{
-		camera.x = -App->map->data.tile_width * App->map->data.width + winW;
+		if (camera.x >= 0)
+		{
+			camera.x = 0;
+		}
+		else if (camera.x <= -App->map->data.tile_width * App->map->data.width + winW)
+		{
+			camera.x = -App->map->data.tile_width * App->map->data.width + winW;
+		}
+
+		if (camera.y >= 0)
+		{
+			camera.y = 0;
+		}
+
+		else if (camera.y <= -App->map->data.tile_height * App->map->data.height + winH)
+		{
+			camera.y = -App->map->data.tile_height * App->map->data.height + winH;
+		}
 	}
 
-	if (camera.y >= 0)
-	{
-		camera.y = 0;
-	}
-
-	else if (camera.y <= -App->map->data.tile_height * App->map->data.height + winH)
-	{
-		camera.y = -App->map->data.tile_height * App->map->data.height + winH ;
-	}
 	return true;
 }
 
@@ -173,9 +173,10 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 	uint scale = App->win->GetScale();
 
 	SDL_Rect rect;
+
 	if (flip)
 	{
-		rect.x = (int)(camera.x * speed) + x * scale /*+ App->player->Player_Rect.w*/; 
+		rect.x = (int)(camera.x * speed) + x * scale + 32; 
 		rect.y = (int)(camera.y * speed) + y * scale;
 	}
 	else
@@ -201,6 +202,7 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 	{
 		SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
 	}
+	
 
 	rect.w *= scale;
 	rect.h *= scale;

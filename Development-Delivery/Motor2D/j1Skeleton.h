@@ -29,9 +29,12 @@ public:
 	iPoint IniPos;
 	bool flip = false;
 
+	SDL_Rect SKrect;
+	int SKwith;
+	int SKheight;
 
 	//Animation
 	Animation		idle;
 	Animation		walking;
-
+	Animation		death;
 };
