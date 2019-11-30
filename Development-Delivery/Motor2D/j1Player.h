@@ -88,22 +88,15 @@ public:
 	Input_player		PlayerInput;
 	CurrentState		PlayerState;
 	SDL_Rect			Player_Rect;
-	Collider*			Player_Collider;
 	int 				Player_Width;
 	int					Player_Height;
 
 	//ACTUALIZING POSITION 
-	iPoint				CurrentPosition;
 	iPoint              StartPosition;
 	iPoint              LastPosition;
 	iPoint              Character_vel;
-	SDL_Texture*		Graphics = nullptr;
-	//For printing the animation in each moment
-	Animation*			CurrentAnimation;
-
 	
 	// ANIMATION
-
 	Animation			idle;
 	Animation			jump;
 	Animation			run;

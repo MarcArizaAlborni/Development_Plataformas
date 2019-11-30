@@ -87,7 +87,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
  {
 	 LOG("Loading player textures");
 	 
-	 Graphics = App->tex->Load("Sprites/DudeMOD.png");
+	 texture = App->tex->Load("Sprites/DudeMOD.png");
 
 	 InitPlayer();
 	
@@ -106,7 +106,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 	 if (Falling == true)
 	 {
 
-		 CurrentPosition.y += Gravity;
+		 position.y += Gravity;
 	 }
 	PlayerInput.F10_active = App->input->keyboard[SDL_SCANCODE_F10] == KEY_DOWN;
 	PlayerInput.F3_active = App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN;
@@ -147,8 +147,8 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 	//START CURRENT LEVEL
 	if (PlayerInput.F3_active) {
 
-		CurrentPosition.x = Inipos.x;
-		CurrentPosition.y =Inipos.y ;
+		position.x = Inipos.x;
+		position.y =Inipos.y ;
 	}
 
 
@@ -207,7 +207,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 
 			if (PlayerInput.U_active && CanDash == true) {
 				DashActiveLeft = true;
-				StartPosition.x = CurrentPosition.x;
+				StartPosition.x = position.x;
 				PlayerState = DashState;
 				LOG("LEFT TO DASH LEFT");
 			}
@@ -232,7 +232,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 
 			if (PlayerInput.U_active && CanDash==true) {
 				DashActiveRight = true;
-				StartPosition.x = CurrentPosition.x;
+				StartPosition.x = position.x;
 				PlayerState = DashState;
 				LOG("LEFT TO DASH RIGHT");
 			}
@@ -254,12 +254,12 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 
 			if (PlayerInput.U_active && PlayerInput.D_active) {
 				DashActiveRight = true;
-				StartPosition.x = CurrentPosition.x;
+				StartPosition.x = position.x;
 				PlayerState = DashState;
 			}
 			else if (PlayerInput.U_active && PlayerInput.A_active) {
 				DashActiveLeft = true;
-				StartPosition.x = CurrentPosition.x;
+				StartPosition.x = position.x;
 				PlayerState = DashState;
 			}
 
@@ -278,22 +278,22 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 
 
 		if (PlayerInput.AG_active) {
-			CurrentPosition.x -= Character_vel.x;
+			position.x -= Character_vel.x;
 
 		}
 
 		if (PlayerInput.DG_active) {
-			CurrentPosition.x += Character_vel.x;
+			position.x += Character_vel.x;
 
 		}
 
 		if (PlayerInput.WG_active) {
-			CurrentPosition.y -= Character_vel.x;
+			position.y -= Character_vel.x;
 
 		}
 
 		if (PlayerInput.SG_active) {
-			CurrentPosition.y += Character_vel.x;
+			position.y += Character_vel.x;
 
 		}
     }
@@ -304,7 +304,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 
 bool j1Player::Update(float dt)
  {
-	LastPosition = CurrentPosition;
+	LastPosition = position;
 	bool ret = true;
 	//APLICACIO DELS DIFFERENTS PLAYER STATES
 	switch (PlayerState)
@@ -314,11 +314,11 @@ bool j1Player::Update(float dt)
 		TouchingCollider = false;
 		//CurrentPosition.y -= Gravity;
 		if (EndJump == true) {
-			CurrentAnimation = &idle;
+			animation = &idle;
 
 		}
 		else {
-			CurrentAnimation = &jump;
+			animation = &jump;
 		}
 		CanDash = true;
 		JumpTicks = true;
@@ -329,21 +329,21 @@ bool j1Player::Update(float dt)
 		LOG("MOVING LEFT");
 		flip = true;
 		Movement();
-		CurrentAnimation = &run; 
+		animation = &run;
 		break;
 
 	case RightState:
 		LOG("MOVING RIGHT");
 		flip = false;
 		Movement();
-		CurrentAnimation = &run;
+		animation = &run;
 		break;
 
 	case JumpState:
 		
 		EndJump = false;
 		Gravity = GravitySave;
-		CurrentAnimation = &jump;
+		animation = &jump;
 		On_The_Ground();
 		
 		if (Jump_Ready == true) {
@@ -353,7 +353,7 @@ bool j1Player::Update(float dt)
 		}
 		if (EndJump == true) {
 			PlayerState = FallState;
-			CurrentAnimation = &jump;
+			animation = &jump;
 	    }
 
 		
@@ -363,7 +363,7 @@ bool j1Player::Update(float dt)
 	case FallState:
 
 		TouchingCollider = false;
-		CurrentAnimation = &jump;
+		animation = &jump;
 		
 		break;
 
@@ -372,7 +372,7 @@ bool j1Player::Update(float dt)
 		LOG("DOUBLE JUMP STATE");
 		EndJump = false;
 		Gravity = GravitySave;
-		CurrentAnimation = &jump;
+		animation = &jump;
 		//On_The_Ground();
 		
 		if (Jump_Ready == true) {
@@ -382,7 +382,7 @@ bool j1Player::Update(float dt)
 		}
 		if (EndJump == true) {
 			PlayerState = IdleState;
-			CurrentAnimation = &idle;
+			animation = &idle;
 			LOG("DOUBLE JUMP TO IDLE");
 		}
 		
@@ -392,33 +392,30 @@ bool j1Player::Update(float dt)
 	case DashState:
 		
 		CanDash = false;
-		CurrentAnimation = &dash;
+		animation = &dash;
 		DashFunction();
 		LOG("DASH");
 		break;
 	}
 
 
-	Player_Rect.x = CurrentPosition.x;
-	Player_Rect.y = CurrentPosition.y;
+	Player_Rect.x = position.x;
+	Player_Rect.y = position.y;
 
-	collider->SetPos(CurrentPosition.x, CurrentPosition.y);
+	collider->SetPos(position.x, position.y);
 
-	SDL_Rect r = CurrentAnimation->GetCurrentFrame();
-
-	App->render->Blit(Graphics, CurrentPosition.x, CurrentPosition.y, &r, flip);
+	SDL_Rect r = animation->GetCurrentFrame();
 
 	if (flip == false)
 	{
-		collider->SetPos(CurrentPosition.x, CurrentPosition.y); //Makes the collider follow the player.
+		BlitEntities(r, flip, position.x, position.y);
+		collider->SetPos(position.x, position.y); //Makes the collider follow the player.
 	}
 	else
 	{
-		collider->SetPos(CurrentPosition.x, CurrentPosition.y); //Makes the collider follow the player.
+		BlitEntities(r, flip, position.x, position.y);
+		collider->SetPos(position.x, position.y); //Makes the collider follow the player.
 	}
-
-	
-
 
 	return true;
 }
@@ -436,7 +433,7 @@ bool j1Player::Update(float dt)
 
 	 LOG("Unloading Player");
 
-	 App->tex->UnLoad(Graphics);
+	 App->tex->UnLoad(texture);
 	
 	 if (collider != nullptr)
 	 {
@@ -449,8 +446,8 @@ bool j1Player::Update(float dt)
 
  bool j1Player::Load(pugi::xml_node& data)
  {
-	 CurrentPosition.x = data.child("position1").attribute("x").as_int();
-	 CurrentPosition.y = data.child("position1").attribute("y").as_int();
+	 position.x = data.child("position1").attribute("x").as_int();
+	 position.y = data.child("position1").attribute("y").as_int();
 	 return true;
  }
 
@@ -459,8 +456,8 @@ bool j1Player::Update(float dt)
  {
 	 pugi::xml_node pos = data.append_child("position1");
 
-	 pos.append_attribute("x") = CurrentPosition.x;
-	 pos.append_attribute("y") = CurrentPosition.y;
+	 pos.append_attribute("x") = position.x;
+	 pos.append_attribute("y") = position.y;
 	 return true;
  }
 
@@ -483,18 +480,18 @@ bool j1Player::Update(float dt)
 		 //from below
 		 if (LastPosition.y > (B->rect.y + B->rect.h - 1))
 		 {
-			 CurrentPosition.y = B->rect.y + B->rect.h;
+			 position.y = B->rect.y + B->rect.h;
 		 }
 
 		 //from a side
-		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h)  > B->rect.y))
+		 if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h)  > B->rect.y))
 		 {
 
 			 if ((A->rect.x + A->rect.w - 5) <= (B->rect.x ))  //EL BO
 			 { //Left to right
 				 TouchingCollider = true;
 				 Movement();
-				 CurrentPosition.x = LastPosition.x - 1; 
+				 position.x = LastPosition.x - 1;
 				 LOG("PLAYER INTO WALL FROM THE LEFT");
 				 
 			 }
@@ -511,14 +508,14 @@ bool j1Player::Update(float dt)
 		 }
 
 		 //from above
-		 if ((CurrentPosition.y + A->rect.h) <= B->rect.y + 20 ) // from above
+		 if ((position.y + A->rect.h) <= B->rect.y + 20 ) // from above
 		 {
 			 if ((A->rect.x + A->rect.w > B->rect.x) || (A->rect.x + A->rect.w < B->rect.x + B->rect.w)) {
 
 				 On_Ground = true;
 				 CanJump = true;
-				 CurrentPosition.y = LastPosition.y;
-				 CurrentPosition.y = B->rect.y - A->rect.h + 1;
+				 position.y = LastPosition.y;
+				 position.y = B->rect.y - A->rect.h + 1;
 				 float Gravity2 = Gravity;
 
 			 }
@@ -528,17 +525,17 @@ bool j1Player::Update(float dt)
 	 if (GOD_MODE == false) {
 		 if (A->type == ObjectType::Player && B->type == ObjectType::Water) {
 
-			 if ((CurrentPosition.y + A->rect.h) <= B->rect.y + 20) // from above
+			 if ((position.y + A->rect.h) <= B->rect.y + 20) // from above
 			 {
-				 CurrentPosition.x = Inipos.x;
-				 CurrentPosition.y = Inipos.y;
+				 position.x = Inipos.x;
+				 position.y = Inipos.y;
 			 }
 		 }
 	 }
 
 	 if (A->type == ObjectType::Player && B->type == ObjectType::Victory)
 	 {
-		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y))
+		 if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h) > B->rect.y))
 		 {
 			 App->fade->FadeToBlack("SimpleLevel2.tmx"); 
 		 }
@@ -547,7 +544,7 @@ bool j1Player::Update(float dt)
 
 	 if (A->type == ObjectType::Player && B->type == ObjectType::Teleporter1) {
 
-		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y)) {
+		 if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h) > B->rect.y)) {
 
 			 if(PlayerInput.I_active){
 			 //POTSER POSAR UN INPUT AQUI PER ACTIVAR EL TELEPORT?
@@ -562,7 +559,7 @@ bool j1Player::Update(float dt)
 
 	 if (A->type == ObjectType::Player && B->type == ObjectType::CheckPoint) {
 
-		 if (((CurrentPosition.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((CurrentPosition.y + A->rect.h) > B->rect.y)) {
+		 if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h) > B->rect.y)) {
 			 App->SaveGame("save_game.xml");
 		 }
 	 }
@@ -589,15 +586,15 @@ bool j1Player::Update(float dt)
 
 	 PlayerState = IdleState;
 
-	 CurrentAnimation = &idle;
+	 animation = &idle;
 
 	 CanJump = false;
 
-	 floor = CurrentPosition.y;
+	 floor = position.y;
 	 
-	 CurrentPosition = { Inipos.x, Inipos.y };
+	 position = { Inipos.x, Inipos.y };
 
-	 Player_Rect = { CurrentPosition.x, CurrentPosition.y, Player_Width, Player_Height };
+	 Player_Rect = { position.x, position.y, Player_Width, Player_Height };
 
 	 collider = App->collision->AddCollider(Player_Rect, ObjectType::Player, App->entityManager); //NO SE QUE POSSAR AL CALLBACK
 
@@ -614,16 +611,16 @@ bool j1Player::Update(float dt)
 	 
 		 MidAirUP = false;
 		 Gravity = 0;
-		 if (StartPosition.x - DashDist < CurrentPosition.x && DashActiveLeft == true && TouchingCollider == false) {
+		 if (StartPosition.x - DashDist < position.x && DashActiveLeft == true && TouchingCollider == false) {
 
-			 CurrentPosition.x -= Character_vel.x * 2;
+			 position.x -= Character_vel.x * 2;
 			 //CurrentPosition.y -= 1; //MAGIC NUMBER UNA VEGADA ELS COLIDERS FUNCIONIN PERFECTAMENT NO FARA FALTA
 			 LOG("DASH FUNCTION LEFT");
 
 		 }
-		 else if (StartPosition.x + DashDist > CurrentPosition.x && DashActiveRight == true && TouchingCollider == false) {
+		 else if (StartPosition.x + DashDist > position.x && DashActiveRight == true && TouchingCollider == false) {
 
-			 CurrentPosition.x += Character_vel.x * 2;
+			 position.x += Character_vel.x * 2;
 			 //CurrentPosition.y -= 1; //MAGIC NUMBER UNA VEGADA ELS COLIDERS FUNCIONIN PERFECTAMENT NO FARA FALTA
 
 			 LOG("DASH FUNCTION RIGHT");
@@ -664,7 +661,7 @@ bool j1Player::Update(float dt)
 
 
 		 if (PlayerInput.A_active) {
-			 CurrentPosition.x -= 1.5*Character_vel.x;
+			 position.x -= 1.5*Character_vel.x;
 
 
 		 }
@@ -672,7 +669,7 @@ bool j1Player::Update(float dt)
 
 
 		 if (PlayerInput.D_active) {
-			 CurrentPosition.x += 1.5*Character_vel.x;
+			 position.x += 1.5*Character_vel.x;
 
 			 LOG("GOING RIGHT INSIDE JUMP");
 		 }
@@ -688,12 +685,12 @@ bool j1Player::Update(float dt)
 
 
 		 if (Character_vel.y <= 0) {
-			 float altura = CurrentPosition.y;
+			 float altura = position.y;
 			 LOG("VELOCITY REACHED 0   %f", altura);
 			 MidAirUP = false;
 		 }
 
-		 CurrentPosition.y -= Character_vel.y / 2;
+		 position.y -= Character_vel.y / 2;
 
 	 }
 
@@ -728,7 +725,7 @@ bool j1Player::Update(float dt)
 		 else {
 
 			 LOG("FALLING");
-			 CurrentPosition.y += Character_vel.y;
+			 position.y += Character_vel.y;
 
 			 ++FallingVel;
 			 LOG("TIMES = %d", FallingVel);
@@ -741,20 +738,20 @@ bool j1Player::Update(float dt)
 
  void j1Player::PlayerTP(int TPposx, int TPposy) {
 
-	 CurrentPosition.x = TPposx;
-	 CurrentPosition.y = TPposy;
+	 position.x = TPposx;
+	 position.y = TPposy;
 
  }
 
  void j1Player::Movement() {
 
 	 if (PlayerInput.A_active && TouchingCollider == false) {
-			 CurrentPosition.x -= Character_vel.x;
+		 position.x -= Character_vel.x;
 
 	 }
 
 	 if (PlayerInput.D_active&&TouchingCollider == false) {
-			 CurrentPosition.x += Character_vel.x;
+		 position.x += Character_vel.x;
 
 	 }
 	 

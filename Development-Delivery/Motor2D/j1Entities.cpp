@@ -61,7 +61,7 @@ void j1Entities::BlitEntities(SDL_Rect r, bool flip, float x, float y)
 	BROFILER_CATEGORY("BlitEntity", Profiler::Color::Thistle)
 
 		if (flip == false)
-			App->render->Blit(texture, (int)position.x + x, (int)position.y + y, &r, flip);
+			App->render->Blit(texture,  x,  y, &r, flip);
 		else
-			App->render->Blit(texture, (int)position.x + x, (int)position.y + y, &r, flip);
+			App->render->Blit(texture,  x,  y, &r, flip);
 }
