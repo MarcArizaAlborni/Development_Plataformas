@@ -1,11 +1,6 @@
 #include "p2Point.h"
 #include "j1Entities.h"
 
-
-#define DETECTION_RANGE 400
-#define NEGATIVE_DETECTION_RANGE -400
-
-
 struct Animation;
 enum EntitiesType;
 
@@ -41,18 +36,4 @@ public:
 	Animation		idle;
 	Animation		walking;
 	Animation		death;
-
-	//PATHFINDING BOOLS
-	bool Dead;
-	bool GoLeft;
-	bool GoRight;
-	bool GoUp;
-	bool GoDown;
-	bool TouchingColliderPlatformUnder;
-	bool TouchingColliderPlatformOver;
-	bool TouchingColliderLeft;
-	bool TouchingColliderRight;
-	//PATHFINDING FUNCTIONS
-	void j1Skull::ComparePositions();
-	void j1Skull::Movement();
 };

@@ -7,35 +7,18 @@
 #include "j1Skull.h"
 #include "j1Player.h"
 #include "j1Map.h"
-#include "j1FadeToBlack.h"
 
 
-j1Skull::j1Skull(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::SKULL)
+j1Skull::j1Skull(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::SKELETON)
 {
-	idle.PushBack({ 0,0,36,32 });
-	idle.PushBack({ 0,32,36,32 });
-	idle.PushBack({ 0,64,36,32 });
-	idle.PushBack({ 0,96,36,32 });
-	idle.PushBack({ 0,128,36,32 });
-	idle.PushBack({ 0,160,36,32 });
-	idle.speed = 0.5f;
+	idle.PushBack({ 0,0,0,0 });
+	/*idle.PushBack({ 0,32,23,32 });
 
-	walking.PushBack({ 36,0,36,32 });
-	walking.PushBack({ 36,32,36,32 });
-	walking.PushBack({ 36,64,36,32 });
-	walking.PushBack({ 36,96,36,32 });
-	walking.PushBack({ 36,128,36,32 });
-	walking.PushBack({ 36,160,36,32 });
-	walking.PushBack({ 36,192,36,32 });
-	walking.PushBack({ 36,224,36,32 });
-	walking.speed = 0.5f;
+	walking.PushBack({ 24,0,22,32 });
+	walking.PushBack({ 24,32,22,32 });
 
-	death.PushBack({ 72,0,36,32 });
-	death.PushBack({ 72,32,36,32 });
-	death.PushBack({ 72,64,36,32 });
-	death.PushBack({ 72,96,36,32 });
-	death.PushBack({ 72,128,36,32 });
-	death.speed = 0.3f;
+	death.PushBack({ 46,0,30,32 });
+	death.PushBack({ 46,32,30,32 });*/
 
 }
 
@@ -57,77 +40,25 @@ bool j1Skull::Start()
 
 bool j1Skull::PreUpdate()
 {
-	collider->rect.x = position.x;
-	collider->rect.y = position.y;
 	return true;
 }
 
 bool j1Skull::Update(float dt)
 {
 
-	if (!Dead) {
-		ComparePositions();
-	}
 	switch (state)
 	{
 	case IdleState:
-
+		flip = true;
 		animation = &idle;
-
 		break;
 
 	case DeadState:
 		animation = &death;
 		break;
 
-	case LeftState:
-		TouchingColliderPlatformOver = false, TouchingColliderPlatformUnder = false;
-		if (GoLeft) {
-			position.x -= 3;
-			if (GoDown) {
-				if (TouchingColliderPlatformOver != true) {
-					position.y += 3;
-					LOG("GOING DOWN LEFT");
-				}
-			}
-			else if (GoUp) {
-				if (TouchingColliderPlatformUnder != true) {
-					position.y -= 3;
-					LOG("GOING UP LEFT");
-				}
-			}
-		}
-
-		break;
-
-	case RightState:
-		TouchingColliderPlatformOver, TouchingColliderPlatformUnder = false;
-		if (GoRight) {
-			position.x += 3;
-			if (GoDown) {
-				if (TouchingColliderPlatformOver != true) {
-					position.y += 3;
-					LOG("GOING DOWN RIGHT");
-				}
-
-			}
-			else if (GoUp) {
-				if (TouchingColliderPlatformUnder != true) {
-					position.y -= 3;
-					LOG("GOING UP RIGHT");
-				}
-			}
-		}
-		break;
-
 	}
 
-
-	return true;
-}
-
-bool j1Skull::PostUpdate()
-{
 	SLLrect.x = position.x;
 	SLLrect.y = position.y;
 
@@ -145,6 +76,11 @@ bool j1Skull::PostUpdate()
 		BlitEntities(r, flip, position.x, position.y);
 		collider->SetPos(position.x + 8, position.y);
 	}
+	return true;
+}
+
+bool j1Skull::PostUpdate()
+{
 	return true;
 }
 
@@ -167,40 +103,6 @@ bool j1Skull::Save(pugi::xml_node &node) const
 
 void j1Skull::OnCollision(Collider* A, Collider* B)
 {
-	if (A->type == ObjectType::Bee) {
-
-		if (B->type == ObjectType::Player) {
-
-			if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h) > B->rect.y)) {
-				//App->fade->FadeToBlack("SimpleLevel1.tmx");
-			}
-		}
-
-		if (B->type == ObjectType::Platform) {
-
-			//FROM BELOW
-			if (position.y > (B->rect.y + B->rect.h - 1))
-			{
-				LOG("BEE TOUCHING PLATFORM FROM BELOW");
-				position.y = B->rect.y + B->rect.h;
-			}
-			//from above
-			if ((position.y + A->rect.h) <= B->rect.y + 20) // from above
-			{
-
-				if ((A->rect.x + A->rect.w > B->rect.x) || (A->rect.x + A->rect.w < B->rect.x + B->rect.w)) {
-					LOG("BEE TOUCHING PLATFORM FROM ABOVE");
-					position.y = B->rect.y - A->rect.h - 1;
-					TouchingColliderPlatformOver = true;
-
-				}
-			}
-
-
-		}
-
-
-	}
 
 }
 
@@ -210,72 +112,11 @@ bool j1Skull::InitEntity()
 	SLLwith = 32;
 	SLLheight = 32;
 
-	animation = &idle;
 	state = IdleState;
 
-	SLLrect = { position.x, position.y,SLLwith, SLLheight };
+	animation = &idle;
+	SLLrect = { position.x, position.y, SLLwith, SLLheight };
 	collider = App->collision->AddCollider(SLLrect, ObjectType::Skull, App->entityManager);
 
 	return true;
-}
-
-void j1Skull::ComparePositions()
-{
-	if (Dead != true) {
-		if (App->entityManager->player != nullptr) {
-
-			if (((App->entityManager->player->position.x - position.x) >= DETECTION_RANGE)
-				|| (App->entityManager->player->position.x - position.x) <= NEGATIVE_DETECTION_RANGE) {
-
-				state = IdleState;
-			}
-			else {
-				//TO THE RIGHT OF THE PLAYER
-				if (App->entityManager->player->position.x < position.x && (App->entityManager->player->position.x - position.x) <= DETECTION_RANGE) {
-					//ON TOP OF THE PLAYER
-					if (App->entityManager->player->position.y > position.y && (App->entityManager->player->position.y - position.y) <= DETECTION_RANGE) {
-						//LOG("BEE TO THE RIGHT AND ON TOP OF THE PLAYER");
-						GoLeft = true;
-						GoDown = true;
-						GoRight = false;
-						GoUp = false;
-						state = LeftState;
-					}
-					else {
-						//LOG("BEE TO THE RIGHT AND UNDER  THE PLAYER");
-						GoLeft = true;
-						GoDown = false;
-						GoRight = false;
-						GoUp = true;
-						state = LeftState;
-					}
-				}
-
-				//TO THE LEFT OF THE PLAYER
-				else if (App->entityManager->player->position.x > position.x && (App->entityManager->player->position.x - position.x) >= -DETECTION_RANGE) {
-
-					if (App->entityManager->player->position.y > position.y && (App->entityManager->player->position.y - position.y) <= DETECTION_RANGE) {
-						//LOG("BEE TO THE LEFT AND ON TOP OF THE PLAYER");
-						GoLeft = false;
-						GoDown = true;
-						GoRight = true;
-						GoUp = false;
-						state = RightState;
-					}
-					else {
-						//LOG("BEE TO THE LEFT AND UNDER  THE PLAYER");
-						GoLeft = false;
-						GoDown = false;
-						GoRight = true;
-						GoUp = true;
-						state = RightState;
-					}
-				}
-			}
-		}
-	}
-}
-
-void j1Skull::Movement()
-{
 }

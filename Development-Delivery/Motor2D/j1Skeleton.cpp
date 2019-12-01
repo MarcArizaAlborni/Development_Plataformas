@@ -257,7 +257,7 @@ void j1Skeleton::OnCollision(Collider* A, Collider* B)
 
 		}
 
-		if (B->type == ObjectType::PlatformLimitLeft) {
+		if (B->type == ObjectType::LateralPlatform) {
 
 			//Right to Left
 
@@ -271,7 +271,7 @@ void j1Skeleton::OnCollision(Collider* A, Collider* B)
 
 		}
 
-		if (B->type == ObjectType::PlatformLimitRight) {
+		if (B->type == ObjectType::LateralPlatformLeft) {
 
 			//LEFT TO RIGHT
 
