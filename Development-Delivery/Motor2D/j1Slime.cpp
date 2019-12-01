@@ -46,14 +46,6 @@ j1Slime::~j1Slime()
 {
 }
 
-bool j1Slime::Awake(pugi::xml_node& node)
-{
-	//state = IdleState;
-
-
-	return true;
-}
-
 bool j1Slime::Start()
 {
 	texture = App->tex->Load("Sprites/Slime.png");

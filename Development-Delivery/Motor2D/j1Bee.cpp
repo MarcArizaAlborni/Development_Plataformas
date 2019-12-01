@@ -43,11 +43,6 @@ j1Bee::~j1Bee()
 {
 }
 
-bool j1Bee::Awake(pugi::xml_node& node)
-{
-	return true;
-}
-
 bool j1Bee::Start()
 {
 	texture = App->tex->Load("Sprites/Bee.png");

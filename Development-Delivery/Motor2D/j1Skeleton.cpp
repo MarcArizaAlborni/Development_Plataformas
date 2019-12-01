@@ -80,14 +80,6 @@ j1Skeleton::~j1Skeleton()
 {
 }
 
-bool j1Skeleton::Awake(pugi::xml_node& node)
-{
-	//state = IdleState;
-
-
-	return true;
-}
-
 bool j1Skeleton::Start()
 {
 	texture = App->tex->Load("Sprites/Skeleton.png");
@@ -276,7 +268,7 @@ void j1Skeleton::OnCollision(Collider* A, Collider* B)
 
 		}
 
-		if (B->type == ObjectType::PlatformLimitLeft) {
+		if (B->type == ObjectType::LateralPlatform) {
 
 			//Right to Left
 
@@ -290,7 +282,7 @@ void j1Skeleton::OnCollision(Collider* A, Collider* B)
 
 		}
 
-		if (B->type == ObjectType::PlatformLimitRight) {
+		if (B->type == ObjectType::LateralPlatformLeft) {
 
 			//LEFT TO RIGHT
 

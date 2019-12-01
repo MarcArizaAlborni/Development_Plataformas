@@ -57,7 +57,6 @@ public:
 	~j1EntityManager();
 
 	//FUNCTIONS IN ENTITY MANAGER
-	bool Awake(pugi::xml_node&);
 	bool Start();				//Load textures for each entity
 	bool PreUpdate();
 	bool Update(float dt);

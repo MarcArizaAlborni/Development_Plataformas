@@ -19,15 +19,6 @@ j1EntityManager::~j1EntityManager()
 {	
 }
 
-bool j1EntityManager::Awake(pugi::xml_node& config) 
-{
-	for (p2List_item<j1Entities*>* EntitySelect = entityList.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
-	{
-		EntitySelect->data->Awake(config);
-	}
-	return true;
-}
-
 bool j1EntityManager::Start() 
 {
 	BROFILER_CATEGORY("EntityManager_Start", Profiler::Color::Gainsboro)

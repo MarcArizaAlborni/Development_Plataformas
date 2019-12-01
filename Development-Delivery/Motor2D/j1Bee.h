@@ -16,7 +16,6 @@ public:
 
 	virtual ~j1Bee();
 
-	bool Awake(pugi::xml_node& conf);
 	bool Start();
 	bool PreUpdate();
 	bool Update(float dt);

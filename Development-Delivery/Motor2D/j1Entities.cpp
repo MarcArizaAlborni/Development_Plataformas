@@ -16,11 +16,6 @@ j1Entities::j1Entities(iPoint pos, EntitiesType type)
 	this->type = type;
 }
 
-bool j1Entities::Awake(pugi::xml_node& config)
-{
-	return true;
-}
-
 bool j1Entities::Start()
 {
 	return true;

@@ -15,8 +15,6 @@ public:
 	j1Skull(iPoint Position, EntitiesType type);
 
 	virtual ~j1Skull();
-
-	bool Awake(pugi::xml_node& conf);
 	bool Start();
 	bool PreUpdate();
 	bool Update(float dt);

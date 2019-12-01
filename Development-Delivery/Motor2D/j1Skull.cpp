@@ -36,11 +36,6 @@ j1Skull::~j1Skull()
 {
 }
 
-bool j1Skull::Awake(pugi::xml_node& node)
-{
-	return true;
-}
-
 bool j1Skull::Start()
 {
 	texture = App->tex->Load("Sprites/Skull.png");
