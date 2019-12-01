@@ -517,7 +517,7 @@ bool j1Player::Update(float dt)
 
 				 TouchingCollider = true;
 				 Movement();
-				position.x = LastPosition.x;
+				 position.x = LastPosition.x;
 				 LOG("PLAYER INTO WALL FROM THE RIGHT");
 			 }
 		 }

@@ -610,6 +610,10 @@ bool j1Map::LoadObjectGroup(pugi::xml_node& node, ObjectGroup* object)
 				{
 					object->object_properties[i].type = ObjectType::LateralPlatform;
 				}
+				else if (type == "JumpDetector")
+				{
+					object->object_properties[i].type = ObjectType::JumpDetector;
+				}
 				else
 				{
 					object->object_properties[i].type = ObjectType::Unknown;

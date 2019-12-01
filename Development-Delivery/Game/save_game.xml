@@ -11,7 +11,7 @@
 	<collision />
 	<fade />
 	<entities>
-		<position1 x="351" y="288" />
+		<position1 x="392" y="242" />
 	</entities>
 	<renderer>
 		<camera x="0" y="0" />

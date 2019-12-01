@@ -53,6 +53,8 @@ j1Skeleton::j1Skeleton(iPoint pos, EntitiesType type) : j1Entities(pos, Entities
 	death.PushBack({ 46,352,30,32 });
 	death.PushBack({ 46,384,30,32 });
 	death.speed = 0.3;
+
+	gravity = 0;
 }
 
 j1Skeleton::~j1Skeleton()
@@ -61,8 +63,9 @@ j1Skeleton::~j1Skeleton()
 
 bool j1Skeleton::Awake(pugi::xml_node& node)
 {
-	state = IdleState;
-	JumpTicks = 0;
+	//state = IdleState;
+	
+	
 	return true;
 }
 
@@ -75,6 +78,7 @@ bool j1Skeleton::Start()
 
 bool j1Skeleton::PreUpdate()
 {
+	position.y += gravity;
 	collider->rect.x = position.x;
 	collider->rect.y = position.y;
 	return true;
@@ -82,29 +86,17 @@ bool j1Skeleton::PreUpdate()
 
 bool j1Skeleton::Update(float dt)
 {
-
-	/*if (Dead != true) {
-
-		if (App->entityManager->player != nullptr) {
-
-			if ((App->entityManager->player->position.x - position.x) <= DETECTION_RANGE
-				&& (App->entityManager->player->position.x - position.x) >= -DETECTION_RANGE
-				&& App->entityManager->player->collider) {
-
-
-
-			}
-		}
-	}*/
-	collider;
-	position;
-	ComparePositions();
+	
+	if (state != (JumpState || FallState)) {
+		ComparePositions();
+	}
 	
 	switch (state)
 	{
 	case IdleState:
 
-		TouchingCollider = false;
+		TouchingColliderRight = false;
+		TouchingColliderLeft = false;
 		flip = true;
 		animation = &idle;
 		//ComparePositions();
@@ -117,11 +109,16 @@ bool j1Skeleton::Update(float dt)
 
 	case LeftState:
 		if (GoLeft) {
-			//position.x -= 2;
 			Movement(1);//1 FOR LEFT 0 FOR RIGHT
 			LOG("SKELETON LEFT");
 			animation = &walking;
-			//ComparePositions();
+			TouchingColliderRight = false;
+			TouchingColliderLeft = false;
+		}
+		if (position.y +50 < App->entityManager->player->position.y &&App->entityManager->player->position.x < 
+position.x && (App->entityManager->player->position.x - position.x) <= DETECTION_RANGE) {
+
+			state=JumpState;
 		}
 		
 		break;
@@ -130,15 +127,36 @@ bool j1Skeleton::Update(float dt)
 	case RightState:
 		if (GoRight) {
 			LOG("SKELETON RIGHT");
-			//position.x += 2;
 			Movement(0);//1 FOR LEFT 0 FOR RIGHT
 			animation = &walking;
-			//ComparePositions();
+			TouchingColliderRight = false;
+			TouchingColliderLeft = false;
+		}
+		if (position.y + 50 < App->entityManager->player->position.y && (App->entityManager->player->position.x - position.x) <= DETECTION_RANGE) {
+
+
+ 			state = FallState;
 		}
 		
 		break;
 
+	case JumpState:
+		animation = &hit;
+		break;
+
+	case FallState:
+		animation = &hit;
+		if (position.y < App->entityManager->player->position.y) {//NECESSITO QUE L'ESQUELET SIGUI DE LA MATEIXA ALTURA QUE LA DEL PLAYER O TROBAR LA 
+		//DIFFERENCIA D'ALTURA PERQUE NO ES QUEDI FLOTANT
+			position.y += 5;
+		}
+		if (position.y == App->entityManager->player->position.y) {
+			state = IdleState;
+		}
+		break;
 	}
+	
+
 	return true;
 }
 
@@ -185,41 +203,39 @@ bool j1Skeleton::Save(pugi::xml_node &node) const
 
 void j1Skeleton::OnCollision(Collider* A, Collider* B)
 {
-	if (B->type == ObjectType::Skeleton) {
-		Collider temp = *A;
-		A = B;
-		B = &temp;
-	}
-	B->type = ObjectType::Player;
 	
+	if (A->type == ObjectType::Skeleton) {
 
-	if (A->type != ObjectType::Skeleton) {
-		return;
-	}
-	if (A->type == ObjectType::Skeleton && B->type == ObjectType::LateralPlatform) {}
-	if (A->type == ObjectType::Skeleton && B->type == ObjectType::LateralPlatform) {
+		
+
+		if (B->type == ObjectType::LateralPlatform) {
 
 
-		if (A->rect.x + A->rect.w >= B->rect.x && A->rect.x <= B->rect.x)  //EL BO
-		{
+			//LEFT TO RIGHT
+			if (A->rect.x + A->rect.w >= B->rect.x && A->rect.x <= B->rect.x)  //EL BO
+			{
+				
+				TouchingColliderRight = true;
+				if (App->entityManager->player->position.x > position.x) {
+					
+					state = JumpState;
+					GroundJump();
+				}
+				LOG("SKELETON INTO WALL FROM THE LEFT");
 
-			TouchingCollider = true;
-			
-			position.x = LastPosition.x;
-			LOG("SKELETON INTO WALL FROM THE LEFT");
+			}
+			//Right to Left
+			else if (A->rect.x <= B->rect.x + B->rect.w && A->rect.x + A->rect.w >= B->rect.x + B->rect.w) {
+
+				TouchingColliderLeft = true;
+				if (App->entityManager->player->position.x < position.x) {
+					GroundJump();
+				}
+				LOG("SKELETON INTO WALL FROM THE RIGHT");
+			}
 
 		}
-		//Right to Left
-		else if (A->rect.x <= B->rect.x + B->rect.w && A->rect.x + A->rect.w >= B->rect.x + B->rect.w) {
-
-			TouchingCollider = true;
-			
-			position.x = LastPosition.x;
-			LOG("SKELETON INTO WALL FROM THE RIGHT");
-		}
-
 	}
-
 }
 
 bool j1Skeleton::InitEntity()
@@ -273,14 +289,29 @@ void j1Skeleton::ComparePositions()
 
 void j1Skeleton::GroundJump()
 {
+	if (state == JumpState) {
+		if (position.y > App->entityManager->player->position.y) {
+			animation = &hit;
+			position.y -= 5;
+		}
+		if (position.y < App->entityManager->player->position.y) {//NECESSITO QUE L'ESQUELET SIGUI DE LA MATEIXA ALTURA QUE LA DEL PLAYER O TROBAR LA 
+		//DIFFERENCIA D'ALTURA PERQUE NO ES QUEDI FLOTANT
+			state = FallState;
+		}
+	}
+	
+	
+		
 }
 
 void j1Skeleton::Movement(bool CurrentState)
 {
-	if (CurrentState == 0 && TouchingCollider==false) {
+	//DRETA
+	if (CurrentState == 0 && TouchingColliderRight==false) {
 		position.x += 2;
 	}
-	else if(CurrentState==1 && TouchingCollider==false) {
+	//ESQUERRA
+	else if(CurrentState==1 && TouchingColliderLeft==false) {
 		position.x -= 2;
 	}
 	

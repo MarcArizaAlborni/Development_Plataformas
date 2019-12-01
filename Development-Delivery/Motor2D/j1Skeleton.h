@@ -7,8 +7,8 @@ enum EntitiesType;
 
 
 
-#define DETECTION_RANGE 100
-#define NEGATIVE_DETECTION_RANGE -100
+#define DETECTION_RANGE 150
+#define NEGATIVE_DETECTION_RANGE -150
 
 class j1Skeleton : public j1Entities
 {
@@ -43,6 +43,7 @@ public:
 	Animation		walking;
 	Animation		death;
 	Animation       attack;
+	Animation       hit;
 
 
 	//PATHING
@@ -54,9 +55,9 @@ public:
 	
 	bool GoLeft;
 	bool GoRight;
-	int JumpTicks;
 	iPoint LastPosition;
-	bool TouchingCollider;
+	bool TouchingColliderLeft;
+	bool TouchingColliderRight;
 	//PATHING FUNCTION
 //	void LookForPath();
 	void j1Skeleton::Move(p2DynArray<iPoint>& path, float dt);
