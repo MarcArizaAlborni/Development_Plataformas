@@ -11,30 +11,14 @@
 
 j1Bee::j1Bee(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::BEE)
 {
-	idle.PushBack({ 0,0,36,32  });
-	idle.PushBack({ 0,32,36,32 });
-	idle.PushBack({ 0,64,36,32 });
-	idle.PushBack({ 0,96,36,32 });
-	idle.PushBack({ 0,128,36,32 });
-	idle.PushBack({ 0,160,36,32 });
-	idle.speed = 0.5f;
+	idle.PushBack({ 0,0,32,32 });
+	idle.PushBack({ 0,32,23,32 });
 
-	walking.PushBack({ 36,0,36,32 });
-	walking.PushBack({ 36,32,36,32 });
-	walking.PushBack({ 36,64,36,32 });
-	walking.PushBack({ 36,96,36,32 });
-	walking.PushBack({ 36,128,36,32 });
-	walking.PushBack({ 36,160,36,32 });
-	walking.PushBack({ 36,192,36,32 });
-	walking.PushBack({ 36,224,36,32 });
-	walking.speed = 0.5f;
+	walking.PushBack({ 24,0,22,32 });
+	walking.PushBack({ 24,32,22,32 });
 
-	death.PushBack({ 72,0,36,32 });
-	death.PushBack({ 72,32,36,32 });
-	death.PushBack({ 72,64,36,32 });
-	death.PushBack({ 72,96,36,32 });
-	death.PushBack({ 72,128,36,32 });
-	death.speed = 0.3f;
+	death.PushBack({ 46,0,30,32 });
+	death.PushBack({ 46,32,30,32 });
 
 }
 
@@ -65,6 +49,7 @@ bool j1Bee::Update(float dt)
 	switch (state)
 	{
 	case IdleState:
+		flip = true;
 		animation = &idle;
 		break;
 
@@ -129,6 +114,7 @@ bool j1Bee::InitEntity()
 
 	state = IdleState;
 
+	animation = &idle;
 	Beerect = { position.x, position.y, Beewith, Beeheight };
 	collider = App->collision->AddCollider(Beerect, ObjectType::Bee, App->entityManager);
 
