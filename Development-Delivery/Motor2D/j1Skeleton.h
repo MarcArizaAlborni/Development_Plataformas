@@ -43,7 +43,8 @@ public:
 	Animation		death;
 	Animation       attack;
 	Animation       hit;
-
+	Animation       RIP;
+	bool DieOnce = 0;
 
 	//PATHING
 	p2DynArray<iPoint>* path;
