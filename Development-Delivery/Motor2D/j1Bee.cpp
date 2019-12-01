@@ -226,10 +226,26 @@ void j1Bee::ComparePositions()
 
 			if (((App->entityManager->player->position.x - position.x) >= DETECTION_RANGE)
 				|| (App->entityManager->player->position.x - position.x) <= NEGATIVE_DETECTION_RANGE) {
-
+				
+				if (App->audio->EnemyMusic == true) {
+					Mix_HaltMusic();
+					App->audio->EnemyMusic = false;
+					App->audio->Area2Level1 = true;
+					App->audio->Area1Level1 = false;
+					App->audio->PlayMusic("audio/Music/L1_A2.ogg");
+				}
+				
 				state = IdleState;
 			}
 			else {
+				
+				if (App->audio->EnemyMusic != true) {
+					Mix_HaltMusic();
+					App->audio->EnemyMusic = true;
+					App->audio->Area2Level1 = false;
+					App->audio->Area1Level1 = false;
+					App->audio->PlayMusic("audio/Music/EnemyMusic.ogg");
+				}
 				//TO THE RIGHT OF THE PLAYER
 				if (App->entityManager->player->position.x < position.x && (App->entityManager->player->position.x - position.x) <= DETECTION_RANGE) {
 					//ON TOP OF THE PLAYER
