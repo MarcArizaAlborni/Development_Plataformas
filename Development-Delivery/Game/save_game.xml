@@ -11,9 +11,9 @@
 	<collision />
 	<fade />
 	<entities>
-		<position1 x="1059" y="222" />
+		<position1 x="1057" y="222" />
 	</entities>
 	<renderer>
-		<camera x="-580" y="0" />
+		<camera x="-578" y="0" />
 	</renderer>
 </game_state>
