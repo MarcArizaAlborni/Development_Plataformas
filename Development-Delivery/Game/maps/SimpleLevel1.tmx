@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="252">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="260">
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32" tilecount="768" columns="32">
   <image source="generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
@@ -7541,18 +7541,16 @@
   </properties>
   <object id="36" name="Floor" type="Water" x="1" y="432" width="2458" height="46.3333"/>
   <object id="50" name="VICTORY" type="Victory" x="3008" y="456" width="96" height="24"/>
-  <object id="80" name="Floor" type="Platform" x="480" y="320" width="160" height="64"/>
   <object id="81" name="Floor" type="Platform" x="0" y="320" width="416" height="129"/>
-  <object id="82" name="CheckPoint" type="CheckPoint" x="1009" y="186" width="31.3333" height="23"/>
-  <object id="83" name="TELEPORTER" type="Teleporter1" x="289" y="287" width="31.3333" height="31.0297"/>
-  <object id="86" name="AudioArea1" type="AudioArea1" x="65" y="227" width="94" height="64"/>
-  <object id="87" name="AudioArea2" type="AudioArea2" x="281" y="143" width="39.333" height="33.03"/>
+  <object id="82" name="CheckPoint" type="CheckPoint" x="1009" y="216.667" width="31.3333" height="23"/>
+  <object id="83" name="TELEPORTER" type="Teleporter1" x="33.3333" y="288" width="31.3333" height="31.0297"/>
+  <object id="86" name="AudioArea1" type="AudioArea1" x="318.667" y="223.167" width="35.333" height="97.03"/>
+  <object id="87" name="AudioArea2" type="AudioArea2" x="448.333" y="126.667" width="31.333" height="33.03"/>
   <object id="91" name="Floor" type="Platform" x="1216" y="320" width="128" height="64"/>
   <object id="92" name="Floor" type="Platform" x="1536" y="320" width="192" height="64"/>
   <object id="95" name="LateralPlatform" type="LateralPlatform" x="0" y="0" width="0.108207" height="480"/>
-  <object id="96" name="LateralPlatform" type="LateralPlatform" x="416" y="321" width="0.152344" height="111"/>
-  <object id="97" name="LateralPlatform" type="LateralPlatform" x="480" y="322" width="0.152344" height="61"/>
-  <object id="98" name="LateralPlatform" type="LateralPlatform" x="640" y="321" width="0.152344" height="63"/>
+  <object id="96" name="LateralPlatformLeft" type="LateralPlatformLeft" x="416.106" y="320.005" width="0.697782" height="111"/>
+  <object id="97" name="LateralPlatform" type="LateralPlatform" x="479.889" y="321.244" width="0.152344" height="61"/>
   <object id="99" name="LateralPlatform" type="LateralPlatform" x="704" y="322" width="0.152344" height="61"/>
   <object id="100" name="LateralPlatform" type="LateralPlatform" x="768" y="321" width="0.152344" height="63"/>
   <object id="101" name="LateralPlatform" type="LateralPlatform" x="832" y="289" width="0.152344" height="30"/>
@@ -7562,7 +7560,6 @@
   <object id="107" name="LateralPlatform" type="LateralPlatform" x="1536" y="321" width="0.152344" height="63"/>
   <object id="109" name="LateralPlatform" type="LateralPlatform" x="1344" y="321" width="0.152344" height="62"/>
   <object id="110" name="LateralPlatform" type="LateralPlatform" x="1216" y="321" width="0.152344" height="63"/>
-  <object id="111" name="LateralPlatform" type="LateralPlatform" x="1088" y="257" width="0.152344" height="30"/>
   <object id="119" name="LateralPlatform" type="LateralPlatform" x="3200" y="0" width="0.15" height="480"/>
   <object id="120" name="Floor" type="Platform" x="704" y="320" width="64" height="64"/>
   <object id="121" name="Floor" type="Platform" x="832" y="288" width="64" height="32"/>
@@ -7633,6 +7630,9 @@
   <object id="249" name="LateralPlatform" type="LateralPlatform" x="2240" y="385" width="0.152344" height="24"/>
   <object id="250" name="LateralPlatform" type="LateralPlatform" x="2176" y="385" width="0.152344" height="24"/>
   <object id="251" name="Floor" type="Platform" x="2176" y="384" width="64" height="32"/>
+  <object id="257" name="Floor" type="Platform" x="479.826" y="319.848" width="160" height="64"/>
+  <object id="258" name="LateralPlatformLeft" type="LateralPlatformLeft" x="639.56" y="320.462" width="0.697782" height="63.1739"/>
+  <object id="259" name="LateralPlatformLeft" type="LateralPlatformLeft" x="1087.98" y="256.08" width="0.697782" height="63.1739"/>
  </objectgroup>
  <layer id="13" name="Pathfinding" width="100" height="15">
   <properties>

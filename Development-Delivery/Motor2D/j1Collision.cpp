@@ -81,22 +81,6 @@ bool j1Collision::PreUpdate()
 					 if (c2->callback)
 						 c2->callback->OnCollision(c2, c1);
 			    }
-
-				if (c1->CheckCollision(c2->rect) == true && (c1->type == ObjectType::Skull || c2->type == ObjectType::Skull)) {
-					if (c1->callback)
-						c1->callback->OnCollision(c1, c2);
-
-					if (c2->callback)
-						c2->callback->OnCollision(c2, c1);
-				}
-
-				if (c1->CheckCollision(c2->rect) == true && (c1->type == ObjectType::Slime || c2->type == ObjectType::Slime)) {
-					if (c1->callback)
-						c1->callback->OnCollision(c1, c2);
-
-					if (c2->callback)
-						c2->callback->OnCollision(c2, c1);
-				}
 			}
 		}
 	}
@@ -198,9 +182,13 @@ void j1Collision::DebugDraw()
 		case ObjectType::LateralPlatform: //
 			App->render->DrawQuad(collider_iterator->data->rect, 255, 255, 0, alpha);
 			break;
+		case ObjectType::LateralPlatformLeft: //
+			App->render->DrawQuad(collider_iterator->data->rect, 255, 255, 0, alpha);
+			break;
 		case ObjectType::JumpDetector: //
 			App->render->DrawQuad(collider_iterator->data->rect, 100, 255, 0, alpha);
 			break;
+		
 		}
 	}
 

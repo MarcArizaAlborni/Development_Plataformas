@@ -52,6 +52,7 @@ public:
 	bool Area2Level2;
 	bool Area1Level1;
 	bool Area2Level1;
+	bool EnemyMusic;
 
 private:
 

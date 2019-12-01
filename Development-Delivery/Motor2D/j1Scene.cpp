@@ -38,19 +38,34 @@ bool j1Scene::Awake()
 bool j1Scene::Start()
 {
 
+	if (App->map->Load("SimpleLevel1.tmx") == true)
+	{
+		int w, h;
+		uchar* data = NULL;
+		if (App->map->CreateWalkabilityMap(w, h, &data))
+			App->pathfinding->SetMap(w, h, data);
+
+		RELEASE_ARRAY(data);
+	}
+
 	debug_tex = App->tex->Load("maps/rosa.png");
 
 	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
 
-	if (Level1 == true)
-	{
-		LoadLevel1();
-	}
 
-	if( Level2 == true)
-	{
-		LoadLevel2();
-	}
+	//App->entityManager->AddEnemies({300,288}, SKELETON);
+	//App->entityManager->AddEnemies( {600,100 }, SKULL);
+	//App->entityManager->AddEnemies({ 800,100 }, BEE);
+	
+	// ENEMY SPAWNS LEVEL 1
+	App->entityManager->AddEnemies({ 544,288 }, SKELETON);
+	App->entityManager->AddEnemies({ 800,100 }, BEE);
+	App->entityManager->AddEnemies({ 1000, 220}, SLIME);
+	App->entityManager->AddEnemies({ 2300,120 }, SKULL);
+	//App->entityManager->AddEnemies({ 2300,180 }, BEE);
+
+	App->entityManager->CreateEntity(PLAYER);
+
 
 	return true;
 }
@@ -58,7 +73,31 @@ bool j1Scene::Start()
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
-	
+	// debug pathfing ------------------
+	static iPoint origin;
+	static bool origin_selected = false;
+
+	int x, y;
+	App->input->GetMousePosition(x, y);
+	iPoint p = App->render->ScreenToWorld(x, y);
+	p = App->map->WorldToMap(p.x, p.y);
+
+	iPoint Player_pos = App->map->WorldToMap(0,0);
+
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+	{
+		if (origin_selected == true)
+		{
+			App->pathfinding->CreatePath(origin, p);
+			origin_selected = false;
+		}
+		else
+		{
+			origin = Player_pos;
+			origin_selected = true;
+		}
+	}
+
 	return true;
 }
 
@@ -71,27 +110,60 @@ bool j1Scene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		App->SaveGame("save_game.xml");
-		
+		//App->SaveGame();
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
-	{
-		Level1 = true;
-		Level2 = false;
 		App->fade->FadeToBlack("SimpleLevel1.tmx");
-	}
-		
-	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
-	{
-		Level1 = false;
-		Level2 = true;
 
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 		App->fade->FadeToBlack("SimpleLevel2.tmx");
-	}
 
 	App->map->Draw();
 
 	//p2SString title("Project Ceta");
 
 	//App->win->SetTitle(title.GetString());
+
+	if (App->input->keyboard[SDL_SCANCODE_F9] == KEY_DOWN) {
+
+		if (debug_path) {
+			debug_path = false;
+		}
+		else
+		{
+			debug_path = true;
+		}
+	}
+	if (debug_path == false)
+		return true;
+
+	int x, y;
+	App->input->GetMousePosition(x, y);
+	//iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
+	//p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d",
+		/*App->map->data.width, App->map->data.height,
+		App->map->data.tile_width, App->map->data.tile_height,
+		App->map->data.tilesets.count(),
+		map_coordinates.x, map_coordinates.y);
+*/
+	//App->win->SetTitle(title.GetString());
+
+	// Debug pathfinding ------------------------------
+	App->input->GetMousePosition(x, y);
+	iPoint p = App->render->ScreenToWorld(x, y);
+	p = App->map->WorldToMap(p.x, p.y);
+	p = App->map->MapToWorld(p.x, p.y);
+
+	App->render->Blit(debug_tex, p.x, p.y);
+
+	const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
+
+	for (uint i = 0; i < path->Count(); ++i)
+	{
+		iPoint pos = App->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+		App->render->Blit(debug_tex, pos.x, pos.y);
+	}
+
+
 
 	return true;
 }
@@ -114,6 +186,8 @@ bool j1Scene::PostUpdate()
 	}*/
 
 
+
+
 	bool ret = true;
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
@@ -127,79 +201,16 @@ bool j1Scene::CleanUp()
 {
 	LOG("Freeing scene");
 
-	App->map->CleanUp();
-	App->collision->CleanUp();
-	if (App->entityManager->player != nullptr)
-		App->entityManager->player->CleanUp();
-	App->entityManager->CleanUp();
-
 	return true;
 }
 
-bool j1Scene::Load(pugi::xml_node& data)
-{
-	Level1 = data.child("Level1").attribute("active").as_bool();
-	Level2 = data.child("Level2").attribute("active").as_bool();
 
-	LoadNewLevel();
 
-	return true;
-}
 
 bool j1Scene::Save(pugi::xml_node& data)const {
-	
-	pugi::xml_node tutorial = data.append_child("Level1");
-	tutorial.append_attribute("active") = Level1;
 
-	pugi::xml_node level1 = data.append_child("Level2");
-	level1.append_attribute("active") = Level2;
+	pugi::xml_node mapname = data.append_child("");
+
 
 	return true;
-}
-
-void j1Scene::LoadNewLevel()
-{
-	CleanUp();
-
-	Start();
-	App->collision->Start();
-	App->entityManager->Start();
-
-}
-
-void j1Scene::LoadLevel1()
-{
-	App->map->Load("SimpleLevel1.tmx");
-
-	SpawnLevel1Entities();
-}
-
-void j1Scene::SpawnLevel1Entities()
-{
-	App->entityManager->AddEnemies({ 100, 254 }, SLIME);
-	App->entityManager->AddEnemies({ 500, 254 }, BEE);
-	App->entityManager->CreateEntity(PLAYER);
-}
-
-void j1Scene::LoadLevel2()
-{
-	App->map->Load("SimpleLevel2.tmx");
-
-	SpawnLevel2Entities();
-}
-
-void j1Scene::SpawnLevel2Entities()
-{
-	App->entityManager->AddEnemies({ 100, 254 }, SKELETON);
-	App->entityManager->AddEnemies({ 300, 254 }, SKULL);
-	App->entityManager->CreateEntity(PLAYER);
-}
-
-void j1Scene::ReSpawnEntities()
-{
-	if (Level1 == true)
-		SpawnLevel1Entities();
-
-	else if (Level2)
-		SpawnLevel2Entities();
 }

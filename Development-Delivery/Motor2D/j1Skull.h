@@ -2,8 +2,8 @@
 #include "j1Entities.h"
 
 
-#define DETECTION_RANGE 400
-#define NEGATIVE_DETECTION_RANGE -400
+#define DETECTION_RANGE 200
+#define NEGATIVE_DETECTION_RANGE -200
 
 
 struct Animation;

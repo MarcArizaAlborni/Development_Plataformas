@@ -8,7 +8,6 @@
 #include "j1Player.h"
 #include "j1Map.h"
 #include "j1FadeToBlack.h"
-#include "j1Scene.h"
 
 
 j1Bee::j1Bee(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::BEE)
@@ -173,8 +172,7 @@ void j1Bee::OnCollision(Collider* A, Collider* B)
 		if (B->type == ObjectType::Player) {
 
 			if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h) > B->rect.y)) {
-				App->entityManager->player->position.x = App->entityManager->player->Inipos.x;
-				App->entityManager->player->position.y = App->entityManager->player->Inipos.y;
+				//App->fade->FadeToBlack("SimpleLevel1.tmx");
 			}
 		}
 
@@ -228,10 +226,26 @@ void j1Bee::ComparePositions()
 
 			if (((App->entityManager->player->position.x - position.x) >= DETECTION_RANGE)
 				|| (App->entityManager->player->position.x - position.x) <= NEGATIVE_DETECTION_RANGE) {
-
+				
+				if (App->audio->EnemyMusic == true) {
+					Mix_HaltMusic();
+					App->audio->EnemyMusic = false;
+					App->audio->Area2Level1 = true;
+					App->audio->Area1Level1 = false;
+					App->audio->PlayMusic("audio/Music/L1_A2.ogg");
+				}
+				
 				state = IdleState;
 			}
 			else {
+				
+				if (App->audio->EnemyMusic != true) {
+					Mix_HaltMusic();
+					App->audio->EnemyMusic = true;
+					App->audio->Area2Level1 = false;
+					App->audio->Area1Level1 = false;
+					App->audio->PlayMusic("audio/Music/EnemyMusic.ogg");
+				}
 				//TO THE RIGHT OF THE PLAYER
 				if (App->entityManager->player->position.x < position.x && (App->entityManager->player->position.x - position.x) <= DETECTION_RANGE) {
 					//ON TOP OF THE PLAYER

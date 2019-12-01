@@ -534,7 +534,7 @@ bool j1Player::Update(float dt)
 				 B->rect.y;
 				 // PlayerTP(B->rect.x,B->rect.y);
 				 //POTSER POSAR COORDENADES EN EL CONFIG.XML I DIR TELEPORTER POSITION.X?
-				 PlayerTP(position.x, 0); //AMB AIXO FUNCIONA PERO ESTA BRUTALMENT HARDCODEJAT
+				 PlayerTP(100, 50); //AMB AIXO FUNCIONA PERO ESTA BRUTALMENT HARDCODEJAT
 			 }
 		 }
 	 }
@@ -555,6 +555,7 @@ bool j1Player::Update(float dt)
 
 			 if (App->audio->Area1Level1 != true) {
 				 Mix_HaltMusic();
+				 App->audio->EnemyMusic = false;
 				 App->audio->Area2Level1 = false;
 				 App->audio->Area1Level1 = true;
 				 App->audio->PlayMusic("audio/Music/L1_A1.ogg");
@@ -573,10 +574,9 @@ bool j1Player::Update(float dt)
 
 			 if (App->audio->Area2Level1 != true) {
 				 Mix_HaltMusic();
+				 App->audio->EnemyMusic = false;
 				 App->audio->Area1Level1 = false;
 				 App->audio->Area2Level1 = true;
-
-
 				 App->audio->PlayMusic("audio/Music/L1_A2.ogg");
 
 			 }
