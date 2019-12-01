@@ -3,7 +3,7 @@
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32" tilecount="768" columns="32">
   <image source="generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
- <layer id="9" name="Background" width="100" height="15" visible="0">
+ <layer id="9" name="Background" width="100" height="15">
   <properties>
    <property name="Nodraw" type="int" value="0"/>
   </properties>
@@ -3017,7 +3017,7 @@
    <tile gid="439"/>
   </data>
  </layer>
- <layer id="11" name="Clouds" width="100" height="15" visible="0">
+ <layer id="11" name="Clouds" width="100" height="15">
   <properties>
    <property name="Nodraw" type="int" value="0"/>
   </properties>
@@ -6664,8 +6664,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="504"/>
+   <tile gid="505"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6764,8 +6764,8 @@
    <tile/>
    <tile/>
    <tile gid="566"/>
-   <tile gid="534"/>
-   <tile gid="567"/>
+   <tile gid="536"/>
+   <tile gid="537"/>
    <tile gid="534"/>
    <tile/>
    <tile/>
@@ -6851,8 +6851,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="504"/>
+   <tile gid="505"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6929,9 +6929,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="474"/>
+   <tile gid="475"/>
+   <tile gid="476"/>
    <tile/>
    <tile gid="534"/>
    <tile gid="567"/>
@@ -6951,8 +6951,8 @@
    <tile gid="534"/>
    <tile gid="566"/>
    <tile gid="534"/>
-   <tile gid="534"/>
-   <tile gid="534"/>
+   <tile gid="536"/>
+   <tile gid="537"/>
    <tile/>
    <tile/>
    <tile gid="567"/>
@@ -7029,9 +7029,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="506"/>
+   <tile gid="507"/>
+   <tile gid="508"/>
    <tile/>
    <tile/>
    <tile/>
@@ -7101,8 +7101,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="504"/>
+   <tile gid="505"/>
    <tile/>
    <tile/>
    <tile/>
@@ -7129,9 +7129,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="538"/>
+   <tile gid="539"/>
+   <tile gid="540"/>
    <tile/>
    <tile/>
    <tile/>
@@ -7201,8 +7201,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="534"/>
-   <tile gid="534"/>
+   <tile gid="536"/>
+   <tile gid="537"/>
    <tile/>
    <tile/>
    <tile/>
@@ -7540,7 +7540,7 @@
    <property name="Nodraw" type="int" value="0"/>
   </properties>
   <object id="36" name="Floor" type="Water" x="1" y="432" width="2458" height="46.3333"/>
-  <object id="50" name="VICTORY" type="Victory" x="3008" y="437" width="97" height="43"/>
+  <object id="50" name="VICTORY" type="Victory" x="3008" y="456" width="96" height="24"/>
   <object id="80" name="Floor" type="Platform" x="480" y="320" width="160" height="64"/>
   <object id="81" name="Floor" type="Platform" x="0" y="320" width="416" height="129"/>
   <object id="82" name="CheckPoint" type="CheckPoint" x="1025" y="160" width="31.3333" height="96.0297"/>
@@ -7563,7 +7563,7 @@
   <object id="109" name="LateralPlatform" type="LateralPlatform" x="1344" y="321" width="0.152344" height="62"/>
   <object id="110" name="LateralPlatform" type="LateralPlatform" x="1216" y="321" width="0.152344" height="63"/>
   <object id="111" name="LateralPlatform" type="LateralPlatform" x="1088" y="257" width="0.152344" height="30"/>
-  <object id="119" name="LateralPlatform" type="LateralPlatform" x="3199.8" y="0" width="0.11" height="480"/>
+  <object id="119" name="LateralPlatform" type="LateralPlatform" x="3200" y="0" width="0.15" height="480"/>
   <object id="120" name="Floor" type="Platform" x="704" y="320" width="64" height="64"/>
   <object id="121" name="Floor" type="Platform" x="832" y="288" width="64" height="32"/>
   <object id="122" name="Floor" type="Platform" x="960" y="256" width="128" height="32"/>
@@ -7634,7 +7634,7 @@
   <object id="250" name="LateralPlatform" type="LateralPlatform" x="2176" y="385" width="0.152344" height="24"/>
   <object id="251" name="Floor" type="Platform" x="2176" y="384" width="64" height="32"/>
  </objectgroup>
- <layer id="13" name="Pathfinding" width="100" height="15" visible="0">
+ <layer id="13" name="Pathfinding" width="100" height="15">
   <properties>
    <property name="Navigation" type="int" value="1"/>
    <property name="Nodraw" type="int" value="4"/>
@@ -8311,7 +8311,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="8"/>
+   <tile/>
    <tile gid="8"/>
    <tile gid="8"/>
    <tile/>
