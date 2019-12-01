@@ -1,9 +1,9 @@
 # Development_Plataformas
-Developed for development delivery CITM 2nd Course
+Developed for development delivery 2 CITM 2nd Course
 
 Made by: 
+- Adrian Mirabel (GitHub Link: [M1R4B3L](https://github.com/M1R4B3L))
 - Marc Ariza (GitHub Link: [MarcArizaAlborni](https://github.com/MarcArizaAlborni))
-- Adrián Mirabel (GitHub Link: [M1R4B3L](https://github.com/M1R4B3L))
 
 ## Download Game: 
 
@@ -18,15 +18,39 @@ Made by:
 
 About the game:
 
-This first release is a simple platformer game, made for a single player where you have to get to the end of the level. There are currently only two levels.
-To move across the map the player can use basic mechanics as Moving Left/Right and jumping. There are also other movement mechanics such as Dashing and transforming 
-into a small slime which has a smaller collider which allows you to reach certain areas that can't be reached by normal means.
+This game is a 2D platformer game where you play as a character with directional movement (Left,Right,Up,Down). It also has a dash which allows the player to reach places which wouldn't be reachable with only a jump.
+The game has currently 2 levels, they have their own tileset, enemies and music.
+Flying enemies (2 of them) which can move freely (they are affected by walls and platforms) and will chase the player.
+Ground enemies that will be in different platforms, once a player enters their Engage Distance, they will chase the player as long as they are in the same platform as their target. They dont jump/fly/fall.
+
+Pathfinding has also been used for the enemies, this allows them to search for the player and reach them looking for the fastest path to the target.
+
+Framerate can be capped/uncapped, it can also be done with vsync.?
+
+Some of the Logic will be done depending on the framerate, others will be done independently of the framerate.
+
+
+
+
+
+## INNOVATION
+
+- CheckPoints to save progress that allow you to load in case you die.
+- Ambient Music (depending on the area in a same level, different musics will be played).
+- When the player starts combat (An enemy has detected the player nearby), a different music will be played.
+- Teleporting platforms that allow the player to cover great distances and move around the map in an easier way.
+
+
+## UML
+
+UML map included to show the Entity System that has been used to create all entities in the game.
 
 ## Controls:
 - Left -> A    
 - Right -> D
 - Jump -> Space
-- Dash -> U (It does not work as it should do)
+- Dash -> U (Dash Available when the player falls)
+- Activate Teleporter Platform -> I
 
 ## Save/Load the location of the character 
 - Save Game -> F5
@@ -42,7 +66,7 @@ into a small slime which has a smaller collider which allows you to reach certai
 
 - View Colliders/Logic -> F9
 
-- God Mode -> F10
+- God Mode -> F10 (ONCE IN GOD MODE YOU CAN'T EXIT IT)
 
 - God Mode Move Left -> A
 
@@ -59,16 +83,23 @@ into a small slime which has a smaller collider which allows you to reach certai
         https://opengameart.org/content/generic-platformer-tiles
 
         https://anokolisa.itch.io/pocket-pack-black-temple
+        
+        https://itch.io (Enemy Spritesheets)
+
+
    
 - AUDIO:
 
         https://opengameart.org/content/platformer-game-music-pack
+        The Witcher 3 SoundTrack
+
+
 
 ## License:
 
 MIT License
 
-Copyright (c) [2019] [Marc Ariza, Adrián Mirabel]
+Copyright (c) [2019] [Marc Ariza, Adrian Mirabel]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
