@@ -8,6 +8,7 @@
 #include "j1Player.h"
 #include "j1Map.h"
 #include "j1Pathfinding.h"
+#include "Brofiler/Brofiler.h"
 
 
 j1Slime::j1Slime(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::SLIME)
@@ -48,6 +49,7 @@ j1Slime::~j1Slime()
 
 bool j1Slime::Start()
 {
+	BROFILER_CATEGORY("Slime Start();", Profiler::Color::Lime)
 	texture = App->tex->Load("Sprites/Slime.png");
 	InitEntity();
 	return true;
@@ -55,6 +57,7 @@ bool j1Slime::Start()
 
 bool j1Slime::PreUpdate()
 {
+	BROFILER_CATEGORY("Skull PreUpdate();", Profiler::Color::Azure)
 	//position.y += gravity;
 	collider->rect.x = position.x;
 	collider->rect.y = position.y;
@@ -63,7 +66,7 @@ bool j1Slime::PreUpdate()
 
 bool j1Slime::Update(float dt)
 {
-
+	BROFILER_CATEGORY("Skull Update();", Profiler::Color::PeachPuff)
 	if (!Dead || state != AttackReadyState || state != AttackState) {
 		ComparePositions();
 	}
@@ -155,7 +158,7 @@ bool j1Slime::Update(float dt)
 
 bool j1Slime::PostUpdate()
 {
-
+	BROFILER_CATEGORY("Skull PostUpdate();", Profiler::Color::Olive)
 
 	SLMrect.x = position.x;
 	SLMrect.y = position.y;
@@ -179,6 +182,8 @@ bool j1Slime::PostUpdate()
 
 bool j1Slime::CleanUp()
 {
+
+	BROFILER_CATEGORY("Skull CleanUp();", Profiler::Color::Red)
 	App->tex->UnLoad(texture);
 
 	return true;
@@ -196,7 +201,7 @@ bool j1Slime::Save(pugi::xml_node &node) const
 
 void j1Slime::OnCollision(Collider* A, Collider* B)
 {
-
+	BROFILER_CATEGORY("Skull OnCollision();", Profiler::Color::Red)
 	if (A->type == ObjectType::Slime) {
 
 		if (B->type == ObjectType::Player) {
@@ -270,6 +275,7 @@ bool j1Slime::InitEntity()
 
 void j1Slime::ComparePositions()
 {
+	BROFILER_CATEGORY("Skull Path();", Profiler::Color::SlateGray)
 	if (Dead != true) {
 		if (App->entityManager->player != nullptr) {
 

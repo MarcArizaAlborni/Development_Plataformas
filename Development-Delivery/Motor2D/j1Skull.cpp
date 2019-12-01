@@ -9,6 +9,7 @@
 #include "j1Map.h"
 #include "j1FadeToBlack.h"
 
+#include "Brofiler/Brofiler.h"
 
 j1Skull::j1Skull(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::SKULL)
 {
@@ -38,6 +39,7 @@ j1Skull::~j1Skull()
 
 bool j1Skull::Start()
 {
+	BROFILER_CATEGORY("Skull Start();", Profiler::Color::Lavender)
 	texture = App->tex->Load("Sprites/Skull.png");
 	InitEntity();
 	return true;
@@ -45,6 +47,7 @@ bool j1Skull::Start()
 
 bool j1Skull::PreUpdate()
 {
+	BROFILER_CATEGORY("Skull PreUpdate();", Profiler::Color::NavajoWhite)
 	collider->rect.x = position.x;
 	collider->rect.y = position.y;
 	return true;
@@ -52,7 +55,7 @@ bool j1Skull::PreUpdate()
 
 bool j1Skull::Update(float dt)
 {
-
+	BROFILER_CATEGORY("Skull Update();", Profiler::Color::LightCyan)
 	if (!Dead) {
 		ComparePositions();
 	}
@@ -116,6 +119,7 @@ bool j1Skull::Update(float dt)
 
 bool j1Skull::PostUpdate()
 {
+	BROFILER_CATEGORY("Skull PostUpdate();", Profiler::Color::YellowGreen)
 	SLLrect.x = position.x;
 	SLLrect.y = position.y;
 
@@ -138,6 +142,7 @@ bool j1Skull::PostUpdate()
 
 bool j1Skull::CleanUp()
 {
+	BROFILER_CATEGORY("Skull CleanUp();", Profiler::Color::SaddleBrown)
 	App->tex->UnLoad(texture);
 
 	return true;
@@ -155,6 +160,7 @@ bool j1Skull::Save(pugi::xml_node &node) const
 
 void j1Skull::OnCollision(Collider* A, Collider* B)
 {
+	BROFILER_CATEGORY("Skull OnCollision();", Profiler::Color::LightSalmon)
 	if (A->type == ObjectType::Skull) {
 
 		if (B->type == ObjectType::Player) {
@@ -213,6 +219,7 @@ bool j1Skull::InitEntity()
 
 void j1Skull::ComparePositions()
 {
+	BROFILER_CATEGORY("Skull Path();", Profiler::Color::DodgerBlue)
 	if (Dead != true) {
 		if (App->entityManager->player != nullptr) {
 

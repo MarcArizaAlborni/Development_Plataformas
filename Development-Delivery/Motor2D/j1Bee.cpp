@@ -9,6 +9,8 @@
 #include "j1Map.h"
 #include "j1FadeToBlack.h"
 
+#include "Brofiler/Brofiler.h"
+
 
 j1Bee::j1Bee(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::BEE)
 {
@@ -45,6 +47,7 @@ j1Bee::~j1Bee()
 
 bool j1Bee::Start()
 {
+	BROFILER_CATEGORY("Bee Start();", Profiler::Color::Brown)
 	texture = App->tex->Load("Sprites/Bee.png");
 	InitEntity();
 	return true;
@@ -59,7 +62,7 @@ bool j1Bee::PreUpdate()
 
 bool j1Bee::Update(float dt)
 {
-
+	BROFILER_CATEGORY("Bee Update();", Profiler::Color::DodgerBlue)
 	if (!Dead) {
 		ComparePositions();
 	}
@@ -123,6 +126,7 @@ bool j1Bee::Update(float dt)
 
 bool j1Bee::PostUpdate()
 {
+	BROFILER_CATEGORY("Bee PostUpdate();", Profiler::Color::SaddleBrown)
 	Beerect.x = position.x;
 	Beerect.y = position.y;
 
@@ -145,6 +149,7 @@ bool j1Bee::PostUpdate()
 
 bool j1Bee::CleanUp()
 {
+	BROFILER_CATEGORY("Bee CleanUp();", Profiler::Color::FireBrick)
 	App->tex->UnLoad(texture);
 
 	return true;
@@ -162,6 +167,7 @@ bool j1Bee::Save(pugi::xml_node &node) const
 
 void j1Bee::OnCollision(Collider* A, Collider* B)
 {
+	BROFILER_CATEGORY("Bee OnCollision();", Profiler::Color::CornflowerBlue)
 	if (A->type == ObjectType::Bee) {
 
 		if (B->type == ObjectType::Player) {
@@ -220,6 +226,7 @@ bool j1Bee::InitEntity()
 
 void j1Bee::ComparePositions()
 {
+	BROFILER_CATEGORY("Bee Path();", Profiler::Color::Pink)
 	if (Dead != true) {
 		if (App->entityManager->player != nullptr) {
 

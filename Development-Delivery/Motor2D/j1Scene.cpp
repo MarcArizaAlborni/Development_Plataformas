@@ -14,6 +14,8 @@
 #include "j1Player.h"
 #include "j1Skeleton.h"
 
+#include "Brofiler/Brofiler.h"
+
 j1Scene::j1Scene() : j1Module()
 {
 	name.create("scene");
@@ -50,7 +52,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Scene::Start()
 {
-
+	BROFILER_CATEGORY("Scene Start();", Profiler::Color::SkyBlue)
 	if (App->map->Load("SimpleLevel1.tmx") == true)
 	{
 		int w, h;
@@ -82,38 +84,14 @@ bool j1Scene::Start()
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
-	// debug pathfing ------------------
-	static iPoint origin;
-	static bool origin_selected = false;
-
-	int x, y;
-	App->input->GetMousePosition(x, y);
-	iPoint p = App->render->ScreenToWorld(x, y);
-	p = App->map->WorldToMap(p.x, p.y);
-
-	iPoint Player_pos = App->map->WorldToMap(0,0);
-
-	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-	{
-		if (origin_selected == true)
-		{
-			App->pathfinding->CreatePath(origin, p);
-			origin_selected = false;
-		}
-		else
-		{
-			origin = Player_pos;
-			origin_selected = true;
-		}
-	}
-
+	BROFILER_CATEGORY("Scene PreUpdate();", Profiler::Color::Brown)
 	return true;
 }
 
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
-
+	BROFILER_CATEGORY("Scene Update();", Profiler::Color::Thistle)
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		App->LoadGame();
 
@@ -155,31 +133,13 @@ bool j1Scene::Update(float dt)
 		map_coordinates.x, map_coordinates.y);
 */
 	//App->win->SetTitle(title.GetString());
-
-	// Debug pathfinding ------------------------------
-	App->input->GetMousePosition(x, y);
-	iPoint p = App->render->ScreenToWorld(x, y);
-	p = App->map->WorldToMap(p.x, p.y);
-	p = App->map->MapToWorld(p.x, p.y);
-
-	App->render->Blit(debug_tex, p.x, p.y);
-
-	const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
-
-	for (uint i = 0; i < path->Count(); ++i)
-	{
-		iPoint pos = App->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-		App->render->Blit(debug_tex, pos.x, pos.y);
-	}
-
-
-
 	return true;
 }
 
 // Called each loop iteration
 bool j1Scene::PostUpdate()
 {
+	BROFILER_CATEGORY("Scene PostUpdate();", Profiler::Color::DarkBlue)
 	//VOLUMEN
 
 	/*if (App->input->GetKey(SDL_SCANCODE_KP_PLUS) == KEY_DOWN)
@@ -208,6 +168,7 @@ bool j1Scene::PostUpdate()
 // Called before quitting
 bool j1Scene::CleanUp()
 {
+	BROFILER_CATEGORY("Scene Start();", Profiler::Color::PeachPuff)
 	LOG("Freeing scene");
 
 	return true;
