@@ -6,15 +6,14 @@
 	<audio />
 	<map />
 	<scene>
-		<Level1 active="true" />
-		<Level2 active="false" />
+		<:anonymous />
 	</scene>
 	<collision />
 	<fade />
 	<entities>
-		<position1 x="1021" y="212" />
+		<position1 x="1004" y="212" />
 	</entities>
 	<renderer>
-		<camera x="-542" y="0" />
+		<camera x="-525" y="0" />
 	</renderer>
 </game_state>

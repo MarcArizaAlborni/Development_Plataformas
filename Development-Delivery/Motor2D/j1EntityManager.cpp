@@ -280,7 +280,7 @@ void j1EntityManager::CleanEntities()
 
 void j1EntityManager::OnCollision(Collider * c1, Collider * c2)
 {
-	for (p2List_item<j1Entities*>* EntitySelect = entityList.start;EntitySelect != nullptr; EntitySelect = EntitySelect->next)
+	for (p2List_item<j1Entities*>* EntitySelect = entityList.start; EntitySelect != nullptr; EntitySelect = EntitySelect->next)
 	{
 		if (EntitySelect->data->collider == c1)
 		{

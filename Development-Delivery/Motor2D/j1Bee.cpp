@@ -8,7 +8,6 @@
 #include "j1Player.h"
 #include "j1Map.h"
 #include "j1FadeToBlack.h"
-#include "j1Scene.h"
 
 
 j1Bee::j1Bee(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::BEE)
@@ -173,8 +172,7 @@ void j1Bee::OnCollision(Collider* A, Collider* B)
 		if (B->type == ObjectType::Player) {
 
 			if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h) > B->rect.y)) {
-				App->entityManager->player->position.x = App->entityManager->player->Inipos.x;
-				App->entityManager->player->position.y = App->entityManager->player->Inipos.y;
+				//App->fade->FadeToBlack("SimpleLevel1.tmx");
 			}
 		}
 
