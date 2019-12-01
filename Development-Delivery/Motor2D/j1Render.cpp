@@ -80,7 +80,7 @@ bool j1Render::Update(float dt)
 	if (App->entityManager->player != nullptr) {
 
 		camera.x = -App->entityManager->player->position.x + winH;
-
+		 
 		if (camera.x >= 0)
 		{
 			camera.x = 0;
