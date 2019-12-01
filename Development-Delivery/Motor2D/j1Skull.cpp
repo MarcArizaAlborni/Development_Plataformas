@@ -11,14 +11,23 @@
 
 j1Skull::j1Skull(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::SKELETON)
 {
-	idle.PushBack({ 0,0,0,0 });
-	/*idle.PushBack({ 0,32,23,32 });
-
-	walking.PushBack({ 24,0,22,32 });
-	walking.PushBack({ 24,32,22,32 });
-
-	death.PushBack({ 46,0,30,32 });
-	death.PushBack({ 46,32,30,32 });*/
+	idle.PushBack({ 0,0,40,40 });
+	idle.PushBack({ 40,0,40,40 });
+	idle.PushBack({ 80,0,40,40 });
+	idle.PushBack({ 120,0,40,40 });
+	idle.PushBack({ 0,40,40,40 });
+	idle.PushBack({ 40,40,40,40 });
+	idle.PushBack({ 80,40,40,40 });
+	idle.PushBack({ 120,40,40,40 });
+	idle.PushBack({ 0,80,40,40 });
+	idle.PushBack({ 40,80,40,40 });
+	idle.PushBack({ 80,80,40,40 });
+	idle.PushBack({ 120,80,40,40 });
+	idle.PushBack({ 0,120,40,40 });
+	idle.PushBack({ 40,120,40,40 });
+	idle.PushBack({ 80,120,40,40 });
+	idle.PushBack({ 120,120,40,40 });
+	idle.speed = 0.3f;
 
 }
 

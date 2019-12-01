@@ -19,15 +19,25 @@ j1Slime::j1Slime(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::
 	idle.PushBack({ 175,0,35,37 });
 	idle.speed = 0.3f;
 
-	walking.PushBack({ 0,37,35,37 });
-	walking.PushBack({ 35,37,35,37 });
-	walking.PushBack({ 70,37,35,37 });
-	walking.PushBack({ 105,37,35,37 });
-	walking.PushBack({ 140,37,35,37 });
-	walking.PushBack({ 175,37,35,37 });
-	walking.PushBack({ 210,37,35,37 });
-	walking.PushBack({ 245,37,35,37 });
+	walking.PushBack({ 0,37,35,34 });
+	walking.PushBack({ 35,37,35,34 });
+	walking.PushBack({ 70,37,35,34 });
+	walking.PushBack({ 105,37,35,34 });
+	walking.PushBack({ 140,37,35,34 });
+	walking.PushBack({ 175,37,35,34 });
+	walking.PushBack({ 210,37,35,34 });
+	walking.PushBack({ 245,37,35,34 });
 	walking.speed = 0.2f;
+
+	attack.PushBack({0,71,49,34});
+	attack.PushBack({49,71,49,34});
+	attack.PushBack({98,71,49,34});
+	attack.PushBack({147,71,49,34});
+	attack.PushBack({196,71,49,34});
+	attack.PushBack({245,71,49,34});
+	attack.PushBack({294,71,49,34});
+	attack.PushBack({343,71,49,34});
+	attack.speed = 0.2f;
 }					
 					
 j1Slime::~j1Slime()	

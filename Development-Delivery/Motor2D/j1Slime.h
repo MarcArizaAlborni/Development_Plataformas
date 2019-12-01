@@ -36,4 +36,5 @@ public:
 	Animation		idle;
 	Animation		walking;
 	Animation		death;
+	Animation		attack;
 };

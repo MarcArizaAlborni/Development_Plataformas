@@ -54,8 +54,26 @@ j1Skeleton::j1Skeleton(iPoint pos, EntitiesType type) : j1Entities(pos, Entities
 	death.PushBack({ 46,384,30,32 });
 	death.speed = 0.3;
 
-	state = IdleState;
-	gravity = 0;
+	attack.PushBack({79,0,40,37});
+	attack.PushBack({79,37,40,37});
+	attack.PushBack({79,74,40,37});
+	attack.PushBack({79,111,40,37});
+	attack.PushBack({79,148,40,37});
+	attack.PushBack({79,185,40,37});
+	attack.PushBack({79,222,40,37});
+	attack.PushBack({79,259,40,37});
+	attack.PushBack({79,296,40,37});
+	attack.PushBack({79,333,40,37});
+	attack.PushBack({79,370,40,37});
+	attack.PushBack({79,407,40,37});
+	attack.PushBack({79,444,40,37});
+	attack.PushBack({79,481,40,37});
+	attack.PushBack({79,518,40,37});
+	attack.PushBack({79,555,40,37});
+	attack.PushBack({79,592,40,37});
+	attack.PushBack({79,629,40,37});
+	attack.speed = 0.3f;
+
 }
 
 j1Skeleton::~j1Skeleton()
@@ -169,7 +187,8 @@ bool j1Skeleton::Update(float dt)
 
 		//ATTACK ANIMATION LEFT
 		if (AttackLeft) {
-			animation = &death;
+			flip = true;
+			animation = &attack;
 			//if (animation->FinishedAnimation()) {
 
 			state = AttackState;
@@ -177,7 +196,7 @@ bool j1Skeleton::Update(float dt)
 		}
 		//ATACK ANIMATION RIGHT
 		else if (AttackRight) {
-			animation = &death;
+			animation = &attack;
 			//if (animation->FinishedAnimation()) {
 			state = AttackState;
 			//}
