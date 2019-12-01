@@ -62,6 +62,7 @@ bool j1Scene::Start()
 	App->entityManager->AddEnemies({ 2300,120 }, BEE);
 	App->entityManager->AddEnemies({ 1000, 222}, SKELETON);
 	App->entityManager->AddEnemies({ 800,100 }, SKULL);
+	App->entityManager->AddEnemies({ 1600, 290 }, SKELETON);
 	//App->entityManager->AddEnemies({ 2300,180 }, BEE);
 
 	App->entityManager->CreateEntity(PLAYER);

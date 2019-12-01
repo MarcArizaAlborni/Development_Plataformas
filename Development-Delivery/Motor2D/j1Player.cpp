@@ -141,6 +141,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 		if (state == IdleState)
 		{
 			
+			
 			if (PlayerInput.A_active)
 			{
 				state = LeftState;
@@ -189,8 +190,9 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 				//LOG("LEFT TO IDLE");
 			}
 
-			if (PlayerInput.U_active && CanDash == true) {
+			if (PlayerInput.U_active && CanDash == true && DashedBefore==false) {
 				DashActiveLeft = true;
+				DashedBefore = true;
 				StartPosition.x = position.x;
 				state = DashState;
 				LOG("LEFT TO DASH LEFT");
@@ -214,8 +216,9 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 				//LOG("RIGHT TO IDLE");
 			}
 
-			if (PlayerInput.U_active && CanDash==true) {
+			if (PlayerInput.U_active && CanDash==true && DashedBefore == false) {
 				DashActiveRight = true;
+				DashedBefore = true;
 				StartPosition.x = position.x;
 				state = DashState;
 				LOG("LEFT TO DASH RIGHT");
@@ -236,13 +239,15 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 			//LOG("FALL STATE");
 			Movement();
 
-			if (PlayerInput.U_active && PlayerInput.D_active) {
+			if (PlayerInput.U_active && PlayerInput.D_active&& DashedBefore == false) {
 				DashActiveRight = true;
+				DashedBefore = true;
 				StartPosition.x = position.x;
 				state = DashState;
 			}
-			else if (PlayerInput.U_active && PlayerInput.A_active) {
+			else if (PlayerInput.U_active && PlayerInput.A_active&& DashedBefore == false) {
 				DashActiveLeft = true;
+				DashedBefore = true;
 				StartPosition.x = position.x;
 				state = DashState;
 			}
@@ -352,27 +357,6 @@ bool j1Player::Update(float dt)
 		
 		break;
 
-	case DoubleJumpState:
-
-		LOG("DOUBLE JUMP STATE");
-		EndJump = false;
-		Gravity = GravitySave;
-		animation = &jump;
-		//On_The_Ground();
-		
-		if (Jump_Ready == true) {
-			MidAirUP = true;
-			LOG("GOING TO DOUBLE JUMP");
-			Jumping();
-		}
-		if (EndJump == true) {
-			state = IdleState;
-			animation = &idle;
-			LOG("DOUBLE JUMP TO IDLE");
-		}
-		
-
-		break;
 
 	case DashState:
 		
@@ -481,6 +465,7 @@ bool j1Player::Update(float dt)
 				 position.y = LastPosition.y;
 				 position.y = B->rect.y - A->rect.h -5;
 				 float Gravity2 = Gravity;
+				 DashedBefore = false;
 
 			 }
 		 }
@@ -604,6 +589,7 @@ bool j1Player::Update(float dt)
 	 DashDist = 90;
 	 Player_Width = 21;
 	 Player_Height = 35;
+	 DashedBefore = false;
 
 
 	 // ESTA BE PERO TAMBE ES POT POSSAR
@@ -638,32 +624,33 @@ bool j1Player::Update(float dt)
 	 BROFILER_CATEGORY("Player Dash()", Profiler::Color::YellowGreen)
 		 MidAirUP = false;
 		 Gravity = 0;
-		 if (StartPosition.x - DashDist < position.x && DashActiveLeft == true && TouchingCollider == false) {
+		
+			 if (StartPosition.x - DashDist < position.x && DashActiveLeft == true && TouchingCollider == false) {
 
-			 position.x -= Character_vel.x * 2;
-			 //CurrentPosition.y -= 1; //MAGIC NUMBER UNA VEGADA ELS COLIDERS FUNCIONIN PERFECTAMENT NO FARA FALTA
-			 LOG("DASH FUNCTION LEFT");
+				 position.x -= Character_vel.x * 2;
+				 //CurrentPosition.y -= 1; //MAGIC NUMBER UNA VEGADA ELS COLIDERS FUNCIONIN PERFECTAMENT NO FARA FALTA
+				 LOG("DASH FUNCTION LEFT");
 
-		 }
-		 else if (StartPosition.x + DashDist > position.x && DashActiveRight == true && TouchingCollider == false) {
+			 }
+			 else if (StartPosition.x + DashDist > position.x && DashActiveRight == true && TouchingCollider == false) {
 
-			 position.x += Character_vel.x * 2;
-			 //CurrentPosition.y -= 1; //MAGIC NUMBER UNA VEGADA ELS COLIDERS FUNCIONIN PERFECTAMENT NO FARA FALTA
+				 position.x += Character_vel.x * 2;
+				 //CurrentPosition.y -= 1; //MAGIC NUMBER UNA VEGADA ELS COLIDERS FUNCIONIN PERFECTAMENT NO FARA FALTA
 
-			 LOG("DASH FUNCTION RIGHT");
+				 LOG("DASH FUNCTION RIGHT");
 
-		 }
-		 else {
-			 DashActiveLeft = false;
-			 DashActiveRight = false;
-			 //MidAirUP = false;
-			 Gravity = GravitySave;
-			 state = FallState;
+			 }
+			 else {
+				 DashActiveLeft = false;
+				 DashActiveRight = false;
+				 //MidAirUP = false;
+				 Gravity = GravitySave;
+				 state = FallState;
 
-			 LOG("DASH  TO JUMP");
-		 }
-	 
+				 LOG("DASH  TO JUMP");
+			 }
 
+		 
 
  }
 
@@ -679,13 +666,7 @@ bool j1Player::Update(float dt)
 
 
 
-		 /*if (PlayerInput.U_active&&PlayerInput.A_active) {
-
-			 DashActiveRight;
-			 DashFunction();
-
-		 }*/
-
+		
 
 		 if (PlayerInput.A_active) {
 			 position.x -= 1.5*Character_vel.x;

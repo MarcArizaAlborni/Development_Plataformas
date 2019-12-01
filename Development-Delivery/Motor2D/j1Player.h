@@ -155,8 +155,7 @@ public:
 	bool DashActiveRight;
 	bool CanDash;
 	bool DashDone;
-	
-
+	bool DashedBefore;
 	void DashFunction();
 
 };

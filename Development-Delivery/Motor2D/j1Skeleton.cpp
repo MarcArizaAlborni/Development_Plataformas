@@ -122,6 +122,7 @@ bool j1Skeleton::Update(float dt)
 	case LeftState:
 		AttackLeft, AttackRight = false;
 		if (GoLeft) {
+			flip = true;
 			Movement();//1 FOR LEFT 0 FOR RIGHT
 			//LOG("SKELETON LEFT");
 			animation = &walking;
@@ -133,8 +134,9 @@ bool j1Skeleton::Update(float dt)
 
 	case RightState:
 		AttackLeft, AttackRight = false;
-		flip = true;
+		
 		if (GoRight) {
+			flip = false;
 			//LOG("SKELETON RIGHT");
 			Movement();
 			

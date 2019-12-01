@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="260">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="263">
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32" tilecount="768" columns="32">
   <image source="generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
@@ -7556,7 +7556,6 @@
   <object id="101" name="LateralPlatform" type="LateralPlatform" x="832" y="289" width="0.152344" height="30"/>
   <object id="102" name="LateralPlatform" type="LateralPlatform" x="896" y="289" width="0.152344" height="30"/>
   <object id="103" name="LateralPlatform" type="LateralPlatform" x="959.99" y="256.113" width="0.152344" height="29"/>
-  <object id="106" name="LateralPlatform" type="LateralPlatform" x="1728" y="321" width="0.152344" height="63"/>
   <object id="107" name="LateralPlatform" type="LateralPlatform" x="1536" y="321" width="0.152344" height="63"/>
   <object id="109" name="LateralPlatform" type="LateralPlatform" x="1344" y="321" width="0.152344" height="62"/>
   <object id="110" name="LateralPlatform" type="LateralPlatform" x="1216" y="321" width="0.152344" height="63"/>
@@ -7633,6 +7632,7 @@
   <object id="257" name="Floor" type="Platform" x="479.826" y="319.848" width="160" height="64"/>
   <object id="258" name="LateralPlatformLeft" type="LateralPlatformLeft" x="639.56" y="320.462" width="0.697782" height="63.1739"/>
   <object id="259" name="LateralPlatformLeft" type="LateralPlatformLeft" x="1088.07" y="256.032" width="0.262999" height="14.6739"/>
+  <object id="262" name="LateralPlatformLeft" type="LateralPlatformLeft" x="1728.4" y="319.913" width="0.697782" height="63.1739"/>
  </objectgroup>
  <layer id="13" name="Pathfinding" width="100" height="15">
   <properties>
