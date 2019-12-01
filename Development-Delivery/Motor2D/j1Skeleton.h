@@ -33,7 +33,6 @@ public:
 
 	//Initial properties
 	bool flip = false;
-
 	SDL_Rect SKrect;
 	int SKwidth;
 	int SKheight;
@@ -49,7 +48,6 @@ public:
 	//PATHING
 	p2DynArray<iPoint>* path;
 	bool Dead;
-	float gravity;
 	float jumpforce_xml;
 	iPoint Pathing;
 

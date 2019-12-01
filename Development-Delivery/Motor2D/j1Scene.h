@@ -15,7 +15,7 @@ public:
 	virtual ~j1Scene();
 
 	// Called before render is available
-	bool Awake();
+	bool Awake(pugi::xml_node&);
 
 	// Called before the first frame
 	bool Start();
@@ -34,6 +34,13 @@ public:
 
 	// Save Current Map
 	bool Save(pugi::xml_node& data) const;
+
+	//Spawn Points
+	iPoint Skeleton1;
+	iPoint Skeleton2;
+	iPoint Skeleton3;
+	iPoint Skull1;
+	iPoint Bee1;
 
 private:
 

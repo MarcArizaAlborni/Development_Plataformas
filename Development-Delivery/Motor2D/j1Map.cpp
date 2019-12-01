@@ -33,7 +33,7 @@ bool j1Map::Awake(pugi::xml_node& config)
 
 void j1Map::Draw()
 {
-	BROFILER_CATEGORY("Map Draw();", Profiler::Color::LemonChiffon)
+	BROFILER_CATEGORY("Map Draw();", Profiler::Color::PaleVioletRed)
 
 	if(map_loaded == false)
 		return;

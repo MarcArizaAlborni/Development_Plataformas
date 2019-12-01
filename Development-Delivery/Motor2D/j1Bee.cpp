@@ -201,9 +201,13 @@ void j1Bee::OnCollision(Collider* A, Collider* B)
 
 bool j1Bee::InitEntity()
 {
+	pugi::xml_document config;
+	config.load_file("config.xml");
 
-	Beewidth = 32;
-	Beeheight = 32;
+	pugi::xml_node bee = config.child("config").child("entities").child("bee");
+
+	Beewidth = bee.attribute("width").as_int();
+	Beeheight = bee.attribute("height").as_int();
 
 	animation = &idle;
 	state = IdleState;

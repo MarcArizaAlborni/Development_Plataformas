@@ -569,7 +569,6 @@ bool j1Player::Update(float dt)
 				 App->audio->Area1Level1 = false;
 				 App->audio->Area2Level1 = true;
 				 App->audio->PlayMusic("audio/Music/L1_A2.ogg");
-
 			 }
 		 }
 
@@ -579,38 +578,32 @@ bool j1Player::Update(float dt)
  
  bool j1Player::InitEntity()
  {
+	 pugi::xml_document config;
+	 config.load_file("config.xml");
+
+	pugi::xml_node player = config.child("config").child("entities").child("player");
 
 	//POSSAR EN EL XML
-	 Inipos.x = 90.0f;
-	 Inipos.y = 250;
-	 Character_vel.x = 5;
-	 TempVelY = Character_vel.y = 60;
-	 GravitySave = Gravity = 6;
-	 DashDist = 90;
-	 Player_Width = 21;
-	 Player_Height = 35;
-	 DashedBefore = false;
-
+	 Inipos.x = player.attribute("inipos_x").as_float();
+	 Inipos.y = player.attribute("inipos_y").as_float();;
+	 Character_vel.x = player.attribute("velocity_x").as_int();
+	 TempVelY = Character_vel.y = player.attribute("velocity_y").as_int();
+	 GravitySave = Gravity = player.attribute("gravity").as_int();
+	 DashDist = player.attribute("DashDistance").as_int();
+	 Player_Width = player.attribute("width").as_int();
+	 Player_Height = player.attribute("height").as_int();
+	 DashedBefore = player.child("DashedBefore").attribute("active").as_bool();
 
 	 // ESTA BE PERO TAMBE ES POT POSSAR
-	 CanDash = true;
-
-	 JumpTicks = true;
-
+	 CanDash = player.child("CanDash").attribute("active").as_bool();
+	 CanJump = player.child("CanJump").attribute("active").as_bool();
+	 JumpTicks = player.child("JumpTicks").attribute("active").as_bool();
 	 state = IdleState;
-
 	 animation = &idle;
-
-	 CanJump = false;
-
 	 floor = position.y;
-	 
 	 position = { Inipos.x, Inipos.y };
-
 	 Player_Rect = { position.x, position.y, Player_Width, Player_Height };
-
-	 collider = App->collision->AddCollider(Player_Rect, ObjectType::Player, App->entityManager); //NO SE QUE POSSAR AL CALLBACK
-
+	 collider = App->collision->AddCollider(Player_Rect, ObjectType::Player, App->entityManager); 
 	 // On_Ground = true;
 	
 

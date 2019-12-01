@@ -114,10 +114,6 @@ bool j1Slime::Update(float dt)
 
 		break;
 
-	
-
-	
-
 	case AttackState:
 
 		if (AttackLeft == true) {
@@ -255,9 +251,13 @@ void j1Slime::OnCollision(Collider* A, Collider* B)
 
 bool j1Slime::InitEntity()
 {
+	pugi::xml_document config;
+	config.load_file("config.xml");
 
-	SLMwidth = 21;
-	SLMheight = 35;
+	pugi::xml_node slime = config.child("config").child("entities").child("slime");
+
+	SLMwidth = slime.attribute("width").as_int();
+	SLMheight = slime.attribute("height").as_int();
 
 	state = IdleState;
 

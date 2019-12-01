@@ -44,7 +44,6 @@ public:
 	
 
 	bool Dead;
-	float gravity;
 	float jumpforce_xml;
 	iPoint Pathing;
 

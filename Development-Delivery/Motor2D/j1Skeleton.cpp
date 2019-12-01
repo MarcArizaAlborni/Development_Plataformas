@@ -292,9 +292,13 @@ void j1Skeleton::OnCollision(Collider* A, Collider* B)
 
 bool j1Skeleton::InitEntity()
 {
+	pugi::xml_document config;
+	config.load_file("config.xml");
 
-	SKwidth = 21;
-	SKheight = 35;
+	pugi::xml_node skeleton = config.child("config").child("entities").child("skeleton");
+
+	SKwidth = skeleton.attribute("width").as_int();
+	SKheight = skeleton.attribute("height").as_int();
 
 	state = IdleState;
 

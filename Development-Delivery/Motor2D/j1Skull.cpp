@@ -194,9 +194,13 @@ void j1Skull::OnCollision(Collider* A, Collider* B)
 
 bool j1Skull::InitEntity()
 {
+	pugi::xml_document config;
+	config.load_file("config.xml");
 
-	SLLwidth = 32;
-	SLLheight = 32;
+	pugi::xml_node skull = config.child("config").child("entities").child("skull");
+
+	SLLwidth = skull.attribute("width").as_int();
+	SLLheight = skull.attribute("height").as_int();
 
 	animation = &idle;
 	state = IdleState;
