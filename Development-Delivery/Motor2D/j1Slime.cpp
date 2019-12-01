@@ -12,67 +12,33 @@
 
 j1Slime::j1Slime(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::SLIME)
 {
-	idle.PushBack({ 0,0,24,32 });
-	idle.PushBack({ 0,32,24,32 });
-	idle.PushBack({ 0,64,24,32 });
-	idle.PushBack({ 0,96,24,32 });
-	idle.PushBack({ 0,128,24,32 });
-	idle.PushBack({ 0,160,24,32 });
-	idle.PushBack({ 0,192,24,32 });
-	idle.PushBack({ 0,224,24,32 });
-	idle.PushBack({ 0,256,24,32 });
-	idle.PushBack({ 0,288,24,32 });
-	idle.speed = 0.5;
+	idle.PushBack({ 0,0,35,37 });
+	idle.PushBack({ 35,0,35,37 });
+	idle.PushBack({ 70,0,35,37 });
+	idle.PushBack({ 105,0,35,37 });
+	idle.PushBack({ 140,0,35,37 });
+	idle.PushBack({ 175,0,35,37 });
+	idle.speed = 0.3f;
 
-	walking.PushBack({ 24,0,22,32 });
-	walking.PushBack({ 24,32,22,32 });
-	walking.PushBack({ 24,64,22,32 });
-	walking.PushBack({ 24,96,22,33 });
-	walking.PushBack({ 24,129,22,33 });
-	walking.PushBack({ 24,162,22,33 });
-	walking.PushBack({ 24,195,22,32 });
-	walking.PushBack({ 24,227,22,32 });
-	walking.PushBack({ 24,259,22,32 });
-	walking.PushBack({ 24,291,22,32 });
-	walking.PushBack({ 24,323,22,32 });
-	walking.PushBack({ 24,355,22,32 });
-	walking.PushBack({ 24,387,22,32 });
-	walking.speed = 0.5;
+	walking.PushBack({ 0,37,35,34 });
+	walking.PushBack({ 35,37,35,34 });
+	walking.PushBack({ 70,37,35,34 });
+	walking.PushBack({ 105,37,35,34 });
+	walking.PushBack({ 140,37,35,34 });
+	walking.PushBack({ 175,37,35,34 });
+	walking.PushBack({ 210,37,35,34 });
+	walking.PushBack({ 245,37,35,34 });
+	walking.speed = 0.2f;
 
-	death.PushBack({ 46,0,30,32 });
-	death.PushBack({ 46,32,30,32 });
-	death.PushBack({ 46,64,30,32 });
-	death.PushBack({ 46,96,30,32 });
-	death.PushBack({ 46,128,30,32 });
-	death.PushBack({ 46,160,30,32 });
-	death.PushBack({ 46,192,30,32 });
-	death.PushBack({ 46,224,30,32 });
-	death.PushBack({ 46,256,30,32 });
-	death.PushBack({ 46,288,30,32 });
-	death.PushBack({ 46,320,30,32 });
-	death.PushBack({ 46,352,30,32 });
-	death.PushBack({ 46,384,30,32 });
-	death.speed = 0.3;
-
-	attack.PushBack({ 79,0,40,37 });
-	attack.PushBack({ 79,37,40,37 });
-	attack.PushBack({ 79,74,40,37 });
-	attack.PushBack({ 79,111,40,37 });
-	attack.PushBack({ 79,148,40,37 });
-	attack.PushBack({ 79,185,40,37 });
-	attack.PushBack({ 79,222,40,37 });
-	attack.PushBack({ 79,259,40,37 });
-	attack.PushBack({ 79,296,40,37 });
-	attack.PushBack({ 79,333,40,37 });
-	attack.PushBack({ 79,370,40,37 });
-	attack.PushBack({ 79,407,40,37 });
-	attack.PushBack({ 79,444,40,37 });
-	attack.PushBack({ 79,481,40,37 });
-	attack.PushBack({ 79,518,40,37 });
-	attack.PushBack({ 79,555,40,37 });
-	attack.PushBack({ 79,592,40,37 });
-	attack.PushBack({ 79,629,40,37 });
-	attack.speed = 0.3f;
+	attack.PushBack({ 0,71,49,34 });
+	attack.PushBack({ 49,71,49,34 });
+	attack.PushBack({ 98,71,49,34 });
+	attack.PushBack({ 147,71,49,34 });
+	attack.PushBack({ 196,71,49,34 });
+	attack.PushBack({ 245,71,49,34 });
+	attack.PushBack({ 294,71,49,34 });
+	attack.PushBack({ 343,71,49,34 });
+	attack.speed = 0.2f;
 
 }
 

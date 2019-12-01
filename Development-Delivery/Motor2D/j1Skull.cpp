@@ -12,30 +12,23 @@
 
 j1Skull::j1Skull(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::SKULL)
 {
-	idle.PushBack({ 0,0,36,32 });
-	idle.PushBack({ 0,32,36,32 });
-	idle.PushBack({ 0,64,36,32 });
-	idle.PushBack({ 0,96,36,32 });
-	idle.PushBack({ 0,128,36,32 });
-	idle.PushBack({ 0,160,36,32 });
-	idle.speed = 0.5f;
-
-	walking.PushBack({ 36,0,36,32 });
-	walking.PushBack({ 36,32,36,32 });
-	walking.PushBack({ 36,64,36,32 });
-	walking.PushBack({ 36,96,36,32 });
-	walking.PushBack({ 36,128,36,32 });
-	walking.PushBack({ 36,160,36,32 });
-	walking.PushBack({ 36,192,36,32 });
-	walking.PushBack({ 36,224,36,32 });
-	walking.speed = 0.5f;
-
-	death.PushBack({ 72,0,36,32 });
-	death.PushBack({ 72,32,36,32 });
-	death.PushBack({ 72,64,36,32 });
-	death.PushBack({ 72,96,36,32 });
-	death.PushBack({ 72,128,36,32 });
-	death.speed = 0.3f;
+	idle.PushBack({ 0,0,40,40 });
+	idle.PushBack({ 40,0,40,40 });
+	idle.PushBack({ 80,0,40,40 });
+	idle.PushBack({ 120,0,40,40 });
+	idle.PushBack({ 0,40,40,40 });
+	idle.PushBack({ 40,40,40,40 });
+	idle.PushBack({ 80,40,40,40 });
+	idle.PushBack({ 120,40,40,40 });
+	idle.PushBack({ 0,80,40,40 });
+	idle.PushBack({ 40,80,40,40 });
+	idle.PushBack({ 80,80,40,40 });
+	idle.PushBack({ 120,80,40,40 });
+	idle.PushBack({ 0,120,40,40 });
+	idle.PushBack({ 40,120,40,40 });
+	idle.PushBack({ 80,120,40,40 });
+	idle.PushBack({ 120,120,40,40 });
+	idle.speed = 0.3f;
 
 }
 
