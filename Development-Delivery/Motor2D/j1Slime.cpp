@@ -11,18 +11,26 @@
 
 j1Slime::j1Slime(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::SLIME)
 {
-	idle.PushBack({ 0,0,32,32 });
-	idle.PushBack({ 0,32,23,32 });
+	idle.PushBack({ 0,0,35,37 });
+	idle.PushBack({ 35,0,35,37 });
+	idle.PushBack({ 70,0,35,37 });
+	idle.PushBack({ 105,0,35,37 });
+	idle.PushBack({ 140,0,35,37 });
+	idle.PushBack({ 175,0,35,37 });
+	idle.speed = 0.3f;
 
-	walking.PushBack({ 24,0,22,32 });
-	walking.PushBack({ 24,32,22,32 });
-
-	death.PushBack({ 46,0,30,32 });
-	death.PushBack({ 46,32,30,32 });
-
-}
-
-j1Slime::~j1Slime()
+	walking.PushBack({ 0,37,35,37 });
+	walking.PushBack({ 35,37,35,37 });
+	walking.PushBack({ 70,37,35,37 });
+	walking.PushBack({ 105,37,35,37 });
+	walking.PushBack({ 140,37,35,37 });
+	walking.PushBack({ 175,37,35,37 });
+	walking.PushBack({ 210,37,35,37 });
+	walking.PushBack({ 245,37,35,37 });
+	walking.speed = 0.2f;
+}					
+					
+j1Slime::~j1Slime()	
 {
 }
 
@@ -49,7 +57,7 @@ bool j1Slime::Update(float dt)
 	switch (state)
 	{
 	case IdleState:
-		flip = true;
+		
 		animation = &idle;
 		break;
 
@@ -114,7 +122,6 @@ bool j1Slime::InitEntity()
 
 	state = IdleState;
 
-	animation = &idle;
 	SLMrect = { position.x, position.y, SLMwith, SLMheight };
 	collider = App->collision->AddCollider(SLMrect, ObjectType::Slime, App->entityManager);
 
