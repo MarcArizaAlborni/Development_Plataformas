@@ -39,6 +39,7 @@ Some of the Logic will be done depending on the framerate, others will be done i
 - Ambient Music (depending on the area in a same level, different musics will be played).
 - When the player starts combat (An enemy has detected the player nearby), a different music will be played.
 - Teleporting platforms that allow the player to cover great distances and move around the map in an easier way.
+- Dash has a cooldown that will not allow players to spam the move to fly across the level
 
 
 ## UML
@@ -49,7 +50,7 @@ UML map included to show the Entity System that has been used to create all enti
 - Left -> A    
 - Right -> D
 - Jump -> Space
-- Dash -> U (Dash Available when the player falls)
+- Dash -> U (Dash Available when the player falls) (With Cooldown)
 - Activate Teleporter Platform -> I
 
 ## Save/Load the location of the character 
