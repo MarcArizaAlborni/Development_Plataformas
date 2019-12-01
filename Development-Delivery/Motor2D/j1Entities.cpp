@@ -18,26 +18,31 @@ j1Entities::j1Entities(iPoint pos, EntitiesType type)
 
 bool j1Entities::Start()
 {
+	BROFILER_CATEGORY("Entity Start()", Profiler::Color::MistyRose)
 	return true;
 }
 
 bool j1Entities::PreUpdate()
 {
+	BROFILER_CATEGORY("Entity Start()", Profiler::Color::MediumSpringGreen)
 	return true;
 }
 
 bool j1Entities::Update(float dt)
 {
+	BROFILER_CATEGORY("Entity Start()", Profiler::Color::Turquoise)
 	return true;
 }
 
 bool j1Entities::PostUpdate()
 {
+	BROFILER_CATEGORY("Entity Start()", Profiler::Color::DarkKhaki)
 	return true;
 }
 
 bool j1Entities::CleanUp() 
 {
+	BROFILER_CATEGORY("Entity Start()", Profiler::Color::Gray)
 	return true;
 }
 

@@ -5,6 +5,7 @@
 #include "SDL/include/SDL.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 #pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
+#include "Brofiler/Brofiler.h"
 
 j1Audio::j1Audio() : j1Module()
 {
@@ -60,6 +61,7 @@ bool j1Audio::Awake(pugi::xml_node& config)
 // Called before quitting
 bool j1Audio::CleanUp()
 {
+	BROFILER_CATEGORY("Audio CleanUp();", Profiler::Color::DarkGoldenRod)
 	if (!active)
 		return true;
 

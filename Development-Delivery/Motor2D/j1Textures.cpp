@@ -6,6 +6,7 @@
 
 #include "SDL_image/include/SDL_image.h"
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
+#include "Brofiler/Brofiler.h"
 
 j1Textures::j1Textures() : j1Module()
 {
@@ -37,6 +38,7 @@ bool j1Textures::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Textures::Start()
 {
+	BROFILER_CATEGORY("Textures Start();", Profiler::Color::Blue)
 	LOG("start textures");
 	bool ret = true;
 	return ret;
@@ -45,6 +47,7 @@ bool j1Textures::Start()
 // Called before quitting
 bool j1Textures::CleanUp()
 {
+	BROFILER_CATEGORY("Textures CleanUp();", Profiler::Color::Beige)
 	LOG("Freeing textures and Image library");
 	p2List_item<SDL_Texture*>* item;
 
