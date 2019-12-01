@@ -40,6 +40,9 @@ Some of the Logic will be done depending on the framerate, others will be done i
 - When the player starts combat (An enemy has detected the player nearby), a different music will be played.
 - Teleporting platforms that allow the player to cover great distances and move around the map in an easier way.
 - Dash has a cooldown that will not allow players to spam the move to fly across the level
+- After Killing an enemy, the corpse will stay in the map.
+
+
 
 
 ## UML
