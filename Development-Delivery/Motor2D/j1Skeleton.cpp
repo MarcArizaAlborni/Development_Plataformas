@@ -74,6 +74,9 @@ j1Skeleton::j1Skeleton(iPoint pos, EntitiesType type) : j1Entities(pos, Entities
 	attack.PushBack({79,629,40,37});
 	attack.speed = 0.3f;
 
+	RIP.PushBack({ 46,256,30,32 });
+	RIP.speed = 0.3;
+
 }
 
 j1Skeleton::~j1Skeleton()
@@ -98,7 +101,7 @@ bool j1Skeleton::PreUpdate()
 bool j1Skeleton::Update(float dt)
 {
 
-	if (!Dead || state != AttackReadyState || state != AttackState) {
+	if ( state != AttackReadyState && state != AttackState && state!=DeadState && state!=RIPstate) {
 		ComparePositions();
 	}
 
@@ -115,8 +118,23 @@ bool j1Skeleton::Update(float dt)
 		break;
 
 	case DeadState:
-		animation = &death;
+		if (DieOnce == 0) {
+			animation = &RIP;
+			
+			
+			
+			
+			DieOnce = 1;
+			LOG("DEAD STATE");
 
+		}
+		state = RIPstate;
+		break;
+
+	case RIPstate:
+
+		animation = &RIP;
+		LOG("RIP STATE");
 		break;
 
 	case LeftState:
@@ -258,7 +276,14 @@ void j1Skeleton::OnCollision(Collider* A, Collider* B)
 
 			}
 
+			if ((position.y + B->rect.h) >= A->rect.y + 20) // from above
+			{
+				if ((B->rect.x + B->rect.w > A->rect.x) || (B->rect.x + B->rect.w < A->rect.x + A->rect.w)) {
 
+					state = DeadState;
+
+				}
+			}
 		}
 
 		if (B->type == ObjectType::LateralPlatform) {

@@ -27,6 +27,7 @@ enum EntitiesState
 	DeadState,
 	AttackState,
 	AttackReadyState,
+	RIPstate,
 	None
 };
 
