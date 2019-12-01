@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="271">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="272">
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32" tilecount="768" columns="32">
   <image source="generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
@@ -7548,7 +7548,7 @@
   <object id="87" name="AudioArea2" type="AudioArea2" x="383.424" y="223.212" width="31.333" height="95.4845"/>
   <object id="91" name="Floor" type="Platform" x="1216" y="320" width="128" height="64"/>
   <object id="92" name="Floor" type="Platform" x="1536" y="320" width="192" height="64"/>
-  <object id="95" name="LateralPlatform" type="LateralPlatform" x="0" y="0" width="1.56275" height="480"/>
+  <object id="95" name="LateralPlatform" type="LateralPlatform" x="0" y="0" width="9.06275" height="480"/>
   <object id="96" name="LateralPlatformLeft" type="LateralPlatformLeft" x="416.106" y="320.005" width="0.697782" height="111"/>
   <object id="97" name="LateralPlatform" type="LateralPlatform" x="479.889" y="321.244" width="0.152344" height="61"/>
   <object id="99" name="LateralPlatform" type="LateralPlatform" x="704" y="322" width="0.152344" height="61"/>
