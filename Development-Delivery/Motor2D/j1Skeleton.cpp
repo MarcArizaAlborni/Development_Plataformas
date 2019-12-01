@@ -9,6 +9,7 @@
 #include "j1Map.h"
 #include "j1Pathfinding.h"
 
+#include "Brofiler/Brofiler.h"
 
 j1Skeleton::j1Skeleton(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::SKELETON)
 {
@@ -82,6 +83,7 @@ j1Skeleton::~j1Skeleton()
 
 bool j1Skeleton::Start()
 {
+	BROFILER_CATEGORY("Skeleton Start();", Profiler::Color::Chartreuse)
 	texture = App->tex->Load("Sprites/Skeleton.png");
 	InitEntity();
 	return true;
@@ -89,6 +91,7 @@ bool j1Skeleton::Start()
 
 bool j1Skeleton::PreUpdate()
 {
+	BROFILER_CATEGORY("Skeleton PreUpdate();", Profiler::Color::MediumSpringGreen)
 	//position.y += gravity;
 	collider->rect.x = position.x;
 	collider->rect.y = position.y;
@@ -97,7 +100,7 @@ bool j1Skeleton::PreUpdate()
 
 bool j1Skeleton::Update(float dt)
 {
-
+	BROFILER_CATEGORY("Skeleton Update();", Profiler::Color::PowderBlue)
 	if (!Dead || state != AttackReadyState || state != AttackState) {
 		ComparePositions();
 	}
@@ -196,7 +199,7 @@ bool j1Skeleton::Update(float dt)
 
 bool j1Skeleton::PostUpdate()
 {
-
+	BROFILER_CATEGORY("Skeleton PostUpdate();", Profiler::Color::HoneyDew)
 
 	SKrect.x = position.x;
 	SKrect.y = position.y;
@@ -237,7 +240,7 @@ bool j1Skeleton::Save(pugi::xml_node &node) const
 
 void j1Skeleton::OnCollision(Collider* A, Collider* B)
 {
-
+	BROFILER_CATEGORY("Skeleton OnCollision();", Profiler::Color::MediumTurquoise)
 	if (A->type == ObjectType::Skeleton) {
 
 		if (B->type == ObjectType::Player) {
@@ -311,6 +314,7 @@ bool j1Skeleton::InitEntity()
 
 void j1Skeleton::ComparePositions()
 {
+	BROFILER_CATEGORY("Skeleton Path();", Profiler::Color::LightSkyBlue)
 	if (Dead != true) {
 		if (App->entityManager->player != nullptr) {
 
