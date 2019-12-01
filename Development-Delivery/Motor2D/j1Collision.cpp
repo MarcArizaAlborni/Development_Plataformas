@@ -5,6 +5,8 @@
 #include "j1Map.h"
 #include "j1Input.h"
 
+#include "Brofiler/Brofiler.h"
+
 
 j1Collision::j1Collision() : j1Module()
 {
@@ -26,12 +28,15 @@ bool j1Collision::Awake(pugi::xml_node config)
 
 bool j1Collision::Start()
 {
+	BROFILER_CATEGORY("FadeToBlack Start();", Profiler::Color::Chartreuse)
 	LoadCollider();
 	return true;
 }
 
 bool j1Collision::PreUpdate()
 {
+	BROFILER_CATEGORY("Collision PreUpdate();", Profiler::Color::Chocolate)
+
 	p2List_item<Collider*>* collider_iterator = collider.start;
 	for (collider_iterator; collider_iterator != nullptr; collider_iterator = collider_iterator->next) {
 
@@ -106,6 +111,7 @@ bool j1Collision::PreUpdate()
 
 bool j1Collision::Update(float dt)
 {
+	BROFILER_CATEGORY("FadeToBlack Update();", Profiler::Color::Coral)
 	DebugDraw();
 	return true;
 }

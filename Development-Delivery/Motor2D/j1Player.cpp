@@ -10,6 +10,8 @@
 #include "j1FadeToBlack.h"
 #include "j1Map.h"
 
+#include "Brofiler/Brofiler.h"
+
 j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::PLAYER )
 {
 
@@ -66,6 +68,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 
  bool  j1Player::Start() 
  {
+	 BROFILER_CATEGORY("Player Start()", Profiler::Color::PapayaWhip)
 	 LOG("Loading player textures");
 	 
 	 texture = App->tex->Load("Sprites/DudeMOD.png");
@@ -77,7 +80,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 
  bool j1Player::PreUpdate()
  {  
-	
+	 BROFILER_CATEGORY("Player PreUpdate()", Profiler::Color::Teal)
 	 On_Ground;
 	 if (On_Ground == false) {
 
@@ -285,6 +288,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 
 bool j1Player::Update(float dt)
  {
+	BROFILER_CATEGORY("Player Update()", Profiler::Color::PowderBlue)
 	LastPosition = position;
 	bool ret = true;
 	//APLICACIO DELS DIFFERENTS PLAYER STATES
@@ -403,12 +407,13 @@ bool j1Player::Update(float dt)
 
  bool j1Player::PostUpdate()
  {
+	 BROFILER_CATEGORY("Player PostUpdate()", Profiler::Color::Ivory)
 	 return true;
  }
 
  bool j1Player::CleanUp()
  {
-
+	 BROFILER_CATEGORY("Player CleanUp()", Profiler::Color::DimGray)
 	 LOG("Unloading Player");
 
 	 App->tex->UnLoad(texture);
@@ -442,6 +447,7 @@ bool j1Player::Update(float dt)
 
  void j1Player::OnCollision(Collider* A, Collider* B) 
  {
+	 BROFILER_CATEGORY("Player OnCollision()", Profiler::Color::Wheat)
 
 	 if (B->type == ObjectType::Player) {
 		 Collider temp = *A;
@@ -629,7 +635,7 @@ bool j1Player::Update(float dt)
 
  void j1Player::DashFunction(){
 
-	 
+	 BROFILER_CATEGORY("Player Dash()", Profiler::Color::YellowGreen)
 		 MidAirUP = false;
 		 Gravity = 0;
 		 if (StartPosition.x - DashDist < position.x && DashActiveLeft == true && TouchingCollider == false) {
@@ -664,7 +670,7 @@ bool j1Player::Update(float dt)
 
  void j1Player::Jumping() {
 
-
+	 BROFILER_CATEGORY("Player Jumping()", Profiler::Color::Yellow)
 	 CanJump = false;
 
 	 if (MidAirUP == true) {

@@ -9,6 +9,7 @@
 #include "j1Player.h"
 #include "j1Map.h"
 #include "j1Collision.h"
+#include "Brofiler/Brofiler.h"
 
 j1FadeToBlack::j1FadeToBlack()
 {
@@ -22,6 +23,8 @@ j1FadeToBlack::~j1FadeToBlack()
 // Load assets
 bool j1FadeToBlack::Start()
 {
+	BROFILER_CATEGORY("FadeToBlack Start();", Profiler::Color::CornflowerBlue)
+
 	LOG("Preparing Fade Screen");
 	SDL_SetRenderDrawBlendMode(App->render->renderer, SDL_BLENDMODE_BLEND);
 	return true;
@@ -38,6 +41,8 @@ bool j1FadeToBlack::Start()
 // Update: draw background
 bool j1FadeToBlack::Update(float dt)
 {
+	BROFILER_CATEGORY("FadeToBlack Update();", Profiler::Color::FireBrick)
+
 	if (current_step == fade_step::none)
 		return true;
 
@@ -77,6 +82,8 @@ bool j1FadeToBlack::Update(float dt)
 // Fade to black. At mid point deactivate one module, then activate the other
 bool j1FadeToBlack::FadeToBlack(const char* mapname,  float time)
 {
+	BROFILER_CATEGORY("FadeToBlack FadeToBlack();", Profiler::Color::FloralWhite)
+
 	bool ret = false;
 
 	this->mapname = mapname;
@@ -94,6 +101,9 @@ bool j1FadeToBlack::FadeToBlack(const char* mapname,  float time)
 
 bool j1FadeToBlack::ChangeMap(const char* newMap)
 {
+
+	BROFILER_CATEGORY("FadeToBlack ChangeMap();", Profiler::Color::ForestGreen)
+
 	bool ret = true;
 
 	App->map->CleanUp();						

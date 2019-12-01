@@ -5,6 +5,7 @@
 #include "j1Slime.h"
 #include "j1Bee.h"
 #include "p2Log.h"
+#include "j1Scene.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -21,7 +22,7 @@ j1EntityManager::~j1EntityManager()
 
 bool j1EntityManager::Start() 
 {
-	BROFILER_CATEGORY("EntityManager_Start", Profiler::Color::Gainsboro)
+	BROFILER_CATEGORY("EntityManager Start()", Profiler::Color::DarkOrange)
 
 	for (p2List_item<j1Entities*>* EntitySelect = entityList.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
 	{
@@ -33,7 +34,8 @@ bool j1EntityManager::Start()
 
 bool j1EntityManager::PreUpdate()
 {
-	//BROFILER_CATEGORY
+	BROFILER_CATEGORY("EntityManager PreUpdate()", Profiler::Color::DarkMagenta)
+
 	for (p2List_item<j1Entities*>* EntitySelect = entityList.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
 	{
 		EntitySelect->data->PreUpdate();
@@ -61,7 +63,7 @@ bool j1EntityManager::PreUpdate()
 
 bool j1EntityManager::Update(float dt) 
 {
-	//BROFILER_CATEGORY
+	BROFILER_CATEGORY("EntityManager Start()", Profiler::Color::MediumAquaMarine)
 
 	for (p2List_item<j1Entities*>* EntitySelect = entityList.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
 	{
@@ -75,8 +77,7 @@ bool j1EntityManager::Update(float dt)
 
 bool j1EntityManager::PostUpdate() 
 {
-	//BROFILER_CATEGORY
-
+	BROFILER_CATEGORY("EntityManager PostUpdate()", Profiler::Color::Green)
 	for (p2List_item<j1Entities*>* EntitySelect = entityList.start; EntitySelect != NULL; EntitySelect = EntitySelect->next)
 	{
 		EntitySelect->data->PostUpdate();
@@ -89,6 +90,8 @@ bool j1EntityManager::PostUpdate()
 }
 
 bool j1EntityManager::CleanUp() {
+
+	BROFILER_CATEGORY("EntityManager CleanUp()", Profiler::Color::SlateBlue)
 
 	//LOG("CLEAN UP ENTITIY MANAGER");
 

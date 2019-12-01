@@ -9,6 +9,8 @@
 #include "j1Window.h"
 #include "j1Collision.h"
 
+#include "Brofiler/Brofiler.h"
+
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
 	name.create("map");
@@ -31,6 +33,8 @@ bool j1Map::Awake(pugi::xml_node& config)
 
 void j1Map::Draw()
 {
+	BROFILER_CATEGORY("Map Draw();", Profiler::Color::LemonChiffon)
+
 	if(map_loaded == false)
 		return;
 
@@ -202,6 +206,7 @@ int Properties::Get(const char* value, int default_value) const
 // Called before quitting
 bool j1Map::CleanUp()
 {
+	BROFILER_CATEGORY("Map CleanUp();", Profiler::Color::LemonChiffon)
 	LOG("Unloading map");
 
 	// Remove all tilesets

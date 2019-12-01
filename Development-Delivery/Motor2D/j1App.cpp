@@ -37,8 +37,6 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	entityManager = new j1EntityManager();
 	
 	
-
-
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	AddModule(win);
@@ -121,7 +119,8 @@ bool j1App::Awake()
 
 // Called before the first frame
 bool j1App::Start()
-{//
+{
+	BROFILER_CATEGORY("App Start();", Profiler::Color::AliceBlue)
 	startup_timer.Start();
 
 	bool ret = true;
@@ -140,9 +139,7 @@ bool j1App::Start()
 // Called each loop iteration
 bool j1App::Update()
 {
-
-	BROFILER_CATEGORY("App Update();", Profiler::Color::Aqua)
-
+	BROFILER_CATEGORY("App Update();", Profiler::Color::AntiqueWhite)
 
 	bool ret = true;
 	PrepareUpdate();
@@ -186,8 +183,7 @@ void j1App::PrepareUpdate()
 // ---------------------------------------------
 void j1App::FinishUpdate()
 {
-	BROFILER_CATEGORY("App FinishUpdate();", Profiler::Color::LawnGreen)
-
+	BROFILER_CATEGORY("App FinishUpdate();", Profiler::Color::Aqua)
 
 	if(want_to_save == true)
 		SavegameNow();
@@ -208,8 +204,6 @@ void j1App::FinishUpdate()
 			LOG("FRAME CAP ON");
 		}
 	}
-
-
 
 
 	if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_DOWN) {
@@ -279,7 +273,7 @@ void j1App::FinishUpdate()
 // Call modules before each loop iteration
 bool j1App::PreUpdate()
 {
-	BROFILER_CATEGORY("App PreUpdate);", Profiler::Color::DarkOrange)
+	BROFILER_CATEGORY("App PreUpdate();", Profiler::Color::Aquamarine)
 
 
 	frame_count++;									//Adds +1 to the frame count before each update loop. This variable will keep track of how many frames have been processed through all runtime.
@@ -335,7 +329,7 @@ bool j1App::DoUpdate()
 // Call modules after each loop iteration
 bool j1App::PostUpdate()
 {
-	BROFILER_CATEGORY("App PreUpdate);", Profiler::Color::DeepPink)
+	BROFILER_CATEGORY("App PostUpdate);", Profiler::Color::	Azure)
 	bool ret = true;
 	p2List_item<j1Module*>* item;
 	j1Module* pModule = NULL;
@@ -357,7 +351,7 @@ bool j1App::PostUpdate()
 // Called before quitting
 bool j1App::CleanUp()
 {
-	BROFILER_CATEGORY("App CleanUp();", Profiler::Color::Orange)
+	BROFILER_CATEGORY("App CleanUp();", Profiler::Color::Black)
 	bool ret = true;
 	p2List_item<j1Module*>* item;
 	item = modules.end;

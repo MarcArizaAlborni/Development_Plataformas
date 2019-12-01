@@ -6,6 +6,8 @@
 #include "j1Player.h"
 #include "j1Map.h"
 
+#include "Brofiler/Brofiler.h"
+
 #define VSYNC true
 
 j1Render::j1Render() : j1Module()
@@ -57,6 +59,7 @@ bool j1Render::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Render::Start()
 {
+	BROFILER_CATEGORY("Render Start();", Profiler::Color::AliceBlue)
 	LOG("render start");
 	// back background
 	SDL_RenderGetViewport(renderer, &viewport);
@@ -68,12 +71,14 @@ bool j1Render::Start()
 // Called each loop iteration
 bool j1Render::PreUpdate()
 {
+	BROFILER_CATEGORY("Render PreUpdate();", Profiler::Color::Bisque)
 	SDL_RenderClear(renderer);
 	return true;
 }
 
 bool j1Render::Update(float dt)
 {
+	BROFILER_CATEGORY("Render Update();", Profiler::Color::CadetBlue)
 	uint winW = App->win->GetWidth();
 	uint winH = App->win->GetHeight();
 
@@ -106,6 +111,7 @@ bool j1Render::Update(float dt)
 
 bool j1Render::PostUpdate()
 {
+	BROFILER_CATEGORY("Render PostUpdate();", Profiler::Color::Chartreuse)
 	SDL_SetRenderDrawColor(renderer, background.r, background.g, background.b, background.a);
 	SDL_RenderPresent(renderer);
 
@@ -115,6 +121,7 @@ bool j1Render::PostUpdate()
 // Called before quitting
 bool j1Render::CleanUp()
 {
+	BROFILER_CATEGORY("Render CleanUp();", Profiler::Color::DarkBlue)
 	LOG("Destroying SDL render");
 	SDL_DestroyRenderer(renderer);
 	return true;
@@ -169,6 +176,7 @@ iPoint j1Render::ScreenToWorld(int x, int y) const
 // Blit to screen
 bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, bool flip, float speed, double angle, int pivot_x, int pivot_y) const
 {
+	BROFILER_CATEGORY("Render Blit();", Profiler::Color::BurlyWood)
 	bool ret = true;
 	uint scale = App->win->GetScale();
 
