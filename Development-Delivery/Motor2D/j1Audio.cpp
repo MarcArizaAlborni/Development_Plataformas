@@ -115,10 +115,14 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 		music = Mix_LoadMUS("audio/Music/L1_A1.ogg");
 	}
 
+	else if (EnemyMusic == true) {
+		music = Mix_LoadMUS("audio/Music/EnemyMusic.ogg");
+	}
+
 	else if (Area2Level1 == true) {
 		music = Mix_LoadMUS("audio/Music/L1_A2.ogg");
 	}
-	Area1MusicLvL1;
+
 	//music= Mix_LoadMUS("audio/Music/L1_A3.ogg");
 	Jump_Sound = Mix_LoadWAV("audio/Music/Jump_1.wav");
 

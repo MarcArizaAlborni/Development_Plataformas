@@ -53,10 +53,10 @@ bool j1Scene::Start()
 	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
 
 
-	App->entityManager->AddEnemies({300,254}, SKELETON);
-	App->entityManager->AddEnemies( {300,100 }, SKULL);
-	App->entityManager->AddEnemies({ 300, 254 }, SLIME);
-	App->entityManager->AddEnemies({ 300,100 }, BEE);
+	App->entityManager->AddEnemies({300,288}, SKELETON);
+	//App->entityManager->AddEnemies( {600,100 }, SKULL);
+	App->entityManager->AddEnemies({ 300, 288 }, SLIME);
+	App->entityManager->AddEnemies({ 800,100 }, BEE);
 	
 
 	App->entityManager->CreateEntity(PLAYER);
