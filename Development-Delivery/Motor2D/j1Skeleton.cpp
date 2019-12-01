@@ -9,6 +9,8 @@
 #include "j1Map.h"
 #include "j1Pathfinding.h"
 
+#include "Brofiler/Brofiler.h"
+
 
 j1Skeleton::j1Skeleton(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::SKELETON)
 {
@@ -85,6 +87,7 @@ j1Skeleton::~j1Skeleton()
 
 bool j1Skeleton::Start()
 {
+	BROFILER_CATEGORY("Skeleton Start();", Profiler::Color::Wheat)
 	texture = App->tex->Load("Sprites/Skeleton.png");
 	InitEntity();
 	return true;
@@ -92,6 +95,7 @@ bool j1Skeleton::Start()
 
 bool j1Skeleton::PreUpdate()
 {
+	BROFILER_CATEGORY("Skeleton Pre();", Profiler::Color::WhiteSmoke)
 	//position.y += gravity;
 	collider->rect.x = position.x;
 	collider->rect.y = position.y;
@@ -100,7 +104,7 @@ bool j1Skeleton::PreUpdate()
 
 bool j1Skeleton::Update(float dt)
 {
-
+	BROFILER_CATEGORY("Skeleton Update();", Profiler::Color::HoneyDew)
 	if (state != AttackReadyState && state != AttackState && state != DeadState && state != RIPstate) {
 		ComparePositions();
 	}
@@ -214,7 +218,7 @@ bool j1Skeleton::Update(float dt)
 
 bool j1Skeleton::PostUpdate()
 {
-
+	BROFILER_CATEGORY("Skeleton PostUpdate();", Profiler::Color::White)
 
 	SKrect.x = position.x;
 	SKrect.y = position.y;
@@ -238,6 +242,7 @@ bool j1Skeleton::PostUpdate()
 
 bool j1Skeleton::CleanUp()
 {
+	BROFILER_CATEGORY("Skeleton CleanUp();", Profiler::Color::PaleTurquoise)
 	App->tex->UnLoad(texture);
 
 	return true;
@@ -255,7 +260,7 @@ bool j1Skeleton::Save(pugi::xml_node &node) const
 
 void j1Skeleton::OnCollision(Collider* A, Collider* B)
 {
-
+	BROFILER_CATEGORY("Skeleton OnCollision();", Profiler::Color::MediumTurquoise)
 	if (A->type == ObjectType::Skeleton) {
 
 		if (B->type == ObjectType::Player) {
@@ -336,6 +341,7 @@ bool j1Skeleton::InitEntity()
 
 void j1Skeleton::ComparePositions()
 {
+	BROFILER_CATEGORY("Skeleton Update();", Profiler::Color::CadetBlue)
 	if (Dead != true) {
 		if (App->entityManager->player != nullptr) {
 
