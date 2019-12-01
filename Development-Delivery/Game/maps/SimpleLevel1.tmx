@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="263">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="271">
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32" tilecount="768" columns="32">
   <image source="generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
@@ -1819,7 +1819,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="580"/>
    <tile/>
    <tile/>
    <tile/>
@@ -4734,6 +4734,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="329"/>
    <tile/>
    <tile/>
    <tile/>
@@ -4742,9 +4743,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="646"/>
+   <tile gid="647"/>
    <tile/>
    <tile/>
    <tile/>
@@ -4930,6 +4930,15 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="55"/>
+   <tile gid="56"/>
+   <tile gid="106"/>
+   <tile gid="106"/>
+   <tile gid="106"/>
+   <tile gid="106"/>
+   <tile gid="106"/>
+   <tile gid="107"/>
+   <tile gid="108"/>
    <tile/>
    <tile/>
    <tile/>
@@ -5022,22 +5031,13 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="135"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="139"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6235,20 +6235,20 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="577"/>
+   <tile gid="578"/>
+   <tile gid="579"/>
+   <tile gid="646"/>
+   <tile gid="647"/>
+   <tile gid="582"/>
+   <tile gid="583"/>
+   <tile gid="584"/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="329"/>
+   <tile gid="329"/>
+   <tile gid="329"/>
+   <tile gid="329"/>
+   <tile gid="329"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6338,6 +6338,8 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="678"/>
+   <tile gid="679"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6345,10 +6347,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="329"/>
+   <tile gid="329"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6738,11 +6738,11 @@
    <tile gid="474"/>
    <tile gid="475"/>
    <tile gid="476"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="641"/>
+   <tile gid="642"/>
+   <tile gid="643"/>
+   <tile gid="644"/>
+   <tile gid="645"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6838,11 +6838,11 @@
    <tile gid="506"/>
    <tile gid="507"/>
    <tile gid="508"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="673"/>
+   <tile gid="674"/>
+   <tile gid="675"/>
+   <tile gid="676"/>
+   <tile gid="677"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6938,14 +6938,14 @@
    <tile gid="538"/>
    <tile gid="539"/>
    <tile gid="540"/>
-   <tile gid="534"/>
-   <tile gid="534"/>
-   <tile gid="534"/>
-   <tile gid="566"/>
-   <tile gid="534"/>
-   <tile gid="534"/>
-   <tile gid="534"/>
-   <tile gid="534"/>
+   <tile gid="705"/>
+   <tile gid="706"/>
+   <tile gid="707"/>
+   <tile gid="708"/>
+   <tile gid="709"/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile gid="534"/>
@@ -7543,12 +7543,12 @@
   <object id="50" name="VICTORY" type="Victory" x="3008" y="456" width="96" height="24"/>
   <object id="81" name="Floor" type="Platform" x="0" y="320" width="416" height="129"/>
   <object id="82" name="CheckPoint" type="CheckPoint" x="1009" y="216.667" width="31.3333" height="23"/>
-  <object id="83" name="TELEPORTER" type="Teleporter1" x="33.3333" y="288" width="31.3333" height="31.0297"/>
-  <object id="86" name="AudioArea1" type="AudioArea1" x="318.667" y="223.167" width="35.333" height="97.03"/>
-  <object id="87" name="AudioArea2" type="AudioArea2" x="448.333" y="126.667" width="31.333" height="33.03"/>
+  <object id="83" name="TELEPORTER" type="Teleporter1" x="214.333" y="288" width="31.3333" height="31.0297"/>
+  <object id="86" name="AudioArea1" type="AudioArea1" x="1056.17" y="224.167" width="31.333" height="31.78"/>
+  <object id="87" name="AudioArea2" type="AudioArea2" x="383.424" y="223.212" width="31.333" height="95.4845"/>
   <object id="91" name="Floor" type="Platform" x="1216" y="320" width="128" height="64"/>
   <object id="92" name="Floor" type="Platform" x="1536" y="320" width="192" height="64"/>
-  <object id="95" name="LateralPlatform" type="LateralPlatform" x="0" y="0" width="0.108207" height="480"/>
+  <object id="95" name="LateralPlatform" type="LateralPlatform" x="0" y="0" width="1.56275" height="480"/>
   <object id="96" name="LateralPlatformLeft" type="LateralPlatformLeft" x="416.106" y="320.005" width="0.697782" height="111"/>
   <object id="97" name="LateralPlatform" type="LateralPlatform" x="479.889" y="321.244" width="0.152344" height="61"/>
   <object id="99" name="LateralPlatform" type="LateralPlatform" x="704" y="322" width="0.152344" height="61"/>
@@ -7633,8 +7633,12 @@
   <object id="258" name="LateralPlatformLeft" type="LateralPlatformLeft" x="639.56" y="320.462" width="0.697782" height="63.1739"/>
   <object id="259" name="LateralPlatformLeft" type="LateralPlatformLeft" x="1088.07" y="256.032" width="0.262999" height="14.6739"/>
   <object id="262" name="LateralPlatformLeft" type="LateralPlatformLeft" x="1728.4" y="319.913" width="0.697782" height="63.1739"/>
+  <object id="263" name="Floor" type="Platform" x="33.5" y="129" width="286" height="8"/>
+  <object id="264" name="AudioArea2" type="AudioArea2" x="249.834" y="48.7577" width="31.333" height="70.4845"/>
+  <object id="266" name="AudioArea1" type="AudioArea1" x="93.8335" y="44.61" width="31.333" height="73.78"/>
+  <object id="269" name="TELEPORTER" type="Teleporter1" x="179.333" y="66.9851" width="31.3333" height="31.0297"/>
  </objectgroup>
- <layer id="13" name="Pathfinding" width="100" height="15">
+ <layer id="13" name="Pathfinding" width="100" height="15" visible="0">
   <properties>
    <property name="Navigation" type="int" value="1"/>
    <property name="Nodraw" type="int" value="4"/>
@@ -8446,8 +8450,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="646"/>
+   <tile gid="647"/>
    <tile/>
    <tile/>
    <tile/>
@@ -8472,51 +8476,6 @@
    <tile/>
    <tile gid="8"/>
    <tile gid="8"/>
-   <tile gid="8"/>
-   <tile gid="8"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
    <tile gid="8"/>
    <tile gid="8"/>
    <tile/>
@@ -8548,6 +8507,51 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="8"/>
+   <tile gid="8"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="678"/>
+   <tile gid="679"/>
    <tile/>
    <tile/>
    <tile/>
