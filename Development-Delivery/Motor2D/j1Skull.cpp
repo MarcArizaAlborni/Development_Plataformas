@@ -11,14 +11,14 @@
 
 j1Skull::j1Skull(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType::SKELETON)
 {
-	idle.PushBack({ 0,0,32,32 });
-	idle.PushBack({ 0,32,23,32 });
+	idle.PushBack({ 0,0,0,0 });
+	/*idle.PushBack({ 0,32,23,32 });
 
 	walking.PushBack({ 24,0,22,32 });
 	walking.PushBack({ 24,32,22,32 });
 
 	death.PushBack({ 46,0,30,32 });
-	death.PushBack({ 46,32,30,32 });
+	death.PushBack({ 46,32,30,32 });*/
 
 }
 

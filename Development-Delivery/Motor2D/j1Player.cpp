@@ -160,13 +160,13 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 			if (PlayerInput.A_active)
 			{
 				state = LeftState;
-				LOG("IDLE TO LEFT");
+				//LOG("IDLE TO LEFT");
 			}
 
 			if (PlayerInput.D_active)
 			{
 				state = RightState;
-				LOG("IDLE TO RIGHT");
+				//LOG("IDLE TO RIGHT");
 			}
 			
 			if (PlayerInput.Space_active && CanJump == true && JumpTicks == true) {
@@ -202,7 +202,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 			{
 
 				state = IdleState;
-				LOG("LEFT TO IDLE");
+				//LOG("LEFT TO IDLE");
 			}
 
 			if (PlayerInput.U_active && CanDash == true) {
@@ -227,7 +227,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 			if (!PlayerInput.D_active)
 			{
 				state = IdleState;
-				LOG("RIGHT TO IDLE");
+				//LOG("RIGHT TO IDLE");
 			}
 
 			if (PlayerInput.U_active && CanDash==true) {
@@ -249,7 +249,7 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 		if (state == FallState) {
 
 			
-			LOG("FALL STATE");
+			//LOG("FALL STATE");
 			Movement();
 
 			if (PlayerInput.U_active && PlayerInput.D_active) {
@@ -326,14 +326,14 @@ bool j1Player::Update(float dt)
 		break;
 
 	case LeftState:
-		LOG("MOVING LEFT");
+		//LOG("MOVING LEFT");
 		flip = true;
 		Movement();
 		animation = &run;
 		break;
 
 	case RightState:
-		LOG("MOVING RIGHT");
+		//LOG("MOVING RIGHT");
 		flip = false;
 		Movement();
 		animation = &run;
@@ -492,7 +492,7 @@ bool j1Player::Update(float dt)
 				 On_Ground = true;
 				 CanJump = true;
 				 position.y = LastPosition.y;
-				position.y = B->rect.y - A->rect.h -5;
+				 position.y = B->rect.y - A->rect.h -5;
 				 float Gravity2 = Gravity;
 
 			 }

@@ -52,7 +52,7 @@ bool j1Scene::Start()
 
 	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
 
-	for (iPoint i = { 100, 270 }; i.x <= 400; i.x += 40)
+	for (iPoint i = { 50, 288 }; i.x <= 50; i.x += 40)
 	{
 		App->entityManager->AddEnemies(i, SKELETON);
 		App->entityManager->AddEnemies(i, SKULL);
