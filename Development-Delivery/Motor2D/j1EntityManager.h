@@ -25,6 +25,8 @@ enum EntitiesState
 	FallState,
 	DoubleJumpState,
 	DeadState,
+	AttackState,
+	AttackReadyState,
 	None
 };
 

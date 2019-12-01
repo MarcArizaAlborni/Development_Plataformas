@@ -10,6 +10,7 @@ enum EntitiesType;
 #define DETECTION_RANGE 150
 #define NEGATIVE_DETECTION_RANGE -150
 
+
 class j1Skeleton : public j1Entities
 {
 public:
@@ -35,7 +36,7 @@ public:
 	bool flip = false;
 
 	SDL_Rect SKrect;
-	int SKwith;
+	int SKwidth;
 	int SKheight;
 
 	//Animation
@@ -52,17 +53,22 @@ public:
 	float gravity;
 	float jumpforce_xml;
 	iPoint Pathing;
-	
+
 	bool GoLeft;
 	bool GoRight;
 	iPoint LastPosition;
-	bool TouchingColliderLeft;
-	bool TouchingColliderRight;
+	bool TouchingColliderLeft; //PER L' ESQUERRA TOCA COLLIDER
+	bool TouchingColliderRight;//PERLA DRETA TOCA COLLIDER
+
+
+	bool AttackLeft;
+	bool AttackRight;
+
 	//PATHING FUNCTION
 //	void LookForPath();
 	void j1Skeleton::Move(p2DynArray<iPoint>& path, float dt);
 
 	void j1Skeleton::ComparePositions();
 	void j1Skeleton::GroundJump();
-	void j1Skeleton::Movement(bool CurrentState);
+	void j1Skeleton::Movement();
 };

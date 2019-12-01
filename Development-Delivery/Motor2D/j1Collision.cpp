@@ -66,13 +66,21 @@ bool j1Collision::PreUpdate()
 						c2->callback->OnCollision(c2, c1);
 				}
 
-				 if (c1->CheckCollision(c2->rect) == true && (c1->type == ObjectType::Skeleton || c2->type == ObjectType::Skeleton)) {
+			    if (c1->CheckCollision(c2->rect) == true && (c1->type == ObjectType::Skeleton || c2->type == ObjectType::Skeleton)) {
 					if (c1->callback)
 						c1->callback->OnCollision(c1, c2);
 
 					if (c2->callback)
 						c2->callback->OnCollision(c2, c1);
 				}
+
+			    if (c1->CheckCollision(c2->rect) == true && (c1->type == ObjectType::Bee || c2->type == ObjectType::Bee)) {
+					 if (c1->callback)
+						 c1->callback->OnCollision(c1, c2);
+
+					 if (c2->callback)
+						 c2->callback->OnCollision(c2, c1);
+			    }
 			}
 		}
 	}

@@ -55,6 +55,7 @@ enum class ObjectType
 	CheckPoint,
 	TransformationPoint,
 	LateralPlatform,
+	LateralPlatformLeft,
 	JumpDetector,
 	Unknown
 

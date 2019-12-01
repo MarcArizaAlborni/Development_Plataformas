@@ -55,9 +55,9 @@ bool j1Scene::Start()
 	for (iPoint i = { 50, 288 }; i.x <= 50; i.x += 40)
 	{
 		App->entityManager->AddEnemies(i, SKELETON);
-		App->entityManager->AddEnemies(i, SKULL);
+		//App->entityManager->AddEnemies(i, SKULL);
 		//App->entityManager->AddEnemies(i, SLIME);
-		//App->entityManager->AddEnemies(i, BEE);
+		App->entityManager->AddEnemies({ 300,100 }, BEE);
 	}
 
 	App->entityManager->CreateEntity(PLAYER);
