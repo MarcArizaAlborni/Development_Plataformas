@@ -64,25 +64,6 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
  {
  }
 
- bool j1Player::Awake(pugi::xml_node& node)
- {
-
-	 bool ret = true;
-	/*
-	 pugi::xml_node player = node.child("entities").child("player");
-
-	 Inipos.x = node.attribute("inipos_x").as_float();
-	 Inipos.y = node.attribute("inipos_y").as_float();
-	 Character_vel.x = node.attribute("velocity_X").as_float();
-	 GravitySave = Gravity = node.attribute("gravity").as_float();
-	 DashDist = node.attribute("DashDistance").as_float();
-     TempVelY=Character_vel.y = node.attribute("velocity_Y").as_float();
-	 Player_Width = node.attribute("width").as_int();
-	 Player_Height = node.attribute("height").as_int();*/
-
-	 return ret;
- }
-
  bool  j1Player::Start() 
  {
 	 LOG("Loading player textures");

@@ -201,13 +201,13 @@ void j1Skull::OnCollision(Collider* A, Collider* B)
 bool j1Skull::InitEntity()
 {
 
-	SLLwith = 32;
+	SLLwidth = 32;
 	SLLheight = 32;
 
 	animation = &idle;
 	state = IdleState;
 
-	SLLrect = { position.x, position.y, SLLwith, SLLheight };
+	SLLrect = { position.x, position.y, SLLwidth, SLLheight };
 	collider = App->collision->AddCollider(SLLrect, ObjectType::Skull, App->entityManager);
 
 	return true;

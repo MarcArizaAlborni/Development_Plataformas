@@ -34,7 +34,7 @@ public:
 	bool flip = false;
 
 	SDL_Rect SLLrect;
-	int SLLwith;
+	int SLLwidth;
 	int SLLheight;
 
 	//Animation
@@ -53,6 +53,6 @@ public:
 	bool TouchingColliderLeft;
 	bool TouchingColliderRight;
 	//PATHFINDING FUNCTIONS
-	void j1Skull::ComparePositions();
-	void j1Skull::Movement();
+	void ComparePositions();
+	void Movement();
 };

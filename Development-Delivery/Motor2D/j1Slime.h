@@ -34,7 +34,7 @@ public:
 	bool flip = false;
 
 	SDL_Rect SLMrect;
-	int SLMwith;
+	int SLMwidth;
 	int SLMheight;
 
 	//Animation
@@ -44,11 +44,6 @@ public:
 	Animation		attack;
 	
 
-
-
-
-	//PATHING
-	//p2DynArray<iPoint>* path;
 	bool Dead;
 	float gravity;
 	float jumpforce_xml;
@@ -64,11 +59,7 @@ public:
 	bool AttackLeft;
 	bool AttackRight;
 
-	//PATHING FUNCTION
-//	void LookForPath();
-	//void j1Skeleton::Move(p2DynArray<iPoint>& path, float dt);
-
-	void j1Slime::ComparePositions();
-	void j1Slime::GroundJump();
-	void j1Slime::Movement();
+	void ComparePositions();
+	void GroundJump();
+	void Movement();
 };

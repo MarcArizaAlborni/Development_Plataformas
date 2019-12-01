@@ -60,15 +60,9 @@ public:
 	bool TouchingColliderLeft; //PER L' ESQUERRA TOCA COLLIDER
 	bool TouchingColliderRight;//PERLA DRETA TOCA COLLIDER
 
-
 	bool AttackLeft;
 	bool AttackRight;
 
-	//PATHING FUNCTION
-//	void LookForPath();
-	//void j1Skeleton::Move(p2DynArray<iPoint>& path, float dt);
-
-	void j1Skeleton::ComparePositions();
-	void j1Skeleton::GroundJump();
-	void j1Skeleton::Movement();
+	void ComparePositions();
+	void Movement();
 };

@@ -48,8 +48,7 @@ public:
 
 	// Destructor
 	virtual ~j1Player();
-	
-	bool Awake(pugi::xml_node& conf);
+
 	bool Start();
 	bool PreUpdate();	
 	bool Update(float dt);

@@ -34,7 +34,7 @@ public:
 	bool flip = false;
 
 	SDL_Rect Beerect;
-	int Beewith;
+	int Beewidth;
 	int Beeheight;
 
 	//Animation

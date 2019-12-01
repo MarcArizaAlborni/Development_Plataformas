@@ -357,22 +357,6 @@ void j1Skeleton::ComparePositions()
 	}
 }
 
-void j1Skeleton::GroundJump()
-{
-	if (state == JumpState) {
-		if (position.y > App->entityManager->player->position.y) {
-			animation = &hit;
-			position.y -= 5;
-		}
-		if (position.y < App->entityManager->player->position.y) {
-			state = FallState;
-		}
-	}
-
-
-
-}
-
 void j1Skeleton::Movement()
 {
 	//DRETA

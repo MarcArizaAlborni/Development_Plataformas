@@ -209,13 +209,13 @@ void j1Bee::OnCollision(Collider* A, Collider* B)
 bool j1Bee::InitEntity()
 {
 
-	Beewith = 32;
+	Beewidth = 32;
 	Beeheight = 32;
 
 	animation = &idle;
 	state = IdleState;
 
-	Beerect = { position.x, position.y, Beewith, Beeheight };
+	Beerect = { position.x, position.y, Beewidth, Beeheight };
 	collider = App->collision->AddCollider(Beerect, ObjectType::Bee, App->entityManager);
 
 	return true;

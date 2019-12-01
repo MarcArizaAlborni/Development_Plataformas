@@ -137,11 +137,11 @@ bool j1Slime::Update(float dt)
 	case AttackState:
 
 		if (AttackLeft == true) {
-			SLMwith = SLMwith - 20;
+			SLMwidth = SLMwidth - 20;
 			LOG("ATTACKED LEFT");
 		}
 		else if (AttackRight == true) {
-			SLMwith = SLMwith + 20;
+			SLMwidth = SLMwidth + 20;
 			LOG("ATTACKED RIGHT");
 		}
 		state = IdleState;
@@ -272,13 +272,13 @@ void j1Slime::OnCollision(Collider* A, Collider* B)
 bool j1Slime::InitEntity()
 {
 
-	SLMwith = 21;
+	SLMwidth = 21;
 	SLMheight = 35;
 
 	state = IdleState;
 
 	animation = &walking;
-	SLMrect = { position.x, position.y, SLMwith, SLMheight };
+	SLMrect = { position.x, position.y, SLMwidth, SLMheight };
 	collider = App->collision->AddCollider(SLMrect, ObjectType::Slime, App->entityManager);
 
 	return true;
@@ -319,22 +319,6 @@ void j1Slime::ComparePositions()
 			}
 		}
 	}
-}
-
-void j1Slime::GroundJump()
-{
-	if (state == JumpState) {
-		if (position.y > App->entityManager->player->position.y) {
-			//animation = &hit;
-			position.y -= 5;
-		}
-		if (position.y < App->entityManager->player->position.y) {
-			state = FallState;
-		}
-	}
-
-
-
 }
 
 void j1Slime::Movement()
