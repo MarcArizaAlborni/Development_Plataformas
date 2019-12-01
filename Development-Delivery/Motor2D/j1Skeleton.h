@@ -66,7 +66,7 @@ public:
 
 	//PATHING FUNCTION
 //	void LookForPath();
-	void j1Skeleton::Move(p2DynArray<iPoint>& path, float dt);
+	//void j1Skeleton::Move(p2DynArray<iPoint>& path, float dt);
 
 	void j1Skeleton::ComparePositions();
 	void j1Skeleton::GroundJump();
