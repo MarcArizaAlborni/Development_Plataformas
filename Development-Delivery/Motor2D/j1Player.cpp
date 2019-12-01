@@ -574,7 +574,6 @@ bool j1Player::Update(float dt)
 
 			 if (App->audio->Area1Level1 != true) {
 				 Mix_HaltMusic();
-				 App->audio->EnemyMusic = false;
 				 App->audio->Area2Level1 = false;
 				 App->audio->Area1Level1 = true;
 				 App->audio->PlayMusic("audio/Music/L1_A1.ogg");
@@ -593,9 +592,10 @@ bool j1Player::Update(float dt)
 
 			 if (App->audio->Area2Level1 != true) {
 				 Mix_HaltMusic();
-				 App->audio->EnemyMusic = false;
 				 App->audio->Area1Level1 = false;
 				 App->audio->Area2Level1 = true;
+
+
 				 App->audio->PlayMusic("audio/Music/L1_A2.ogg");
 
 			 }

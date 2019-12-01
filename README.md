@@ -9,7 +9,8 @@ Made by:
 
 - Last Release
 
- 
+ https://github.com/MarcArizaAlborni/Development_Plataformas/releases
+
 - Github Repository:
 
  https://github.com/MarcArizaAlborni/Development_Plataformas
@@ -17,22 +18,15 @@ Made by:
 
 About the game:
 
-This is the second delivery of our platformer game created with c++ and SDL libraries.
-The game has available two levels right now with different enemies, tilesets, music, etc.
-The character has 4 directional movement (Left,Right,Up,Down) and diagonal movement and a which allows you to reach further in when jump. 
-The game has two types of enemies (2 of each type) 
-
-
-
-
-
+This first release is a simple platformer game, made for a single player where you have to get to the end of the level. There are currently only two levels.
+To move across the map the player can use basic mechanics as Moving Left/Right and jumping. There are also other movement mechanics such as Dashing and transforming 
+into a small slime which has a smaller collider which allows you to reach certain areas that can't be reached by normal means.
 
 ## Controls:
 - Left -> A    
 - Right -> D
 - Jump -> Space
-- Dash -> U Usable when the character is falling
-- Activate Teleport Platforms -> I
+- Dash -> U (It does not work as it should do)
 
 ## Save/Load the location of the character 
 - Save Game -> F5
@@ -74,7 +68,7 @@ The game has two types of enemies (2 of each type)
 
 MIT License
 
-Copyright (c) [2019] [Marc Ariza, Adrian Mirabel]
+Copyright (c) [2019] [Marc Ariza, Adrián Mirabel]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

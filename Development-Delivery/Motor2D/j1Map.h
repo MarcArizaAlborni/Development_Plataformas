@@ -57,6 +57,8 @@ enum class ObjectType
 	LateralPlatform,
 	LateralPlatformLeft,
 	JumpDetector,
+	PlatformLimitLeft,
+	PlatformLimitRight,
 	Unknown
 
 };

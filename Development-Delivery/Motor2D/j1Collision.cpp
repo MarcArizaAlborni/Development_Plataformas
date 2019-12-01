@@ -182,13 +182,9 @@ void j1Collision::DebugDraw()
 		case ObjectType::LateralPlatform: //
 			App->render->DrawQuad(collider_iterator->data->rect, 255, 255, 0, alpha);
 			break;
-		case ObjectType::LateralPlatformLeft: //
-			App->render->DrawQuad(collider_iterator->data->rect, 255, 255, 0, alpha);
-			break;
 		case ObjectType::JumpDetector: //
 			App->render->DrawQuad(collider_iterator->data->rect, 100, 255, 0, alpha);
 			break;
-		
 		}
 	}
 

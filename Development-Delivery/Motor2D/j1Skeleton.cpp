@@ -276,26 +276,11 @@ void j1Skeleton::OnCollision(Collider* A, Collider* B)
 
 		}
 
-
-		if (B->type == ObjectType::LateralPlatformLeft) {
-
-			//LEFT TO RIGHT
-
-			if (A->rect.x + A->rect.w >= B->rect.x && A->rect.x <= B->rect.x) {
-
-				TouchingColliderRight = true;
-				TouchingColliderLeft = false;
-				//LOG("WALL TO THE RIGHT");
-			}
-		}
-
-
-
-		if (B->type == ObjectType::LateralPlatform) { //AQUEST FUNCTIONA
+		if (B->type == ObjectType::PlatformLimitLeft) {
 
 			//Right to Left
 
-			 if (A->rect.x + A->rect.w >= B->rect.x && A->rect.x <= B->rect.x) {
+			if (A->rect.x <= B->rect.x + B->rect.w && A->rect.x + A->rect.w >= B->rect.x + B->rect.w) {
 
 				TouchingColliderLeft = true;
 				TouchingColliderRight = false;
@@ -305,7 +290,18 @@ void j1Skeleton::OnCollision(Collider* A, Collider* B)
 
 		}
 
-		
+		if (B->type == ObjectType::PlatformLimitRight) {
+
+			//LEFT TO RIGHT
+
+			if (A->rect.x + A->rect.w >= B->rect.x && A->rect.x <= B->rect.x) {
+
+				TouchingColliderRight = true;
+				TouchingColliderLeft = false;
+				//LOG("WALL TO THE RIGHT");
+
+			}
+		}
 	}
 }
 
@@ -361,7 +357,21 @@ void j1Skeleton::ComparePositions()
 	}
 }
 
+void j1Skeleton::GroundJump()
+{
+	if (state == JumpState) {
+		if (position.y > App->entityManager->player->position.y) {
+			animation = &hit;
+			position.y -= 5;
+		}
+		if (position.y < App->entityManager->player->position.y) {
+			state = FallState;
+		}
+	}
 
+
+
+}
 
 void j1Skeleton::Movement()
 {
@@ -369,19 +379,19 @@ void j1Skeleton::Movement()
 	if (state == RightState && TouchingColliderRight == false) {
 		position.x += 2;
 		//LOG("MOVEMENT DRETA");
-		TouchingColliderLeft = false;
+		//TouchingColliderLeft = false;
 	}
 	else if (state == RightState) {
-		LOG("BLOCKED DRETA");
+		//LOG("BLOCKED DRETA");
 	}
 	//ESQUERRA
 	if (state == LeftState && TouchingColliderLeft == false) {
 		position.x -= 2;
 		//LOG("MOVEMENT ESQUERRA");
-		TouchingColliderRight = false;
+		//TouchingColliderRight = false;
 	}
 	else if (state == LeftState) {
-		LOG("BLOCKED ESQUERRA");
+		// LOG("BLOCKED ESQUERRA");
 	}
 
 }
