@@ -210,6 +210,7 @@ bool j1Bee::InitEntity()
 	Beewith = 32;
 	Beeheight = 32;
 
+	animation = &idle;
 	state = IdleState;
 
 	Beerect = { position.x, position.y, Beewith, Beeheight };
