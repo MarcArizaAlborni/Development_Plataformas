@@ -53,15 +53,15 @@ bool j1Scene::Start()
 	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
 
 
-	//App->entityManager->AddEnemies({300,288}, SKELETON);
+	//App->entityManager->AddEnemies({300,288}, SLIME);
 	//App->entityManager->AddEnemies( {600,100 }, SKULL);
 	//App->entityManager->AddEnemies({ 800,100 }, BEE);
 	
 	// ENEMY SPAWNS LEVEL 1
 	App->entityManager->AddEnemies({ 544,288 }, SKELETON);
-	App->entityManager->AddEnemies({ 800,100 }, BEE);
-	App->entityManager->AddEnemies({ 1000, 220}, SLIME);
-	App->entityManager->AddEnemies({ 2300,120 }, SKULL);
+	App->entityManager->AddEnemies({ 2300,120 }, BEE);
+	App->entityManager->AddEnemies({ 1000, 222}, SKELETON);
+	App->entityManager->AddEnemies({ 800,100 }, SKULL);
 	//App->entityManager->AddEnemies({ 2300,180 }, BEE);
 
 	App->entityManager->CreateEntity(PLAYER);

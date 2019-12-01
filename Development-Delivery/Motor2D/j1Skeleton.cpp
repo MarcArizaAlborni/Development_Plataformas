@@ -133,9 +133,11 @@ bool j1Skeleton::Update(float dt)
 
 	case RightState:
 		AttackLeft, AttackRight = false;
+		flip = true;
 		if (GoRight) {
 			//LOG("SKELETON RIGHT");
 			Movement();
+			
 			animation = &walking;
 			TouchingColliderRight = false;
 			//TouchingColliderLeft = false;
@@ -148,19 +150,7 @@ bool j1Skeleton::Update(float dt)
 
 		break;
 
-	case JumpState:
-		animation = &hit;
-		break;
-
-	case FallState:
-		animation = &hit;
-		if (position.y < App->entityManager->player->position.y) {
-			position.y += 5;
-		}
-		if (position.y == App->entityManager->player->position.y) {
-			state = IdleState;
-		}
-		break;
+	
 
 	case AttackState:
 
@@ -179,7 +169,7 @@ bool j1Skeleton::Update(float dt)
 
 		//ATTACK ANIMATION LEFT
 		if (AttackLeft) {
-			flip = true;
+			flip=false;
 			animation = &attack;
 			//if (animation->FinishedAnimation()) {
 
@@ -188,6 +178,7 @@ bool j1Skeleton::Update(float dt)
 		}
 		//ATACK ANIMATION RIGHT
 		else if (AttackRight) {
+			flip = true;
 			animation = &attack;
 			//if (animation->FinishedAnimation()) {
 			state = AttackState;

@@ -116,15 +116,7 @@ bool j1Slime::Update(float dt)
 
 	
 
-	case FallState:
-		
-		if (position.y < App->entityManager->player->position.y) {
-			position.y += 5;
-		}
-		if (position.y == App->entityManager->player->position.y) {
-			state = IdleState;
-		}
-		break;
+	
 
 	case AttackState:
 

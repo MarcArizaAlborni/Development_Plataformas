@@ -185,7 +185,7 @@ void j1Bee::OnCollision(Collider* A, Collider* B)
 
 				if ((A->rect.x + A->rect.w > B->rect.x) || (A->rect.x + A->rect.w < B->rect.x + B->rect.w)) {
 					LOG("BEE TOUCHING PLATFORM FROM ABOVE");
-					position.y = B->rect.y - A->rect.h - 1;
+					position.y = B->rect.y - A->rect.h ;
 					TouchingColliderPlatformOver = true;
 
 				}
