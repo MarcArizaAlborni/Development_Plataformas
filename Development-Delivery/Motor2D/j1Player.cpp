@@ -525,7 +525,7 @@ bool j1Player::Update(float dt)
 				 B->rect.y;
 				 // PlayerTP(B->rect.x,B->rect.y);
 				 //POTSER POSAR COORDENADES EN EL CONFIG.XML I DIR TELEPORTER POSITION.X?
-				 PlayerTP(100, 50); //AMB AIXO FUNCIONA PERO ESTA BRUTALMENT HARDCODEJAT
+				 PlayerTP(179, 88); //AMB AIXO FUNCIONA PERO ESTA BRUTALMENT HARDCODEJAT
 			 }
 		 }
 	 }
