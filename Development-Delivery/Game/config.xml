@@ -40,7 +40,6 @@
     <skull width ="32" height="32"> </skull>
     <bee width ="32" height="32"> </bee>
   </entities>
-
   <audio>
     <Volume></Volume>
     <Music>
@@ -50,6 +49,15 @@
       <MovementSounds>audio/fx</MovementSounds>
     </Fx>
   </audio>
+  <scene>
+    <spawn>
+      <Skeleton1 x="544" y="288"></Skeleton1>
+      <Skeleton2 x="1000" y="222"></Skeleton2>
+      <Skeleton3 x="1600" y="290"></Skeleton3>
+      <Skull1 x="900" y="100"></Skull1>
+      <Bee1 x="2300" y="120"></Bee1>
+    </spawn>
+  </scene>
 
   
 

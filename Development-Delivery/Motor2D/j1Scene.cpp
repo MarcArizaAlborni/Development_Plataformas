@@ -31,7 +31,18 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	LOG("Loading Scene");
 	bool ret = true;
 
-	//config.
+	pugi::xml_node spawn = config.child("spawn");
+
+	Skeleton1.x = spawn.child("Skeleton1").attribute("x").as_int();
+	Skeleton1.y = spawn.child("Skeleton1").attribute("y").as_int();
+	Skeleton2.x = spawn.child("Skeleton2").attribute("x").as_int();
+	Skeleton2.y = spawn.child("Skeleton2").attribute("y").as_int();
+	Skeleton3.x = spawn.child("Skeleton3").attribute("x").as_int();
+	Skeleton3.y = spawn.child("Skeleton3").attribute("y").as_int();
+	Skull1.x = spawn.child("Skull1").attribute("x").as_int();
+	Skull1.y = spawn.child("Skull1").attribute("y").as_int();
+	Bee1.x = spawn.child("Bee1").attribute("x").as_int();
+	Bee1.y = spawn.child("Bee1").attribute("y").as_int();
 
 	return ret;
 }
@@ -54,18 +65,13 @@ bool j1Scene::Start()
 
 	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
 
-
-	//App->entityManager->AddEnemies({300,288}, SLIME);
-	//App->entityManager->AddEnemies( {600,100 }, SKULL);
-	//App->entityManager->AddEnemies({ 800,100 }, BEE);
 	
 	// ENEMY SPAWNS LEVEL 1
-	App->entityManager->AddEnemies({ 544,288 }, SKELETON);
-	App->entityManager->AddEnemies({ 2300,120 }, BEE);
-	App->entityManager->AddEnemies({ 1000, 222}, SKELETON);
-	App->entityManager->AddEnemies({ 900,100 }, SKULL);
-	App->entityManager->AddEnemies({ 1600, 290 }, SKELETON);
-	//App->entityManager->AddEnemies({ 2300,180 }, BEE);
+	App->entityManager->AddEnemies(Skeleton1, SKELETON);
+	App->entityManager->AddEnemies(Bee1, BEE);
+	App->entityManager->AddEnemies(Skeleton2, SKELETON);
+	App->entityManager->AddEnemies(Skull1, SKULL);
+	App->entityManager->AddEnemies(Skeleton3, SKELETON);
 
 	App->entityManager->CreateEntity(PLAYER);
 
