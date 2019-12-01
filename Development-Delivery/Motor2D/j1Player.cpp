@@ -9,6 +9,9 @@
 #include "j1Collision.h"
 #include "j1FadeToBlack.h"
 #include "j1Map.h"
+#include "j1Skeleton.h"
+#include "j1Skull.h"
+#include "j1Bee.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -452,7 +455,35 @@ bool j1Player::Update(float dt)
 		 }
 
 		
+		 if (B->type == ObjectType::Skeleton) {
 
+			 if (App->entityManager->skeleton->state == AttackReadyState) {
+
+				 if (A->rect.x + A->rect.w >= B->rect.x && A->rect.x <= B->rect.x)  //EL BO
+				 {
+
+					 position.x = Inipos.x;
+					 position.y = Inipos.y;
+
+				 }
+				 //Right to Left
+				 else if (A->rect.x <= B->rect.x + B->rect.w && A->rect.x + A->rect.w >= B->rect.x + B->rect.w) {
+
+					 position.x = Inipos.x;
+					 position.y = Inipos.y;
+				 }
+
+			 }
+
+		 }
+
+		 if (B->type == ObjectType::Skull) {
+			 if ((position.y + A->rect.h) <= B->rect.y + 20) {
+
+				 position.x = Inipos.x;
+				 position.y = Inipos.y;
+			 }
+		 }
 
 
 		 //from above
