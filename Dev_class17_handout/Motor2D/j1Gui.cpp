@@ -10,10 +10,12 @@
 #include "j1Gui_Image.h"
 #include "j1Gui_Label.h"
 #include "j1GUi_Button.h"
+#include "j1Gui_InputBox.h"
 
 j1Gui::j1Gui() : j1Module()
 {
 	name.create("gui");
+
 }
 
 // Destructor
@@ -116,6 +118,8 @@ void j1Gui::Create_Element(Element_type element, iPoint position, SDL_Rect rect,
 	case Element_type::BUTTON:
 		elem = new Gui_Button(element, position, rect, tex);
 		break;
+	case Element_type::INPUTBOX:
+		elem = new Gui_InputBox(element, position, rect, tex);
 	}
 
 	if (elem != nullptr)

@@ -16,6 +16,7 @@ enum class Element_type
 	BUTTON,
 	LABEL,
 	IMAGE,
+	INPUTBOX,
 	NONE
 };
 
@@ -24,6 +25,19 @@ enum class Button_type
 	STANDARD,
 	CHECK_BOX,
 	INPUT_TEXT,
+	NONE
+};
+
+enum class Element_Event
+{
+	HOVER,
+	UNHOVER,
+	CLICKER,
+	RELEASED, 
+	INPUTCHANGED,      // Escribir
+	INPUTSUBMIT, 
+	GAINFOCUS, 
+	LOSEFOCUS,
 	NONE
 };
 
@@ -67,7 +81,6 @@ private:
 
 public:
 	p2List<Gui_Elements*> List_elem;
-
 
 };
 

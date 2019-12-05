@@ -54,6 +54,7 @@ bool j1Scene::Start()
 	SDL_Texture* font = App->font->Print("Hello World!", { 255, 255, 255, 255 }, App->font->default);
 	App->gui->Create_Element(Element_type::LABEL, { 480, 180 }, { 0,0,75,15 }, font);
 
+	App->gui->Create_Element(Element_type::INPUTBOX, { 480, 200 }, { 200,30,34,34 }, App->gui->GetAtlas());
 	return true;
 }
 
