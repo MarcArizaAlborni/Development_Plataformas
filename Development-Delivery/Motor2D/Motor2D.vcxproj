@@ -14,7 +14,7 @@
     <ProjectGuid>{2AF9969B-F202-497B-AF30-7BEF9CE8005E}</ProjectGuid>
     <RootNamespace>programacio_2</RootNamespace>
     <ProjectName>Motor 2D</ProjectName>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -76,9 +76,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="j1BarUI.cpp" />
     <ClCompile Include="j1Bee.cpp" />
+    <ClCompile Include="j1Button.cpp" />
+    <ClCompile Include="j1ElementUI.cpp" />
     <ClCompile Include="j1Entities.cpp" />
     <ClCompile Include="j1EntityManager.cpp" />
+    <ClCompile Include="j1Fonts.cpp" />
+    <ClCompile Include="j1GUI.cpp" />
+    <ClCompile Include="j1LabelUI.cpp" />
+    <ClCompile Include="j1MenuScene.cpp" />
     <ClCompile Include="j1Pathfinding.cpp" />
     <ClCompile Include="j1PerfTimer.cpp" />
     <ClCompile Include="j1Collision.cpp" />
@@ -90,8 +97,11 @@
     <ClCompile Include="j1Map.cpp" />
     <ClCompile Include="j1Player.cpp" />
     <ClCompile Include="j1Scene.cpp" />
+    <ClCompile Include="j1SceneUI.cpp" />
     <ClCompile Include="j1Skull.cpp" />
     <ClCompile Include="j1Slime.cpp" />
+    <ClCompile Include="j1SpriteUI.cpp" />
+    <ClCompile Include="j1Thumb.cpp" />
     <ClCompile Include="j1Timer.cpp" />
     <ClCompile Include="p2Log.cpp" />
     <ClCompile Include="j1Render.cpp" />
@@ -101,13 +111,23 @@
     <ClCompile Include="j1Skeleton.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="j1BarUI.h" />
     <ClInclude Include="j1Bee.h" />
+    <ClInclude Include="j1Button.h" />
+    <ClInclude Include="j1ElementUI.h" />
     <ClInclude Include="j1Entities.h" />
     <ClInclude Include="j1EntityManager.h" />
+    <ClInclude Include="j1Fonts.h" />
+    <ClInclude Include="j1GUI.h" />
+    <ClInclude Include="j1LabelUI.h" />
+    <ClInclude Include="j1MenuScene.h" />
     <ClInclude Include="j1Pathfinding.h" />
     <ClInclude Include="j1PerfTimer.h" />
+    <ClInclude Include="j1SceneUI.h" />
     <ClInclude Include="j1Skull.h" />
     <ClInclude Include="j1Slime.h" />
+    <ClInclude Include="j1SpriteUI.h" />
+    <ClInclude Include="j1Thumb.h" />
     <ClInclude Include="j1Timer.h" />
     <ClInclude Include="p2Animation.h" />
     <ClInclude Include="j1Collision.h" />

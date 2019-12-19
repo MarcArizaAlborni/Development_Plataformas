@@ -16,6 +16,10 @@
 #include "j1Pathfinding.h"
 #include "j1EntityManager.h"
 #include "j1Entities.h"
+#include "j1SceneUI.h"
+#include "j1MenuScene.h"
+#include "j1Fonts.h"
+#include "j1GUI.h"
 #include "Brofiler/Brofiler.h"
 
 // Constructor
@@ -35,6 +39,10 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	fade = new j1FadeToBlack();
 	pathfinding = new j1PathFinding();
 	entityManager = new j1EntityManager();
+	gui = new j1Gui();
+	font = new j1Fonts();
+	scene_menu = new j1SceneMenu();
+	scene_ui = new j1Scene_UI();
 	
 	
 	// Ordered for awake / Start / Update
@@ -48,6 +56,10 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(collision);
 	AddModule(fade);
 	AddModule(entityManager);
+	AddModule(font);
+	AddModule(gui);
+	AddModule(scene_menu);
+	AddModule(scene_ui);
 
 	// render last to swap buffer
 	AddModule(render);

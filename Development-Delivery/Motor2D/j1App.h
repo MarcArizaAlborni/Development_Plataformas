@@ -19,6 +19,11 @@ class j1FadeToBlack;
 class j1Collision;
 class j1PathFinding;
 class j1EntityManager;
+class j1Fonts;
+class j1Gui;
+class j1SceneMenu;
+class j1Scene_UI;
+
 
 class j1App
 {
@@ -95,6 +100,10 @@ public:
 	j1FadeToBlack*		fade;
 	j1PathFinding*		pathfinding;
 	j1EntityManager*    entityManager;
+	j1Gui*				gui;
+	j1Fonts*			font;
+	j1SceneMenu*		scene_menu;
+	j1Scene_UI*			scene_ui;
 
 	//FRAMERATE/VSYNC
 
