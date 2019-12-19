@@ -70,24 +70,6 @@
     <ClCompile Include="j1Slime.cpp">
       <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="j1Fonts.cpp">
-      <Filter>Desenvolupament  ========\Modules\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Gui.cpp">
-      <Filter>Desenvolupament  ========\Modules\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Gui_Button.cpp">
-      <Filter>Desenvolupament  ========\Modules\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Gui_Elements.cpp">
-      <Filter>Desenvolupament  ========\Modules\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Gui_Image.cpp">
-      <Filter>Desenvolupament  ========\Modules\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Gui_Label.cpp">
-      <Filter>Desenvolupament  ========\Modules\UI</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -180,24 +162,6 @@
     <ClInclude Include="j1Slime.h">
       <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="j1Fonts.h">
-      <Filter>Desenvolupament  ========\Modules\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Gui.h">
-      <Filter>Desenvolupament  ========\Modules\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Gui_Button.h">
-      <Filter>Desenvolupament  ========\Modules\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Gui_Elements.h">
-      <Filter>Desenvolupament  ========\Modules\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Gui_Image.h">
-      <Filter>Desenvolupament  ========\Modules\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Gui_Label.h">
-      <Filter>Desenvolupament  ========\Modules\UI</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
@@ -226,9 +190,6 @@
     </Filter>
     <Filter Include="Desenvolupament  ========\Modules\Entities\Player">
       <UniqueIdentifier>{5a5278e5-0ef5-4305-bd9f-821a636f2046}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Desenvolupament  ========\Modules\UI">
-      <UniqueIdentifier>{aeea066e-0eeb-4123-8c7c-9ce749316c2a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
