@@ -20,7 +20,6 @@ class j1Collision;
 class j1PathFinding;
 class j1EntityManager;
 class j1Gui;
-class j1Fonts;
 
 
 class j1App
@@ -98,8 +97,8 @@ public:
 	j1FadeToBlack*		fade;
 	j1PathFinding*		pathfinding;
 	j1EntityManager*    entityManager;
-	j1Fonts*			font;
-	j1Gui*				gui;
+	/*j1Fonts*			font = NULL;*/
+	j1Gui*				gui = NULL;
 
 	//FRAMERATE/VSYNC
 
