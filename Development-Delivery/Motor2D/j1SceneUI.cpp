@@ -99,7 +99,7 @@ bool j1Scene_UI::PreUpdate(float dt)
 // Called each loop iteration
 bool j1Scene_UI::Update(float dt)
 {
-	BROFILER_CATEGORY("Update_SceneUI", Profiler::Color::DarkKhaki);
+	BROFILER_CATEGORY("Update_SceneUI", Profiler::Color::OrangeRed);
 	float timer = (float)ptimer.ReadMs() / 1000;
 	sprintf_s(timer_string, 20, "%.2f", timer);
 	timer_label->ChangeText(timer_string);
@@ -158,7 +158,7 @@ bool j1Scene_UI::Update(float dt)
 // Called each loop iteration
 bool j1Scene_UI::PostUpdate()
 {
-	BROFILER_CATEGORY("PostUpdate_SceneIntro", Profiler::Color::MediumVioletRed);
+	BROFILER_CATEGORY("PostUpdate_SceneIntro", Profiler::Color::CadetBlue);
 
 	bool ret = true;
 
