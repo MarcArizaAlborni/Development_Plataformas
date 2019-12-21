@@ -12,6 +12,7 @@ class j1Skeleton;
 class j1Skull;
 class j1Slime;
 class j1Bee;
+class j1MapEntity;
 
 struct SDL_Texture;
 
@@ -38,7 +39,8 @@ enum EntitiesType
 	SKELETON,
 	SLIME,
 	SKULL,
-	BEE
+	BEE,
+	MAP
 	
 };
 
@@ -85,6 +87,7 @@ public:
 	j1Skull*			skull = nullptr;
 	j1Slime*			slime = nullptr;
 	j1Bee*				bee = nullptr;
+	j1MapEntity*	    MapEntity = nullptr;
 
 private:
 

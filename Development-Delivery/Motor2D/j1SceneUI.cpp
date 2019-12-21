@@ -42,14 +42,37 @@ bool j1Scene_UI::Start()
 
 	App->gui->CreateSprite({ 0,0 }, { 649,203,451,24 }, true);
 
-	App->gui->CreateLabel({ 520, 5 }, "SCORE", Label_Type::FONT, { 255,255,255,255 }, true);
-	score_label = App->gui->CreateLabel({ 590,5 }, player_score_string, Label_Type::CONFIG, { 255,255,255,255 }, true);
-	App->gui->CreateLabel({ 380, 5 }, "TIMER", Label_Type::FONT, { 255,255,255,255 }, true);
+	
+	App->gui->CreateLabel({ 380, 5 }, "time", Label_Type::FONT, { 255,255,255,255 }, true);
 	timer_label = App->gui->CreateLabel({ 465,5 }, timer_string, Label_Type::CONFIG, { 255,255,255,255 }, true);
+	//BACKPLAYER SQUARE
+    Character_Back[0] = (App->gui->CreateSprite({ 113,4 }, { 264,37,35,50 }, true));
+	Map_Icon[0] = (App->gui->CreateSprite({ 900,4 }, { 200,34,52,50 }, true));
 
-	hearts[0] = (App->gui->CreateSprite({ 520,5 }, { 706,6,14,13 }, true));
-	hearts[1] = (App->gui->CreateSprite({ 0,0 }, { 706,6,14,13 }, true));
-	hearts[2] = (App->gui->CreateSprite({ 10,0 }, { 706,6,14,13 }, true));
+	//HEALTH
+	if (App->entityManager->player->Life_Num == 4) {
+		lifes[0] = (App->gui->CreateSprite({ 5,10 }, { 458,45,110,34 }, true));
+		player_status[0] = (App->gui->CreateSprite({ 120,10 }, { 413,45,20,35 }, true));
+	}
+	else if (App->entityManager->player->Life_Num == 3){
+		lifes[1] = (App->gui->CreateSprite({ 5,10 }, { 458,80,110,34 }, true)); 
+		player_status[1] = (App->gui->CreateSprite({ 120,10 }, { 376,45,20,35 }, true));
+	}
+	else if (App->entityManager->player->Life_Num == 2) {
+		lifes[2] = (App->gui->CreateSprite({ 5,10}, { 458,111,110,34 }, true));
+		player_status[2] = (App->gui->CreateSprite({ 120,10 }, { 339,45,20,35 }, true));
+	}
+	else if (App->entityManager->player->Life_Num == 1) {
+		lifes[3] = (App->gui->CreateSprite({ 5,10 }, { 458,144,110,34 }, true));
+		player_status[3] = (App->gui->CreateSprite({ 120,10 }, { 308,45,20,35 }, true));
+	}
+
+	//COLLECTABLE
+
+	
+	score_label = App->gui->CreateLabel({ 870,10 }, "x0", Label_Type::CONFIG, { 255,255,255,255 }, true);
+	
+	
 
 	p2List_item<UIitem_Button*>* button_item = button_list.start;
 	while (button_item != NULL)
@@ -81,9 +104,28 @@ bool j1Scene_UI::Update(float dt)
 	sprintf_s(timer_string, 20, "%.2f", timer);
 	timer_label->ChangeText(timer_string);
 
-	// if condiotioning with lifes here
+	//COLLECTABLE MAPS
+	if (App->entityManager->player->Maps_Num == 0) {
+		score_label->ChangeText("x0");
+	}
+	else if (App->entityManager->player->Maps_Num == 1) {
+		score_label->ChangeText("x1");
+	}
+	else if (App->entityManager->player->Maps_Num == 2) {
+		score_label->ChangeText("x2");
+	}
+	else if (App->entityManager->player->Maps_Num == 3) {
+		score_label->ChangeText("x3");
+	}
+	else if (App->entityManager->player->Maps_Num == 4) {
+		score_label->ChangeText("x4");
+	}
 
-	/*App->entityManager->player->player.lives;*/
+	
+	//HEALTH 
+
+	//Not sure how to change sprite yet
+
 
 	p2List_item<UIitem_Button*>* button_item = button_list.start;
 	while (button_item != NULL)

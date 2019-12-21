@@ -96,7 +96,17 @@ public:
 	//MOVEMENT
 
 	void Movement();
+	
+	//HEALTH
 
+	int Life_Num;
+	int Invulnerability_Time;
+	int Invulnerability_Cap;
+	int Damaged;
+
+	//COLLECTABLE
+
+	int Maps_Num;
 
 	//JUMP
 	float TempVelY;

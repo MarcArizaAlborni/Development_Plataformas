@@ -45,7 +45,17 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	Skull1.y = spawn.child("Skull1").attribute("y").as_int();
 	Bee1.x = spawn.child("Bee1").attribute("x").as_int();
 	Bee1.y = spawn.child("Bee1").attribute("y").as_int();
+	MapItem1.x = spawn.child("Map1").attribute("x").as_int();
+	MapItem1.y = spawn.child("Map1").attribute("y").as_int();
 
+	MapItem2.x = spawn.child("Map2").attribute("x").as_int();
+	MapItem2.y = spawn.child("Map2").attribute("y").as_int();
+
+	MapItem3.x = spawn.child("Map3").attribute("x").as_int();
+	MapItem3.y = spawn.child("Map3").attribute("y").as_int();
+
+	MapItem4.x = spawn.child("Map4").attribute("x").as_int();
+	MapItem4.y = spawn.child("Map4").attribute("y").as_int();
 	return ret;
 }
 
@@ -76,6 +86,13 @@ bool j1Scene::Start()
 	App->entityManager->AddEnemies(Skeleton3, SKELETON);
 
 	App->entityManager->CreateEntity(PLAYER);
+
+	//MAP ITEM ENTITY SPAWN
+
+	App->entityManager->AddEnemies(MapItem1, MAP);
+	App->entityManager->AddEnemies(MapItem2, MAP);
+	App->entityManager->AddEnemies(MapItem3, MAP);
+	App->entityManager->AddEnemies(MapItem4, MAP);
 
 
 	return true;

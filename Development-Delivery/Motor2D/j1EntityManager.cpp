@@ -6,6 +6,7 @@
 #include "j1Bee.h"
 #include "p2Log.h"
 #include "j1Scene.h"
+#include "j1MapEntity.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -46,7 +47,7 @@ bool j1EntityManager::PreUpdate()
 	{
 		if (entities[i].type != EntitiesType::NOTHING)
 		{
-			if (entities[i].type == EntitiesType::SKELETON || entities[i].type == EntitiesType::SKULL || entities[i].type == EntitiesType::SLIME || entities[i].type == EntitiesType::BEE)
+			if (entities[i].type == EntitiesType::SKELETON || entities[i].type == EntitiesType::SKULL || entities[i].type == EntitiesType::SLIME || entities[i].type == EntitiesType::BEE || entities[i].type == EntitiesType::MAP)
 				SpawnEnemies(entities[i]);
 
 			else
@@ -172,6 +173,14 @@ j1Entities* j1EntityManager::CreateEntities(EntitiesType type, iPoint pos)
 			entityList.add(ret);
 		}
 		break;
+
+	case EntitiesType::MAP:
+		ret = new j1MapEntity(pos, type);
+		if (ret != nullptr)
+		{
+			entityList.add(ret);
+		}
+		break;
 	}
 
 	return ret;
@@ -240,6 +249,12 @@ void j1EntityManager::SpawnEnemies(const EntitiesInfo& info)
 					entityList.add(ret);
 				break;
 
+			case EntitiesType::MAP:
+				ret = new j1MapEntity(info.position, info.type);
+
+				if (ret != nullptr)
+					entityList.add(ret);
+				break;
 			}
 
 			ret->Start();
@@ -252,7 +267,17 @@ void j1EntityManager::SpawnEnemies(const EntitiesInfo& info)
 //FOR DESTROYING A SINGLE ENTITY
 void j1EntityManager::DeleteEntities(j1Entities* entity) {
 
+	for (p2List_item<j1Entities*>* entity_iterator = entityList.start; entity_iterator != NULL; entity_iterator = entity_iterator->next)
+	{
+		if (entity_iterator->data->type != EntitiesType::PLAYER)
+		{
+			entity_iterator->data->CleanUp();			//Calls the CleanUp() method of the iterated entity (an enemy entity).
+			RELEASE(entity_iterator->data);				//Deletes the data buffer
+			entityList.del(entity_iterator);				//Deletes the entity being iterated from the list.
 
+			//break;
+		}
+	}
 }
 
 

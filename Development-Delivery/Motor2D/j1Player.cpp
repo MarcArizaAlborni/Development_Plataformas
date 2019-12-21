@@ -75,6 +75,9 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 	 LOG("Loading player textures");
 	 
 	 texture = App->tex->Load("Sprites/DudeMOD.png");
+	 Life_Num = 4;
+	 Invulnerability_Cap = 100;
+	 Maps_Num = 0;
 
 	 InitEntity();
 	

@@ -46,10 +46,13 @@ public:
 	char		player_score_string[5] = "0";
 	char		timer_string[20] = "0";
 	uint        player_lifes = 3;
-	UI_Item*     hearts[3] = { nullptr,nullptr,nullptr };
-	uint		player_score = 0;
+	UI_Item*    lifes[4] = { nullptr,nullptr,nullptr,nullptr };
+	UI_Item*    player_status[4] = { nullptr,nullptr,nullptr,nullptr };
+	UI_Item*    Character_Back[1] = { nullptr};
+	UI_Item*    Map_Icon[1] = { nullptr };
 	UI_Label*	score_label = nullptr;
 	UI_Label*	timer_label = nullptr;
+
 
 	p2List<UIitem_Button*>	button_list;
 	p2List<UI_Item*>		pause_ui_list; //Pause menu when esc pressed

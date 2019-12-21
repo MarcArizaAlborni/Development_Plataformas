@@ -41,6 +41,10 @@ public:
 	iPoint Skeleton3;
 	iPoint Skull1;
 	iPoint Bee1;
+	iPoint MapItem1;
+	iPoint MapItem2;
+	iPoint MapItem3;
+	iPoint MapItem4;
 
 private:
 

@@ -57,6 +57,7 @@ enum class ObjectType
 	LateralPlatform,
 	LateralPlatformLeft,
 	JumpDetector,
+	MapEntityCollider,
 	Unknown
 
 };

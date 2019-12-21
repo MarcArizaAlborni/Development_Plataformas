@@ -39,6 +39,7 @@
     <slime width ="21" height="35"> </slime>
     <skull width ="32" height="32"> </skull>
     <bee width ="32" height="32"> </bee>
+    <MapEntity width="32" height="32"></MapEntity>
   </entities>
   <audio>
     <Volume></Volume>
@@ -56,8 +57,15 @@
       <Skeleton3 x="1600" y="290"></Skeleton3>
       <Skull1 x="900" y="100"></Skull1>
       <Bee1 x="2300" y="120"></Bee1>
+      <Map1 x="710" y="250"></Map1>
+      <Map2 x="1150" y="200"></Map2>
+      <Map3 x="1800" y="200"></Map3>
+      <Map4 x="2250" y="230"></Map4>
     </spawn>
   </scene>
+  <gui>
+    <atlas file="Sprites/GUI/UI_Character_Sprites.png"/>
+  </gui>
 
   
 
