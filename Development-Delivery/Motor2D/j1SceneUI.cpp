@@ -110,6 +110,7 @@ bool j1Scene_UI::PreUpdate(float dt)
 bool j1Scene_UI::Update(float dt)
 {
 	if (App->entityManager->player != NULL) {
+
 		BROFILER_CATEGORY("Update_SceneUI", Profiler::Color::OrangeRed);
 		float timer = (float)ptimer.ReadMs() / 1000;
 		sprintf_s(timer_string, 20, "%.2f", timer);
