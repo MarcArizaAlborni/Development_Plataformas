@@ -13,6 +13,7 @@ UI_Sprite::UI_Sprite(SDL_Rect rect, UI_Item* parent)
 }
 
 
+
 bool UI_Sprite::PostUpdate()
 {
 	App->render->Blit(App->gui->GetAtlas(), position.x, position.y, &sprite_rect);

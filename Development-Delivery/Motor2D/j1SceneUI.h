@@ -39,7 +39,7 @@ public:
 	bool CleanUp();
 
 private:
-	void ChangeVisibility(); // When pause menu is displayed and closed
+	void IngameMenu(); // When pause menu is displayed and closed
 
 public:
 
@@ -52,7 +52,10 @@ public:
 	UI_Item*    Map_Icon[1] = { nullptr };
 	UI_Label*	score_label = nullptr;
 	UI_Label*	timer_label = nullptr;
-
+	bool LifeAt4;
+	bool LifeAt3;
+	bool LifeAt2;
+	bool LifeAt1;
 
 	p2List<UIitem_Button*>	button_list;
 	p2List<UI_Item*>		pause_ui_list; //Pause menu when esc pressed

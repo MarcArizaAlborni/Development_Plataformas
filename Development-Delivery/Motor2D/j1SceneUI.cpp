@@ -48,9 +48,13 @@ bool j1Scene_UI::Start()
 	//BACKPLAYER SQUARE
     Character_Back[0] = (App->gui->CreateSprite({ 113,4 }, { 264,37,35,50 }, true));
 	Map_Icon[0] = (App->gui->CreateSprite({ 900,4 }, { 200,34,52,50 }, true));
+	
+	//HEALTH START
 
-	//HEALTH
-	if (App->entityManager->player->Life_Num == 4) {
+	lifes[0] = (App->gui->CreateSprite({ 5,10 }, { 458,45,110,34 }, true));
+	player_status[0] = (App->gui->CreateSprite({ 120,10 }, { 413,45,20,35 }, true));
+	
+	/*if (App->entityManager->player->Life_Num == 4) {
 		lifes[0] = (App->gui->CreateSprite({ 5,10 }, { 458,45,110,34 }, true));
 		player_status[0] = (App->gui->CreateSprite({ 120,10 }, { 413,45,20,35 }, true));
 	}
@@ -65,7 +69,13 @@ bool j1Scene_UI::Start()
 	else if (App->entityManager->player->Life_Num == 1) {
 		lifes[3] = (App->gui->CreateSprite({ 5,10 }, { 458,144,110,34 }, true));
 		player_status[3] = (App->gui->CreateSprite({ 120,10 }, { 308,45,20,35 }, true));
-	}
+	}*/
+
+	LifeAt1 = true;
+	LifeAt2 = true;
+	LifeAt3 = true;
+	LifeAt4 = true;
+
 
 	//COLLECTABLE
 
@@ -99,32 +109,57 @@ bool j1Scene_UI::PreUpdate(float dt)
 // Called each loop iteration
 bool j1Scene_UI::Update(float dt)
 {
-	BROFILER_CATEGORY("Update_SceneUI", Profiler::Color::OrangeRed);
-	float timer = (float)ptimer.ReadMs() / 1000;
-	sprintf_s(timer_string, 20, "%.2f", timer);
-	timer_label->ChangeText(timer_string);
+	if (App->entityManager->player != NULL) {
+		BROFILER_CATEGORY("Update_SceneUI", Profiler::Color::OrangeRed);
+		float timer = (float)ptimer.ReadMs() / 1000;
+		sprintf_s(timer_string, 20, "%.2f", timer);
+		timer_label->ChangeText(timer_string);
 
-	//COLLECTABLE MAPS
-	if (App->entityManager->player->Maps_Num == 0) {
-		score_label->ChangeText("x0");
-	}
-	else if (App->entityManager->player->Maps_Num == 1) {
-		score_label->ChangeText("x1");
-	}
-	else if (App->entityManager->player->Maps_Num == 2) {
-		score_label->ChangeText("x2");
-	}
-	else if (App->entityManager->player->Maps_Num == 3) {
-		score_label->ChangeText("x3");
-	}
-	else if (App->entityManager->player->Maps_Num == 4) {
-		score_label->ChangeText("x4");
+		//COLLECTABLE MAPS
+		if (App->entityManager->player->Maps_Num == 0) {
+			score_label->ChangeText("x0");
+		}
+		else if (App->entityManager->player->Maps_Num == 1) {
+			score_label->ChangeText("x1");
+		}
+		else if (App->entityManager->player->Maps_Num == 2) {
+			score_label->ChangeText("x2");
+		}
+		else if (App->entityManager->player->Maps_Num == 3) {
+			score_label->ChangeText("x3");
+		}
+		else if (App->entityManager->player->Maps_Num == 4) {
+			score_label->ChangeText("x4");
+		}
+
+
+		//HEALTH 
+		//Not sure how to change sprite yet
+
+
+
+		if (App->entityManager->player->Life_Num == 4 && LifeAt4 == false) {
+			lifes[0] = (App->gui->CreateSprite({ 5,10 }, { 458,45,110,34 }, true));
+			player_status[0] = (App->gui->CreateSprite({ 120,10 }, { 413,45,20,35 }, true));
+		}
+		else if (App->entityManager->player->Life_Num == 3 && LifeAt3 == false) {
+			lifes[1] = (App->gui->CreateSprite({ 5,10 }, { 458,80,110,34 }, true));
+			player_status[1] = (App->gui->CreateSprite({ 120,10 }, { 376,45,20,35 }, true));
+		}
+		else if (App->entityManager->player->Life_Num == 2 && LifeAt2 == false) {
+			lifes[2] = (App->gui->CreateSprite({ 5,10 }, { 458,111,110,34 }, true));
+			player_status[2] = (App->gui->CreateSprite({ 120,10 }, { 339,45,20,35 }, true));
+		}
+		else if (App->entityManager->player->Life_Num == 1 && LifeAt1 == false) {
+			lifes[3] = (App->gui->CreateSprite({ 5,10 }, { 458,144,110,34 }, true));
+			player_status[3] = (App->gui->CreateSprite({ 120,10 }, { 308,45,20,35 }, true));
+		}
+
+
+
 	}
 
-	
-	//HEALTH 
 
-	//Not sure how to change sprite yet
 
 
 	p2List_item<UIitem_Button*>* button_item = button_list.start;
@@ -135,7 +170,7 @@ bool j1Scene_UI::Update(float dt)
 			switch (button_item->data->GetType())
 			{
 			case PLAY:
-				ChangeVisibility();
+				IngameMenu();
 				//App->paused = false;
 				break;
 			case SAVE:
@@ -164,7 +199,7 @@ bool j1Scene_UI::PostUpdate()
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	{
-		ChangeVisibility();
+		IngameMenu();
 	}
 
 	return ret;
@@ -179,7 +214,7 @@ bool j1Scene_UI::CleanUp()
 	return true;
 }
 
-void j1Scene_UI::ChangeVisibility()
+void j1Scene_UI::IngameMenu()
 {
 	p2List_item<UIitem_Button*>* button_item = button_list.start;
 	while (button_item != NULL)

@@ -72,7 +72,7 @@ bool j1Scene::Start()
 
 		RELEASE_ARRAY(data);
 	}
-
+	
 	debug_tex = App->tex->Load("maps/rosa.png");
 
 	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
