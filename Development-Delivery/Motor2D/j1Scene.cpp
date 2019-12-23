@@ -63,6 +63,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 bool j1Scene::Start()
 {
 	BROFILER_CATEGORY("Scene Start();", Profiler::Color::SkyBlue)
+
 	if (App->map->Load("SimpleLevel1.tmx") == true)
 	{
 		int w, h;

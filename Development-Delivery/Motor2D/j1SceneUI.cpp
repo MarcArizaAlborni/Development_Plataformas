@@ -82,7 +82,7 @@ bool j1Scene_UI::Start()
 	
 	score_label = App->gui->CreateLabel({ 870,10 }, "x0", Label_Type::CONFIG, { 255,255,255,255 }, true);
 	
-	
+	App->gui->CreateButton({ 800,500 }, PLAY, { 80,34,96,90 }, , , "PLAY", false);
 
 	p2List_item<UIitem_Button*>* button_item = button_list.start;
 	while (button_item != NULL)
