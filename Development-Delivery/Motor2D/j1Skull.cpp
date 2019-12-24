@@ -166,7 +166,8 @@ void j1Skull::OnCollision(Collider* A, Collider* B)
 		if (B->type == ObjectType::Player) {
 
 			if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h) > B->rect.y)) {
-				//App->fade->FadeToBlack("SimpleLevel1.tmx");
+				
+
 			}
 		}
 

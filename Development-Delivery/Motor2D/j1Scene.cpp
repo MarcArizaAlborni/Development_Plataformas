@@ -73,6 +73,7 @@ bool j1Scene::Start()
 			App->pathfinding->SetMap(w, h, data);
 
 		RELEASE_ARRAY(data);
+		//CREEM UN BOO, QUE DETECTI QUIN NIVELL S'HA CARREGAT I DESPRES CREI ELS OBJECTES QUE SIGUIN D'AQUELL MAPA
 	}
 	
 	debug_tex = App->tex->Load("maps/rosa.png");
