@@ -26,7 +26,7 @@ public:
 
 
 
-	virtual bool OnHover() { return true; }; //To know if a button is onHover
+    bool OnHover() { return true; }; // HOVEING OR NOT HOVERING
 	bool OnClick(); //Same but with click state
 
 public:

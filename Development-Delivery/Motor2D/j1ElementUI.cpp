@@ -69,7 +69,17 @@ bool UI_Item::Update(float dt)
 bool UI_Item::OnClick()
 {
 	bool ret = false;
-
-	
+ 
+	if (OnHover())
+	{
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+		{
+			ret = true;
+		}
+		else if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+		{
+			//App->audio->PlayFx(App->gui->fx_buton_pressed);
+		}
+	}
 	return ret;
 }

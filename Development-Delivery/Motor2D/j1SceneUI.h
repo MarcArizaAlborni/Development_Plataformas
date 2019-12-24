@@ -38,8 +38,10 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-private:
-	void IngameMenu(); // When pause menu is displayed and closed
+
+	void IngameMenu(); // OPEN AND CLOSE MENU WHEN INGAME
+
+	
 
 public:
 
@@ -57,8 +59,9 @@ public:
 	bool LifeAt2;
 	bool LifeAt1;
 
-	p2List<UIitem_Button*>	button_list;
-	p2List<UI_Item*>		pause_ui_list; //Pause menu when esc pressed
+	p2List<UIitem_Button*>	Buttons_Listed_Ingame;
+	p2List<UI_Item*>		Menu_Listed_Ingame; //Pause menu when esc pressed
+	
 
 private:
 	p2SString			path;

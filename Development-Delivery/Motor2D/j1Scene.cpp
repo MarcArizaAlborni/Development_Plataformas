@@ -13,6 +13,7 @@
 #include "j1EntityManager.h"
 #include "j1Player.h"
 #include "j1Skeleton.h"
+#include "j1SceneUI.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -109,6 +110,14 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
+	//OPEN CLOSE INGAME MENU
+
+	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN) {
+
+		App->scene_ui->IngameMenu();
+	}
+
+
 	BROFILER_CATEGORY("Scene Update();", Profiler::Color::Thistle)
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		App->LoadGame();

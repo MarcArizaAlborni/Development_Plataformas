@@ -138,7 +138,7 @@ bool j1Skeleton::Update(float dt)
 	case RIPstate:
 
 		animation = &RIP;
-		LOG("RIP STATE");
+		//LOG("RIP STATE");
 		break;
 
 	case LeftState:

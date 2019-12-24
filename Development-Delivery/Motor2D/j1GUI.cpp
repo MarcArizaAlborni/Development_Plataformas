@@ -172,6 +172,7 @@ UiItem_Bar * j1Gui::CreateSlider(iPoint pos, SDL_Rect slider_box, UI_Item* paren
 	return (UiItem_Bar*)slider;
 }
 
+
 UiItem_Thumb * j1Gui::CreateThumb(SDL_Rect s_thumb, UI_Item * parent)
 {
 	UI_Item* thumb = nullptr;

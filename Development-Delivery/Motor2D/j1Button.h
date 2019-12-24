@@ -16,7 +16,9 @@ enum Button_Type //Types of buttons
 	BACK,
 	SAVE,
 	LOAD,
-	EXIT
+	EXIT,
+	CLOSE,
+	MENU
 };
 
 class  UIitem_Button :public UI_Item

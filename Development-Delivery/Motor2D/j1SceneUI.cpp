@@ -40,13 +40,13 @@ bool j1Scene_UI::Start()
 {
 	bool ret = true;
 
-	App->gui->CreateSprite({ 0,0 }, { 649,203,451,24 }, true);
+	
 
 	
 	App->gui->CreateLabel({ 380, 5 }, "time", Label_Type::FONT, { 255,255,255,255 }, true);
 	timer_label = App->gui->CreateLabel({ 465,5 }, timer_string, Label_Type::CONFIG, { 255,255,255,255 }, true);
 	//BACKPLAYER SQUARE
-    Character_Back[0] = (App->gui->CreateSprite({ 113,4 }, { 264,37,35,50 }, true));
+   // Character_Back[0] = (App->gui->CreateSprite({ 113,4 }, { 264,37,35,50 }, true));
 	Map_Icon[0] = (App->gui->CreateSprite({ 900,4 }, { 200,34,52,50 }, true));
 	
 	//HEALTH START
@@ -54,23 +54,7 @@ bool j1Scene_UI::Start()
 	lifes[0] = (App->gui->CreateSprite({ 5,10 }, { 458,45,110,34 }, true));
 	player_status[0] = (App->gui->CreateSprite({ 120,10 }, { 413,45,20,35 }, true));
 	
-	/*if (App->entityManager->player->Life_Num == 4) {
-		lifes[0] = (App->gui->CreateSprite({ 5,10 }, { 458,45,110,34 }, true));
-		player_status[0] = (App->gui->CreateSprite({ 120,10 }, { 413,45,20,35 }, true));
-	}
-	else if (App->entityManager->player->Life_Num == 3){
-		lifes[1] = (App->gui->CreateSprite({ 5,10 }, { 458,80,110,34 }, true)); 
-		player_status[1] = (App->gui->CreateSprite({ 120,10 }, { 376,45,20,35 }, true));
-	}
-	else if (App->entityManager->player->Life_Num == 2) {
-		lifes[2] = (App->gui->CreateSprite({ 5,10}, { 458,111,110,34 }, true));
-		player_status[2] = (App->gui->CreateSprite({ 120,10 }, { 339,45,20,35 }, true));
-	}
-	else if (App->entityManager->player->Life_Num == 1) {
-		lifes[3] = (App->gui->CreateSprite({ 5,10 }, { 458,144,110,34 }, true));
-		player_status[3] = (App->gui->CreateSprite({ 120,10 }, { 308,45,20,35 }, true));
-	}*/
-
+	
 	LifeAt1 = true;
 	LifeAt2 = true;
 	LifeAt3 = true;
@@ -82,18 +66,42 @@ bool j1Scene_UI::Start()
 	
 	score_label = App->gui->CreateLabel({ 870,10 }, "x0", Label_Type::CONFIG, { 255,255,255,255 }, true);
 	
-	//App->gui->CreateButton({ 800,500 }, PLAY, { 80,34,96,90 }, , , "PLAY", false);
 
+
+	//BUTTONS MENU INGAME TESTING
+
+	SDL_Rect ButtonsStates[3] = { {80,30,100,100},{80,245,100,100},{80,140,100,100} };
+	SDL_Rect ButtonLoad[2] = { {225,290,105,110},{225,290,105,110} };
+	SDL_Rect ButtonSave[2] = { {335,290,110,120},{335,300,110,120} };
+	SDL_Rect ButtonClose[1] = { 290,210,70,70 };
+	SDL_Rect ButtonMuted[1] = { 460,275,100,90 };
+	SDL_Rect ButtonNOTMuted[1] = { 460,388,100,90 };
+	SDL_Rect ButtonToMenu[1] = {230,415,100,100};
+	//SDL_Rect SliderVolume[1] = { 290,210,70,70 }; //TESTING
+
+	//MENU INGAME TEXT AND OTHER THINGS
+
+	SDL_Rect BackMenuIngame[2] = { 588,25,356,342 };
+	Menu_Listed_Ingame.add(App->gui->CreateSprite({ 300,0 }, { 590,10,460,465 }, true));
+	Menu_Listed_Ingame.add(App->gui->CreateSprite({ 400,0 }, { 690,480,280,65 }, true));
 	
+	Menu_Listed_Ingame.add(App->gui->CreateLabel({ 485,10 }, "PAUSED", Label_Type::CONFIG, { 255,255,255,255 }, true));
+
+	Buttons_Listed_Ingame.add(App->gui->CreateButton({400,75 }, Button_Type::LOAD, ButtonLoad[0], &ButtonLoad[1], &ButtonLoad[1], "Loading Button", true));
+	Buttons_Listed_Ingame.add(App->gui->CreateButton({ 575,75 }, Button_Type::SAVE, ButtonSave[0], &ButtonSave[1], &ButtonSave[1], "Saving Butoon", true));
+	Buttons_Listed_Ingame.add(App->gui->CreateButton({ 700,0 }, Button_Type::CLOSE, ButtonClose[0], &ButtonClose[0], &ButtonClose[0], "Close Menu", true));
+	Buttons_Listed_Ingame.add(App->gui->CreateButton({ 350,325 }, Button_Type::MUTE, ButtonMuted[0], &ButtonMuted[0], &ButtonMuted[0], "Mute ON Button", true));
+	Buttons_Listed_Ingame.add(App->gui->CreateButton({ 350,225 }, Button_Type::UNMUTE, ButtonNOTMuted[0], &ButtonNOTMuted[0], &ButtonNOTMuted[0], "Mute OFF Button", true));
+	Buttons_Listed_Ingame.add(App->gui->CreateButton({ 600,275 }, Button_Type::MENU, ButtonToMenu[0], &ButtonToMenu[0], &ButtonToMenu[0], "To Menu", true));
 
 
-	p2List_item<UIitem_Button*>* button_item = button_list.start;
+	p2List_item<UIitem_Button*>* button_item = Buttons_Listed_Ingame.start;
 	while (button_item != NULL)
 	{
 		button_item->data->visible = false;
 		button_item = button_item->next;
 	}
-	p2List_item<UI_Item*>* ui_item = pause_ui_list.start;
+	p2List_item<UI_Item*>* ui_item = Menu_Listed_Ingame.start;
 	while (ui_item != NULL)
 	{
 		ui_item->data->visible = false;
@@ -166,29 +174,46 @@ bool j1Scene_UI::Update(float dt)
 
 
 
-	p2List_item<UIitem_Button*>* button_item = button_list.start;
-	while (button_item != NULL)
+	p2List_item<UIitem_Button*>* ActionButtons = Buttons_Listed_Ingame.start;
+	while (ActionButtons != NULL)
 	{
-		if (button_item->data->OnClick())
+		if (ActionButtons->data->OnClick())
 		{
-			switch (button_item->data->GetType())
+			switch (ActionButtons->data->GetType())
 			{
 			case PLAY:
-				IngameMenu();
-				//App->paused = false;
+				
 				break;
 			case SAVE:
-				//App->SaveGame("save_game.xml");
+				App->SaveGame("save_game.xml");
+				LOG("SAVE BUTTON");
 				break;
 			case LOAD:
-				//App->LoadGame("save_game.xml");
+				App->LoadGame();
+				LOG("LOAD BUTTON");
 				break;
 			case EXIT:
-				//App->fadescene->FadeToBlack2(App->scene, App->scene_menu);
+				
+				break;
+
+			case MENU:
+
+				break;
+
+			case MUTE:
+
+				break;
+
+			case UNMUTE:
+
+				break;
+
+			case CLOSE:
+				IngameMenu();
 				break;
 			}
 		}
-		button_item = button_item->next;
+		ActionButtons = ActionButtons->next;
 	}
 
 	return true;
@@ -213,20 +238,20 @@ bool j1Scene_UI::PostUpdate()
 bool j1Scene_UI::CleanUp()
 {
 	LOG("Freeing Scene Menu");
-	button_list.clear();
+	Buttons_Listed_Ingame.clear();
 	App->gui->Disable();
 	return true;
 }
 
 void j1Scene_UI::IngameMenu()
 {
-	p2List_item<UIitem_Button*>* button_item = button_list.start;
+	p2List_item<UIitem_Button*>* button_item = Buttons_Listed_Ingame.start;
 	while (button_item != NULL)
 	{
 		button_item->data->visible = !button_item->data->visible;
 		button_item = button_item->next;
 	}
-	p2List_item<UI_Item*>* ui_item = pause_ui_list.start;
+	p2List_item<UI_Item*>* ui_item = Menu_Listed_Ingame.start;
 	while (ui_item != NULL)
 	{
 		ui_item->data->visible = !ui_item->data->visible;
