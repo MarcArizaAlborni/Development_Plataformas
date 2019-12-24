@@ -36,6 +36,7 @@ bool j1Audio::Awake(pugi::xml_node& config)
 		ret = true;
 	}
 
+	
 	// load support for the OGG and Audio formats
 	int flags = MIX_INIT_OGG;
 	int init = Mix_Init(flags);
@@ -54,6 +55,10 @@ bool j1Audio::Awake(pugi::xml_node& config)
 		active = false;
 		ret = true;
 	}
+
+	TempVolumeMusicValue = 100;
+	VolumeMusicValue = 50;
+
 
 	return ret;
 }
@@ -204,6 +209,11 @@ bool j1Audio::PlayFx(unsigned int id, int repeat)
 	}
 
 	return ret;
+}
+
+void j1Audio::VolumeMusic()
+{
+	Mix_VolumeMusic(VolumeMusicValue);
 }
 
 

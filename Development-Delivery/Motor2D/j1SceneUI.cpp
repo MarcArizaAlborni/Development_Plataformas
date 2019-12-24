@@ -77,11 +77,11 @@ bool j1Scene_UI::Start()
 	SDL_Rect ButtonMuted[1] = { 460,275,100,90 };
 	SDL_Rect ButtonNOTMuted[1] = { 460,388,100,90 };
 	SDL_Rect ButtonToMenu[1] = {230,415,100,100};
-	//SDL_Rect SliderVolume[1] = { 290,210,70,70 }; //TESTING
+	
 
 	//MENU INGAME TEXT AND OTHER THINGS
 
-	SDL_Rect BackMenuIngame[2] = { 588,25,356,342 };
+	
 	Menu_Listed_Ingame.add(App->gui->CreateSprite({ 300,0 }, { 590,10,460,465 }, true));
 	Menu_Listed_Ingame.add(App->gui->CreateSprite({ 400,0 }, { 690,480,280,65 }, true));
 	
@@ -197,15 +197,20 @@ bool j1Scene_UI::Update(float dt)
 				break;
 
 			case MENU:
-
+				LOG("TO MENU BUTTON");
 				break;
 
 			case MUTE:
-
+				LOG("MUTE BUTTON");
+				App->audio->TempVolumeMusicValue = App->audio->VolumeMusicValue;
+				App->audio->VolumeMusicValue = 0;
+				App->audio->VolumeMusic();
 				break;
 
 			case UNMUTE:
-
+				LOG("UNMUTE BUTTON");
+				App->audio->VolumeMusicValue= 100;
+				App->audio->VolumeMusic();
 				break;
 
 			case CLOSE:

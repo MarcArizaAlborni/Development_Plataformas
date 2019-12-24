@@ -67,7 +67,9 @@ public:
 	Mix_Chunk *Dash_Sound = NULL;
 	Mix_Chunk *Jump_Sound = NULL;
 
-
+	void VolumeMusic();
+	int VolumeMusicValue;
+	int TempVolumeMusicValue;
 
 
 };

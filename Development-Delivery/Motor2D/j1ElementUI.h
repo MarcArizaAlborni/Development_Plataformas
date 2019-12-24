@@ -26,8 +26,8 @@ public:
 
 
 
-    bool OnHover() { return true; }; // HOVEING OR NOT HOVERING
-	bool OnClick(); //Same but with click state
+   virtual bool OnHover() { return true; }; // HOVEING OR NOT HOVERING  MUST BE VIRTUAL OR WON'T WORK (NO IDEA WHY)
+	bool OnClick(); //IF THE BUTTON IS CLICKED OR NOT
 
 public:
 	UI_State	state = IDLE; //Initial state
