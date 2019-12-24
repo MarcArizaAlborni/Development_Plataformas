@@ -11,13 +11,13 @@
 	<collision />
 	<fade />
 	<entities>
-		<position1 x="90" y="286" />
+		<position1 x="979" y="222" />
 	</entities>
 	<fonts />
 	<gui />
 	<:anonymous />
 	<scene_UI />
 	<renderer>
-		<camera x="0" y="0" />
+		<camera x="-500" y="0" />
 	</renderer>
 </game_state>

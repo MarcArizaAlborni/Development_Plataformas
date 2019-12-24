@@ -181,19 +181,14 @@ bool j1Scene_UI::Update(float dt)
 		{
 			switch (ActionButtons->data->GetType())
 			{
-			case PLAY:
-				
-				break;
 			case SAVE:
 				App->SaveGame("save_game.xml");
 				LOG("SAVE BUTTON");
 				break;
+
 			case LOAD:
 				App->LoadGame();
 				LOG("LOAD BUTTON");
-				break;
-			case EXIT:
-				
 				break;
 
 			case MENU:
@@ -231,10 +226,7 @@ bool j1Scene_UI::PostUpdate()
 
 	bool ret = true;
 
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-	{
-		IngameMenu();
-	}
+	
 
 	return ret;
 }
@@ -263,4 +255,10 @@ void j1Scene_UI::IngameMenu()
 		ui_item = ui_item->next;
 	}
 }
+
+void j1Scene_UI::MainMenu()
+{
+}
+
+
 

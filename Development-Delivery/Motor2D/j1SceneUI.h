@@ -40,7 +40,7 @@ public:
 
 
 	void IngameMenu(); // OPEN AND CLOSE MENU WHEN INGAME
-
+	void MainMenu(); //MAIN MENU SCREEN
 	
 
 public:
