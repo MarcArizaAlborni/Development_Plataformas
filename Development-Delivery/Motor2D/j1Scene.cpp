@@ -108,6 +108,11 @@ bool j1Scene::Update(float dt)
 		App->scene_ui->IngameMenu();
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_Y) == KEY_DOWN) {
+
+		App->scene_ui->MainMenu();
+	}
+
 
 	BROFILER_CATEGORY("Scene Update();", Profiler::Color::Thistle)
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)

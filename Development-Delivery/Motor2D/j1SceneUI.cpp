@@ -223,6 +223,43 @@ bool j1Scene_UI::Update(float dt)
 		ActionButtons = ActionButtons->next;
 	}
 
+	p2List_item<UIitem_Button*>* MainMenuButtons = MainMenu_Buttons.start;
+	while (MainMenuButtons != NULL) {
+		if (MainMenuButtons->data->OnClick()) {
+
+			switch (MainMenuButtons->data->GetType())
+			{
+
+			case START_PLAY:
+				LOG("MAIN MENU PLAY BUTTON");
+				break;
+
+			case START_CONTINUE:
+				LOG("MAIN MENU CONTINUE BUTTON");
+				break;
+
+			case START_SETTINGS:
+				LOG("MAIN MENU SETTINGS BUTTON");
+				break;
+
+			}
+		}
+		MainMenuButtons = MainMenuButtons->next;
+	}
+		 
+
+
+
+
+
+
+
+
+
+
+		
+
+
 	return true;
 }
 
