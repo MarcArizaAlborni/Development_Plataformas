@@ -18,7 +18,10 @@ enum Button_Type //Types of buttons
 	LOAD,
 	EXIT,
 	CLOSE,
-	MENU
+	MENU,
+	START_PLAY,
+	START_CONTINUE,
+	START_SETTINGS
 };
 
 class  UIitem_Button :public UI_Item

@@ -65,37 +65,27 @@ bool j1Scene::Start()
 {
 	BROFILER_CATEGORY("Scene Start();", Profiler::Color::SkyBlue)
 
-	if (App->map->Load("SimpleLevel1.tmx") == true)
-	{
-		int w, h;
-		uchar* data = NULL;
-		if (App->map->CreateWalkabilityMap(w, h, &data))
-			App->pathfinding->SetMap(w, h, data);
-
-		RELEASE_ARRAY(data);
-		//CREEM UN BOO, QUE DETECTI QUIN NIVELL S'HA CARREGAT I DESPRES CREI ELS OBJECTES QUE SIGUIN D'AQUELL MAPA
+	if (App->map->Load("MainMenu.tmx") == true){
+		StartMainMenu();
+		MainMenuLoaded = true;
 	}
+	
+	
+
+	//if (App->map->Load("SimpleLevel1.tmx") == true)
+	//{
+	//	StartMap1();
+	//	//CREEM UN BOO, QUE DETECTI QUIN NIVELL S'HA CARREGAT I DESPRES CREI ELS OBJECTES QUE SIGUIN D'AQUELL MAPA
+	//}
 	
 	debug_tex = App->tex->Load("maps/rosa.png");
 
 	App->audio->PlayMusic(App->map->data.MusicAudio_Files.GetString());
 
 	
-	// ENEMY SPAWNS LEVEL 1
-	App->entityManager->AddEnemies(Skeleton1, SKELETON);
-	App->entityManager->AddEnemies(Bee1, BEE);
-	App->entityManager->AddEnemies(Skeleton2, SKELETON);
-	App->entityManager->AddEnemies(Skull1, SKULL);
-	App->entityManager->AddEnemies(Skeleton3, SKELETON);
-
-	App->entityManager->CreateEntity(PLAYER);
-
-	//MAP ITEM ENTITY SPAWN
-
-	App->entityManager->AddEnemies(MapItem1, MAP);
-	App->entityManager->AddEnemies(MapItem2, MAP);
-	App->entityManager->AddEnemies(MapItem3, MAP);
-	App->entityManager->AddEnemies(MapItem4, MAP);
+	/*if (App->map->Load("SimpleLevel2.tmx") == true) {
+		StartMap2();
+	}*/
 
 
 	return true;
@@ -126,11 +116,15 @@ bool j1Scene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		App->SaveGame("save_game.xml");
 		//App->SaveGame();
-	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		App->fade->FadeToBlack("SimpleLevel1.tmx");
+		StartMap1();
+	}
 
-	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
 		App->fade->FadeToBlack("SimpleLevel2.tmx");
+		StartMap2();
+	}
 
 	App->map->Draw();
 
@@ -153,14 +147,7 @@ bool j1Scene::Update(float dt)
 
 	int x, y;
 	App->input->GetMousePosition(x, y);
-	//iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
-	//p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d",
-		/*App->map->data.width, App->map->data.height,
-		App->map->data.tile_width, App->map->data.tile_height,
-		App->map->data.tilesets.count(),
-		map_coordinates.x, map_coordinates.y);
-*/
-	//App->win->SetTitle(title.GetString());
+	
 	return true;
 }
 
@@ -211,4 +198,46 @@ bool j1Scene::Save(pugi::xml_node& data)const {
 
 
 	return true;
+}
+
+void j1Scene::StartMap1()
+{
+	Map1Loaded = true;
+	int w, h;
+	uchar* data = NULL;
+	if (App->map->CreateWalkabilityMap(w, h, &data))
+		App->pathfinding->SetMap(w, h, data);
+
+	RELEASE_ARRAY(data);
+
+
+	// ENEMY SPAWNS LEVEL 1
+	App->entityManager->AddEnemies(Skeleton1, SKELETON);
+	App->entityManager->AddEnemies(Bee1, BEE);
+	App->entityManager->AddEnemies(Skeleton2, SKELETON);
+	App->entityManager->AddEnemies(Skull1, SKULL);
+	App->entityManager->AddEnemies(Skeleton3, SKELETON);
+
+	App->entityManager->CreateEntity(PLAYER);
+	
+	//MAP ITEM ENTITY SPAWN
+
+	App->entityManager->AddEnemies(MapItem1, MAP);
+	App->entityManager->AddEnemies(MapItem2, MAP);
+	App->entityManager->AddEnemies(MapItem3, MAP);
+	App->entityManager->AddEnemies(MapItem4, MAP);
+}
+
+void j1Scene::StartMap2()
+{
+	App->entityManager->AddEnemies(MapItem1, MAP);
+	App->entityManager->AddEnemies(MapItem2, MAP);
+	App->entityManager->AddEnemies(MapItem3, MAP);
+	App->entityManager->AddEnemies(MapItem4, MAP);
+
+	App->entityManager->CreateEntity(PLAYER);
+}
+
+void j1Scene::StartMainMenu()
+{
 }

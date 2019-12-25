@@ -46,6 +46,16 @@ public:
 	iPoint MapItem3;
 	iPoint MapItem4;
 
+	void StartMap1();
+	void StartMap2();
+	void StartMainMenu();
+
+	//FOR UI
+
+	bool Map1Loaded;
+	bool Map2Loaded;
+	bool MainMenuLoaded;
+
 private:
 
 	SDL_Texture* debug_tex;

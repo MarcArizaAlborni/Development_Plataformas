@@ -40,7 +40,10 @@ public:
 
 
 	void IngameMenu(); // OPEN AND CLOSE MENU WHEN INGAME
+	void IngamePlayerUI();
 	void MainMenu(); //MAIN MENU SCREEN
+
+	
 	
 
 public:
@@ -61,6 +64,9 @@ public:
 
 	p2List<UIitem_Button*>	Buttons_Listed_Ingame;
 	p2List<UI_Item*>		Menu_Listed_Ingame; //Pause menu when esc pressed
+	p2List<UI_Item*>        PlayerUI_Ingame;
+	p2List<UI_Item*>        MainMenu_UI;
+	p2List<UIitem_Button*>  MainMenu_Buttons;
 	
 
 private:
