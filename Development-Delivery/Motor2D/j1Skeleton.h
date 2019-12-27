@@ -30,7 +30,7 @@ public:
 	void OnCollision(Collider* A, Collider* B);
 
 	bool InitEntity();
-
+	iPoint SkeletonResetPosition;
 	//Initial properties
 	bool flip = false;
 	SDL_Rect SKrect;

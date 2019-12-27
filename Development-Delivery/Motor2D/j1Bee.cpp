@@ -8,6 +8,7 @@
 #include "j1Player.h"
 #include "j1Map.h"
 #include "j1FadeToBlack.h"
+#include "j1SceneUI.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -55,6 +56,11 @@ bool j1Bee::Start()
 
 bool j1Bee::PreUpdate()
 {
+	if (App->scene_ui->ResetEntitiesPositionNewGame == true) {
+		position.x = BeeResetPosition.x;
+		position.y = BeeResetPosition.y;
+		state = IdleState;
+	}
 	collider->rect.x = position.x;
 	collider->rect.y = position.y;
 	return true;
@@ -85,13 +91,13 @@ bool j1Bee::Update(float dt)
 			if (GoDown) {
 				if (TouchingColliderPlatformOver != true) {
 					position.y += 3;
-					LOG("GOING DOWN LEFT");
+					//LOG("GOING DOWN LEFT");
 				}
 			}
 			else if (GoUp) {
 				if (TouchingColliderPlatformUnder != true) {
 					position.y -= 3;
-					LOG("GOING UP LEFT");
+					//LOG("GOING UP LEFT");
 				}
 			}
 		}
@@ -219,6 +225,8 @@ bool j1Bee::InitEntity()
 	state = IdleState;
 
 	Beerect = { position.x, position.y, Beewidth, Beeheight };
+	BeeResetPosition.x = position.x;
+	BeeResetPosition.y = position.y;
 	collider = App->collision->AddCollider(Beerect, ObjectType::Bee, App->entityManager);
 
 	return true;

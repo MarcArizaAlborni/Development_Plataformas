@@ -65,6 +65,7 @@
   </scene>
   <gui>
     <atlas file="Sprites/GUI/UI_Character_Sprites.png"/>
+    <FX_Audios_UI>audio/FX/Click_Mouse.wav</FX_Audios_UI>
   </gui>
 
   

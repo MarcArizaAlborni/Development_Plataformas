@@ -27,7 +27,7 @@ public:
 	void OnCollision(Collider* A, Collider* B);
 
 	bool InitEntity();
-
+	iPoint SkullResetPosition;
 	//Initial properties
 	bool flip = false;
 

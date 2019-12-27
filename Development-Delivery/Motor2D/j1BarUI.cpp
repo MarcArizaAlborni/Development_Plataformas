@@ -11,6 +11,7 @@
 #include "j1BarUI.h"
 #include "j1SpriteUI.h"
 #include "j1Button.h"
+#include "j1SceneUI.h"
 
 UiItem_Bar::UiItem_Bar(SDL_Rect slider_box, UI_Item* parent /*p2Point<int> pivo*/)
 {
@@ -20,7 +21,7 @@ UiItem_Bar::UiItem_Bar(SDL_Rect slider_box, UI_Item* parent /*p2Point<int> pivo*
 
 bool UiItem_Bar::Start()
 {
-	thumb = App->gui->CreateThumb({ 619,182,24,22 }, this);
+	thumb = App->gui->CreateThumb({ 375,466,38,34 }, this);
 	return true;
 }
 

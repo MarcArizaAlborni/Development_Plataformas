@@ -27,7 +27,7 @@ public:
 	void OnCollision(Collider* A, Collider* B);
 
 	bool InitEntity();
-
+	iPoint MapResetPosition;
 	//Initial properties
 	bool flip = false;
 

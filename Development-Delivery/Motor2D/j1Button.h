@@ -10,7 +10,6 @@ enum Button_Type //Types of buttons
 	PLAY,
 	SETTINGS,
 	CONTINUE,
-	CREDIT,
 	MUTE,
 	UNMUTE,
 	BACK,
@@ -21,7 +20,11 @@ enum Button_Type //Types of buttons
 	MENU,
 	START_PLAY,
 	START_CONTINUE,
-	START_SETTINGS
+	START_SETTINGS,
+	CLOSE_SETTINGS,
+	LINK,
+	CREDITS_CLOSE,
+	CREDITS_MENU
 };
 
 class  UIitem_Button :public UI_Item

@@ -39,10 +39,10 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	fade = new j1FadeToBlack();
 	pathfinding = new j1PathFinding();
 	entityManager = new j1EntityManager();
-	gui = new j1Gui();
-	font = new j1Fonts();
 	scene_menu = new j1SceneMenu();
 	scene_ui = new j1Scene_UI();
+	gui = new j1Gui();
+	font = new j1Fonts();
 	
 	
 	// Ordered for awake / Start / Update

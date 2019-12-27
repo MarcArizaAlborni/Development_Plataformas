@@ -70,6 +70,8 @@ public:
 	void VolumeMusic();
 	int VolumeMusicValue;
 	int TempVolumeMusicValue;
+	int VolumeFXValue;
+	int TempVolumeFXValue;
 
 
 };

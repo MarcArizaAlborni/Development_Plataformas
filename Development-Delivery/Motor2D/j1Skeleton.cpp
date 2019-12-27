@@ -8,6 +8,7 @@
 #include "j1Player.h"
 #include "j1Map.h"
 #include "j1Pathfinding.h"
+#include "j1SceneUI.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -95,6 +96,11 @@ bool j1Skeleton::Start()
 
 bool j1Skeleton::PreUpdate()
 {
+	if (App->scene_ui->ResetEntitiesPositionNewGame == true) {
+		position.x=SkeletonResetPosition.x;
+		position.y = SkeletonResetPosition.y;
+		state = IdleState;
+	}
 	BROFILER_CATEGORY("Skeleton Pre();", Profiler::Color::WhiteSmoke)
 	//position.y += gravity;
 	collider->rect.x = position.x;
@@ -334,6 +340,8 @@ bool j1Skeleton::InitEntity()
 
 	animation = &walking;
 	SKrect = { position.x, position.y, SKwidth, SKheight };
+	SkeletonResetPosition.x = position.x;
+	SkeletonResetPosition.y = position.y;
 	collider = App->collision->AddCollider(SKrect, ObjectType::Skeleton, App->entityManager);
 
 	return true;

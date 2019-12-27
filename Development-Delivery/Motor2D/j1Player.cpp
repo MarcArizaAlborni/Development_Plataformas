@@ -12,6 +12,7 @@
 #include "j1Skeleton.h"
 #include "j1Skull.h"
 #include "j1Bee.h"
+#include "j1SceneUI.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -49,18 +50,10 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 	run.PushBack({ 147,105,21,35 });
 	run.speed = 0.5;
 
-	//dash.PushBack({ 0,140,21,35 });
-	//dash.PushBack({ 21,140,21,35 });
-	//dash.PushBack({ 42,140,21,35 });
-	//dash.PushBack({ 63,140,21,35 });
-	//dash.PushBack({ 84,140,21,35 });
-	/*dash.PushBack({ 172,131,24,43 });
-	dash.PushBack({ 172,131,24,43 });*/
+	
 	dash.PushBack({ 172,131,24,43 });
 	dash.PushBack({ 208,131,31,43 });
-	/*dash.PushBack({ 208,131,31,43 });
-	dash.PushBack({ 208,131,31,43 });*/
-	//dash.PushBack({ 105,140,21,35 });
+	
 	dash.speed = 0.01;
 }
 
@@ -86,213 +79,216 @@ j1Player::j1Player(iPoint pos, EntitiesType type) : j1Entities(pos, EntitiesType
 
  bool j1Player::PreUpdate()
  {  
+
 	 BROFILER_CATEGORY("Player PreUpdate()", Profiler::Color::Teal)
-	 On_Ground;
-	 if (On_Ground == false) {
 
-		 Falling = true;
-	 }
+		 if ((App->scene_ui->OnMainMenu !=true) && (App->scene_ui->OnCreditsMenu != true) && (App->scene_ui->OnSettingsMenu != true)) {
+			 On_Ground;
+			 if (On_Ground == false) {
 
-	 if (Falling == true)
-	 {
+				 Falling = true;
+			 }
 
-		 position.y += Gravity;
-	 }
-	PlayerInput.F10_active = App->input->keyboard[SDL_SCANCODE_F10] == KEY_DOWN;
-	PlayerInput.F3_active = App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN;
+			 if (Falling == true)
+			 {
 
-	if(PlayerInput.F10_active && GOD_MODE==false) {
-		LOG("GOD MODE ON");
-		GOD_MODE = true;
-	}
-	else if (PlayerInput.F10_active && GOD_MODE == true) {
+				 position.y += Gravity;
+			 }
+			 PlayerInput.F10_active = App->input->keyboard[SDL_SCANCODE_F10] == KEY_DOWN;
+			 PlayerInput.F3_active = App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN;
 
-		LOG("GOD MODE OFF");
-		GOD_MODE = false;
+			 if (PlayerInput.F10_active && GOD_MODE == false) {
+				 LOG("GOD MODE ON");
+				 GOD_MODE = true;
+			 }
+			 else if (PlayerInput.F10_active && GOD_MODE == true) {
 
-	}
+				 LOG("GOD MODE OFF");
+				 GOD_MODE = false;
 
-	if (GOD_MODE == false) {
+			 }
 
-		PlayerInput.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
-		PlayerInput.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
-		PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_DOWN;
-		PlayerInput.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN;
-		PlayerInput.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
-		
-	}
+			 if (GOD_MODE == false) {
 
-	else  {
+				 PlayerInput.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
+				 PlayerInput.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
+				 PlayerInput.Space_active = App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_DOWN;
+				 PlayerInput.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN;
+				 PlayerInput.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
 
-		PlayerInput.AG_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
-		PlayerInput.DG_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
-		PlayerInput.WG_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT;
-		PlayerInput.SG_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT;
-		collider->to_delete = true;
-		Gravity = 0;
+			 }
 
-	}
-	 //AGAFAR INPUTS I TAL, HE MIRAT I CREC QUE FERHO AIXI ES MILLOR QUE TOT JUNT 
-	 
-	//START CURRENT LEVEL
-	if (PlayerInput.F3_active) {
+			 else {
 
-		position.x = Inipos.x;
-		position.y =Inipos.y ;
-	}
+				 PlayerInput.AG_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
+				 PlayerInput.DG_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
+				 PlayerInput.WG_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT;
+				 PlayerInput.SG_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT;
+				 collider->to_delete = true;
+				 Gravity = 0;
 
+			 }
+			 //AGAFAR INPUTS I TAL, HE MIRAT I CREC QUE FERHO AIXI ES MILLOR QUE TOT JUNT 
 
-	//ROTACIO DELS PLAYER STATES 
-	if (GOD_MODE == false) {
-		if (state == IdleState)
-		{
-			
-			
-			if (PlayerInput.A_active)
-			{
-				state = LeftState;
-				//LOG("IDLE TO LEFT");
-			}
+			//START CURRENT LEVEL
+			 if (PlayerInput.F3_active) {
 
-			if (PlayerInput.D_active)
-			{
-				state = RightState;
-				//LOG("IDLE TO RIGHT");
-			}
-			
-			if (PlayerInput.Space_active && CanJump == true && JumpTicks == true) {
-				JumpTicks = false;
-				CanJump = false;
-				
-				state = JumpState;
- 				LOG("IDLE TO JUMP");
-				
-
-				if (On_Ground == false) {
-					state = FallState;
-					LOG("JUMP NOT AVAILABLE");
-				}
-
-			}
-
-			if (PlayerInput.Space_active && CanJump == true ) {
-				
-				On_Ground = false;
-				CanJump = false;
-				Character_vel.y = 50;
-				state = JumpState;
-
-			}
-			
-		}
-
-		if (state == LeftState)
-		{
-			
-			if (!PlayerInput.A_active)
-			{
-
-				state = IdleState;
-				//LOG("LEFT TO IDLE");
-			}
-
-			if (PlayerInput.U_active && CanDash == true && DashedBefore==false) {
-				DashActiveLeft = true;
-				DashedBefore = true;
-				StartPosition.x = position.x;
-				state = DashState;
-				LOG("LEFT TO DASH LEFT");
-			}
-
-			if (PlayerInput.Space_active && CanJump==true ) {
-				
-				On_Ground = false;
-				state = JumpState;
-				LOG("LEFT TO JUMP");
-				
-			}
-
-		}
-		if (state == RightState)
-		{
-			
-			if (!PlayerInput.D_active)
-			{
-				state = IdleState;
-				//LOG("RIGHT TO IDLE");
-			}
-
-			if (PlayerInput.U_active && CanDash==true && DashedBefore == false) {
-				DashActiveRight = true;
-				DashedBefore = true;
-				StartPosition.x = position.x;
-				state = DashState;
-				LOG("LEFT TO DASH RIGHT");
-			}
-
-			if (PlayerInput.Space_active && CanJump == true) {
-				//Character_vel.y = 50;
-				state = JumpState;
-				LOG("LEFT TO JUMP");
-				
-
-			}
-
-		}
-		if (state == FallState) {
-
-			
-			//LOG("FALL STATE");
-			Movement();
-
-			if (PlayerInput.U_active && PlayerInput.D_active&& DashedBefore == false) {
-				DashActiveRight = true;
-				DashedBefore = true;
-				StartPosition.x = position.x;
-				state = DashState;
-			}
-			else if (PlayerInput.U_active && PlayerInput.A_active&& DashedBefore == false) {
-				DashActiveLeft = true;
-				DashedBefore = true;
-				StartPosition.x = position.x;
-				state = DashState;
-			}
-
-			//PlayerState = IdleState;
-			if (CanJump == true) {
-				LOG("22");
-				TouchingCollider = true;
-				state = IdleState;
-			}
-			
-		}
-
-	}
-
-	else {
+				 position.x = Inipos.x;
+				 position.y = Inipos.y;
+			 }
 
 
-		if (PlayerInput.AG_active) {
-			position.x -= Character_vel.x;
+			 //ROTACIO DELS PLAYER STATES 
+			 if (GOD_MODE == false) {
+				 if (state == IdleState)
+				 {
 
-		}
 
-		if (PlayerInput.DG_active) {
-			position.x += Character_vel.x;
+					 if (PlayerInput.A_active)
+					 {
+						 state = LeftState;
+						 //LOG("IDLE TO LEFT");
+					 }
 
-		}
+					 if (PlayerInput.D_active)
+					 {
+						 state = RightState;
+						 //LOG("IDLE TO RIGHT");
+					 }
 
-		if (PlayerInput.WG_active) {
-			position.y -= Character_vel.x;
+					 if (PlayerInput.Space_active && CanJump == true && JumpTicks == true) {
+						 JumpTicks = false;
+						 CanJump = false;
 
-		}
+						 state = JumpState;
+						 LOG("IDLE TO JUMP");
 
-		if (PlayerInput.SG_active) {
-			position.y += Character_vel.x;
 
-		}
-    }
+						 if (On_Ground == false) {
+							 state = FallState;
+							 LOG("JUMP NOT AVAILABLE");
+						 }
 
+					 }
+
+					 if (PlayerInput.Space_active && CanJump == true) {
+
+						 On_Ground = false;
+						 CanJump = false;
+						 Character_vel.y = 50;
+						 state = JumpState;
+
+					 }
+
+				 }
+
+				 if (state == LeftState)
+				 {
+
+					 if (!PlayerInput.A_active)
+					 {
+
+						 state = IdleState;
+						 //LOG("LEFT TO IDLE");
+					 }
+
+					 if (PlayerInput.U_active && CanDash == true && DashedBefore == false) {
+						 DashActiveLeft = true;
+						 DashedBefore = true;
+						 StartPosition.x = position.x;
+						 state = DashState;
+						 LOG("LEFT TO DASH LEFT");
+					 }
+
+					 if (PlayerInput.Space_active && CanJump == true) {
+
+						 On_Ground = false;
+						 state = JumpState;
+						 LOG("LEFT TO JUMP");
+
+					 }
+
+				 }
+				 if (state == RightState)
+				 {
+
+					 if (!PlayerInput.D_active)
+					 {
+						 state = IdleState;
+						 //LOG("RIGHT TO IDLE");
+					 }
+
+					 if (PlayerInput.U_active && CanDash == true && DashedBefore == false) {
+						 DashActiveRight = true;
+						 DashedBefore = true;
+						 StartPosition.x = position.x;
+						 state = DashState;
+						 LOG("LEFT TO DASH RIGHT");
+					 }
+
+					 if (PlayerInput.Space_active && CanJump == true) {
+						 //Character_vel.y = 50;
+						 state = JumpState;
+						 LOG("LEFT TO JUMP");
+
+
+					 }
+
+				 }
+				 if (state == FallState) {
+
+
+					 //LOG("FALL STATE");
+					 Movement();
+
+					 if (PlayerInput.U_active && PlayerInput.D_active&& DashedBefore == false) {
+						 DashActiveRight = true;
+						 DashedBefore = true;
+						 StartPosition.x = position.x;
+						 state = DashState;
+					 }
+					 else if (PlayerInput.U_active && PlayerInput.A_active&& DashedBefore == false) {
+						 DashActiveLeft = true;
+						 DashedBefore = true;
+						 StartPosition.x = position.x;
+						 state = DashState;
+					 }
+
+					 //PlayerState = IdleState;
+					 if (CanJump == true) {
+						 LOG("22");
+						 TouchingCollider = true;
+						 state = IdleState;
+					 }
+
+				 }
+
+			 }
+
+			 else {
+
+
+				 if (PlayerInput.AG_active) {
+					 position.x -= Character_vel.x;
+
+				 }
+
+				 if (PlayerInput.DG_active) {
+					 position.x += Character_vel.x;
+
+				 }
+
+				 if (PlayerInput.WG_active) {
+					 position.y -= Character_vel.x;
+
+				 }
+
+				 if (PlayerInput.SG_active) {
+					 position.y += Character_vel.x;
+
+				 }
+			 }
+		 }
 	 return true ;
 }
 

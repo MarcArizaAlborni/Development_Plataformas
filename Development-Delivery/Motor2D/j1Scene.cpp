@@ -57,6 +57,9 @@ bool j1Scene::Awake(pugi::xml_node& config)
 
 	MapItem4.x = spawn.child("Map4").attribute("x").as_int();
 	MapItem4.y = spawn.child("Map4").attribute("y").as_int();
+
+	IngameMenuOFFb = false;
+	IngameMenuONb = false;
 	return ret;
 }
 
@@ -65,18 +68,11 @@ bool j1Scene::Start()
 {
 	BROFILER_CATEGORY("Scene Start();", Profiler::Color::SkyBlue)
 
-	if (App->map->Load("MainMenu.tmx") == true){
-		StartMainMenu();
-		MainMenuLoaded = true;
+	if (App->map->Load("SimpleLevel1.tmx") == true)
+	{
+		StartMap1();
+		//CREEM UN BOO, QUE DETECTI QUIN NIVELL S'HA CARREGAT I DESPRES CREI ELS OBJECTES QUE SIGUIN D'AQUELL MAPA
 	}
-	
-	
-
-	//if (App->map->Load("SimpleLevel1.tmx") == true)
-	//{
-	//	StartMap1();
-	//	//CREEM UN BOO, QUE DETECTI QUIN NIVELL S'HA CARREGAT I DESPRES CREI ELS OBJECTES QUE SIGUIN D'AQUELL MAPA
-	//}
 	
 	debug_tex = App->tex->Load("maps/rosa.png");
 
@@ -103,16 +99,49 @@ bool j1Scene::Update(float dt)
 {
 	//OPEN CLOSE INGAME MENU
 
-	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN && App->scene_ui->OnMainMenu!=true) {
+		
+		if (App->scene_ui->OnIngameMenu == false) {
+			App->scene_ui->IngameMenuON();
+			App->scene_ui->OnIngameMenu = true;
+			if (App->scene_ui->bMuteIngameOFF == true) {
+				App->scene_ui->MuteIngameOFF();
+				App->scene_ui->UnMuteIngameON();
+			}
+			else {
+				App->scene_ui->MuteIngameON();
+				App->scene_ui->UnMuteIngameOFF();
+			}
 
-		App->scene_ui->IngameMenu();
+			
+		}
+		else {
+			App->scene_ui->IngameMenuOFF();
+			App->scene_ui->OnIngameMenu = false;
+			App->scene_ui->MuteIngameOFF();
+			App->scene_ui->UnMuteIngameOFF();
+
+		}
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_Y) == KEY_DOWN) {
+	/*if (App->input->GetKey(SDL_SCANCODE_Y) == KEY_DOWN) {
 
-		App->scene_ui->MainMenu();
-	}
+		App->scene_ui->MainMenuON();
+	}*/
 
+	/*if ((App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)) {
+
+		if (App->scene_ui->OnSettingsMenu == false) {
+			App->scene_ui->SettingsMenuON();
+			App->scene_ui->OnSettingsMenu = true;
+			LOG("SETTINGS MENU WITH L ON");
+		}
+		else {
+			App->scene_ui->SettingsMenuOFF();
+			App->scene_ui->OnSettingsMenu = false;
+			LOG("SETTINGS MENU WITH L OFF");
+		}
+	}*/
 
 	BROFILER_CATEGORY("Scene Update();", Profiler::Color::Thistle)
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
@@ -132,10 +161,6 @@ bool j1Scene::Update(float dt)
 	}
 
 	App->map->Draw();
-
-	//p2SString title("Project Ceta");
-
-	//App->win->SetTitle(title.GetString());
 
 	if (App->input->keyboard[SDL_SCANCODE_F9] == KEY_DOWN) {
 
@@ -243,6 +268,10 @@ void j1Scene::StartMap2()
 	App->entityManager->CreateEntity(PLAYER);
 }
 
-void j1Scene::StartMainMenu()
+
+
+void j1Scene::RestartLevelEntitiesL1()
 {
+	
+
 }

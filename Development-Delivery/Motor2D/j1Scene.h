@@ -48,7 +48,9 @@ public:
 
 	void StartMap1();
 	void StartMap2();
-	void StartMainMenu();
+	/*void StartMainMenu();*/
+
+	void RestartLevelEntitiesL1();
 
 	//FOR UI
 
@@ -56,6 +58,10 @@ public:
 	bool Map2Loaded;
 	bool MainMenuLoaded;
 
+	bool IngameMenuONb;
+	bool IngameMenuOFFb;
+
+	bool LoadSettingsPlease;
 private:
 
 	SDL_Texture* debug_tex;

@@ -172,15 +172,16 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 unsigned int j1Audio::LoadFx(const char* path)
 {
 
-	p2SString tmp("%s%s", Fx_Files.GetString(), path);
-	Mix_Chunk* chunk = Mix_LoadWAV(tmp.GetString());
-
 	unsigned int ret = 0;
+
+	p2SString tmp("%s%s", Fx_Files.GetString(), path);
 
 	if (!active)
 		return 0;
 
+	Mix_Chunk* chunk = Mix_LoadWAV(path);
 
+	Mix_VolumeChunk(chunk, 100);
 
 	if (chunk == NULL)
 	{
@@ -191,8 +192,6 @@ unsigned int j1Audio::LoadFx(const char* path)
 		fx.add(chunk);
 		ret = fx.count();
 	}
-
-	return ret;
 }
 
 // Play WAV

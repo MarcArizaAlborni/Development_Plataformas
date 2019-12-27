@@ -8,6 +8,7 @@
 #include "j1Player.h"
 #include "j1Map.h"
 #include "j1FadeToBlack.h"
+#include "j1SceneUI.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -34,6 +35,11 @@ bool j1MapEntity::Start()
 
 bool j1MapEntity::PreUpdate()
 {
+	if (App->scene_ui->ResetEntitiesPositionNewGame == true) {
+		position.x = MapResetPosition.x;
+		position.y = MapResetPosition.y;
+		
+	}
 	collider->rect.x = position.x;
 	collider->rect.y = position.y;
 	return true;
@@ -41,6 +47,8 @@ bool j1MapEntity::PreUpdate()
 
 bool j1MapEntity::Update(float dt)
 {
+
+	
 	
 	animation = &idle;
 
@@ -129,6 +137,8 @@ bool j1MapEntity::InitEntity()
 	state = IdleState;
 
 	MapEntityRect = { position.x, position.y, MapEntitywidth, MapEntityheight };
+	MapResetPosition.x = position.x;
+	MapResetPosition.y = position.y;
 	collider = App->collision->AddCollider(MapEntityRect, ObjectType::MapEntityCollider, App->entityManager);
 
 	return true;

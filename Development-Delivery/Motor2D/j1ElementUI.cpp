@@ -8,6 +8,7 @@
 #include "j1Audio.h"
 #include "j1Gui.h"
 #include "j1FadeToBlack.h"
+#include "j1SceneUI.h"
 
 bool UI_Item::PreUpdate(float dt)
 {
@@ -69,17 +70,19 @@ bool UI_Item::Update(float dt)
 bool UI_Item::OnClick()
 {
 	bool ret = false;
- 
-	if (OnHover())
-	{
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+	
+		if (OnHover())
 		{
-			ret = true;
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+			{
+				App->audio->PlayFx(App->gui->fx_buton_pressed);
+				ret = true;
+			}
+
 		}
-		else if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-		{
-			//App->audio->PlayFx(App->gui->fx_buton_pressed);
-		}
-	}
+	
+
+	
+
 	return ret;
 }

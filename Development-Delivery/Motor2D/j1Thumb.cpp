@@ -4,7 +4,7 @@
 #include "j1Gui.h"
 #include "j1Window.h"
 #include "j1Scene.h"
-//#include "j1SceneMenu.h"
+#include "j1SceneUI.h"
 #include "j1Input.h"
 #include "j1Render.h"
 #include "j1Fonts.h"
@@ -55,21 +55,13 @@ bool UiItem_Thumb::PostUpdate()
 		}
 
 
-		/*App->audio->volume = (((position.x - parent->position.x) / 128.00f)*100.00f);
-		LOG("%i", position.x);
-		LOG("%i", parent->position.x);
-		LOG("%f", App->audio->volume);*/
+		
 
 	}
 
 	return ret;
 }
 
-void UiItem_Thumb::MoveThumb()
-{
-
-
-}
 
 bool UiItem_Thumb::OnHover()
 {

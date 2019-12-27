@@ -28,7 +28,11 @@ public:
 	void OnCollision(Collider* A, Collider* B);
 
 	bool InitEntity();
-
+	
+	iPoint BeeResetPosition;
+	
+	
+	
 	//Initial properties
 	bool flip = false;
 

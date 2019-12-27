@@ -8,6 +8,7 @@
 #include "j1Player.h"
 #include "j1Map.h"
 #include "j1FadeToBlack.h"
+#include "j1SceneUI.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -48,6 +49,11 @@ bool j1Skull::Start()
 bool j1Skull::PreUpdate()
 {
 	BROFILER_CATEGORY("Skull PreUpdate();", Profiler::Color::NavajoWhite)
+		if (App->scene_ui->ResetEntitiesPositionNewGame == true) {
+			position.x = SkullResetPosition.x;
+			position.y = SkullResetPosition.y;
+			state = IdleState;
+		}
 	collider->rect.x = position.x;
 	collider->rect.y = position.y;
 	return true;
@@ -213,6 +219,8 @@ bool j1Skull::InitEntity()
 	state = IdleState;
 
 	SLLrect = { position.x, position.y, SLLwidth, SLLheight };
+	SkullResetPosition.x = position.x;
+	SkullResetPosition.y = position.y;
 	collider = App->collision->AddCollider(SLLrect, ObjectType::Skull, App->entityManager);
 
 	return true;
