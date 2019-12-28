@@ -6,6 +6,7 @@
 
 enum UI_State //Types of states
 {
+	UI_NOTHING,
 	IDLE,
 	HOVER,
 	CLICK,
