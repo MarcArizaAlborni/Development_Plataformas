@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="120" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="26" nextobjectid="82">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="120" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="26" nextobjectid="148">
  <tileset firstgid="1" name="Cave" tilewidth="16" tileheight="16" tilecount="143" columns="13">
   <image source="Cave.png" width="208" height="176"/>
  </tileset>
@@ -10817,30 +10817,71 @@
  </layer>
  <objectgroup id="13" name="Colliders">
   <object id="1" name="Floor" type="Platform" x="1.66667" y="272.667" width="110" height="206.667"/>
-  <object id="2" name="Floor" type="Platform" x="160.667" y="256" width="30" height="190.333"/>
-  <object id="3" name="Floor" type="Platform" x="256.667" y="255.667" width="31" height="191"/>
-  <object id="4" name="Floor" type="Platform" x="321.667" y="240.667" width="94" height="207"/>
-  <object id="5" name="Floor" type="Platform" x="448.667" y="225.333" width="30" height="221.333"/>
-  <object id="6" name="Floor" type="Platform" x="529.333" y="223.667" width="61" height="224"/>
-  <object id="9" name="Floor" type="Platform" x="816.667" y="272.167" width="95" height="175.25"/>
-  <object id="22" name="Floor" type="Platform" x="1200.58" y="256.121" width="94.7576" height="191.212"/>
+  <object id="2" name="Floor" type="Platform" x="160" y="256" width="31" height="190.333"/>
+  <object id="4" name="Floor" type="Platform" x="320" y="240.667" width="95" height="207"/>
+  <object id="5" name="Floor" type="Platform" x="448" y="225.333" width="32" height="222.667"/>
+  <object id="6" name="Floor" type="Platform" x="528" y="223.667" width="64" height="224"/>
+  <object id="22" name="Floor" type="Platform" x="1200" y="256.121" width="96" height="191.212"/>
   <object id="29" name="Floor" type="Platform" x="2.22045e-16" y="0" width="4" height="274"/>
   <object id="31" name="Floor" type="Water" x="110.667" y="447.334" width="1811.62" height="16.3333"/>
-  <object id="46" name="Floor" type="Platform" x="1840.63" y="224" width="79.3333" height="223.583"/>
-  <object id="52" name="Floor" type="Platform" x="623.917" y="207.917" width="48.25" height="15.75"/>
-  <object id="62" name="Floor" type="Platform" x="735.333" y="288.167" width="48" height="16"/>
-  <object id="63" name="Floor" type="Platform" x="1327.92" y="240.104" width="31.5834" height="207.896"/>
-  <object id="65" name="Floor" type="Platform" x="1456.08" y="287.667" width="32.0834" height="160"/>
-  <object id="66" name="Floor" type="Platform" x="1519.83" y="256.333" width="32.3334" height="191.333"/>
-  <object id="68" name="Floor" type="Platform" x="1616.08" y="352.334" width="32.3334" height="95.333"/>
-  <object id="71" name="Floor" type="Platform" x="1776.08" y="255.667" width="32.0834" height="192"/>
-  <object id="72" name="Floor" type="Platform" x="1680.08" y="319.834" width="32.0834" height="31.333"/>
-  <object id="73" name="Floor" type="Platform" x="1728.42" y="287.917" width="32.0834" height="31.333"/>
-  <object id="74" name="Floor" type="Platform" x="928.5" y="239.5" width="62" height="31.5"/>
-  <object id="75" name="Floor" type="Platform" x="1025" y="320.75" width="30" height="126"/>
-  <object id="77" name="Floor" type="Platform" x="1104.33" y="289.333" width="30" height="31"/>
-  <object id="78" name="Floor" type="Platform" x="1168.5" y="272" width="33" height="15"/>
+  <object id="52" name="Floor" type="Platform" x="623.917" y="207.917" width="48.25" height="16.083"/>
   <object id="79" name="Floor" type="Victory" x="1871.38" y="191.875" width="33.25" height="31.25"/>
   <object id="81" name="Floor" type="Platform" x="1916" y="0" width="4" height="274"/>
+  <object id="82" name="LateralPlatform" type="LateralPlatform" x="112" y="274" width="0.152344" height="176"/>
+  <object id="83" name="LateralPlatform" type="LateralPlatform" x="191" y="257" width="0.152344" height="176"/>
+  <object id="84" name="LateralPlatform" type="LateralPlatform" x="160" y="257" width="0.152344" height="180"/>
+  <object id="85" name="Floor" type="Platform" x="256" y="257" width="32" height="190.333"/>
+  <object id="86" name="LateralPlatform" type="LateralPlatform" x="288" y="258" width="0.152344" height="189"/>
+  <object id="87" name="LateralPlatform" type="LateralPlatform" x="256" y="258" width="0.152344" height="189"/>
+  <object id="88" name="LateralPlatform" type="LateralPlatform" x="415" y="243" width="0.152344" height="204"/>
+  <object id="89" name="LateralPlatform" type="LateralPlatform" x="320" y="243" width="0.152344" height="203"/>
+  <object id="92" name="LateralPlatform" type="LateralPlatform" x="480" y="226" width="0.152344" height="221"/>
+  <object id="93" name="LateralPlatform" type="LateralPlatform" x="448" y="226" width="0.152344" height="221"/>
+  <object id="94" name="LateralPlatform" type="LateralPlatform" x="592" y="225" width="0.152344" height="222"/>
+  <object id="95" name="LateralPlatform" type="LateralPlatform" x="528" y="226" width="0.152344" height="221"/>
+  <object id="97" name="LateralPlatform" type="LateralPlatform" x="624" y="209" width="0.152344" height="14"/>
+  <object id="98" name="LateralPlatform" type="LateralPlatform" x="672" y="209" width="0.152344" height="15"/>
+  <object id="99" name="Floor" type="Platform" x="736" y="288" width="48.25" height="16.083"/>
+  <object id="100" name="LateralPlatform" type="LateralPlatform" x="736.083" y="289.083" width="0.152344" height="14"/>
+  <object id="101" name="LateralPlatform" type="LateralPlatform" x="784.083" y="289.083" width="0.152344" height="15"/>
+  <object id="105" name="Floor" type="Platform" x="815" y="271" width="97" height="177"/>
+  <object id="106" name="LateralPlatform" type="LateralPlatform" x="815.083" y="273.083" width="0.152344" height="173.917"/>
+  <object id="108" name="LateralPlatform" type="LateralPlatform" x="912.083" y="273.083" width="0.152344" height="173.917"/>
+  <object id="109" name="Floor" type="Platform" x="927" y="240" width="66" height="33"/>
+  <object id="110" name="LateralPlatform" type="LateralPlatform" x="927.114" y="241.481" width="0.208388" height="31.5186"/>
+  <object id="111" name="LateralPlatform" type="LateralPlatform" x="992.772" y="241.481" width="0.208388" height="31.5186"/>
+  <object id="112" name="Floor" type="Platform" x="1024" y="320" width="32" height="128"/>
+  <object id="113" name="LateralPlatform" type="LateralPlatform" x="1056" y="320.667" width="0.152344" height="125.333"/>
+  <object id="114" name="LateralPlatform" type="LateralPlatform" x="1024" y="320.667" width="0.152344" height="125.333"/>
+  <object id="115" name="Floor" type="Platform" x="1104" y="287" width="32" height="33"/>
+  <object id="116" name="LateralPlatform" type="LateralPlatform" x="1136" y="287.667" width="0.152344" height="32.333"/>
+  <object id="117" name="LateralPlatform" type="LateralPlatform" x="1104" y="287.667" width="0.152344" height="32.333"/>
+  <object id="118" name="Floor" type="Platform" x="1167.72" y="272" width="43.2817" height="16"/>
+  <object id="120" name="LateralPlatform" type="LateralPlatform" x="1167.72" y="272.344" width="0.0784802" height="15.6564"/>
+  <object id="122" name="LateralPlatform" type="LateralPlatform" x="1200" y="257" width="0.152344" height="190"/>
+  <object id="123" name="LateralPlatform" type="LateralPlatform" x="1296" y="257" width="0.152344" height="190"/>
+  <object id="124" name="Floor" type="Platform" x="1328" y="240" width="32" height="222.667"/>
+  <object id="125" name="LateralPlatform" type="LateralPlatform" x="1360" y="240.667" width="0.152344" height="221"/>
+  <object id="126" name="LateralPlatform" type="LateralPlatform" x="1328" y="240.667" width="0.152344" height="221"/>
+  <object id="127" name="Floor" type="Platform" x="1456" y="288" width="32" height="160"/>
+  <object id="128" name="LateralPlatform" type="LateralPlatform" x="1488" y="288.667" width="0.152344" height="159.333"/>
+  <object id="129" name="LateralPlatform" type="LateralPlatform" x="1456" y="288.667" width="0.152344" height="159.333"/>
+  <object id="130" name="Floor" type="Platform" x="1520" y="256" width="32" height="192"/>
+  <object id="131" name="LateralPlatform" type="LateralPlatform" x="1552" y="256.667" width="0.152344" height="191.333"/>
+  <object id="132" name="LateralPlatform" type="LateralPlatform" x="1520" y="256.667" width="0.152344" height="191.333"/>
+  <object id="133" name="Floor" type="Platform" x="1616" y="352" width="32" height="96"/>
+  <object id="134" name="LateralPlatform" type="LateralPlatform" x="1648" y="352.667" width="0.152344" height="95.333"/>
+  <object id="135" name="LateralPlatform" type="LateralPlatform" x="1616" y="352.667" width="0.152344" height="95.333"/>
+  <object id="136" name="Floor" type="Platform" x="1776" y="256" width="32" height="192"/>
+  <object id="137" name="LateralPlatform" type="LateralPlatform" x="1808" y="256.667" width="0.152344" height="191.333"/>
+  <object id="138" name="LateralPlatform" type="LateralPlatform" x="1776" y="256.667" width="0.152344" height="190.333"/>
+  <object id="139" name="Floor" type="Platform" x="1680" y="320" width="32" height="31"/>
+  <object id="140" name="LateralPlatform" type="LateralPlatform" x="1712" y="320.667" width="0.152344" height="30.333"/>
+  <object id="141" name="LateralPlatform" type="LateralPlatform" x="1680" y="320.667" width="0.152344" height="30.333"/>
+  <object id="142" name="Floor" type="Platform" x="1728" y="288" width="32" height="31"/>
+  <object id="143" name="LateralPlatform" type="LateralPlatform" x="1760" y="288.667" width="0.152344" height="30.333"/>
+  <object id="144" name="LateralPlatform" type="LateralPlatform" x="1728" y="288.667" width="0.152344" height="30.333"/>
+  <object id="145" name="Floor" type="Platform" x="1840" y="224" width="80" height="222.667"/>
+  <object id="147" name="LateralPlatform" type="LateralPlatform" x="1840" y="224.667" width="0.152344" height="221"/>
  </objectgroup>
 </map>

@@ -11,7 +11,7 @@
 	<collision />
 	<fade />
 	<entities>
-		<position1 x="90" y="250" />
+		<position1 x="132" y="222" />
 	</entities>
 	<fonts />
 	<gui />
