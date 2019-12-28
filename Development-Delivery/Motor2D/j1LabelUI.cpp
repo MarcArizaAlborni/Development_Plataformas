@@ -79,10 +79,10 @@ void UI_Label::ChangeTexture(SDL_Color color)
 
 	switch (label_type) {
 	case TITLE:
-		tex = App->font->Print(label_text.GetString(), label_color, App->font->main_title);
+		tex = App->font->Print(label_text.GetString(), label_color, App->font->Button_Title); //TITLE BLOOD JUNGLE FONT
 		break;
 	case FONT:
-		tex = App->font->Print(label_text.GetString(), label_color, App->font->title_settings);
+		tex = App->font->Print(label_text.GetString(), label_color, App->font->title_settings); //CHOCOLATE
 		break;
 	case CONFIG:
 		tex = App->font->Print(label_text.GetString(), label_color, App->font->title_config);
@@ -91,7 +91,28 @@ void UI_Label::ChangeTexture(SDL_Color color)
 		tex = App->font->Print(label_text.GetString(), label_color, App->font->credits);
 		break;
 	case BUTTON:
-		tex = App->font->Print(label_text.GetString(), label_color, App->font->title_buttons);
+		tex = App->font->Print(label_text.GetString(), label_color, App->font->Button_Title);
+		break;
+
+	case MAIN_TITLE:
+		tex = App->font->Print(label_text.GetString(), label_color, App->font->MainTitle); //TITLE BLOOD JUNGLE FONT
+		break;
+
+	case TEXT:
+		tex = App->font->Print(label_text.GetString(), label_color, App->font->Regular_Text); //TITLE BLOOD JUNGLE FONT
+		break;
+
+	case TEXT_SMALL:
+		tex = App->font->Print(label_text.GetString(), label_color, App->font->Regular_Text_Small); //TITLE BLOOD JUNGLE FONT
+		break;
+
+	case CONSOLE:
+		tex = App->font->Print(label_text.GetString(), label_color, App->font->Console_Font); //TITLE BLOOD JUNGLE FONT
+		break;
+
+	case SLIDERS_FONTS:
+
+		tex = App->font->Print(label_text.GetString(), label_color, App->font->SliderFont); //TITLE BLOOD JUNGLE FONT
 		break;
 	}
 }
@@ -109,10 +130,10 @@ void UI_Label::ChangeText(const char * text)
 
 	switch (label_type) {
 	case TITLE:
-		tex = App->font->Print(label_text.GetString(), label_color, App->font->main_title);
+		tex = App->font->Print(label_text.GetString(), label_color, App->font->Button_Title);
 		break;
 	case FONT:
-		tex = App->font->Print(label_text.GetString(), label_color, App->font->title_settings);
+		tex = App->font->Print(label_text.GetString(), label_color, App->font->MainTitle);
 		break;
 	case CONFIG:
 		tex = App->font->Print(label_text.GetString(), label_color, App->font->title_config);
@@ -122,6 +143,18 @@ void UI_Label::ChangeText(const char * text)
 		break;
 	case BUTTON:
 		tex = App->font->Print(label_text.GetString(), label_color, App->font->title_buttons);
+		break;
+
+	case MAIN_TITLE:
+		tex = App->font->Print(label_text.GetString(), label_color, App->font->title_buttons);
+		break;
+
+	case TEXT:
+		tex = App->font->Print(label_text.GetString(), label_color, App->font->UI_Title);
+		break;
+
+	case TIME_MENU:
+		tex = App->font->Print(label_text.GetString(), label_color, App->font->Timer_Ingame_Font);
 		break;
 	}
 }

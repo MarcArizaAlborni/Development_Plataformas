@@ -40,11 +40,17 @@ bool j1Fonts::Awake(pugi::xml_node& conf)
 
 bool j1Fonts::Start()
 {
-	main_title = Load("fonts/CopperPlate_BoldItalic", 19);
-	credits = Load("fonts/CopperPlate_BoldItalic", 19);
-	title_settings = Load("fonts/CopperPlate_BoldItalic", 19);
-	title_config = Load("fonts/CopperPlate_BoldItalic", 19);
-	title_buttons = Load("fonts/CopperPlate_BoldItalic", 19);
+	Button_Title = Load("fonts/Chocolate_Drink.ttf",40);
+	Regular_Text = Load("fonts/OpenSans-BoldItalic.ttf", 16);
+	Regular_Text_Small = Load("fonts/OpenSans-BoldItalic.ttf", 13);
+	title_settings = Load("fonts/Black & Blue_DEMO", 19);
+	MainTitle = Load("fonts/Black & Blue Textured_DEMO.ttf", 40);
+	title_config = Load("fonts/Chocolate_Drink.ttf", 40);
+	title_buttons = Load("fonts/Jungle Bloods Font.ttf", 19);
+	UI_Title = Load("fonts/Black & Blue_DEMO", 20);
+	Timer_Ingame_Font=Load("fonts/Chocolate_Drink.ttf", 40);
+	Console_Font= Load("fonts/open-sans.bold.ttf", 17);
+	SliderFont= Load("fonts/Chocolate_Drink.ttf", 30);
 	return true;
 }
 

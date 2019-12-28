@@ -28,6 +28,7 @@ public:
 
    virtual bool OnHover() { return true; }; // HOVEING OR NOT HOVERING  MUST BE VIRTUAL OR WON'T WORK (NO IDEA WHY)
 	bool OnClick(); //IF THE BUTTON IS CLICKED OR NOT
+	bool SliderClick();//IF WE USE CLICK 1 WITH KEY_DOWN IT DOESNT WORK CORRECTLY
 
 public:
 	UI_State	state = IDLE; //Initial state

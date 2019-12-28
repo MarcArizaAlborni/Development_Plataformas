@@ -24,7 +24,29 @@ enum Button_Type //Types of buttons
 	CLOSE_SETTINGS,
 	LINK,
 	CREDITS_CLOSE,
-	CREDITS_MENU
+	CREDITS_MENU,
+	SLIDER_BOX,
+
+	//CONSOLE BUTTONS
+	CONSOLE_MAIN,
+	CONSOLE_SECONDARY,
+	CONSOLE_KILL,
+	CONSOLE_HPLESS,
+	CONSOLE_HPMORE,
+	CONSOLE_HPFULL,
+	CONSOLE_GOD,
+	CONSOLE_NOCAP,
+	CONSOLE_30CAP,
+	CONSOLE_60CAP,
+	CONSOLE_NOVSYNC,
+	CONSOLE_YESVSYNC,
+	CONSOLE_RESETENTITY,
+	CONSOLE_MAP1,
+	CONSOLE_MAP2,
+	CONSOLE_COLLECTLESS,
+	CONSOLE_COLLECTMORE,
+	BOX_SLIDER1,
+	BOX_SLIDER2
 };
 
 class  UIitem_Button :public UI_Item
@@ -42,8 +64,8 @@ public:
 
 private:
 	SDL_Rect	button_rect[MAX_STATE]; //Rect of the button
-	p2SString	button_text; // Text inside the button
-	Button_Type	button_type; // Type of the button
+	p2SString	button_text; // Text for button (Not Visual)
+	Button_Type	button_type; // Which type of button
 };
 
 #endif  // !_UI_BUTTON__H

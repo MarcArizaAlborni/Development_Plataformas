@@ -6,6 +6,8 @@
 #include "SDL_mixer\include\SDL_mixer.h"
 #pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
 #include "Brofiler/Brofiler.h"
+#include "j1App.h"
+#include "j1SceneUI.h"
 
 j1Audio::j1Audio() : j1Module()
 {
@@ -57,8 +59,9 @@ bool j1Audio::Awake(pugi::xml_node& config)
 	}
 
 	TempVolumeMusicValue = 100;
-	VolumeMusicValue = 50;
+	VolumeMusicValue = 100;
 
+	
 
 	return ret;
 }
@@ -116,8 +119,8 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 	//Area1MusicLvL1 = Mix_LoadMUS("audio/Music/MusicLevel1.ogg");
 
 	//music = Area1MusicLvL1;
-
-	if (Area1Level1 == true) {
+	music = Mix_LoadMUS("audio/Music/MenuMusicAudio.ogg");
+	if (Area1Level1 == true && App->scene_ui->OnMainMenu == false) {
 
 		music = Mix_LoadMUS("audio/Music/L1_A1.ogg");
 	}
@@ -129,7 +132,9 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 	else if (Area2Level1 == true) {
 		music = Mix_LoadMUS("audio/Music/L1_A2.ogg");
 	}
+	
 
+	
 	//music= Mix_LoadMUS("audio/Music/L1_A3.ogg");
 	Jump_Sound = Mix_LoadWAV("audio/Music/Jump_1.wav");
 
@@ -213,6 +218,11 @@ bool j1Audio::PlayFx(unsigned int id, int repeat)
 void j1Audio::VolumeMusic()
 {
 	Mix_VolumeMusic(VolumeMusicValue);
+}
+
+void j1Audio::VolumeFX()
+{
+	//Mix_VolumeChunk(,VolumeFXValue);
 }
 
 

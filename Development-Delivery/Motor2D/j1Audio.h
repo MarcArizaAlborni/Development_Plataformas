@@ -68,6 +68,7 @@ public:
 	Mix_Chunk *Jump_Sound = NULL;
 
 	void VolumeMusic();
+	void VolumeFX();
 	int VolumeMusicValue;
 	int TempVolumeMusicValue;
 	int VolumeFXValue;

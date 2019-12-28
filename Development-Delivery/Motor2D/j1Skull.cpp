@@ -80,16 +80,16 @@ bool j1Skull::Update(float dt)
 	case LeftState:
 		TouchingColliderPlatformOver = false, TouchingColliderPlatformUnder = false;
 		if (GoLeft) {
-			position.x -= 3;
+			position.x -= 1.5;
 			if (GoDown) {
 				if (TouchingColliderPlatformOver != true) {
-					position.y += 3;
+					position.y += 1.5;
 					LOG("GOING DOWN LEFT");
 				}
 			}
 			else if (GoUp) {
 				if (TouchingColliderPlatformUnder != true) {
-					position.y -= 3;
+					position.y -= 1.5;
 					LOG("GOING UP LEFT");
 				}
 			}
@@ -100,17 +100,17 @@ bool j1Skull::Update(float dt)
 	case RightState:
 		TouchingColliderPlatformOver, TouchingColliderPlatformUnder = false;
 		if (GoRight) {
-			position.x += 3;
+			position.x += 1.5;
 			if (GoDown) {
 				if (TouchingColliderPlatformOver != true) {
-					position.y += 3;
+					position.y += 1.5;
 					LOG("GOING DOWN RIGHT");
 				}
 
 			}
 			else if (GoUp) {
 				if (TouchingColliderPlatformUnder != true) {
-					position.y -= 3;
+					position.y -= 1.5;
 					LOG("GOING UP RIGHT");
 				}
 			}
@@ -173,7 +173,40 @@ void j1Skull::OnCollision(Collider* A, Collider* B)
 
 			if (((position.y + A->rect.h) < (B->rect.y + B->rect.h)) || ((position.y + A->rect.h) > B->rect.y)) {
 				
+				if (App->scene_ui->PlayerInvencibility == true) {
+					App->scene_ui->HealthChanged = true;
+					App->scene_ui->ResetEntitiesPositionNewGame = true;
+					App->entityManager->player->position.x = 90.0f;
+					App->entityManager->player->position.y = 250.0f;
+					if (App->scene_ui->LifeAt4 == true) {
+						LOG("4 TO 3");
+						App->scene_ui->LifeAt3 = true;
+						App->scene_ui->LifeAt4 = false;
+						App->scene_ui->PlayerInvencibility = false;
+						//App->scene_ui->HealthChanged = false;
+					}
+					else if (App->scene_ui->LifeAt3 == true) {
+						LOG("3 TO 2");
+						App->scene_ui->LifeAt2 = true;
+						App->scene_ui->LifeAt3 = false;
+						App->scene_ui->PlayerInvencibility = false;
+						//App->scene_ui->HealthChanged = false;
+					}
+					else if (App->scene_ui->LifeAt2 == true) {
+						LOG("2 TO 1");
+						App->scene_ui->LifeAt1 = true;
+						App->scene_ui->LifeAt2 = false;
+						App->scene_ui->PlayerInvencibility = false;
+						//App->scene_ui->HealthChanged = false;
+					}
+					else {
+						LOG("1 TO 0");
+						App->scene_ui->LifeAt0 = true;
+						App->scene_ui->LifeAt1 = false;
+						//App->scene_ui->HealthChanged = false;
 
+					}
+				}
 			}
 		}
 

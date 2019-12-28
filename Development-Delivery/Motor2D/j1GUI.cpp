@@ -16,6 +16,7 @@
 #include "j1Thumb.h"
 #include "j1SceneUI.h"
 #include "SDL/include/SDL.h"
+#include "Brofiler/Brofiler.h"
 
 j1Gui::j1Gui() : j1Module()
 {
@@ -41,10 +42,13 @@ bool j1Gui::Awake(pugi::xml_node& conf)
 // Called before the first frame
 bool j1Gui::Start()
 {
+
+	BROFILER_CATEGORY("GUI START()", Profiler::Color::LawnGreen)
 	atlas = App->tex->Load(atlas_file_name.GetString());
 	fx_buton_pressed = App->audio->LoadFx(fx_button_pressed_string.GetString());
 
 	p2List_item<UI_Item*>* item_gui = gui_list.start;
+	
 	while (item_gui != nullptr)
 	{
 		item_gui->data->Start();
@@ -57,6 +61,7 @@ bool j1Gui::Start()
 // Update all guis
 bool j1Gui::PreUpdate(float dt)
 {
+	BROFILER_CATEGORY("GUI PreUpdate()", Profiler::Color::PaleVioletRed)
 	p2List_item<UI_Item*>* item_gui = gui_list.start;
 	while (item_gui != nullptr)
 	{
@@ -68,6 +73,7 @@ bool j1Gui::PreUpdate(float dt)
 
 bool j1Gui::Update(float dt)
 {
+	BROFILER_CATEGORY("GUI Update()", Profiler::Color::SeaGreen)
 	p2List_item<UI_Item*>* item_gui = gui_list.start;
 	while (item_gui != nullptr)
 	{
@@ -81,6 +87,7 @@ bool j1Gui::Update(float dt)
 // Called after all Updates
 bool j1Gui::PostUpdate()
 {
+	BROFILER_CATEGORY("GUI PostUpdate()", Profiler::Color::DarkOrange)
 	p2List_item<UI_Item*>* item_gui = gui_list.start;
 	while (item_gui != nullptr)
 	{
@@ -97,6 +104,7 @@ bool j1Gui::PostUpdate()
 // Called before quitting
 bool j1Gui::CleanUp()
 {
+	BROFILER_CATEGORY("GUI CleanUp()", Profiler::Color::BlanchedAlmond)
 	LOG("Freeing GUI");
 
 	p2List_item<UI_Item*>* item;

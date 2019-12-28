@@ -215,6 +215,28 @@ void j1App::FinishUpdate()
 			FramesCaped = true;
 			LOG("FRAME CAP ON");
 		}
+
+	}
+
+	if (Frames0 == true) {
+		frame_cap = 200;
+		FramesCaped = false;
+		Frames30 = false;
+		Frames60 = false;
+	}
+
+	if (Frames30 == true) {
+		frame_cap = 30;
+		Frames0 = false;
+		Frames60 = false;
+		FramesCaped = true;
+	}
+
+	if (Frames60 == true) {
+		frame_cap = 60;
+		Frames30 = false;
+		Frames0 = false;
+		FramesCaped = true;
 	}
 
 

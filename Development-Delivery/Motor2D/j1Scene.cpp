@@ -99,7 +99,7 @@ bool j1Scene::Update(float dt)
 {
 	//OPEN CLOSE INGAME MENU
 
-	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN && App->scene_ui->OnMainMenu!=true) {
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && App->scene_ui->OnMainMenu!=true && App->scene_ui->OnSettingsMenu!=true && App->scene_ui->OnCreditsMenu!=true) {
 		
 		if (App->scene_ui->OnIngameMenu == false) {
 			App->scene_ui->IngameMenuON();
@@ -121,6 +121,20 @@ bool j1Scene::Update(float dt)
 			App->scene_ui->MuteIngameOFF();
 			App->scene_ui->UnMuteIngameOFF();
 
+		}
+	}
+
+
+	if (App->input->GetKey(SDL_SCANCODE_GRAVE) == KEY_DOWN) {
+		LOG("CONSOLE OPENED");
+		if (App->scene_ui->OnConsole == false) {
+			App->scene_ui->ConsoleON();
+			App->scene_ui->OnConsole = true;
+		}
+		else {
+			LOG("CONSOLE CLOSED");
+			App->scene_ui->ConsoleOFF();
+			App->scene_ui->OnConsole = false;
 		}
 	}
 
@@ -204,8 +218,8 @@ bool j1Scene::PostUpdate()
 
 	bool ret = true;
 
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;
+	/*if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+		ret = false;*/
 
 	return ret;
 }

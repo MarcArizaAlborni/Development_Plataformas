@@ -43,8 +43,16 @@ public:
 	_TTF_Font*			title_buttons;
 	_TTF_Font*			title_config;
 	_TTF_Font*			title_settings;
-	_TTF_Font*			main_title;
+	_TTF_Font*			Button_Title;
 	_TTF_Font*			credits;
+	_TTF_Font*          MainTitle;
+	_TTF_Font*          Timer;
+	_TTF_Font*          UI_Title;
+	_TTF_Font*          Regular_Text;
+	_TTF_Font*          Regular_Text_Small;
+	_TTF_Font*          Timer_Ingame_Font;
+	_TTF_Font*          Console_Font;
+	_TTF_Font*          SliderFont;
 };
 
 

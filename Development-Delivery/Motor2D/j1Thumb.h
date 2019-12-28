@@ -19,8 +19,8 @@ public:
 	bool OnHover();
 
 public:
-	SDL_Rect thumb_box; // Rect of the thumb
-	iPoint click_position; // Detects where the mouse is clicking
+	SDL_Rect thumb_box; 
+	iPoint click_position; 
 };
 
 #endif  // !_UI_THUMB__H

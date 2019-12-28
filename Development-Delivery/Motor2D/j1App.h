@@ -109,6 +109,12 @@ public:
 
 	bool FramesCaped;
 	bool vsyncActive;
+	
+
+	//CONSOLE
+	bool Frames30;
+	bool Frames60;
+	bool Frames0;
 
 private:
 

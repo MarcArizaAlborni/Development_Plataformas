@@ -60,6 +60,11 @@ public:
 	void UnMuteSettingsOFF();
 	void UnMuteIngameON();
 	void UnMuteIngameOFF();
+	void ConsoleON();
+	void ConsoleOFF();
+	void ConsoleManager();
+	void Revive();
+	void SliderManager();
 	//bool OnlyOnce;
 	
 	
@@ -75,14 +80,22 @@ public:
 	UI_Item*    Map_Icon[1] = { nullptr };
 	UI_Label*	score_label = nullptr;
 	UI_Label*	timer_label = nullptr;
+	UI_Label*   ConsoleWarning = nullptr;
 	
 	bool LifeAt4;
 	bool LifeAt3;
 	bool LifeAt2;
 	bool LifeAt1;
+	bool LifeAt0;
+	bool PlayerInvencibility;
+	bool HealthChanged;
+	bool HealthBoosted;
+	bool HealthFill;
+
+
 
 	p2List<UIitem_Button*>	Buttons_Listed_Ingame;
-	p2List<UI_Item*>		Menu_Listed_Ingame; //Pause menu when esc pressed
+	p2List<UI_Item*>		Menu_Listed_Ingame; 
 	p2List<UI_Item*>        PlayerUI_Ingame;
 	p2List<UI_Item*>        MainMenu_UI;
 	p2List<UIitem_Button*>  MainMenu_Buttons;
@@ -95,6 +108,14 @@ public:
 	p2List<UIitem_Button*> UnMuteSettings_Button;
 	p2List<UIitem_Button*> MuteIngame_Button;
 	p2List<UIitem_Button*> UnMuteIngame_Button;
+
+	p2List<UIitem_Button*> Console_Button;
+	p2List<UI_Item*>       Console_UI;
+
+	bool OnConsole;
+
+	bool Menu_Music;
+	p2SString				Music_Menu_Load;
 	
 	bool OnMainMenu;
 	bool OnIngameMenu;
@@ -107,8 +128,30 @@ public:
 	bool bMuteIngameON;
 	bool bMuteIngameOFF;
 
+	bool ConsoleSecurity;
+	bool OcupyConsoleLOG1;
+	bool OcupyConsoleLOG2;
+	bool OcupyConsoleLOG3;
+	bool OcupyConsoleLOG4;
+	bool OcupyConsoleLOG5;
+
+	UI_Label*  ConsoleLOG1;
+	UI_Label*  ConsoleLOG2;
+	UI_Label*  ConsoleLOG3;
+	UI_Label*  ConsoleLOG4;
+	UI_Label*  ConsoleLOG5;
+
+	iPoint VolumeMusicBoxPos;
+	iPoint VolumeFXBoxPos;
+	UIitem_Button* MusicSliderBox;
+	UIitem_Button* FXSliderBox;
+
+	
+	char ConsoleLOGS(const char* textLOG);
+
 	bool ResetEntitiesPositionNewGame;
 
+	
 private:
 	p2SString			path;
 	p2List<j1Module*>	current_level;

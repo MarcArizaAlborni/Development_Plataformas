@@ -42,26 +42,33 @@ bool UI_Item::PreUpdate(float dt)
 	default:
 		break;
 	}
+
+	
 	return true;
 }
 
 bool UI_Item::Update(float dt)
 {
+
 	int x, y;
 	App->input->GetMousePosition(x, y);
-
-
+	
+	
 	if (static_object)
 	{
 		if (!drag)
 			position = { pos.x - App->render->camera.x / (int)App->win->GetScale(), pos.y - App->render->camera.y / (int)App->win->GetScale() };
 		mouse_position = { x - App->render->camera.x / (int)App->win->GetScale(),y - App->render->camera.y / (int)App->win->GetScale() };
+		App->scene_ui->VolumeFXBoxPos.x=App->scene_ui->VolumeMusicBoxPos.x = mouse_position.x;
+		App->scene_ui->VolumeFXBoxPos.y = App->scene_ui->VolumeMusicBoxPos.y = mouse_position.y;
 	}
 	else if (!static_object)
 	{
 		if (!drag)
 			position = { pos.x , pos.y };
 		mouse_position = { x - App->render->camera.x / (int)App->win->GetScale(), y - App->render->camera.y / (int)App->win->GetScale() };
+		App->scene_ui->VolumeFXBoxPos.x = App->scene_ui->VolumeMusicBoxPos.x = mouse_position.x;
+		App->scene_ui->VolumeFXBoxPos.y = App->scene_ui->VolumeMusicBoxPos.y = mouse_position.y;
 	}
 
 	return true;
@@ -83,6 +90,36 @@ bool UI_Item::OnClick()
 	
 
 	
+
+	return ret;
+}
+
+bool UI_Item::SliderClick()
+{
+	bool ret = false;
+
+	if (OnHover())
+	{
+		bool ret = false;
+
+		if ( OnHover())
+		{
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+			{
+				
+				ret = true;
+			}
+			/*else if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+			{
+				App->audio->PlayFx(App->gui->fx_buton_pressed);
+			}*/
+		}
+		return ret;
+
+	}
+
+
+
 
 	return ret;
 }

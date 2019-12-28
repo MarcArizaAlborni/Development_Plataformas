@@ -14,13 +14,18 @@ public:
 
 	~UiItem_Bar() {};
 
+	
 	bool Start();
 	bool PostUpdate();
+	bool Awake();
+	bool Start2();
 
 	float GetThumbValue();
-
+	float GetThumbValue2();
+	UiItem_Thumb*	thumb1 = nullptr;
+	UiItem_Thumb*	thumb2 = nullptr;
 private:
-	UiItem_Thumb*	thumb = nullptr;
+	
 	SDL_Rect	box;
 public:
 	SDL_Rect s_box; // Slider box

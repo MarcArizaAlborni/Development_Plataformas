@@ -10,7 +10,14 @@ enum Label_Type { // Types of labels
 	FONT,
 	CONFIG,
 	CREDITS,
-	BUTTON
+	BUTTON,
+	MAIN_TITLE,
+	TEXT,
+	UI_FONTS,
+	TIME_MENU,
+	TEXT_SMALL,
+	CONSOLE,
+	SLIDERS_FONTS
 };
 
 class UI_Label : public UI_Item
