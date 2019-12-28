@@ -164,7 +164,7 @@ bool j1Scene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		App->SaveGame("save_game.xml");
 		//App->SaveGame();
-	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+	/*if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		App->fade->FadeToBlack("SimpleLevel1.tmx");
 		StartMap1();
 	}
@@ -172,7 +172,7 @@ bool j1Scene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
 		App->fade->FadeToBlack("SimpleLevel2.tmx");
 		StartMap2();
-	}
+	}*/
 
 	App->map->Draw();
 
