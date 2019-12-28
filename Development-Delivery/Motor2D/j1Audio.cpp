@@ -220,9 +220,4 @@ void j1Audio::VolumeMusic()
 	Mix_VolumeMusic(VolumeMusicValue);
 }
 
-void j1Audio::VolumeFX()
-{
-	//Mix_VolumeChunk(,VolumeFXValue);
-}
-
 
