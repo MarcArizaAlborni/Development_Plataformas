@@ -35,6 +35,7 @@ bool j1MapEntity::Start()
 
 bool j1MapEntity::PreUpdate()
 {
+	BROFILER_CATEGORY("Map Entity PreUpdate();", Profiler::Color::FireBrick)
 	if (App->scene_ui->ResetEntitiesPositionNewGame == true) {
 		position.x = MapResetPosition.x;
 		position.y = MapResetPosition.y;
@@ -57,7 +58,7 @@ bool j1MapEntity::Update(float dt)
 
 bool j1MapEntity::PostUpdate()
 {
-	BROFILER_CATEGORY("MAP PostUpdate();", Profiler::Color::SaddleBrown)
+	BROFILER_CATEGORY("Map Entity PostUpdate();", Profiler::Color::SaddleBrown)
 		MapEntityRect.x = position.x;
 	MapEntityRect.y = position.y;
 
@@ -80,7 +81,7 @@ bool j1MapEntity::PostUpdate()
 
 bool j1MapEntity::CleanUp()
 {
-	BROFILER_CATEGORY("MAP ENTITY CleanUp();", Profiler::Color::FireBrick)
+	BROFILER_CATEGORY("Map Entity CleanUp();", Profiler::Color::AliceBlue)
 		App->tex->UnLoad(texture);
 
 	return true;
@@ -98,7 +99,7 @@ bool j1MapEntity::Save(pugi::xml_node &node) const
 
 void j1MapEntity::OnCollision(Collider* A, Collider* B)
 {
-	BROFILER_CATEGORY("MAP entity OnCollision();", Profiler::Color::CornflowerBlue)
+	BROFILER_CATEGORY("Map Entity OnCollision();", Profiler::Color::CornflowerBlue)
 		if (A->type == ObjectType::MapEntityCollider) {
 
 			if (B->type == ObjectType::Player && MapCollected==false) {

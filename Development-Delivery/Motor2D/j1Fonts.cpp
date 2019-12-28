@@ -8,6 +8,8 @@
 #include "SDL_ttf\include\SDL_ttf.h"
 #pragma comment( lib, "SDL_ttf/libx86/SDL2_ttf.lib" )
 
+#include "Brofiler/Brofiler.h"
+
 j1Fonts::j1Fonts() : j1Module()
 {
 	name.create("fonts");
@@ -20,6 +22,8 @@ j1Fonts::~j1Fonts()
 // Called before render is available
 bool j1Fonts::Awake(pugi::xml_node& conf)
 {
+	BROFILER_CATEGORY("Fonts Awake();", Profiler::Color::Beige)
+
 	LOG("Init True Type Font library");
 	bool ret = true;
 
@@ -40,6 +44,8 @@ bool j1Fonts::Awake(pugi::xml_node& conf)
 
 bool j1Fonts::Start()
 {
+	BROFILER_CATEGORY("Fonts Start();", Profiler::Color::PaleVioletRed)
+
 	Button_Title = Load("fonts/Chocolate_Drink.ttf",40);
 	Regular_Text = Load("fonts/OpenSans-BoldItalic.ttf", 16);
 	Regular_Text_Small = Load("fonts/OpenSans-BoldItalic.ttf", 13);
@@ -57,6 +63,8 @@ bool j1Fonts::Start()
 // Called before quitting
 bool j1Fonts::CleanUp()
 {
+	BROFILER_CATEGORY("Fonts CleanUp();", Profiler::Color::SaddleBrown)
+
 	LOG("Freeing True Type fonts and library");
 	p2List_item<TTF_Font*>* item;
 
@@ -91,6 +99,8 @@ TTF_Font* const j1Fonts::Load(const char* path, int size)
 // Print text using font
 SDL_Texture* j1Fonts::Print(const char* text, SDL_Color color, _TTF_Font* font)
 {
+	BROFILER_CATEGORY("Fonts Print();", Profiler::Color::Gold)
+
 	SDL_Texture* ret = NULL;
 	SDL_Surface* surface = TTF_RenderText_Blended((font) ? font : default, text, color);
 

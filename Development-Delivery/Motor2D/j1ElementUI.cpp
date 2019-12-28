@@ -10,8 +10,11 @@
 #include "j1FadeToBlack.h"
 #include "j1SceneUI.h"
 
+#include "Brofiler/Brofiler.h"
+
 bool UI_Item::PreUpdate(float dt)
 {
+	BROFILER_CATEGORY("UI Element PreUpdate();", Profiler::Color::Azure)
 	switch (state)
 	{
 	case UI_State::IDLE:
@@ -49,7 +52,7 @@ bool UI_Item::PreUpdate(float dt)
 
 bool UI_Item::Update(float dt)
 {
-
+	BROFILER_CATEGORY("UI Element Update();", Profiler::Color::Turquoise)
 	int x, y;
 	App->input->GetMousePosition(x, y);
 	
@@ -76,6 +79,7 @@ bool UI_Item::Update(float dt)
 
 bool UI_Item::OnClick()
 {
+	BROFILER_CATEGORY("UI Element OnClick();", Profiler::Color::Cyan)
 	bool ret = false;
 	
 		if (OnHover())
@@ -96,6 +100,7 @@ bool UI_Item::OnClick()
 
 bool UI_Item::SliderClick()
 {
+	BROFILER_CATEGORY("UI Element SliderClick();", Profiler::Color::Black)
 	bool ret = false;
 
 	if (OnHover())
@@ -117,9 +122,6 @@ bool UI_Item::SliderClick()
 		return ret;
 
 	}
-
-
-
 
 	return ret;
 }

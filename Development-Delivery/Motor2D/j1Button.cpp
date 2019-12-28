@@ -7,6 +7,8 @@
 #include "j1Input.h"
 #include "j1Button.h"
 
+#include "Brofiler/Brofiler.h"
+
 UIitem_Button::UIitem_Button(const char* text, Button_Type type, SDL_Rect idle_rect, SDL_Rect* rect_hover, SDL_Rect* rect_click, UI_Item* parent)
 {
 	button_rect[IDLE] = idle_rect;
@@ -41,6 +43,8 @@ UIitem_Button::~UIitem_Button()
 
 bool UIitem_Button::Start()
 {
+	BROFILER_CATEGORY("UI Button Start();", Profiler::Color::Gainsboro)
+
 	if (button_text.Length() > 0)
 		App->gui->CreateLabel({ pos.x + 10, pos.y + 5 }, button_text.GetString(), CONFIG, { 0,0,0,0 }, static_object, this);
 	return true;
@@ -48,6 +52,7 @@ bool UIitem_Button::Start()
 
 bool UIitem_Button::PostUpdate()
 {
+	BROFILER_CATEGORY("UI Button PostUpdate();", Profiler::Color::NavajoWhite)
 	bool ret = true;
 
 	switch (state)

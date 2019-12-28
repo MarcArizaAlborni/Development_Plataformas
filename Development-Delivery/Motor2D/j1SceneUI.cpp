@@ -33,7 +33,7 @@ j1Scene_UI::~j1Scene_UI()
 // Called before render is available
 bool j1Scene_UI::Awake(pugi::xml_node& config)
 {
-	
+	BROFILER_CATEGORY("SceneUI Awake();", Profiler::Color::Wheat)
 	LOG("Loading Scene UI");
 	bool ret = true;
 	path.create(config.child("path").child_value());
@@ -375,6 +375,7 @@ bool j1Scene_UI::Start()
 // Called each loop iteration
 bool j1Scene_UI::PreUpdate(float dt)
 {
+	BROFILER_CATEGORY("SceneUI PreUpdate();", Profiler::Color::Gainsboro)
 	return true;
 }
 
@@ -1415,7 +1416,7 @@ void j1Scene_UI::ConsoleManager()
 
 void j1Scene_UI::Revive()
 {
-	LOG("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
+	LOG("Revive");
 	LifeAt4 = true;
 	LifeAt0 = false;
 	LifeAt1 = false;

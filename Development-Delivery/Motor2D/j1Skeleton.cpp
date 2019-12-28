@@ -101,7 +101,7 @@ bool j1Skeleton::PreUpdate()
 		position.y = SkeletonResetPosition.y;
 		state = IdleState;
 	}
-	BROFILER_CATEGORY("Skeleton Pre();", Profiler::Color::WhiteSmoke)
+	BROFILER_CATEGORY("Skeleton PreUpdate();", Profiler::Color::WhiteSmoke)
 	//position.y += gravity;
 	collider->rect.x = position.x;
 	collider->rect.y = position.y;

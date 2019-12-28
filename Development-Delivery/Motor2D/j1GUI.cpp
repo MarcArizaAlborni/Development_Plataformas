@@ -30,6 +30,7 @@ j1Gui::~j1Gui()
 // Called before render is available
 bool j1Gui::Awake(pugi::xml_node& conf)
 {
+	BROFILER_CATEGORY("GUI Awake();", Profiler::Color::AntiqueWhite)
 	LOG("Loading GUI atlas");
 	bool ret = true;
 
@@ -42,8 +43,7 @@ bool j1Gui::Awake(pugi::xml_node& conf)
 // Called before the first frame
 bool j1Gui::Start()
 {
-
-	BROFILER_CATEGORY("GUI START()", Profiler::Color::LawnGreen)
+	BROFILER_CATEGORY("GUI Start()", Profiler::Color::LawnGreen)
 	atlas = App->tex->Load(atlas_file_name.GetString());
 	fx_buton_pressed = App->audio->LoadFx(fx_button_pressed_string.GetString());
 
@@ -129,6 +129,7 @@ bool j1Gui::CleanUp()
 
 UI_Label* j1Gui::CreateLabel(iPoint pos, const char * text, Label_Type type, SDL_Color color, bool static_obj, UI_Item* parent)
 {
+	BROFILER_CATEGORY("GUI CreateLabel();", Profiler::Color::Lavender)
 	UI_Item* label = nullptr;
 	label = new UI_Label(text, type, color, parent);
 	label->pos.x = pos.x;
@@ -143,6 +144,7 @@ UI_Label* j1Gui::CreateLabel(iPoint pos, const char * text, Label_Type type, SDL
 
 UI_Item* j1Gui::CreateSprite(iPoint pos, SDL_Rect rect, bool static_obj, UI_Item* parent)
 {
+	BROFILER_CATEGORY("GUI CreateSprite();", Profiler::Color::Violet)
 	UI_Item* sprite = nullptr;
 	sprite = new UI_Sprite(rect, parent);
 	sprite->pos.x = pos.x;
@@ -157,6 +159,7 @@ UI_Item* j1Gui::CreateSprite(iPoint pos, SDL_Rect rect, bool static_obj, UI_Item
 
 UIitem_Button* j1Gui::CreateButton(iPoint pos, Button_Type type, SDL_Rect idle_rect, SDL_Rect* idle_hover, SDL_Rect* idle_click, const char* text, bool static_obj, UI_Item* parent)
 {
+	BROFILER_CATEGORY("GUI CreateButton();", Profiler::Color::Aqua)
 	UI_Item* button = nullptr;
 	button = new UIitem_Button(text, type, idle_rect, idle_hover, idle_click, parent);
 	button->pos.x = pos.x;
@@ -170,6 +173,7 @@ UIitem_Button* j1Gui::CreateButton(iPoint pos, Button_Type type, SDL_Rect idle_r
 }
 UiItem_Bar * j1Gui::CreateSlider(iPoint pos, SDL_Rect slider_box, bool static_obj, UI_Item* parent)
 {
+	BROFILER_CATEGORY("GUI CreateSlider();", Profiler::Color::Silver)
 	UI_Item*slider = nullptr;
 	slider = new UiItem_Bar(slider_box, parent);
 	slider->pos.x = pos.x;
@@ -196,6 +200,7 @@ UiItem_Thumb * j1Gui::CreateThumb(SDL_Rect s_thumb, UI_Item * parent)
 // const getter for atlas
 SDL_Texture* j1Gui::GetAtlas() const
 {
+	BROFILER_CATEGORY("GUI GetAtlas();", Profiler::Color::Red)
 	return atlas;
 }
 
