@@ -15,9 +15,7 @@ Made by:
 
  https://github.com/MarcArizaAlborni/Development_Plataformas
 
-- Webpage
 
- https://arizamarc1999.wixsite.com/projectceta
 
 
 
